@@ -9,12 +9,12 @@ const typeDefs = gql`
 
   type Item {
     _id: ID
-    itemTitle: String
-    itemDescription: String
-    itemImage: String
-    itemPrice: Int
-    itemStock: Int
-    itemSize: [String]
+    title: String
+    description: String
+    image: String
+    price: Int
+    stock: Int
+    size: [String]
   }
 
   type Auth {
