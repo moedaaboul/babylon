@@ -14,7 +14,7 @@ const typeDefs = gql`
     itemImage: String
     itemPrice: Int
     itemStock: Int
-    itemSize: String
+    itemSize: [String]
   }
 
   type Auth {
