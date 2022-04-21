@@ -14,13 +14,50 @@ import {
   CardContent,
   Button,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
 import './index.css';
 
 const Login = () => {
   //   const isJoin = useRouteMatch(Routes.join);
+  const [loginUser] = useMutation(LOGIN_USER);
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // check if form has everything (as per react-bootstrap docs)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    console.log(userFormData);
+    try {
+      // const response = await loginUser(userFormData);
+      const { data } = await loginUser({
+        variables: { ...userFormData },
+      });
+      console.log(data);
+      Auth.login(data.loginUser.token);
+    } catch (err) {
+      console.error(err.message);
+    }
+
+    setUserFormData({
+      email: '',
+      password: '',
+    });
+  };
 
   return (
     <>
@@ -56,7 +93,7 @@ const Login = () => {
               {/* <CreateBoard /> */}
               <Grow in={true} timeout={1000}>
                 {/* <form onSubmit={handleSubmit}> */}
-                <form>
+                <form onSubmit={handleFormSubmit}>
                   <Card variant="outlined" className="CreateBoardCard">
                     <CardHeader
                       className="CreateBoardCardHeader"
@@ -72,6 +109,9 @@ const Login = () => {
                           label="Email address"
                           placeholder="Email address"
                           variant="outlined"
+                          name="email"
+                          onChange={handleInputChange}
+                          value={userFormData.email}
                           sx={{ width: '100%' }}
                         />
                         <TextField
@@ -81,6 +121,9 @@ const Login = () => {
                           label="Password"
                           placeholder="Password"
                           variant="outlined"
+                          name="password"
+                          onChange={handleInputChange}
+                          value={userFormData.password}
                           sx={{ m: 2, width: '100%' }}
                         />
 
