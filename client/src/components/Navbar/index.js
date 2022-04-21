@@ -19,7 +19,7 @@ import {
   IconButton,
 } from '@mui/material';
 import React from 'react';
-
+import { Link as RouterLink } from 'react-router-dom';
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
   justifyContent: 'space-between',
@@ -125,7 +125,9 @@ const Navbar = () => {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem>Login</MenuItem>
+          <MenuItem component={RouterLink} to="/login">
+            Login
+          </MenuItem>
           {/* <MenuItem>Profile</MenuItem> */}
           <MenuItem>My account</MenuItem>
           <MenuItem>Orders</MenuItem>

@@ -141,6 +141,7 @@ const Login = () => {
                           variant="button"
                           display="block"
                           gutterBottom
+                          sx={{ cursor: 'pointer' }}
                         >
                           Don't have an account?
                         </Typography>
