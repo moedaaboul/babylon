@@ -12,7 +12,9 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     getItems: async () => {
-      return await Item.find({});
+      const itemList = await Item.find({});
+      console.log(itemList);
+      return itemList;
     },
   },
 
