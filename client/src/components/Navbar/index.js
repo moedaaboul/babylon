@@ -14,6 +14,7 @@ import {
   MenuItem,
   styled,
   Toolbar,
+  Tooltip,
   Typography,
   IconButton,
 } from '@mui/material';
@@ -22,6 +23,10 @@ import React from 'react';
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
   justifyContent: 'space-between',
+});
+
+const StyledIconButton = styled(IconButton)({
+  color: 'inherit',
 });
 
 const Search = styled('div')(({ theme }) => ({
@@ -68,9 +73,21 @@ const Navbar = () => {
             <InputBase placeholder="search..." />
           </Search>
           <Icons>
-            <PersonIcon onClick={handleClick} />
-            <FavouriteIcon />
-            <ShoppingBagIcon />
+            <Tooltip title="Profile">
+              <StyledIconButton>
+                <PersonIcon onClick={handleClick} />
+              </StyledIconButton>
+            </Tooltip>
+            <Tooltip title="Wish list">
+              <StyledIconButton>
+                <FavouriteIcon />
+              </StyledIconButton>
+            </Tooltip>
+            <Tooltip title="Shopping Bag">
+              <StyledIconButton>
+                <ShoppingBagIcon />
+              </StyledIconButton>
+            </Tooltip>
           </Icons>
         </StyledToolbar>
         <Menu
