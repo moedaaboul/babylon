@@ -1,0 +1,34 @@
+[
+  {
+    "itemTitle": "Sunshine Tracksuit",
+    "itemDescription": "Bright yellow traskcuit with halter-top",
+    "itemImage": "../../client/public/images/yellow-tracksuit.jpg",
+    "itemPrice": 60,
+    "itemStock": 30,
+    "itemSize": ["S", "M", "L"]
+  },
+  {
+    "itemTitle": "Pinstripe Trousers",
+    "itemDescription": "Black and white pinstriped high-waisted trousers.",
+    "itemImage": "../../client/public/images/pinstripe-trousers.jpg",
+    "itemPrice": 40,
+    "itemStock": 20,
+    "itemSize": ["8", "10", "12", "14", "16"]
+  },
+  {
+    "itemTitle": "Cross-Stitch Leather Biker Trousers",
+    "itemDescription": "Black faux-leather trousers with criss-cross leather cord stitching.",
+    "itemImage": "../../client/public/images/crosstitch-trousers.jpg",
+    "itemPrice": 50,
+    "itemStock": 25,
+    "itemSize": ["8", "10", "12", "14", "16"]
+  },
+  {
+    "itemTitle": "Oversized Denim Dress",
+    "itemDescription": "Stonewashed denim oversized jacket with fabric buttons.",
+    "itemImage": "../../client/public/images/demin-dress.jpg",
+    "itemPrice": 30,
+    "itemStock": 15,
+    "itemSize": ["S", "M", "L"]
+  }
+]
