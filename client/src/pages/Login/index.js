@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import {
   Avatar,
   Button,
@@ -13,6 +14,8 @@ import {
   Container,
   InputAdornment,
   IconButton,
+  Snackbar,
+  Alert as MuiAlert,
 } from '@mui/material';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -22,12 +25,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Copyright from '../../components/Copyright';
 
-import React, { useState } from 'react';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import { Link as RouterLink } from 'react-router-dom';
 import './index.css';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const theme = createTheme();
 
@@ -35,6 +41,8 @@ export default function Login() {
   const [loginUser] = useMutation(LOGIN_USER);
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -47,6 +55,13 @@ export default function Login() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoginError(false);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [isLoginError]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -63,9 +78,11 @@ export default function Login() {
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
+      setIsLoginSuccess(true);
       console.log(data);
       Auth.login(data.loginUser.token);
     } catch (err) {
+      setIsLoginError(true);
       console.error(err.message);
     }
 
@@ -111,6 +128,7 @@ export default function Login() {
                 value={userFormData.email}
                 autoComplete="email"
                 autoFocus
+                helperText="Incorrect entry."
               />
               <TextField
                 margin="normal"
@@ -171,6 +189,16 @@ export default function Login() {
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </Grow>
+      <Snackbar open={isLoginSuccess} autoHideDuration={6000}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+          Login Success!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={isLoginError} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          Incorrect credentials have been provided.
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 }

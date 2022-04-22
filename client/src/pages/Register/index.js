@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Avatar,
   Button,
@@ -14,6 +14,8 @@ import {
   Typography,
   InputAdornment,
   IconButton,
+  Snackbar,
+  Alert as MuiAlert,
 } from '@mui/material';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -27,6 +29,10 @@ import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const theme = createTheme();
 
 export default function Register() {
@@ -36,7 +42,8 @@ export default function Register() {
     password: '',
   });
   const [addUser] = useMutation(ADD_USER);
-  const [showAlert, setShowAlert] = useState(false);
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
+  const [isRegisterError, setIsRegisterError] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,6 +57,13 @@ export default function Register() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsRegisterError(false);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [isRegisterError]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,11 +79,11 @@ export default function Register() {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
-
+      setIsRegisterSuccess(true);
       Auth.login(data.addUser.token);
     } catch (err) {
+      setIsRegisterError(true);
       console.error(err);
-      setShowAlert(true);
     }
 
     setUserFormData({
@@ -200,6 +214,16 @@ export default function Register() {
           <Copyright sx={{ mt: 5 }} />
         </Container>
       </Grow>
+      <Snackbar open={isRegisterSuccess} autoHideDuration={6000}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+          Registration Success!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={isRegisterError} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          An error occurred with your registration.
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 }
