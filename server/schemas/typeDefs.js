@@ -23,7 +23,7 @@ const typeDefs = gql`
   }
   type Query {
     me: User
-    getItems: [Item]
+    items: [Item]!
   }
 
   type Mutation {

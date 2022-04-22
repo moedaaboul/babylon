@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import AllItems from "./pages/AllItems";
 import Navbar from "./components/Navbar";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
@@ -37,15 +38,17 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/items" element={<AllItems />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<h1 className="">Wrong page!</h1>} />
-          </Routes>
-        </>
+        <ErrorBoundary>
+          <>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/items" element={<AllItems />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<h1 className="">Wrong page!</h1>} />
+            </Routes>
+          </>
+        </ErrorBoundary>
       </Router>
     </ApolloProvider>
   );

@@ -11,7 +11,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    getItems: async () => {
+    items: async () => {
       const itemList = await Item.find({});
       console.log(itemList);
       return itemList;
