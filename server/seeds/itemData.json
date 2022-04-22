@@ -2,7 +2,7 @@
   {
     "title": "Sunshine Tracksuit",
     "description": "Bright yellow traskcuit with halter-top",
-    "image": "../../client/public/images/yellow-tracksuit.jpg",
+    "image": "/images/yellow-tracksuit.jpg",
     "price": 60,
     "stock": 30,
     "size": ["S", "M", "L"]
@@ -10,7 +10,7 @@
   {
     "title": "Pinstripe Trousers",
     "description": "Black and white pinstriped high-waisted trousers.",
-    "image": "../../client/public/images/pinstripe-trousers.jpg",
+    "image": "/images/pinstripe-trousers.jpg",
     "price": 40,
     "stock": 20,
     "size": ["8", "10", "12", "14", "16"]
@@ -18,7 +18,7 @@
   {
     "title": "Cross-Stitch Leather Biker Trousers",
     "description": "Black faux-leather trousers with criss-cross leather cord stitching.",
-    "image": "../../client/public/images/crosstitch-trousers.jpg",
+    "image": "/images/crosstitch-trousers.jpg",
     "price": 50,
     "stock": 25,
     "size": ["8", "10", "12", "14", "16"]
@@ -26,7 +26,7 @@
   {
     "title": "Oversized Denim Dress",
     "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "../../client/public/images/demin-dress.jpg",
+    "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"]
@@ -34,7 +34,7 @@
   {
     "title": "Oversized Denim Dress",
     "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "../../client/public/images/demin-dress.jpg",
+    "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"]
@@ -42,7 +42,7 @@
   {
     "title": "Oversized Denim Dress",
     "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "../../client/public/images/demin-dress.jpg",
+    "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"]
@@ -50,7 +50,7 @@
   {
     "title": "Oversized Denim Dress",
     "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "../../client/public/images/demin-dress.jpg",
+    "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"]
@@ -58,7 +58,7 @@
   {
     "title": "Oversized Denim Dress",
     "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "../../client/public/images/demin-dress.jpg",
+    "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"]
@@ -66,7 +66,7 @@
   {
     "title": "Oversized Denim Dress",
     "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "../../client/public/images/demin-dress.jpg",
+    "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"]
