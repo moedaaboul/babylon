@@ -18,6 +18,7 @@ import React, { useState } from 'react';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
+import { Link as RouterLink } from 'react-router-dom';
 import './index.css';
 
 const Login = () => {
@@ -141,6 +142,8 @@ const Login = () => {
                           variant="button"
                           display="block"
                           gutterBottom
+                          component={RouterLink}
+                          to="/register"
                           sx={{ cursor: 'pointer' }}
                         >
                           Don't have an account?
