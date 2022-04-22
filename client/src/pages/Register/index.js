@@ -12,9 +12,13 @@ import {
   Grid,
   Box,
   Typography,
+  InputAdornment,
+  IconButton,
 } from '@mui/material';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../../components/Copyright';
@@ -33,10 +37,20 @@ export default function Register() {
   });
   const [addUser] = useMutation(ADD_USER);
   const [showAlert, setShowAlert] = useState(false);
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
+
+  const handleClickShowPassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -134,8 +148,26 @@ export default function Register() {
                     onChange={handleInputChange}
                     value={userFormData.password}
                     label="Password"
-                    type="password"
+                    type={passwordVisibility ? 'text' : 'password'}
                     id="password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {passwordVisibility ? (
+                              <VisibilityOff />
+                            ) : (
+                              <Visibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                     autoComplete="new-password"
                   />
                 </Grid>
