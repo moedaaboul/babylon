@@ -20,6 +20,7 @@ const resolvers = {
 
   Mutation: {
     loginUser: async (parent, { email, password }) => {
+      console.log(email, password);
       const user = await User.findOne({ email });
       if (!user) {
         throw new AuthenticationError("Can't find this user");
@@ -33,8 +34,8 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { username, email, password, usertype }) => {
+      const user = await User.create({ username, email, password, usertype });
 
       if (!user) {
         throw new AuthenticationError("Something is wrong!");

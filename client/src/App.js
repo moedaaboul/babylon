@@ -9,8 +9,10 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import SingleProduct from "./pages/SingleProduct";
+import Register from "./pages/Register";
 import AllItems from "./pages/AllItems";
-import Navbar from "./components/Navbar";
+
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const httpLink = createHttpLink({
@@ -39,15 +41,15 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <ErrorBoundary>
-          <>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/items" element={<AllItems />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<h1 className="">Wrong page!</h1>} />
-            </Routes>
-          </>
+          <Home />
+          <Routes>
+            <Route path="/" element={<h2>home page</h2>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/items" element={<AllItems />} />
+            <Route path="/SingleProduct" element={<SingleProduct />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<h1 className="">Wrong page!</h1>} />
+          </Routes>
         </ErrorBoundary>
       </Router>
     </ApolloProvider>
