@@ -1,5 +1,7 @@
 import * as React from "react";
 import { shadows } from "@mui/system";
+import { borders } from "@mui/system";
+import { sizing } from "@mui/system";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,11 +15,11 @@ import Grid from "@mui/material/Grid";
 export default function itemCard({ items }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={1} justify="center" alignItems="center">
         {items &&
           items.map((item) => (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-              <Card height="600" sx={{ maxWidth: 345, boxShadow: 2 }}>
+              <Card sx={{ maxWidth: 345, boxShadow: 2, border: 1 }}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
@@ -25,7 +27,7 @@ export default function itemCard({ items }) {
                     src={process.env.PUBLIC_URL + item.image}
                     alt="img placeholder"
                   />
-                  <CardContent>
+                  <CardContent sx={{ border: 1, height: 150 }}>
                     <Typography gutterBottom variant="h5" component="div">
                       {item.title}
                     </Typography>
