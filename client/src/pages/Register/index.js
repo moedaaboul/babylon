@@ -15,6 +15,11 @@ import {
   InputAdornment,
   IconButton,
   Snackbar,
+  FormControl,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Divider,
   Alert as MuiAlert,
 } from '@mui/material';
 
@@ -45,6 +50,7 @@ export default function Register() {
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [value, setValue] = React.useState('customer');
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -91,6 +97,10 @@ export default function Register() {
       email: '',
       password: '',
     });
+  };
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
 
   return (
@@ -164,6 +174,9 @@ export default function Register() {
                     label="Password"
                     type={passwordVisibility ? 'text' : 'password'}
                     id="password"
+                    helperText={
+                      'Your password needs to be at least 6 characters.'
+                    }
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -186,11 +199,43 @@ export default function Register() {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  <FormControl>
+                    <FormLabel id="demo-controlled-radio-buttons-group">
+                      What would you like to sign-up as?
+                    </FormLabel>
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={value}
+                      onChange={handleChange}
+                    >
+                      <FormControlLabel
+                        value="customer"
+                        control={<Radio />}
+                        label="Customer"
+                      />
+                      <FormControlLabel
+                        value="influencer"
+                        control={<Radio />}
+                        label="Influencer"
+                      />
+                      <FormControlLabel
+                        value="brand"
+                        control={<Radio />}
+                        label="Brand"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <Divider />
+                </Grid>
+                <Grid item xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox value="allowExtraEmails" color="primary" />
                     }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
+                    label="I want to receive inspiration, marketing promotions and updates via email. (Optional)"
                   />
                 </Grid>
               </Grid>

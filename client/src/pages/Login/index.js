@@ -43,6 +43,10 @@ export default function Login() {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState({
+  //   email: false,
+  //   password: false,
+  // });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -62,6 +66,16 @@ export default function Login() {
     }, 5000);
     return () => clearTimeout(timeout);
   }, [isLoginError]);
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setErrorMessage({
+  //       email: false,
+  //       password: false,
+  //     });
+  //   }, 1000);
+  //   return () => clearTimeout(timeout);
+  // }, [errorMessage]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -128,7 +142,6 @@ export default function Login() {
                 value={userFormData.email}
                 autoComplete="email"
                 autoFocus
-                helperText="Incorrect entry."
               />
               <TextField
                 margin="normal"
@@ -172,17 +185,10 @@ export default function Login() {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link component={RouterLink} to="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+              <Grid container justifyContent="flex-end">
+                <Link component={RouterLink} to="/register" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
               </Grid>
             </Box>
           </Box>
