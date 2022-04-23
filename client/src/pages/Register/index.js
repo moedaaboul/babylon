@@ -45,12 +45,13 @@ export default function Register() {
     username: '',
     email: '',
     password: '',
+    usertype: 'customer',
   });
   const [addUser] = useMutation(ADD_USER);
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [value, setValue] = React.useState('customer');
+  // const [value, setValue] = React.useState('customer');
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -96,12 +97,13 @@ export default function Register() {
       username: '',
       email: '',
       password: '',
+      usertype: 'customer',
     });
   };
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setValue(event.target.value);
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -205,9 +207,9 @@ export default function Register() {
                     </FormLabel>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
-                      name="controlled-radio-buttons-group"
-                      value={value}
-                      onChange={handleChange}
+                      name="usertype"
+                      value={userFormData.usertype}
+                      onChange={handleInputChange}
                     >
                       <FormControlLabel
                         value="customer"
