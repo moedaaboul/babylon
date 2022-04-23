@@ -1,6 +1,6 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Item } = require("../models");
-const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Item } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -9,7 +9,7 @@ const resolvers = {
       if (context.user) {
         return await User.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
     items: async () => {
       const itemList = await Item.find({});
@@ -29,7 +29,7 @@ const resolvers = {
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Wrong password!");
+        throw new AuthenticationError('Wrong password!');
       }
       const token = signToken(user);
       return { token, user };
@@ -38,11 +38,21 @@ const resolvers = {
       const user = await User.create({ username, email, password, usertype });
 
       if (!user) {
-        throw new AuthenticationError("Something is wrong!");
+        throw new AuthenticationError('Something is wrong!');
       }
 
       const token = signToken(user);
       return { token, user };
+    },
+    addItem: async (parent, { input }, context) => {
+      console.log(input);
+      const item = await Item.create({ ...input });
+      console.log(item);
+      if (!item) {
+        throw new AuthenticationError('Something is wrong!');
+      }
+
+      return item;
     },
   },
 };

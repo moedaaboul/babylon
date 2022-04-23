@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './index.css';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Fab from '@mui/material/Fab';
 
 const Dashboard = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -18,12 +22,12 @@ const Dashboard = () => {
     }
   };
 
-  const renderPhotos = (source) => {
-    console.log('source: ', source);
-    return source.map((photo) => {
-      return <img src={photo} alt="" key={photo} />;
-    });
-  };
+  //   const renderPhotos = (source) => {
+  //     console.log('source: ', source);
+  //     return source.map((photo) => {
+  //       return <img src={photo} alt="" key={photo} />;
+  //     });
+  //   };
 
   return (
     <div className="app">
@@ -35,7 +39,16 @@ const Dashboard = () => {
             <i className="material-icons">add_a_photo</i>
           </label>
         </div>
-        <div className="result">{renderPhotos(selectedFiles)}</div>
+        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+          {selectedFiles.map((photo) => (
+            <ImageListItem key={photo}>
+              <img src={`${photo}`} srcSet={`${photo}`} alt="" loading="lazy" />
+              <Fab>
+                <DeleteIcon />
+              </Fab>
+            </ImageListItem>
+          ))}
+        </ImageList>
       </div>
     </div>
   );
