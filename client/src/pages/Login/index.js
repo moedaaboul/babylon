@@ -1,36 +1,81 @@
+import React, { useState, useEffect } from 'react';
 import {
-  Divider,
-  Grid,
-  Slide,
-  Container,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-  Grow,
-  Card,
-  CardHeader,
-  TextField,
-  CardContent,
+  Avatar,
   Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Grow,
+  Box,
+  Typography,
+  Container,
+  InputAdornment,
+  IconButton,
+  Snackbar,
+  Alert as MuiAlert,
 } from '@mui/material';
-import React, { useState } from 'react';
+
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import Copyright from '../../components/Copyright';
+
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
+import { Link as RouterLink } from 'react-router-dom';
 import './index.css';
 
-const Login = () => {
-  //   const isJoin = useRouteMatch(Routes.join);
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+const theme = createTheme();
+
+export default function Login() {
   const [loginUser] = useMutation(LOGIN_USER);
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState({
+  //   email: false,
+  //   password: false,
+  // });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
+  const handleClickShowPassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoginError(false);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [isLoginError]);
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setErrorMessage({
+  //       email: false,
+  //       password: false,
+  //     });
+  //   }, 1000);
+  //   return () => clearTimeout(timeout);
+  // }, [errorMessage]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -47,9 +92,11 @@ const Login = () => {
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
+      setIsLoginSuccess(true);
       console.log(data);
       Auth.login(data.loginUser.token);
     } catch (err) {
+      setIsLoginError(true);
       console.error(err.message);
     }
 
@@ -60,102 +107,104 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Container>
-        <Grid
-          container
-          item
-          sm={12}
-          lg={9}
-          justify="center"
-          alignItems="center"
-          spacing={6}
-        >
-          <Grid item sm={12} lg={6}>
-            <Slide direction="down" in={true} timeout={1000}>
-              <div className="HomePageContainer">
-                <img
-                  alt="React Task board App"
-                  style={{
-                    height: '400px',
-                    width: '500px',
-                    transform: isSmallScreen ? 'scale(0.5)' : 'none',
-                  }}
-                  src={
-                    'https://images.pexels.com/photos/1051744/pexels-photo-1051744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-                  }
-                ></img>
-              </div>
-            </Slide>
-          </Grid>
-          <Grid item sm={12} lg={6}>
-            <div className="HomePageContainer">
-              {/* <CreateBoard /> */}
-              <Grow in={true} timeout={1000}>
-                {/* <form onSubmit={handleSubmit}> */}
-                <form onSubmit={handleFormSubmit}>
-                  <Card variant="outlined" className="CreateBoardCard">
-                    <CardHeader
-                      className="CreateBoardCardHeader"
-                      title="Hi, Welcome back"
-                      titleTypographyProps={{ variant: 'h4' }}
-                    />
-                    <CardContent className="CreateBoardCardContent">
-                      <Stack spacing={2} sx={{ width: '100%' }}>
-                        <TextField
-                          className="CreateBoardTextField"
-                          required
-                          id="filled-required"
-                          label="Email address"
-                          placeholder="Email address"
-                          variant="outlined"
-                          name="email"
-                          onChange={handleInputChange}
-                          value={userFormData.email}
-                          sx={{ width: '100%' }}
-                        />
-                        <TextField
-                          className="CreateBoardTextField"
-                          required
-                          id="filled-required"
-                          label="Password"
-                          placeholder="Password"
-                          variant="outlined"
-                          name="password"
-                          onChange={handleInputChange}
-                          value={userFormData.password}
-                          sx={{ m: 2, width: '100%' }}
-                        />
-
-                        <Button
-                          type="submit"
-                          variant="contained"
-                          color="primary"
-                          className="CreateBoardButton"
-                          sx={{ m: 2, width: '100%' }}
-                        >
-                          Login
-                        </Button>
-                        <Divider></Divider>
-                        <Typography
-                          variant="button"
-                          display="block"
-                          gutterBottom
-                          sx={{ cursor: 'pointer' }}
-                        >
-                          Don't have an account?
-                        </Typography>
-                      </Stack>
-                    </CardContent>
-                  </Card>
-                </form>
-              </Grow>
-            </div>
-          </Grid>
-        </Grid>
-      </Container>
-    </>
+    <ThemeProvider theme={theme}>
+      <Grow in={true} timeout={1000}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleFormSubmit}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                onChange={handleInputChange}
+                value={userFormData.email}
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                onChange={handleInputChange}
+                value={userFormData.password}
+                label="Password"
+                type={passwordVisibility ? 'text' : 'password'}
+                id="password"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {passwordVisibility ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container justifyContent="flex-end">
+                <Link component={RouterLink} to="/register" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Box>
+          </Box>
+          <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Container>
+      </Grow>
+      <Snackbar open={isLoginSuccess} autoHideDuration={6000}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+          Login Success!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={isLoginError} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          Incorrect credentials have been provided.
+        </Alert>
+      </Snackbar>
+    </ThemeProvider>
   );
-};
-
-export default Login;
+}
