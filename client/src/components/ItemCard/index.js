@@ -1,7 +1,4 @@
 import * as React from "react";
-import { shadows } from "@mui/system";
-import { borders } from "@mui/system";
-import { sizing } from "@mui/system";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
