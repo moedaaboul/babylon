@@ -1,6 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Item } = require('../models');
 const { signToken } = require('../utils/auth');
+const { cloudinary } = require('../utils/cloudinary');
+const { urlCompiler } = require('../utils/helpers');
 
 const resolvers = {
   Query: {
@@ -46,7 +48,9 @@ const resolvers = {
     },
     addItem: async (parent, { input }, context) => {
       console.log(input);
-      const item = await Item.create({ ...input });
+      const uploadResponse = await cloudinary.uploader.upload(input.image);
+      uploadResponse.url = urlCompiler(uploadResponse.url, 'w_1169,h_780,c_fill');
+      const item = await Item.create({ ...input, image: uploadResponse.url });
       console.log(item);
       if (!item) {
         throw new AuthenticationError('Something is wrong!');
