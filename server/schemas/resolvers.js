@@ -48,9 +48,14 @@ const resolvers = {
     },
     addItem: async (parent, { input }, context) => {
       console.log(input);
-      const uploadResponse = await cloudinary.uploader.upload(input.image);
-      uploadResponse.url = urlCompiler(uploadResponse.url, 'w_1169,h_780,c_fill');
-      const item = await Item.create({ ...input, image: uploadResponse.url });
+      const images = input.image;
+      console.log(images, 'images');
+      const uploadResponse = await Promise.all(images.map(async (image) => await cloudinary.uploader.upload(image)));
+      console.log(uploadResponse, 'uploadResponse');
+      // uploadResponse.forEach((e) => (e.url = urlCompiler(uploadResponse.url, 'w_1169,h_780,c_fill')));
+      const imageUrls = uploadResponse.map((e) => urlCompiler(e.url, 'w_1169,h_780,c_fill'));
+      console.log(imageUrls);
+      const item = await Item.create({ ...input, image: imageUrls });
       console.log(item);
       if (!item) {
         throw new AuthenticationError('Something is wrong!');

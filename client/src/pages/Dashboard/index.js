@@ -41,18 +41,18 @@ const Dashboard = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result);
+      setPreviewSource([...previewSource, reader.result]);
     };
   };
 
   const handleSubmitFile = (e) => {
     e.preventDefault();
-    if (!selectedFile) return;
+    if (!previewSource) return;
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     console.log(reader.result);
     reader.onloadend = () => {
-      uploadImage(reader.result);
+      uploadImage(previewSource);
     };
     reader.onerror = () => {
       console.error('AHHHHHHHH!!');
@@ -102,7 +102,7 @@ const Dashboard = () => {
           Submit
         </button>
       </form>
-      {previewSource && <img src={previewSource} alt="chosen" style={{ height: '300px' }} />}
+      {previewSource && previewSource.map((e) => <img src={e} alt="chosen" style={{ height: '300px' }} />)}
     </div>
   );
 };
