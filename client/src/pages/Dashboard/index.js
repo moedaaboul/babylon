@@ -4,6 +4,9 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
+import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { useMutation } from '@apollo/client';
 import { ADD_ITEM } from '../../utils/mutations';
 
@@ -96,13 +99,22 @@ const Dashboard = () => {
           name="image"
           onChange={handleFileInputChange}
           value={fileInputState}
+          accept="image/*"
           className="form-input"
         />
         <button className="btn" type="submit">
           Submit
         </button>
       </form>
-      {previewSource && previewSource.map((e) => <img src={e} alt="chosen" style={{ height: '300px' }} />)}
+      {previewSource && (
+        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+          {previewSource.map((item) => (
+            <ImageListItem key={item}>
+              <img src={`${item}`} srcSet={`${item}`} alt={item} loading="lazy" />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      )}
     </div>
   );
 };
