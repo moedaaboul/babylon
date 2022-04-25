@@ -17,7 +17,7 @@ export default function itemCard({ items }) {
       {items &&
         items.map((item) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={3} sx={{ pl: 0, mx: 0 }}>
-            <Card sx={{ p: 0, mx: 'auto', mt: 2, maxWidth: 345, boxShadow: 2, border: 1 }}>
+            <Card sx={{ p: 1, mx: 'auto', mt: 2, maxWidth: 345, boxShadow: 2, border: 1 }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -25,7 +25,7 @@ export default function itemCard({ items }) {
                   src={process.env.PUBLIC_URL + item.image}
                   alt="img placeholder"
                 />
-                <CardContent sx={{ height: 150 }}>
+                <CardContent sx={{ height: 100 }}>
                   <Typography gutterBottom variant="h5" component="div">
                     {item.title}
                   </Typography>

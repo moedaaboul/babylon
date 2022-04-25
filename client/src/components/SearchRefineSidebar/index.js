@@ -9,10 +9,44 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import Slider from '@mui/material/Slider';
 
 const drawerWidth = 240;
 
+function valuetext(value) {
+  return `£${value}`;
+}
+
+const priceSliderMarks = [
+  {
+    value: 0,
+    label: '0',
+  },
+  {
+    value: 25,
+    label: '£25',
+  },
+  {
+    value: 50,
+    label: '£50',
+  },
+  {
+    value: 75,
+    label: '£75',
+  },
+  {
+    value: 100,
+    label: '£100',
+  },
+];
+
 export default function RefineSidebar() {
+  const [value, setValue] = React.useState([0, 50]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <Drawer
       sx={{
@@ -28,12 +62,28 @@ export default function RefineSidebar() {
       <Toolbar />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button key="Brand">
+          <ListItemText primary="Brand" />
+        </ListItem>
+        <ListItem button key="Price">
+          <ListItemText primary="Price" />
+        </ListItem>
+        <ListItem>
+          <Slider
+            getAriaLabel={() => 'Price Range'}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay={'£' + 'auto'}
+            marks={priceSliderMarks}
+            getAriaValueText={valuetext}
+          />
+        </ListItem>
+        <ListItem button key="Size">
+          <ListItemText primary="Size" />
+        </ListItem>
+        <ListItem button key="Colour">
+          <ListItemText primary="Colour" />
+        </ListItem>
       </List>
       <Divider />
       <List>
