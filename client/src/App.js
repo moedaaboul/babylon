@@ -8,6 +8,7 @@ import SingleProduct from './pages/SingleProduct';
 import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Dashboard from './pages/Dashboard';
+import Brand from './pages/Brand';
 
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="/items" element={<AllItems />} />
             <Route path="/SingleProduct" element={<SingleProduct />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/brand" element={<Brand />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<h1 className="">Wrong page!</h1>} />
           </Routes>
