@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -7,8 +7,14 @@ import Fab from '@mui/material/Fab';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import { useMutation } from '@apollo/client';
 import { ADD_ITEM } from '../../utils/mutations';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Dashboard = () => {
   const [selectedFile, setSelectedFile] = useState();
@@ -16,6 +22,7 @@ const Dashboard = () => {
   const [previewSource, setPreviewSource] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [isUploadLimitExceeded, setIsUploadLimitExceeded] = useState(false);
   const [addItem] = useMutation(ADD_ITEM);
 
   // const handleImageChange = (e) => {
@@ -38,11 +45,16 @@ const Dashboard = () => {
   };
 
   const handleFileInputChange = (e) => {
+    setFileInputState(e.target.value);
+    if (previewSource.length >= 3) {
+      setIsUploadLimitExceeded(true);
+      return;
+    }
+    setIsUploadLimitExceeded(false);
     const file = e.target.files[0];
     console.log(file);
     previewFile(file);
     setSelectedFile(file);
-    setFileInputState(e.target.value);
   };
 
   const previewFile = (file) => {
@@ -92,6 +104,13 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsUploadLimitExceeded(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [isUploadLimitExceeded]);
+
   return (
     <div>
       <h1 className="title">Upload an Image</h1>
@@ -125,6 +144,11 @@ const Dashboard = () => {
           ))}
         </ImageList>
       )}
+      <Snackbar open={isUploadLimitExceeded} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          Your limit of 3 images per product has been exceeded.
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
