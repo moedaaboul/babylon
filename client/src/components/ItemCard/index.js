@@ -34,16 +34,16 @@ export default function itemCard({ items }) {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <Box sx={{ textAlign: 'center', fontWeight: 'bold' }}>
-                <Typography variant="body3" color="text.secondary">
-                  £{item.price}
-                </Typography>
-                <CardActions sx={{ width: '25%', mx: 0 }}>
+              <Box sx={{ textAlign: 'center', fontWeight: 'bold', justifyContent: 'center' }}>
+                <CardActions sx={{ m: 0, justifyContent: 'center' }}>
                   <Tooltip title="Add To Wishlist">
                     <IconButton aria-label="add to wishlist">
                       <FavoriteIcon />
                     </IconButton>
                   </Tooltip>
+                  <Typography variant="body3" color="text.secondary">
+                    £{item.price}
+                  </Typography>
                 </CardActions>
               </Box>
               <br></br>

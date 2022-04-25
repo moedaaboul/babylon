@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import ItemCard from '../../components/ItemCard';
 import { QUERY_ITEMS } from '../../utils/queries';
+import Box from '@mui/material/Box';
 
 const AllItems = () => {
   const { loading, error, data } = useQuery(QUERY_ITEMS);
@@ -12,9 +13,9 @@ const AllItems = () => {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <div className="all-items-container">
+    <Box sx={{ display: 'flex' }}>
       <ItemCard items={items} key={items._id} title="Current available items..." />
-    </div>
+    </Box>
   );
 };
 
