@@ -32,6 +32,11 @@ const Dashboard = () => {
   //   }
   // };
 
+  const deleteImage = (item) => {
+    const newImages = previewSource.filter((e) => e !== item);
+    setPreviewSource(newImages);
+  };
+
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     console.log(file);
@@ -109,9 +114,14 @@ const Dashboard = () => {
       {previewSource && (
         <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
           {previewSource.map((item) => (
-            <ImageListItem key={item}>
-              <img src={`${item}`} srcSet={`${item}`} alt={item} loading="lazy" />
-            </ImageListItem>
+            <>
+              <ImageListItem key={item}>
+                <img src={`${item}`} srcSet={`${item}`} alt={item} loading="lazy" />
+              </ImageListItem>
+              <Fab onClick={() => deleteImage(item)}>
+                <DeleteIcon />
+              </Fab>
+            </>
           ))}
         </ImageList>
       )}
