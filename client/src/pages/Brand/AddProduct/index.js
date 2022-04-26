@@ -31,22 +31,32 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, F
 const AddProduct = () => {
   const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
+  const [userFormData, setUserFormData] = useState({
+    title: '',
+    description: '',
+    price: '',
+    stock: '',
+    size: ['asdf'],
+    // category: '',
+  });
   const [addItem] = useMutation(ADD_ITEM);
-  // function setMetadata(fileItems) {
-  //   return fileItems.map((fileItem) => fileItem.getFileEncodeDataURL());
-  // }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    let parsedValue = value;
+    if (name === 'price' || name === 'stock') {
+      parsedValue = parseInt(value);
+    }
+    setUserFormData({ ...userFormData, [name]: parsedValue });
+  };
 
   const uploadImage = async (base64EncodedImage) => {
     try {
       await addItem({
         variables: {
           input: {
-            title: 'asdfasdf',
-            description: 'asdfasdf',
+            ...userFormData,
             image: base64EncodedImage,
-            price: 3,
-            stock: 4,
-            size: ['aasdf'],
           },
         },
       });
@@ -82,9 +92,9 @@ const AddProduct = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               autoComplete="given-name"
-              name="product"
-              // onChange={handleInputChange}
-              // value={userFormData.username}
+              name="title"
+              onChange={handleInputChange}
+              value={userFormData.title}
               required
               fullWidth
               id="productName"
@@ -99,24 +109,25 @@ const AddProduct = () => {
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 //   value={age}
+                name="category"
                 label="Category"
-                //   onChange={handleChange}
+                // onChange={handleInputChange}
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Men</MenuItem>
-                <MenuItem value={20}>Women</MenuItem>
-                <MenuItem value={30}>Kids</MenuItem>
+                <MenuItem value={'Men'}>Men</MenuItem>
+                <MenuItem value={'Women'}>Women</MenuItem>
+                <MenuItem value={'Kids'}>Kids</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={12}>
             <TextField
               autoComplete="given-name"
-              name="stock"
-              // onChange={handleInputChange}
-              // value={userFormData.username}
+              name="description"
+              onChange={handleInputChange}
+              value={userFormData.description}
               required
               fullWidth
               multiline
@@ -130,8 +141,8 @@ const AddProduct = () => {
             <TextField
               autoComplete="given-name"
               name="price"
-              // onChange={handleInputChange}
-              // value={userFormData.username}
+              onChange={handleInputChange}
+              value={userFormData.price}
               required
               fullWidth
               id="price"
@@ -143,8 +154,8 @@ const AddProduct = () => {
             <TextField
               autoComplete="given-name"
               name="stock"
-              // onChange={handleInputChange}
-              // value={userFormData.username}
+              onChange={handleInputChange}
+              value={userFormData.stock}
               required
               fullWidth
               id="stockItems"
