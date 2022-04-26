@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import SingleProduct from './pages/SingleProduct';
 import Register from './pages/Register';
 import AllItems from './pages/AllItems';
-import Dashboard from './pages/Dashboard';
+import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
 
 import ErrorBoundary from './components/ErrorBoundary';
@@ -50,7 +50,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             {isBrand && <Route path="/dashboard" element={<Brand />} />}
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            <Route path="*" element={<h1 className="">Wrong page!</h1>} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </ErrorBoundary>
       </Router>
