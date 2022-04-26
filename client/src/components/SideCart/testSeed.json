@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "brandName": "Quiksilver",
+    "itemName": "HOODY TOWEL - Other accessories",
+    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "price": 9.99,
+    "quantity": 99
+  },
+  {
+    "id": 1,
+    "brandName": "Quiksilver",
+    "itemName": "HOODY TOWEL - Other accessories",
+    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "price": 8.99,
+    "quantity": 20
+  },
+  {
+    "id": 2,
+    "brandName": "Quiksilver",
+    "itemName": "HOODY TOWEL - Other accessories",
+    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "price": 7.99,
+    "quantity": 1
+  },
+  {
+    "id": 3,
+    "brandName": "Quiksilver",
+    "itemName": "HOODY TOWEL - Other accessories",
+    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "price": 6.99,
+    "quantity": 100
+  },
+  {
+    "id": 4,
+    "brandName": "Quiksilver",
+    "itemName": "HOODY TOWEL - Other accessories",
+    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "price": 5.99,
+    "quantity": 2
+  },
+  {
+    "id": 5,
+    "brandName": "Quiksilver",
+    "itemName": "HOODY TOWEL - Other accessories",
+    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "price": 4.99,
+    "quantity": 3
+  }
+]

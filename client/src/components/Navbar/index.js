@@ -3,7 +3,6 @@ import {
   Search as SearchIcon,
   Favorite as FavouriteIcon,
   Person as PersonIcon,
-  ShoppingBag as ShoppingBagIcon,
 } from "@mui/icons-material";
 
 import {
@@ -17,17 +16,14 @@ import {
   Tooltip,
   Typography,
   IconButton,
-<<<<<<< HEAD
 } from "@mui/material";
 
-import SideCart from "../SideCart";
 import React from "react";
 
-=======
-} from '@mui/material';
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
->>>>>>> f0ee1371e019f60c4bf07cf2469a8eed9f5884d0
+import { Link as RouterLink } from "react-router-dom";
+
+import SideCart from "../SideCart";
+
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -93,7 +89,7 @@ const Navbar = () => {
             </Tooltip>
             <Tooltip title="Shopping Bag">
               <StyledIconButton>
-                <SideCart location="Right" />
+                <SideCart />
               </StyledIconButton>
             </Tooltip>
           </Icons>
