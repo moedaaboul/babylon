@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Container';
@@ -11,8 +11,57 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Dashboard from '../../Dashboard';
+import { FilePond, registerPlugin } from 'react-filepond';
+import 'filepond/dist/filepond.min.css';
+
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+// Import the plugin code
+import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
+import { useMutation } from '@apollo/client';
+import { ADD_ITEM } from '../../../utils/mutations';
+
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileEncode);
+// FilePond.registerPlugin(FilePondPluginFileEncode);
+
 // import './index.css';
 const AddProduct = () => {
+  const [files, setFiles] = useState([]);
+  const [images, setImages] = useState([]);
+  const [addItem] = useMutation(ADD_ITEM);
+  // function setMetadata(fileItems) {
+  //   return fileItems.map((fileItem) => fileItem.getFileEncodeDataURL());
+  // }
+
+  const uploadImage = async (base64EncodedImage) => {
+    try {
+      await addItem({
+        variables: {
+          input: {
+            title: 'asdfasdf',
+            description: 'asdfasdf',
+            image: base64EncodedImage,
+            price: 3,
+            stock: 4,
+            size: ['aasdf'],
+          },
+        },
+      });
+      setImages([]);
+      console.log('success');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSubmitFile = (e) => {
+    e.preventDefault();
+    uploadImage(images);
+  };
+
   return (
     <Box
       sx={{
@@ -104,7 +153,29 @@ const AddProduct = () => {
             />
           </Grid>
         </Grid>
-        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+        <FilePond
+          files={files}
+          allowReorder={true}
+          allowMultiple={true}
+          maxFiles={3}
+          onupdatefiles={setFiles}
+          onpreparefile={(item) => {
+            console.log(item.getFileEncodeDataURL());
+            console.log(files.map((e) => e.getFileEncodeDataURL()));
+            const images = files.map((e) => e.getFileEncodeDataURL());
+            setImages(images);
+          }}
+          onremovefile={(item) => {
+            console.log(item);
+          }}
+          // onupdatefiles={(fileItems) => {
+          //   // Set currently active file objects to this.state
+
+          //   console.log(fileItems.map((fileItem) => fileItem.getFileEncodeDataURL()));
+          // }}
+          labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+        />
+        <Button onClick={handleSubmitFile} variant="contained" sx={{ mt: 3, mb: 2 }}>
           Save Product
         </Button>
       </Box>
