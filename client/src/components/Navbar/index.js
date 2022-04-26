@@ -23,6 +23,8 @@ import React from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+import Auth from '../../utils/auth';
+
 import SideCart from '../SideCart';
 
 const StyledToolbar = styled(Toolbar)({
@@ -126,12 +128,15 @@ const Navbar = () => {
           }}
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-          <MenuItem component={RouterLink} to="/login">
-            Login
-          </MenuItem>
+          {!Auth.loggedIn() && (
+            <MenuItem component={RouterLink} to="/login">
+              Login
+            </MenuItem>
+          )}
           {/* <MenuItem>Profile</MenuItem> */}
           <MenuItem>My account</MenuItem>
           <MenuItem>Orders</MenuItem>
+          {Auth.loggedIn() && <MenuItem onClick={Auth.logout}>Logout</MenuItem>}
           {/* <MenuItem>Logout</MenuItem> */}
         </Menu>
       </AppBar>
