@@ -2,6 +2,9 @@ node_modules
 test.js
 login.js
 test1.js
+test2.js
+test3.js
+test4.js
 .env
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
@@ -28,3 +31,4 @@ yarn-debug.log*
 yarn-error.log*
 
 gitignore
+yarn-error.log*
