@@ -27,7 +27,7 @@ const AllItems = () => {
   return (
     <Box title="Dashboard: Products">
       <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h2" sx={{ mt: 5 }}>
           Products
         </Typography>
 
