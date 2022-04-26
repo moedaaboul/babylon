@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { styled } from '@mui/material/styles';
 // utils
 import { fCurrency } from '../../utils/formatNumber';
-// components
-import Label from '../../components/Label';
-import { ColorPreview } from '../../../components/color-utils';
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ ItemCard.propTypes = {
 };
 
 export default function ItemCard({ product }) {
-  const { title, description, image, price, stock, size } = product;
+  const { title, image, price } = product;
 
   return (
     <Card>
@@ -42,7 +42,11 @@ export default function ItemCard({ product }) {
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          <Tooltip title="Add To Wishlist">
+            <IconButton aria-label="add to wishlist">
+              <FavoriteIcon />
+            </IconButton>
+          </Tooltip>
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -51,7 +55,7 @@ export default function ItemCard({ product }) {
                 color: 'text.disabled',
                 textDecoration: 'line-through',
               }}>
-              {priceSale && fCurrency(priceSale)}
+              {fCurrency(price)}
             </Typography>
             &nbsp;
             {fCurrency(price)}
