@@ -1,10 +1,11 @@
 import { replace } from 'lodash';
 import numeral from 'numeral';
-
+import 'numeral/locales/en-gb';
+numeral.locale('en-gb');
 // ----------------------------------------------------------------------
 
 export function fCurrency(number) {
-  return numeral(number).format(Number.isInteger(number) ? '$0,0' : '$0,0.00');
+  return numeral(number).format(Number.isInteger(number) ? '$0,00' : '$0,0.00');
 }
 
 export function fPercent(number) {
