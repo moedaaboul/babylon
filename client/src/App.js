@@ -11,6 +11,9 @@ import Dashboard from './pages/Dashboard';
 import Brand from './pages/Brand';
 
 import ErrorBoundary from './components/ErrorBoundary';
+import Auth from './utils/auth';
+
+const isBrand = Auth.loggedIn() ? Auth.isBrand() : false;
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -45,8 +48,8 @@ function App() {
             <Route path="/items" element={<AllItems />} />
             <Route path="/SingleProduct" element={<SingleProduct />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/brand" element={<Brand />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            {isBrand && <Route path="/dashboard" element={<Brand />} />}
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             <Route path="*" element={<h1 className="">Wrong page!</h1>} />
           </Routes>
         </ErrorBoundary>

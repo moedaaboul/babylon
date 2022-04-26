@@ -46,7 +46,7 @@ const Brand = () => {
         sx={{ borderRight: 1, borderColor: 'divider' }}>
         <Tab label="Dashboard" />
         <Tab label="Add New Product" />
-        <Tab label="Products" />
+        <Tab label="Your Products" />
         <Tab label="Orders" />
         <Tab label="Account Settings" />
       </Tabs>

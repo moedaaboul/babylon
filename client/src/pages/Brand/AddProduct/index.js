@@ -88,7 +88,7 @@ const AddProduct = () => {
         // noValidate
         //   onSubmit={handleSubmit}
         sx={{ mt: 3 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ marginBottom: '10px' }}>
           <Grid item xs={12} sm={6}>
             <TextField
               autoComplete="given-name"
