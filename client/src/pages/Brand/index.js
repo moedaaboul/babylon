@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 
 import AddProduct from './AddProduct';
-
+import Products from './Products';
 // import Button from '@mui/material/Button';
 // import SaveIcon from '@mui/icons-material/Save';
 // import './index.css';
@@ -57,7 +57,7 @@ const Brand = () => {
         <AddProduct />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Products />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four
