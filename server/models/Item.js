@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const itemSchema = new Schema({
   title: {
@@ -11,10 +11,12 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    required: true,
-  },
+  image: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   price: {
     type: Number,
     required: true,
@@ -31,6 +33,6 @@ const itemSchema = new Schema({
   ],
 });
 
-const Item = model("Item", itemSchema);
+const Item = model('Item', itemSchema);
 
 module.exports = Item;
