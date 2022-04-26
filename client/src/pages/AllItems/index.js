@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import ItemCard from '../../components/ItemCard';
+import ItemCard from '../../sections/products/ItemCard';
 import { QUERY_ITEMS } from '../../utils/queries';
 import Box from '@mui/material/Box';
-import SearchRefineSidebar from '../../components/SearchRefineSidebar';
+import SearchRefineSidebar from '../../sections/products/ProductSidebar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import { Grid } from '@mui/material';
 
 const AllItems = () => {
   const { loading, error, data } = useQuery(QUERY_ITEMS);
@@ -18,10 +20,13 @@ const AllItems = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <SearchRefineSidebar />
-      <Container sx={{ m: 0, width: '100%' }}>
-        <Typography variant="h1">HOTTEST PRODUCTS</Typography>
-        <ItemCard items={items} key={items._id} title="Current available items..." />
-      </Container>
+      <Grid container spacing={3} sx={{ width: '100%' }}>
+        <Grid key={items.id} item xs={12} sm={6} md={3}>
+          <Typography variant="h1">HOTTEST PRODUCTS</Typography>
+
+          <ItemCard items={items} key={items.id} title="Current available items..." />
+        </Grid>
+      </Grid>
       <Box sx={{ border: 1, textAlign: 'center', mt: 16 }}>
         <Typography variant="h3" sx={{ p: 2 }}>
           LATEST LOOKS
