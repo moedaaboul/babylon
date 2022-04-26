@@ -176,8 +176,14 @@ const AddProduct = () => {
             const images = files.map((e) => e.getFileEncodeDataURL());
             setImages(images);
           }}
-          onremovefile={(item) => {
-            console.log(item);
+          onremovefile={(error, item) => {
+            console.log(item.file);
+            const reader = new FileReader();
+            reader.readAsDataURL(item.file);
+            reader.onloadend = () => {
+              const newImages = images.filter((e) => e !== reader.result);
+              setImages(newImages);
+            };
           }}
           // onupdatefiles={(fileItems) => {
           //   // Set currently active file objects to this.state
