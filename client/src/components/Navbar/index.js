@@ -59,7 +59,7 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const Navbar = () => {
-  const [redirectToHomePage, setRedirectToHomePage] = useState(false);
+  const [navigateLogout, setNavigateLogout] = useState(false);
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -71,15 +71,15 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (redirectToHomePage) {
+    if (navigateLogout) {
       const timeout = setTimeout(() => {
-        navigate('/');
-        setRedirectToHomePage(false);
+        navigate('/login');
+        setNavigateLogout(false);
       }, 1000);
 
       return () => clearTimeout(timeout);
     }
-  }, [redirectToHomePage, navigate]);
+  }, [navigateLogout, navigate]);
 
   return (
     <>
@@ -153,13 +153,22 @@ const Navbar = () => {
             </MenuItem>
           )}
           {/* <MenuItem>Profile</MenuItem> */}
-          <MenuItem>My account</MenuItem>
+          {Auth.loggedIn() ? (
+            <MenuItem component={RouterLink} to="/login">
+              My account
+            </MenuItem>
+          ) : (
+            <MenuItem component={RouterLink} to="/register">
+              Register
+            </MenuItem>
+          )}
+
           <MenuItem>Orders</MenuItem>
           {Auth.loggedIn() && (
             <MenuItem
               onClick={() => {
                 Auth.logout();
-                setRedirectToHomePage(true);
+                setNavigateLogout(true);
               }}>
               Logout
             </MenuItem>
@@ -167,7 +176,7 @@ const Navbar = () => {
           {/* <MenuItem>Logout</MenuItem> */}
         </Menu>
       </AppBar>
-      <Snackbar open={redirectToHomePage}>
+      <Snackbar open={navigateLogout}>
         <Alert severity="success" sx={{ width: '100%' }}>
           Logout Success!
         </Alert>

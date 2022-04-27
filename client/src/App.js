@@ -48,7 +48,7 @@ function App() {
             <Route path="/items" element={<AllItems />} />
             <Route path="/SingleProduct" element={<SingleProduct />} />
             <Route path="/register" element={<Register />} />
-            {isBrand && <Route path="/dashboard" element={<Brand />} />}
+            <Route path="/dashboard" element={<Brand />} />
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             <Route path="*" element={<Page404 />} />
           </Routes>

@@ -29,7 +29,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../../components/Copyright';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -48,10 +48,28 @@ export default function Register() {
     usertype: 'customer',
   });
   const [addUser] = useMutation(ADD_USER);
+  let navigate = useNavigate();
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [redirectOnRegistrationSuccess, setRedirectOnRegistrationSuccess] = useState(false);
   // const [value, setValue] = React.useState('customer');
+
+  useEffect(() => {
+    if (redirectOnRegistrationSuccess) {
+      const timeout = setTimeout(() => {
+        if (Auth.isBrand()) {
+          navigate('/dashboard');
+        } else {
+          navigate('/');
+        }
+        setRedirectOnRegistrationSuccess(false);
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [redirectOnRegistrationSuccess, navigate]);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -88,6 +106,7 @@ export default function Register() {
       });
       setIsRegisterSuccess(true);
       Auth.login(data.addUser.token);
+      setRedirectOnRegistrationSuccess(true);
     } catch (err) {
       setIsRegisterError(true);
       console.error(err);
@@ -116,8 +135,7 @@ export default function Register() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-            }}
-          >
+            }}>
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
@@ -128,8 +146,7 @@ export default function Register() {
               component="form"
               // noValidate
               onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
+              sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -176,9 +193,7 @@ export default function Register() {
                     label="Password"
                     type={passwordVisibility ? 'text' : 'password'}
                     id="password"
-                    helperText={
-                      'Your password needs to be at least 6 characters.'
-                    }
+                    helperText={'Your password needs to be at least 6 characters.'}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -186,13 +201,8 @@ export default function Register() {
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                          >
-                            {passwordVisibility ? (
-                              <VisibilityOff />
-                            ) : (
-                              <Visibility />
-                            )}
+                            edge="end">
+                            {passwordVisibility ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
                         </InputAdornment>
                       ),
@@ -202,30 +212,15 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl>
-                    <FormLabel id="demo-controlled-radio-buttons-group">
-                      What would you like to sign-up as?
-                    </FormLabel>
+                    <FormLabel id="demo-controlled-radio-buttons-group">What would you like to sign-up as?</FormLabel>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="usertype"
                       value={userFormData.usertype}
-                      onChange={handleInputChange}
-                    >
-                      <FormControlLabel
-                        value="customer"
-                        control={<Radio />}
-                        label="Customer"
-                      />
-                      <FormControlLabel
-                        value="influencer"
-                        control={<Radio />}
-                        label="Influencer"
-                      />
-                      <FormControlLabel
-                        value="brand"
-                        control={<Radio />}
-                        label="Brand"
-                      />
+                      onChange={handleInputChange}>
+                      <FormControlLabel value="customer" control={<Radio />} label="Customer" />
+                      <FormControlLabel value="influencer" control={<Radio />} label="Influencer" />
+                      <FormControlLabel value="brand" control={<Radio />} label="Brand" />
                     </RadioGroup>
                   </FormControl>
                 </Grid>
@@ -234,19 +229,12 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
                     label="I want to receive inspiration, marketing promotions and updates via email. (Optional)"
                   />
                 </Grid>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Sign Up
               </Button>
               <Grid container justifyContent="flex-end">

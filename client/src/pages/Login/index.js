@@ -38,7 +38,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const theme = createTheme();
 
 export default function Login() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [loginUser] = useMutation(LOGIN_USER);
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -55,7 +55,7 @@ export default function Login() {
           navigate('/');
         }
         setRedirectOnLoginSuccess(false);
-      }, 2000);
+      }, 3000);
 
       return () => clearTimeout(timeout);
     }
@@ -109,6 +109,7 @@ export default function Login() {
       setIsLoginSuccess(true);
       console.log(data);
       Auth.login(data.loginUser.token);
+      console.log(Auth.getToken());
       setRedirectOnLoginSuccess(true);
     } catch (err) {
       setIsLoginError(true);
