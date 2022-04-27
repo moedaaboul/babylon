@@ -44,10 +44,23 @@ export default function Login() {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState({
-  //   email: false,
-  //   password: false,
-  // });
+  const [redirectOnLoginSuccess, setRedirectOnLoginSuccess] = useState(false);
+
+  useEffect(() => {
+    if (redirectOnLoginSuccess) {
+      const timeout = setTimeout(() => {
+        if (Auth.isBrand()) {
+          navigate('/dashboard');
+        } else {
+          navigate('/');
+        }
+        setRedirectOnLoginSuccess(false);
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [redirectOnLoginSuccess, navigate]);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -96,6 +109,7 @@ export default function Login() {
       setIsLoginSuccess(true);
       console.log(data);
       Auth.login(data.loginUser.token);
+      setRedirectOnLoginSuccess(true);
     } catch (err) {
       setIsLoginError(true);
       console.error(err.message);
