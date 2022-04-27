@@ -13,6 +13,12 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    brandItems: async (parent, args, context) => {
+      if (context.user.usertype === 'brand') {
+        return await Item.find({ brand: context.user.username });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     items: async () => {
       const itemList = await Item.find({});
       console.log(itemList);

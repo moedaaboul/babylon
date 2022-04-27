@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const QUERY_ITEMS = gql`
   query allitems {
@@ -10,6 +10,21 @@ export const QUERY_ITEMS = gql`
       price
       stock
       size
+    }
+  }
+`;
+
+export const QUERY_BRAND_ITEMS = gql`
+  query Query {
+    brandItems {
+      _id
+      title
+      description
+      image
+      price
+      stock
+      size
+      brand
     }
   }
 `;

@@ -26,6 +26,7 @@ const typeDefs = gql`
   type Query {
     me: User
     items: [Item]!
+    brandItems: [Item]
   }
 
   input ItemInput {
