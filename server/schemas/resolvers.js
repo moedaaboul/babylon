@@ -55,7 +55,7 @@ const resolvers = {
       // uploadResponse.forEach((e) => (e.url = urlCompiler(uploadResponse.url, 'w_1169,h_780,c_fill')));
       const imageUrls = uploadResponse.map((e) => urlCompiler(e.url, 'w_1169,h_780,c_fill'));
       console.log(imageUrls);
-      const item = await Item.create({ ...input, image: imageUrls });
+      const item = await Item.create({ ...input, image: imageUrls, brand: context.user.username });
       console.log(item);
       if (!item) {
         throw new AuthenticationError('Something is wrong!');

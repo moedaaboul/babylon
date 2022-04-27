@@ -31,6 +31,10 @@ const itemSchema = new Schema({
       trim: true,
     },
   ],
+  brand: {
+    type: String,
+    required: true,
+  },
 });
 
 const Item = model('Item', itemSchema);
