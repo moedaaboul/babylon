@@ -1,21 +1,21 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
 // import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
 // import ListItemIcon from "@mui/material/ListItemIcon";
 // import ListItemText from "@mui/material/ListItemText";
 // import InboxIcon from "@mui/icons-material/MoveToInbox";
 // import MailIcon from "@mui/icons-material/Mail";
-import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography';
 
-import CartItem from "../cartItem";
+import CartItem from '../CartItem';
 
-import { ShoppingBag as ShoppingBagIcon } from "@mui/icons-material";
+import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
 
-const testSeed = require("./testSeed.json");
+const testSeed = require('./testSeed.json');
 
 // const CartArr = (data) => (
 //   <Box
@@ -46,10 +46,7 @@ export default function TemporaryDrawer() {
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -81,18 +78,10 @@ export default function TemporaryDrawer() {
   return (
     <div>
       <React.Fragment key="right">
-        <ShoppingBagIcon onClick={toggleDrawer("right", true)} />
-        <Drawer
-          anchor="right"
-          open={state["right"]}
-          onClose={toggleDrawer("right", false)}
-        >
+        <ShoppingBagIcon onClick={toggleDrawer('right', true)} />
+        <Drawer anchor="right" open={state['right']} onClose={toggleDrawer('right', false)}>
           {/* {list(testSeed)} */}
-          <Box
-            sx={{ width: 300 }}
-            role="presentation"
-            onClick={toggleDrawer("right", false)}
-          >
+          <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer('right', false)}>
             <List>
               <ListItem>
                 <Typography variant="h6" noWrap component="div">

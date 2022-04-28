@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
+import Test from './pages/Test';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
@@ -44,6 +45,7 @@ function App() {
           <Home />
           <Routes>
             <Route path="/" element={<h2>home page</h2>} />
+            <Route path="/test" element={<Test />} />
             <Route path="/login" element={<Login />} />
             <Route path="/items" element={<AllItems />} />
             <Route path="/SingleProduct" element={<SingleProduct />} />

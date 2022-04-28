@@ -1,3 +1,7 @@
+import Button from '@mui/material/Button';
+import ADD_TO_CART from '../../state/store/actions';
+import { useStoreContext } from '../../state/store/provider';
+
 import MainImage from '../../components/MainImage';
 import Info from '../../components/Info';
 import ImageGrid from '../../components/ImageGrid';
@@ -18,14 +22,12 @@ const product = {
 };
 
 const SingleProduct = () => {
+  const [state, dispatch] = useStoreContext();
+
   const [selectedImage, setSelectedImage] = useState(0);
   return (
     <Box>
-      <Grid
-        container
-        spacing={2}
-        style={{ maxWidth: '1100', margin: '0 auto' }}
-      >
+      <Grid container spacing={2} style={{ maxWidth: '1100', margin: '0 auto' }}>
         <Grid item lg={2}>
           <ImageGrid images={images} onSelect={setSelectedImage} />
         </Grid>
@@ -36,6 +38,10 @@ const SingleProduct = () => {
           <Info {...product} />
         </Grid>
       </Grid>
+
+      <Button variant="contained" onClick={() => dispatch({ type: ADD_TO_CART, payload: testData })}>
+        Contained
+      </Button>
     </Box>
   );
 };
