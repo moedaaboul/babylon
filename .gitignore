@@ -29,3 +29,6 @@ test4.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+gitignore
+yarn-error.log*
