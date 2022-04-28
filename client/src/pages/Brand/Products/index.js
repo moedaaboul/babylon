@@ -7,7 +7,24 @@ import { DELETE_ITEM } from '../../../utils/mutations';
 
 export default function DataGridDemo() {
   const { loading, data } = useQuery(GET_BRAND_ITEMS);
-  const [deleteItem] = useMutation(DELETE_ITEM);
+  const [deleteItem] = useMutation(DELETE_ITEM, {
+    update(cache, { data: { deleteItem } }) {
+      try {
+        const { brandItems } = cache.readQuery({ query: GET_BRAND_ITEMS });
+        console.log(brandItems, 'line 14');
+        let newBrandItems = brandItems.filter((item) => {
+          return item._id !== deleteItem._id;
+        });
+        console.log(newBrandItems, 'line 18');
+        cache.writeQuery({
+          query: GET_BRAND_ITEMS,
+          data: { brandItems: newBrandItems },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
   const productData = data?.brandItems || {};
   console.log(productData);
   if (loading) {
@@ -71,7 +88,7 @@ export default function DataGridDemo() {
 
   return (
     <DataGrid
-      sx={{ height: 430, width: 730 }}
+      sx={{ height: 430, width: 1000 }}
       rows={productData}
       columns={columns}
       pageSize={5}
