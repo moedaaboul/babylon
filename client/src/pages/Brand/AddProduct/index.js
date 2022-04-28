@@ -22,6 +22,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import { useMutation } from '@apollo/client';
 import { ADD_ITEM } from '../../../utils/mutations';
+import { GET_BRAND_ITEMS } from '../../../utils/queries';
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileEncode);
@@ -39,7 +40,20 @@ const AddProduct = () => {
     size: ['asdf'],
     // category: '',
   });
-  const [addItem] = useMutation(ADD_ITEM);
+  const [addItem] = useMutation(ADD_ITEM, {
+    update(cache, { data: { addItem } }) {
+      try {
+        const { brandItems } = cache.readQuery({ query: GET_BRAND_ITEMS });
+
+        cache.writeQuery({
+          query: GET_BRAND_ITEMS,
+          data: { brandItems: [addItem, ...brandItems] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
