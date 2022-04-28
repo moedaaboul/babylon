@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_BRAND_ITEMS } from '../../../utils/queries';
 import { DELETE_ITEM } from '../../../utils/mutations';
@@ -77,10 +78,11 @@ export default function DataGridDemo() {
     },
     {
       field: 'actions',
-      headerName: 'Action',
+      headerName: 'Actions',
       type: 'actions',
       width: 80,
       getActions: (params) => [
+        <GridActionsCellItem icon={<SaveIcon />} label="Save" />,
         <GridActionsCellItem icon={<DeleteIcon />} label="Delete" onClick={() => handleDeleteItem(params.id)} />,
       ],
     },
@@ -94,8 +96,7 @@ export default function DataGridDemo() {
       pageSize={5}
       getRowId={(row) => row._id}
       rowsPerPageOptions={[5]}
-      checkboxSelection
-      disableSelectionOnClick
+      disableColumnMenu
     />
   );
 }

@@ -56,6 +56,17 @@ const resolvers = {
       const deletedItem = await Item.findByIdAndDelete(itemId);
       return deletedItem;
     },
+    updateItem: async (_, { input, itemId }) => {
+      const updatedItem = await Item.findByIdAndUpdate(
+        itemId,
+        { $set: { ...input } },
+        {
+          returnDocument: 'after',
+        }
+      );
+
+      return updatedItem;
+    },
     addItem: async (parent, { input }, context) => {
       console.log(input);
       const images = input.image;
