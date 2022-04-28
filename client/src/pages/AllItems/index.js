@@ -25,40 +25,34 @@ const AllItems = () => {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <Box title="Dashboard: Products">
-      <Container>
-        <Typography variant="h2" sx={{ my: 5 }}>
-          Products
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row-reverse',
-            p: 1,
-            m: 1,
-            bgcolor: 'background.paper',
-            borderRadius: 1,
-          }}>
-          <ItemSort />
-        </Box>
-        <Grid container spacing={2}>
-          <Grid item xs={2}>
-            <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
-              <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-                <ItemFilter
-                  isOpenFilter={openFilter}
-                  onOpenFilter={handleOpenFilter}
-                  onCloseFilter={handleCloseFilter}
-                />
-              </Stack>
+    <Container maxWidth="xl">
+      <Typography variant="h2" sx={{ my: 5 }}>
+        Products
+      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row-reverse',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+        }}>
+        <ItemSort />
+      </Box>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
+            <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+              <ItemFilter isOpenFilter={openFilter} onOpenFilter={handleOpenFilter} onCloseFilter={handleCloseFilter} />
             </Stack>
-          </Grid>
-          <Grid item xs={10}>
-            <ItemList products={items} />
-          </Grid>
+          </Stack>
         </Grid>
-      </Container>
-    </Box>
+        <Grid item xs={10}>
+          <ItemList products={items} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
