@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { ProductList, ProductSidebar, ProductSort } from '../../sections/items';
+import { ItemList, ItemFilter, ItemSort } from '../../sections/items';
 import { QUERY_ITEMS } from '../../utils/queries';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import { Grid } from '@mui/material';
+// import { Grid } from '@mui/material';
 
 const AllItems = () => {
   const { loading, error, data } = useQuery(QUERY_ITEMS);
@@ -33,16 +33,12 @@ const AllItems = () => {
 
         <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
           <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ProductSidebar
-              isOpenFilter={openFilter}
-              onOpenFilter={handleOpenFilter}
-              onCloseFilter={handleCloseFilter}
-            />
-            {/* <ProductSort /> */}
+            <ItemFilter isOpenFilter={openFilter} onOpenFilter={handleOpenFilter} onCloseFilter={handleCloseFilter} />
+            <ItemSort />
           </Stack>
         </Stack>
 
-        <ProductList products={items} />
+        <ItemList products={items} />
       </Container>
     </Box>
   );

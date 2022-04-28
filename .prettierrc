@@ -8,5 +8,6 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": true,
   "arrowParens": "always",
-  "proseWrap": "always"
+  "proseWrap": "always",
+  "react/jsx-pascal-case": "[<enabled>, { allowAllCaps: <allowAllCaps>, allowNamespace: <allowNamespace>, allowLeadingUnderscore: <allowLeadingUnderscore>, ignore: <ignore> }]"
 }
