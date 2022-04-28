@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
+import Navbar from './components/Navbar';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
@@ -41,14 +42,14 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <ErrorBoundary>
-          <Home />
+          <Navbar />
           <Routes>
-            <Route path="/" element={<h2>home page</h2>} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/items" element={<AllItems />} />
             <Route path="/SingleProduct" element={<SingleProduct />} />
             <Route path="/register" element={<Register />} />
-            {isBrand && <Route path="/dashboard" element={<Brand />} />}
+            <Route path="/dashboard" element={<Brand />} />
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             <Route path="*" element={<Page404 />} />
           </Routes>
