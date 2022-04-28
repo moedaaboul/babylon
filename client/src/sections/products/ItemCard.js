@@ -5,6 +5,7 @@ import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 // utils
@@ -45,8 +46,12 @@ export default function ItemCard({ product }) {
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Tooltip title="Add To Wishlist">
-            <IconButton aria-label="add to wishlist">
-              <FavoriteIcon />
+            <IconButton
+              aria-label="add to wishlist"
+              onClick={() => {
+                <FavoriteIcon />;
+              }}>
+              <FavoriteBorderIcon />
             </IconButton>
           </Tooltip>
           <Typography variant="subtitle1">
