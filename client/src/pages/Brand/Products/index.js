@@ -6,10 +6,12 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_BRAND_ITEMS } from '../../../utils/queries';
 import { DELETE_ITEM } from '../../../utils/mutations';
 import { UPDATE_ITEM } from '../../../utils/mutations';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 export default function DataGridDemo() {
+  const [snackbar, setSnackbar] = React.useState(null);
   const { loading, data } = useQuery(GET_BRAND_ITEMS);
-
   const [deleteItem] = useMutation(DELETE_ITEM, {
     update(cache, { data: { deleteItem } }) {
       try {
@@ -29,6 +31,8 @@ export default function DataGridDemo() {
     },
   });
   const [updateItem] = useMutation(UPDATE_ITEM);
+  const handleCloseSnackbar = () => setSnackbar(null);
+
   const productData = data?.brandItems || {};
   console.log(productData);
   if (loading) {
@@ -46,7 +50,9 @@ export default function DataGridDemo() {
       await deleteItem({
         variables: { itemId: itemId },
       });
+      setSnackbar({ children: 'Product successfully deleted', severity: 'success' });
     } catch (err) {
+      setSnackbar({ children: 'An error occurred. Please try again.', severity: 'error' });
       console.error(err);
     }
   };
@@ -63,8 +69,10 @@ export default function DataGridDemo() {
       await updateItem({
         variables: { input: input, itemId: itemId },
       });
+      setSnackbar({ children: 'Product successfully updated', severity: 'success' });
     } catch (err) {
       console.error(err);
+      setSnackbar({ children: 'An error occurred. Please try again.', severity: 'error' });
     }
   };
 
@@ -123,14 +131,21 @@ export default function DataGridDemo() {
   ];
 
   return (
-    <DataGrid
-      sx={{ height: 430, width: 1000 }}
-      rows={productData}
-      columns={columns}
-      pageSize={5}
-      getRowId={(row) => row._id}
-      rowsPerPageOptions={[5]}
-      disableColumnMenu
-    />
+    <>
+      <DataGrid
+        sx={{ height: 430, width: 1000 }}
+        rows={productData}
+        columns={columns}
+        pageSize={5}
+        getRowId={(row) => row._id}
+        rowsPerPageOptions={[5]}
+        disableColumnMenu
+      />
+      {!!snackbar && (
+        <Snackbar open onClose={handleCloseSnackbar} autoHideDuration={6000}>
+          <Alert {...snackbar} onClose={handleCloseSnackbar} />
+        </Snackbar>
+      )}
+    </>
   );
 }
