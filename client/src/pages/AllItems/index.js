@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-// import { Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 const AllItems = () => {
   const { loading, error, data } = useQuery(QUERY_ITEMS);
@@ -27,18 +27,36 @@ const AllItems = () => {
   return (
     <Box title="Dashboard: Products">
       <Container>
-        <Typography variant="h2" sx={{ mt: 5 }}>
+        <Typography variant="h2" sx={{ my: 5 }}>
           Products
         </Typography>
-
-        <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ItemFilter isOpenFilter={openFilter} onOpenFilter={handleOpenFilter} onCloseFilter={handleCloseFilter} />
-            <ItemSort />
-          </Stack>
-        </Stack>
-
-        <ItemList products={items} />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row-reverse',
+            p: 1,
+            m: 1,
+            bgcolor: 'background.paper',
+            borderRadius: 1,
+          }}>
+          <ItemSort />
+        </Box>
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
+              <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+                <ItemFilter
+                  isOpenFilter={openFilter}
+                  onOpenFilter={handleOpenFilter}
+                  onCloseFilter={handleCloseFilter}
+                />
+              </Stack>
+            </Stack>
+          </Grid>
+          <Grid item xs={10}>
+            <ItemList products={items} />
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );
