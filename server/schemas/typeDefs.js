@@ -16,6 +16,7 @@ const typeDefs = gql`
     price: Int
     stock: Int
     size: [String]
+    brand: String
   }
 
   type Auth {
@@ -25,6 +26,7 @@ const typeDefs = gql`
   type Query {
     me: User
     items: [Item]!
+    brandItems: [Item]
   }
 
   input ItemInput {
@@ -40,6 +42,8 @@ const typeDefs = gql`
     loginUser(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, usertype: String!): Auth
     addItem(input: ItemInput!): Item
+    deleteItem(itemId: ID!): Item
+    updateItem(input: ItemInput!, itemId: ID!): Item
   }
 `;
 
