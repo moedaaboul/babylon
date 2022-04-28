@@ -52,3 +52,18 @@ export const DELETE_ITEM = gql`
     }
   }
 `;
+
+export const UPDATE_ITEM = gql`
+  mutation Mutation($input: ItemInput!, $itemId: ID!) {
+    updateItem(input: $input, itemId: $itemId) {
+      _id
+      title
+      description
+      image
+      price
+      stock
+      size
+      brand
+    }
+  }
+`;

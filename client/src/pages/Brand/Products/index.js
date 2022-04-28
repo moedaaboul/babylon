@@ -5,9 +5,11 @@ import SaveIcon from '@mui/icons-material/Save';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_BRAND_ITEMS } from '../../../utils/queries';
 import { DELETE_ITEM } from '../../../utils/mutations';
+import { UPDATE_ITEM } from '../../../utils/mutations';
 
 export default function DataGridDemo() {
   const { loading, data } = useQuery(GET_BRAND_ITEMS);
+
   const [deleteItem] = useMutation(DELETE_ITEM, {
     update(cache, { data: { deleteItem } }) {
       try {
@@ -26,6 +28,7 @@ export default function DataGridDemo() {
       }
     },
   });
+  const [updateItem] = useMutation(UPDATE_ITEM);
   const productData = data?.brandItems || {};
   console.log(productData);
   if (loading) {
@@ -42,6 +45,23 @@ export default function DataGridDemo() {
     try {
       await deleteItem({
         variables: { itemId: itemId },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleUpdateItem = async (input, itemId) => {
+    console.log(input, itemId, 'line 55');
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    // if (!token) {
+    //   return false;
+    // }
+
+    try {
+      await updateItem({
+        variables: { input: input, itemId: itemId },
       });
     } catch (err) {
       console.error(err);
@@ -82,7 +102,21 @@ export default function DataGridDemo() {
       type: 'actions',
       width: 80,
       getActions: (params) => [
-        <GridActionsCellItem icon={<SaveIcon />} label="Save" />,
+        <GridActionsCellItem
+          icon={<SaveIcon />}
+          label="Save"
+          onClick={() =>
+            handleUpdateItem(
+              {
+                description: params.getValue(params.id, 'description'),
+                price: params.getValue(params.id, 'price'),
+                stock: params.getValue(params.id, 'stock'),
+                title: params.getValue(params.id, 'title'),
+              },
+              params.id
+            )
+          }
+        />,
         <GridActionsCellItem icon={<DeleteIcon />} label="Delete" onClick={() => handleDeleteItem(params.id)} />,
       ],
     },
