@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { ProductList, ProductSidebar, ProductSort } from '../../sections/products';
+import { ProductList, ProductSidebar, ProductSort } from '../../sections/items';
 import { QUERY_ITEMS } from '../../utils/queries';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
