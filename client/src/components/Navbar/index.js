@@ -18,9 +18,14 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+
 import React from 'react';
+
 import { Link as RouterLink } from 'react-router-dom';
+
 import Auth from '../../utils/auth';
+
+import SideCart from '../SideCart';
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -84,7 +89,7 @@ const Navbar = () => {
             </Tooltip>
             <Tooltip title="Shopping Bag">
               <StyledIconButton>
-                <ShoppingBagIcon />
+                <SideCart />
               </StyledIconButton>
             </Tooltip>
           </Icons>
