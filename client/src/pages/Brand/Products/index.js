@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useQuery } from '@apollo/client';
 import { GET_BRAND_ITEMS } from '../../../utils/queries';
 
@@ -30,6 +31,19 @@ const columns = [
     headerName: 'Description',
     width: 250,
     editable: true,
+  },
+  {
+    field: 'actions',
+    headerName: 'Action',
+    type: 'actions',
+    width: 80,
+    getActions: (params) => [
+      <GridActionsCellItem
+        icon={<DeleteIcon />}
+        label="Delete"
+        // onClick={deleteUser(params.id)}
+      />,
+    ],
   },
 ];
 
