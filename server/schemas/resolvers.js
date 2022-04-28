@@ -52,6 +52,10 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    deleteItem: async (_, { itemId }) => {
+      const deletedItem = await Item.findByIdAndDelete(itemId);
+      return deletedItem;
+    },
     addItem: async (parent, { input }, context) => {
       console.log(input);
       const images = input.image;
