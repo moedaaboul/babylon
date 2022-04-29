@@ -29,8 +29,14 @@ const typeDefs = gql`
     minPrice: Int
   }
 
+  input ItemsSort {
+    lowHigh: Boolean
+    highLow: Boolean
+  }
+
   input ItemsInput {
     filter: ItemsFilters
+    sort: ItemsSort
   }
 
   type Query {

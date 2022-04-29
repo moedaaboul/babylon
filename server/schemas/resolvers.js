@@ -20,11 +20,12 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     items: async (parent, { input }, context) => {
-      const { filter } = input;
+      const { filter, sort } = input;
       const shouldApplyFilters = filter !== null;
+      const shouldApplySort = sort !== null;
       let items = await Item.find({});
       console.log(items);
-      if (!shouldApplyFilters) {
+      if (!shouldApplyFilters && !shouldApplySort) {
         return items;
       }
       const shouldApplyMaxPriceFilter = filter.maxPrice !== null;
@@ -34,6 +35,14 @@ const resolvers = {
       const shouldApplyMinPriceFilter = filter.minPrice !== null;
       if (shouldApplyMinPriceFilter) {
         items = items.filter((a) => a.price >= filter.minPrice);
+      }
+      const shouldApplyLowHighSort = sort.lowHigh;
+      if (shouldApplyLowHighSort) {
+        items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      }
+      const shouldApplyHighLowSort = sort.highLow;
+      if (shouldApplyHighLowSort) {
+        items = items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       }
       return items;
     },

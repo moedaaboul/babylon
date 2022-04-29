@@ -18,6 +18,10 @@ const AllItems = () => {
           minPrice: minPrice,
           maxPrice: maxPrice,
         },
+        sort: {
+          lowHigh: false,
+          highLow: true,
+        },
       },
     },
   });
