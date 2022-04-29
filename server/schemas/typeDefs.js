@@ -30,8 +30,8 @@ const typeDefs = gql`
   }
 
   input ItemsSort {
-    lowHigh: Boolean
-    highLow: Boolean
+    priceAsc: Boolean
+    priceDesc: Boolean
   }
 
   input ItemsInput {

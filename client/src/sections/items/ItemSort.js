@@ -15,7 +15,7 @@ const SORT_BY_OPTIONS = [
 ];
 
 export default function ShopProductSort() {
-  const { setLowHigh, setHighLow } = useSortContext();
+  const { setPriceAsc, setPriceDesc } = useSortContext();
   const [selected, setSelected] = useState('featured');
   const [open, setOpen] = useState(null);
 
@@ -30,12 +30,12 @@ export default function ShopProductSort() {
     }
     setSelected(value);
     if (value === 'priceDesc') {
-      setLowHigh(false);
-      setHighLow(true);
+      setPriceAsc(false);
+      setPriceDesc(true);
     }
     if (value === 'priceAsc') {
-      setHighLow(false);
-      setLowHigh(true);
+      setPriceDesc(false);
+      setPriceAsc(true);
     }
   };
 

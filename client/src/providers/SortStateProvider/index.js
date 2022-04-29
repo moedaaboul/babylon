@@ -3,16 +3,16 @@ import React, { useState, useContext } from 'react';
 const AppContext = React.createContext();
 
 const SortProvider = ({ children }) => {
-  const [lowHigh, setLowHigh] = useState(false);
-  const [highLow, setHighLow] = useState(false);
+  const [priceAsc, setPriceAsc] = useState(false);
+  const [priceDesc, setPriceDesc] = useState(false);
 
   return (
     <AppContext.Provider
       value={{
-        lowHigh,
-        setLowHigh,
-        highLow,
-        setHighLow,
+        priceAsc,
+        setPriceAsc,
+        priceDesc,
+        setPriceDesc,
       }}>
       {children}
     </AppContext.Provider>

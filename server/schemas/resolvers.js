@@ -36,12 +36,12 @@ const resolvers = {
       if (shouldApplyMinPriceFilter) {
         items = items.filter((a) => a.price >= filter.minPrice);
       }
-      const shouldApplyLowHighSort = sort.lowHigh;
-      if (shouldApplyLowHighSort) {
+      const shouldApplyPriceAscSort = sort.priceAsc;
+      if (shouldApplyPriceAscSort) {
         items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
       }
-      const shouldApplyHighLowSort = sort.highLow;
-      if (shouldApplyHighLowSort) {
+      const shouldApplyPriceDescSort = sort.priceDesc;
+      if (shouldApplyPriceDescSort) {
         items = items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       }
       return items;
