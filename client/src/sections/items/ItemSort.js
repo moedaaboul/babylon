@@ -27,9 +27,11 @@ export default function ShopProductSort() {
     setOpen(null);
     setSelected(value);
     if (value === 'priceDesc') {
+      setLowHigh(false);
       setHighLow(true);
     }
     if (value === 'priceAsc') {
+      setHighLow(false);
       setLowHigh(true);
     }
   };
@@ -56,7 +58,7 @@ export default function ShopProductSort() {
         {SORT_BY_OPTIONS.map((option) => (
           <MenuItem
             key={option.value}
-            selected={option.value === 'priceDesc'}
+            selected={option.value}
             onClick={() => handleClose(option.value)}
             sx={{ typography: 'body2' }}>
             {option.label}
