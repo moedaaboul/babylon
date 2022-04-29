@@ -25,12 +25,6 @@ const itemSchema = new Schema({
     type: Number,
     required: true,
   },
-  size: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
   brand: {
     type: String,
     required: true,

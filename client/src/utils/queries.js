@@ -9,7 +9,6 @@ export const QUERY_ITEMS = gql`
       image
       price
       stock
-      size
       brand
     }
   }

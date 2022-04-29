@@ -15,7 +15,6 @@ const typeDefs = gql`
     image: [String]
     price: Int
     stock: Int
-    size: [String]
     brand: String
   }
 
@@ -51,7 +50,6 @@ const typeDefs = gql`
     image: [String]
     price: Int
     stock: Int
-    size: [String]
   }
 
   type Mutation {

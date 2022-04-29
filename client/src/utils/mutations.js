@@ -33,7 +33,6 @@ export const ADD_ITEM = gql`
       image
       price
       stock
-      size
     }
   }
 `;
@@ -47,7 +46,6 @@ export const DELETE_ITEM = gql`
       image
       price
       stock
-      size
       brand
     }
   }
@@ -62,7 +60,6 @@ export const UPDATE_ITEM = gql`
       image
       price
       stock
-      size
       brand
     }
   }

@@ -36,7 +36,6 @@ const AddProduct = () => {
     description: '',
     price: '',
     stock: '',
-    size: ['asdf'],
     // category: '',
   });
   const [addItem] = useMutation(ADD_ITEM, {
