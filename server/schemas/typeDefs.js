@@ -23,9 +23,18 @@ const typeDefs = gql`
     token: String
     user: User
   }
+
+  input ItemsFilters {
+    maxPrice: Int
+  }
+
+  input ItemsInput {
+    filter: ItemsFilters
+  }
+
   type Query {
     me: User
-    items: [Item]!
+    items(input: ItemsInput): [Item]!
     brandItems: [Item]
   }
 

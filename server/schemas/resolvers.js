@@ -19,10 +19,19 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    items: async () => {
-      const itemList = await Item.find({});
-      console.log(itemList);
-      return itemList;
+    items: async (parent, { input }, context) => {
+      const { filter } = input;
+      const shouldApplyFilters = filter !== null;
+      let items = await Item.find({});
+      console.log(items);
+      if (!shouldApplyFilters) {
+        return items;
+      }
+      const shouldApplyMaxPriceFilter = filter.maxPrice !== null;
+      if (shouldApplyMaxPriceFilter) {
+        items = items.filter((a) => a.price <= filter.maxPrice);
+      }
+      return items;
     },
   },
 

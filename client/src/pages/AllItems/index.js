@@ -9,7 +9,15 @@ import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 
 const AllItems = () => {
-  const { loading, error, data } = useQuery(QUERY_ITEMS);
+  const { loading, error, data } = useQuery(QUERY_ITEMS, {
+    variables: {
+      input: {
+        filter: {
+          maxPrice: null,
+        },
+      },
+    },
+  });
   const [openFilter, setOpenFilter] = useState(false);
   const items = data?.items || [];
 

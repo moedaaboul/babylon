@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ITEMS = gql`
-  query allitems {
-    items {
+  query Items($input: ItemsInput) {
+    items(input: $input) {
       _id
       title
       description
@@ -10,6 +10,7 @@ export const QUERY_ITEMS = gql`
       price
       stock
       size
+      brand
     }
   }
 `;
