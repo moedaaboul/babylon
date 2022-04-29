@@ -7,13 +7,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
+import { useFilterContext } from '../../providers/FiltersStateProvider';
 
 const AllItems = () => {
+  const { maxPrice } = useFilterContext();
   const { loading, error, data } = useQuery(QUERY_ITEMS, {
     variables: {
       input: {
         filter: {
-          maxPrice: null,
+          maxPrice: maxPrice,
         },
       },
     },
@@ -29,7 +31,6 @@ const AllItems = () => {
     setOpenFilter(false);
   };
 
-  if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -57,7 +58,7 @@ const AllItems = () => {
           </Stack>
         </Grid>
         <Grid item xs={10}>
-          <ItemList products={items} />
+          {loading ? <h6>is loading...</h6> : <ItemList products={items} />}
         </Grid>
       </Grid>
     </Container>

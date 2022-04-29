@@ -2,6 +2,7 @@ import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { FiltersProvider } from './providers/FiltersStateProvider';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SingleProduct from './pages/SingleProduct';
@@ -40,21 +41,23 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <ErrorBoundary>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/items" element={<AllItems />} />
-            <Route path="/SingleProduct" element={<SingleProduct />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Brand />} />
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </ErrorBoundary>
-      </Router>
+      <FiltersProvider>
+        <Router>
+          <ErrorBoundary>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/items" element={<AllItems />} />
+              <Route path="/SingleProduct" element={<SingleProduct />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/dashboard" element={<Brand />} />
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+              <Route path="*" element={<Page404 />} />
+            </Routes>
+          </ErrorBoundary>
+        </Router>
+      </FiltersProvider>
     </ApolloProvider>
   );
 }

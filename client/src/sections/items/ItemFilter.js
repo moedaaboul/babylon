@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { styled } from '@mui/material/styles';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -70,10 +71,16 @@ export const FILTER_COLOUR_OPTIONS = [
 ];
 
 export default function RefineSidebar() {
-  const [value, setValue] = React.useState([0, 50]);
+  const { minPrice, setMinPrice, maxPrice, setMaxPrice } = useFilterContext();
+  const [value, setValue] = React.useState([minPrice, maxPrice]);
 
-  const handleChange = (event, newValue) => {
+  const handleChangeValue = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleChangeCommitted = (event, newValue) => {
+    setMinPrice(newValue[0]);
+    setMaxPrice(newValue[1]);
   };
 
   const [expanded, setExpanded] = React.useState(false);
@@ -105,7 +112,8 @@ export default function RefineSidebar() {
             <Slider
               getAriaLabel={() => 'Price Range'}
               value={value}
-              onChange={handleChange}
+              onChange={handleChangeValue}
+              onChangeCommitted={handleChangeCommitted}
               valueLabelDisplay="auto"
               marks={priceSliderMarks}
               getAriaValueText={valuetext}
