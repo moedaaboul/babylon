@@ -8,8 +8,10 @@ export const QUERY_ITEMS = gql`
       description
       image
       price
+      salePrice
       stock
       size
+      colour
     }
   }
 `;

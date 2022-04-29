@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 // utils
 import { fCurrency } from '../../utils/formatNumber';
+import Label from '../../components/Label';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +29,7 @@ ItemCard.propTypes = {
 };
 
 export default function ItemCard({ product }) {
-  const { title, image, price } = product;
+  const { title, image, price, salePrice } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
@@ -55,15 +56,15 @@ export default function ItemCard({ product }) {
             </IconButton>
           </Tooltip>
           <Typography variant="subtitle1">
-            {/* <Typography
+            <Typography
               component="span"
               variant="body1"
               sx={{
                 color: 'text.disabled',
                 textDecoration: 'line-through',
               }}>
-              {fCurrency(price)}
-            </Typography> */}
+              {salePrice && fCurrency(salePrice)}
+            </Typography>
             &nbsp;
             {fCurrency(price)}
           </Typography>

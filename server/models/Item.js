@@ -21,6 +21,10 @@ const itemSchema = new Schema({
     type: Number,
     required: true,
   },
+  salePrice: {
+    type: Number,
+    required: false,
+  },
   stock: {
     type: Number,
     required: true,
@@ -34,6 +38,10 @@ const itemSchema = new Schema({
   brand: {
     type: String,
     required: true,
+  },
+  colour: {
+    type: String,
+    required: false,
   },
 });
 

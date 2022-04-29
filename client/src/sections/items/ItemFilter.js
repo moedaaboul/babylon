@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, handleChange } from 'react';
 import { styled } from '@mui/material/styles';
+
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -73,7 +74,7 @@ export default function RefineSidebar() {
 
   return (
     <Grid item xs={12}>
-      <Accordion expanded={expandedPanel} onChange={handleAccordionChange()}>
+      <Accordion expanded={expandedPanel} onChange={handleAccordionChange()} sx={{ border: 0, borderRadius: 0 }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
         </AccordionSummary>

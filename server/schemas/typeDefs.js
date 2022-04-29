@@ -14,9 +14,11 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Int
+    salePrice: Int
     stock: Int
     size: [String]
     brand: String
+    colour: String
   }
 
   type Auth {
