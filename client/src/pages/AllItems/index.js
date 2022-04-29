@@ -10,11 +10,12 @@ import { Grid } from '@mui/material';
 import { useFilterContext } from '../../providers/FiltersStateProvider';
 
 const AllItems = () => {
-  const { maxPrice } = useFilterContext();
+  const { maxPrice, minPrice } = useFilterContext();
   const { loading, error, data } = useQuery(QUERY_ITEMS, {
     variables: {
       input: {
         filter: {
+          minPrice: minPrice,
           maxPrice: maxPrice,
         },
       },

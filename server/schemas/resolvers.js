@@ -31,6 +31,10 @@ const resolvers = {
       if (shouldApplyMaxPriceFilter) {
         items = items.filter((a) => a.price <= filter.maxPrice);
       }
+      const shouldApplyMinPriceFilter = filter.minPrice !== null;
+      if (shouldApplyMinPriceFilter) {
+        items = items.filter((a) => a.price >= filter.minPrice);
+      }
       return items;
     },
   },
