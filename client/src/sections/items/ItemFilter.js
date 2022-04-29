@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useState, handleChange } from 'react';
 import { styled } from '@mui/material/styles';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
-
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import CircleSharpIcon from '@mui/icons-material/CircleSharp';
 import Divider from '@mui/material/Divider';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FormGroup from '@mui/material/FormGroup';
@@ -15,17 +18,6 @@ import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
 
 import Typography from '@mui/material/Typography';
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 function valuetext(value) {
   return `£${value}`;
@@ -72,67 +64,79 @@ export const FILTER_COLOUR_OPTIONS = [
 export default function RefineSidebar() {
   const [value, setValue] = React.useState([0, 50]);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [expandedPanel, setExpandedPanel] = useState(true);
 
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleAccordionChange = () => (event, isExpanded) => {
+    console.log({ event, isExpanded });
+    setExpandedPanel(isExpanded === true ? false : true);
   };
 
   return (
     <Grid item xs={12}>
-      <Accordion>
+      <Accordion expanded={expandedPanel} onChange={handleAccordionChange()}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography>CATEGORIES</Typography>
+          <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
             {FILTER_CATEGORY_OPTIONS.map((item) => (
-              <FormControlLabel control={<Checkbox />} label={item} />
+              <FormControlLabel
+                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                label={item}
+              />
             ))}
           </FormGroup>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Divider />
+      <Accordion expanded={expandedPanel}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography>PRICE</Typography>
+          <Typography sx={{ fontSize: 12 }}>PRICE</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            <Slider
-              getAriaLabel={() => 'Price Range'}
-              value={value}
-              onChange={handleChange}
-              valueLabelDisplay="auto"
-              marks={priceSliderMarks}
-              getAriaValueText={valuetext}
-            />
+            <Box>
+              <Slider
+                fontSize="12"
+                getAriaLabel={() => 'Price Range'}
+                value={value}
+                onChange={handleChange}
+                valueLabelDisplay="auto"
+                marks={priceSliderMarks}
+                getAriaValueText={valuetext}
+              />
+            </Box>
           </FormGroup>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Divider />
+      <Accordion expanded={expandedPanel}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography>BRANDS</Typography>
+          <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
             {FILTER_BRAND_OPTIONS.map((item) => (
-              <FormControlLabel control={<Checkbox />} label={item} />
+              <FormControlLabel
+                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                label={item}
+              />
             ))}
           </FormGroup>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Divider />
+      <Accordion expanded="true">
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography>COLOURS</Typography>
+          <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
             {FILTER_COLOUR_OPTIONS.map((item) => (
-              <FormControlLabel control={<Checkbox />} label={item} />
+              <FormControlLabel
+                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                label={item}
+              />
             ))}
           </FormGroup>
         </AccordionDetails>
