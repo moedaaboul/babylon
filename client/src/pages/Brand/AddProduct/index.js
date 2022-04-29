@@ -56,7 +56,10 @@ const AddProduct = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     let parsedValue = value;
-    if (name === 'price' || name === 'stock') {
+    if (name === 'price') {
+      parsedValue = parseFloat(value);
+    }
+    if (name === 'stock') {
       parsedValue = parseInt(value);
     }
     setUserFormData({ ...userFormData, [name]: parsedValue });
@@ -154,6 +157,7 @@ const AddProduct = () => {
               <TextField
                 autoComplete="given-name"
                 name="price"
+                type="number"
                 onChange={handleInputChange}
                 value={userFormData.price}
                 required
@@ -167,6 +171,7 @@ const AddProduct = () => {
               <TextField
                 autoComplete="given-name"
                 name="stock"
+                type="number"
                 onChange={handleInputChange}
                 value={userFormData.stock}
                 required
