@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSortContext } from '../../providers/SortStateProvider';
 // material
 import { Menu, Button, MenuItem, Typography } from '@mui/material';
 // component
@@ -14,14 +15,23 @@ const SORT_BY_OPTIONS = [
 ];
 
 export default function ShopProductSort() {
+  const { setLowHigh, setHighLow } = useSortContext();
+  const [selected, setSelected] = useState('featured');
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (value) => {
     setOpen(null);
+    setSelected(value);
+    if (value === 'priceDesc') {
+      setHighLow(true);
+    }
+    if (value === 'priceAsc') {
+      setLowHigh(true);
+    }
   };
 
   return (
@@ -33,7 +43,7 @@ export default function ShopProductSort() {
         endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}>
         Sort By:&nbsp;
         <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
-          Newest
+          {selected}
         </Typography>
       </Button>
       <Menu
@@ -46,8 +56,8 @@ export default function ShopProductSort() {
         {SORT_BY_OPTIONS.map((option) => (
           <MenuItem
             key={option.value}
-            selected={option.value === 'newest'}
-            onClick={handleClose}
+            selected={option.value === 'priceDesc'}
+            onClick={() => handleClose(option.value)}
             sx={{ typography: 'body2' }}>
             {option.label}
           </MenuItem>

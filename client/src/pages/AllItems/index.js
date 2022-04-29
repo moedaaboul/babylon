@@ -8,9 +8,11 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 import { useFilterContext } from '../../providers/FiltersStateProvider';
+import { useSortContext } from '../../providers/SortStateProvider';
 
 const AllItems = () => {
   const { maxPrice, minPrice } = useFilterContext();
+  const { lowHigh, highLow } = useSortContext();
   const { loading, error, data } = useQuery(QUERY_ITEMS, {
     variables: {
       input: {
@@ -19,8 +21,8 @@ const AllItems = () => {
           maxPrice: maxPrice,
         },
         sort: {
-          lowHigh: false,
-          highLow: true,
+          lowHigh: lowHigh,
+          highLow: highLow,
         },
       },
     },
