@@ -36,7 +36,7 @@ const AddProduct = () => {
     description: '',
     price: '',
     stock: '',
-    // category: '',
+    category: '',
   });
   const [addItem] = useMutation(ADD_ITEM, {
     update(cache, { data: { addItem } }) {
@@ -122,11 +122,10 @@ const AddProduct = () => {
                 <Select
                   labelId="demo-simple-select-helper-label"
                   id="demo-simple-select-helper"
-                  //   value={age}
+                  value={userFormData.category}
                   name="category"
                   label="Category"
-                  // onChange={handleInputChange}
-                >
+                  onChange={handleInputChange}>
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>

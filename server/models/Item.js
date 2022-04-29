@@ -29,6 +29,10 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
 });
 
 const Item = model('Item', itemSchema);

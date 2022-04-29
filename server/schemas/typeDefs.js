@@ -16,6 +16,7 @@ const typeDefs = gql`
     price: Int
     stock: Int
     brand: String
+    category: String
   }
 
   type Auth {
@@ -50,6 +51,7 @@ const typeDefs = gql`
     image: [String]
     price: Int
     stock: Int
+    category: String
   }
 
   type Mutation {
