@@ -25,6 +25,9 @@ export default function ShopProductSort() {
 
   const handleClose = (value) => {
     setOpen(null);
+    if (!value) {
+      return;
+    }
     setSelected(value);
     if (value === 'priceDesc') {
       setLowHigh(false);
@@ -51,8 +54,8 @@ export default function ShopProductSort() {
       <Menu
         keepMounted
         anchorEl={open}
-        open={Boolean(open)}
-        onClose={handleClose}
+        open={open}
+        onClose={() => handleClose()}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}>
         {SORT_BY_OPTIONS.map((option) => (
