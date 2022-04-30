@@ -20,6 +20,9 @@ const ProductImgStyle = styled('img')({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
+  // :hover {
+  //   src={image[1]}
+  // }
 });
 
 // ----------------------------------------------------------------------
@@ -36,6 +39,8 @@ const itemStatus = (item) => {
 ItemCard.propTypes = {
   product: PropTypes.object,
 };
+
+// ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
   const { title, image, price, salePrice } = product;
@@ -58,7 +63,7 @@ export default function ItemCard({ product }) {
               {itemStatus}
             </Label>
           )}
-          <ProductImgStyle alt={title} src={image} />
+          <ProductImgStyle alt={title} src={image[0]} />
         </Box>
       </CardActionArea>
       <Stack spacing={2} sx={{ p: 3 }}>
