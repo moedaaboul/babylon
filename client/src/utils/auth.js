@@ -5,12 +5,18 @@ import decode from 'jwt-decode';
 class AuthService {
   // get user data
   getProfile() {
-    return decode(this.getToken());
+    try {
+      return decode(this.getToken());
+    } catch (error) {
+      return null;
+    }
   }
 
   isBrand() {
-    const payload = decode(this.getToken());
-    return payload.data.usertype === 'brand';
+    const payload = this.getProfile();
+    console.log(payload?.data?.usertype);
+    console.log(payload?.data?.usertype === 'brand');
+    return payload?.data?.usertype === 'brand';
   }
 
   // check if user's logged in

@@ -88,20 +88,27 @@ export default function DataGridDemo() {
       field: 'stock',
       headerName: 'In Stock',
       type: 'number',
-      width: 70,
+      width: 90,
       editable: true,
     },
     {
       field: 'price',
-      headerName: 'Sale Price',
+      headerName: 'Original Price',
       type: 'number',
-      width: 90,
+      width: 110,
+      editable: false,
+    },
+    {
+      field: 'discountedPrice',
+      headerName: 'Discounted Price',
+      type: 'number',
+      width: 130,
       editable: true,
     },
     {
       field: 'description',
       headerName: 'Description',
-      width: 250,
+      width: 300,
       editable: true,
     },
     {
@@ -120,6 +127,7 @@ export default function DataGridDemo() {
                 price: params.getValue(params.id, 'price'),
                 stock: params.getValue(params.id, 'stock'),
                 title: params.getValue(params.id, 'title'),
+                discountedPrice: params.getValue(params.id, 'discountedPrice'),
               },
               params.id
             )

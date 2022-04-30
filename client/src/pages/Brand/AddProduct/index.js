@@ -35,9 +35,9 @@ const AddProduct = () => {
     title: '',
     description: '',
     price: '',
+    discountedPrice: '',
     stock: '',
-    size: ['asdf'],
-    // category: '',
+    category: '',
   });
   const [addItem] = useMutation(ADD_ITEM, {
     update(cache, { data: { addItem } }) {
@@ -57,7 +57,10 @@ const AddProduct = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     let parsedValue = value;
-    if (name === 'price' || name === 'stock') {
+    if (name === 'price' || name === 'discountedPrice') {
+      parsedValue = parseFloat(value);
+    }
+    if (name === 'stock') {
       parsedValue = parseInt(value);
     }
     setUserFormData({ ...userFormData, [name]: parsedValue });
@@ -123,11 +126,10 @@ const AddProduct = () => {
                 <Select
                   labelId="demo-simple-select-helper-label"
                   id="demo-simple-select-helper"
-                  //   value={age}
+                  value={userFormData.category}
                   name="category"
                   label="Category"
-                  // onChange={handleInputChange}
-                >
+                  onChange={handleInputChange}>
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
@@ -156,6 +158,7 @@ const AddProduct = () => {
               <TextField
                 autoComplete="given-name"
                 name="price"
+                type="number"
                 onChange={handleInputChange}
                 value={userFormData.price}
                 required
@@ -168,13 +171,42 @@ const AddProduct = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
+                name="discountedPrice"
+                type="number"
+                onChange={handleInputChange}
+                value={userFormData.discountedPrice}
+                required
+                fullWidth
+                id="discountedPrice"
+                label="Selling Price"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
                 name="stock"
+                type="number"
                 onChange={handleInputChange}
                 value={userFormData.stock}
                 required
                 fullWidth
                 id="stockItems"
                 label="Stock"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
+                name="colour"
+                type="number"
+                // onChange={handleInputChange}
+                // value={userFormData.stock}
+                required
+                fullWidth
+                id="stockItems"
+                label="Colour"
                 autoFocus
               />
             </Grid>

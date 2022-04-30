@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, handleChange } from 'react';
+import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { styled } from '@mui/material/styles';
 
 import Accordion from '@mui/material/Accordion';
@@ -63,87 +64,97 @@ export const FILTER_COLOUR_OPTIONS = [
 ];
 
 export default function RefineSidebar() {
-  const [value, setValue] = React.useState([0, 50]);
+  const { minPrice, setMinPrice, maxPrice, setMaxPrice } = useFilterContext();
+  const [value, setValue] = React.useState([minPrice, maxPrice]);
 
   const [expandedPanel, setExpandedPanel] = useState(true);
 
   const handleAccordionChange = () => (event, isExpanded) => {
     console.log({ event, isExpanded });
     setExpandedPanel(isExpanded === true ? false : true);
-  };
+    const handleChangeValue = (event, newValue) => {
+      setValue(newValue);
+    };
 
-  return (
-    <Grid item xs={12}>
-      <Accordion expanded={expandedPanel} onChange={handleAccordionChange()} sx={{ border: 0, borderRadius: 0 }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <FormGroup>
-            {FILTER_CATEGORY_OPTIONS.map((item) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
-              />
-            ))}
-          </FormGroup>
-        </AccordionDetails>
-      </Accordion>
-      <Divider />
-      <Accordion expanded={expandedPanel}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography sx={{ fontSize: 12 }}>PRICE</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <FormGroup>
-            <Box>
+    const handleChangeCommitted = (event, newValue) => {
+      setMinPrice(newValue[0]);
+      setMaxPrice(newValue[1]);
+    };
+
+    // const handleExpandClick = () => {
+    //   setExpanded(!expanded);
+    // };
+
+    return (
+      <Grid item xs={12}>
+        <Accordion expanded={expandedPanel} onChange={handleAccordionChange()} sx={{ border: 0, borderRadius: 0 }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <FormGroup>
+              {FILTER_CATEGORY_OPTIONS.map((item) => (
+                <FormControlLabel
+                  control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                  label={item}
+                />
+              ))}
+            </FormGroup>
+          </AccordionDetails>
+        </Accordion>
+        <Divider />
+        <Accordion expanded={expandedPanel}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <Typography sx={{ fontSize: 12 }}>PRICE</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <FormGroup>
               <Slider
-                fontSize="12"
                 getAriaLabel={() => 'Price Range'}
                 value={value}
-                onChange={handleChange}
+                onChange={handleChangeValue}
+                onChangeCommitted={handleChangeCommitted}
                 valueLabelDisplay="auto"
                 marks={priceSliderMarks}
                 getAriaValueText={valuetext}
               />
-            </Box>
-          </FormGroup>
-        </AccordionDetails>
-      </Accordion>
-      <Divider />
-      <Accordion expanded={expandedPanel}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <FormGroup>
-            {FILTER_BRAND_OPTIONS.map((item) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
-              />
-            ))}
-          </FormGroup>
-        </AccordionDetails>
-      </Accordion>
-      <Divider />
-      <Accordion expanded="true">
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <FormGroup>
-            {FILTER_COLOUR_OPTIONS.map((item) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
-              />
-            ))}
-          </FormGroup>
-        </AccordionDetails>
-      </Accordion>
-    </Grid>
-    /* <Toolbar />
+            </FormGroup>
+          </AccordionDetails>
+        </Accordion>
+        <Divider />
+        <Accordion expanded={expandedPanel}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <FormGroup>
+              {FILTER_BRAND_OPTIONS.map((item) => (
+                <FormControlLabel
+                  control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                  label={item}
+                />
+              ))}
+            </FormGroup>
+          </AccordionDetails>
+        </Accordion>
+        <Divider />
+        <Accordion expanded="true">
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <FormGroup>
+              {FILTER_COLOUR_OPTIONS.map((item) => (
+                <FormControlLabel
+                  control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                  label={item}
+                />
+              ))}
+            </FormGroup>
+          </AccordionDetails>
+        </Accordion>
+      </Grid>
+      /* <Toolbar />
      <Divider />
      <List>
        <ListItem button key="Brand">
@@ -154,51 +165,52 @@ export default function RefineSidebar() {
        </ListItem>
        <ListItem>
         <Slider */
-    //       getAriaLabel={() => 'Price Range'}
-    //       value={value}
-    //       onChange={handleChange}
-    //       valueLabelDisplay="auto"
-    //       marks={priceSliderMarks}
-    //       getAriaValueText={valuetext}
-    //     />
-    //   </ListItem>
-    //   <ListItem button key="Size">
-    //     <ListItemText primary="Size" />
-    //     <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-    //       <ExpandMoreIcon />
-    //     </ExpandMore>
-    //     <Collapse in={expanded} timeout="auto" unmountOnExit>
-    //       <FormGroup>
-    //         <FormControlLabel control={<Checkbox />} label="XS" />
-    //         <FormControlLabel control={<Checkbox />} label="S" />
-    //         <FormControlLabel control={<Checkbox />} label="M" />
-    //         <FormControlLabel control={<Checkbox />} label="L" />
-    //         <FormControlLabel control={<Checkbox />} label="XL" />
-    //         <FormControlLabel control={<Checkbox />} label="6" />
-    //         <FormControlLabel control={<Checkbox />} label="8" />
-    //         <FormControlLabel control={<Checkbox />} label="10" />
-    //         <FormControlLabel control={<Checkbox />} label="12" />
-    //         <FormControlLabel control={<Checkbox />} label="14" />
-    //         <FormControlLabel control={<Checkbox />} label="16" />
-    //         <FormControlLabel control={<Checkbox />} label="18" />
-    //         <FormControlLabel control={<Checkbox />} label="20" />
-    //         <FormControlLabel control={<Checkbox />} label="22" />
-    //       </FormGroup>
-    //     </Collapse>
-    //   </ListItem>
+      //       getAriaLabel={() => 'Price Range'}
+      //       value={value}
+      //       onChange={handleChange}
+      //       valueLabelDisplay="auto"
+      //       marks={priceSliderMarks}
+      //       getAriaValueText={valuetext}
+      //     />
+      //   </ListItem>
+      //   <ListItem button key="Size">
+      //     <ListItemText primary="Size" />
+      //     <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
+      //       <ExpandMoreIcon />
+      //     </ExpandMore>
+      //     <Collapse in={expanded} timeout="auto" unmountOnExit>
+      //       <FormGroup>
+      //         <FormControlLabel control={<Checkbox />} label="XS" />
+      //         <FormControlLabel control={<Checkbox />} label="S" />
+      //         <FormControlLabel control={<Checkbox />} label="M" />
+      //         <FormControlLabel control={<Checkbox />} label="L" />
+      //         <FormControlLabel control={<Checkbox />} label="XL" />
+      //         <FormControlLabel control={<Checkbox />} label="6" />
+      //         <FormControlLabel control={<Checkbox />} label="8" />
+      //         <FormControlLabel control={<Checkbox />} label="10" />
+      //         <FormControlLabel control={<Checkbox />} label="12" />
+      //         <FormControlLabel control={<Checkbox />} label="14" />
+      //         <FormControlLabel control={<Checkbox />} label="16" />
+      //         <FormControlLabel control={<Checkbox />} label="18" />
+      //         <FormControlLabel control={<Checkbox />} label="20" />
+      //         <FormControlLabel control={<Checkbox />} label="22" />
+      //       </FormGroup>
+      //     </Collapse>
+      //   </ListItem>
 
-    //   <ListItem button key="Colour">
-    //     <ListItemText primary="Colour" />
-    //   </ListItem>
-    // </List>
-    // <Divider />
-    // <List>
-    //   {['All mail', 'Trash', 'Spam'].map((text, index) => (
-    //     <ListItem button key={text}>
-    //       <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-    //       <ListItemText primary={text} />
-    //     </ListItem>
-    //   ))}
-    // </List> */
-  );
+      //   <ListItem button key="Colour">
+      //     <ListItemText primary="Colour" />
+      //   </ListItem>
+      // </List>
+      // <Divider />
+      // <List>
+      //   {['All mail', 'Trash', 'Spam'].map((text, index) => (
+      //     <ListItem button key={text}>
+      //       <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+      //       <ListItemText primary={text} />
+      //     </ListItem>
+      //   ))}
+      // </List> */
+    );
+  };
 }
