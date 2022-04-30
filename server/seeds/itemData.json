@@ -6,7 +6,7 @@
     "price": 60,
     "stock": 30,
     "size": ["S", "M", "L"],
-    "discountPrice": 30,
+    "discountedPrice": 30,
     "brand": "Adidas",
     "category": "Womens"
   },
@@ -37,7 +37,7 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "discountPrice": 15,
+    "discountedPrice": 15,
     "brand": "Levis",
     "category": "Womens"
   },
@@ -68,7 +68,7 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "discountPrice": 15,
+    "discountedPrice": 15,
     "brand": "Levis",
     "category": "Womens"
   },

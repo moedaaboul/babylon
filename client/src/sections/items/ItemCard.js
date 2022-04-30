@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // material
-import { Box, Card, Link, Typography, Stack } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from '@mui/material/IconButton';
+import Label from '../../components/Label';
+import Stack from '@mui/material/Stack';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 // utils
 import { fCurrency } from '../../utils/formatNumber';
-import Label from '../../components/Label';
 
 // ----------------------------------------------------------------------
 
@@ -35,13 +38,13 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, discountPrice } = product;
+  const { title, image, price, discountedPrice } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {discountPrice && (
+          {discountedPrice && (
             <Label
               variant="filled"
               sx={{
@@ -69,7 +72,7 @@ export default function ItemCard({ product }) {
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Typography variant="subtitle1">
             &nbsp;
-            {(discountPrice && fCurrency(discountPrice)) || fCurrency(price)}
+            {(discountedPrice && fCurrency(discountedPrice)) || fCurrency(price)}
             <Typography
               component="span"
               variant="body1"
@@ -78,7 +81,7 @@ export default function ItemCard({ product }) {
                 textDecoration: 'line-through',
                 m: 1,
               }}>
-              {discountPrice && fCurrency(price)}
+              {discountedPrice && fCurrency(price)}
             </Typography>
           </Typography>
 
