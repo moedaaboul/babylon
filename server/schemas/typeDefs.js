@@ -13,7 +13,8 @@ const typeDefs = gql`
     title: String
     description: String
     image: [String]
-    price: Int
+    price: Float
+    discountedPrice: Float
     stock: Int
     brand: String
     category: String
@@ -49,7 +50,8 @@ const typeDefs = gql`
     title: String
     description: String
     image: [String]
-    price: Int
+    price: Float
+    discountedPrice: Float
     stock: Int
     category: String
   }

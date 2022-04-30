@@ -35,6 +35,7 @@ const AddProduct = () => {
     title: '',
     description: '',
     price: '',
+    discountedPrice: '',
     stock: '',
     category: '',
   });
@@ -56,7 +57,7 @@ const AddProduct = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     let parsedValue = value;
-    if (name === 'price') {
+    if (name === 'price' || name === 'discountedPrice') {
       parsedValue = parseFloat(value);
     }
     if (name === 'stock') {
@@ -170,6 +171,20 @@ const AddProduct = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
+                name="discountedPrice"
+                type="number"
+                onChange={handleInputChange}
+                value={userFormData.discountedPrice}
+                required
+                fullWidth
+                id="discountedPrice"
+                label="Selling Price"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
                 name="stock"
                 type="number"
                 onChange={handleInputChange}
@@ -178,6 +193,20 @@ const AddProduct = () => {
                 fullWidth
                 id="stockItems"
                 label="Stock"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
+                name="colour"
+                type="number"
+                // onChange={handleInputChange}
+                // value={userFormData.stock}
+                required
+                fullWidth
+                id="stockItems"
+                label="Colour"
                 autoFocus
               />
             </Grid>

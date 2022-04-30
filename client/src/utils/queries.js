@@ -8,6 +8,7 @@ export const QUERY_ITEMS = gql`
       description
       image
       price
+      discountedPrice
       stock
       brand
     }
@@ -21,6 +22,7 @@ export const GET_BRAND_ITEMS = gql`
       title
       description
       price
+      discountedPrice
       stock
     }
   }

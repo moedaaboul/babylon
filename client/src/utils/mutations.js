@@ -32,6 +32,7 @@ export const ADD_ITEM = gql`
       description
       image
       price
+      discountedPrice
       stock
     }
   }
@@ -45,6 +46,7 @@ export const DELETE_ITEM = gql`
       description
       image
       price
+      discountedPrice
       stock
       brand
     }
@@ -59,6 +61,7 @@ export const UPDATE_ITEM = gql`
       description
       image
       price
+      discountedPrice
       stock
       brand
     }
