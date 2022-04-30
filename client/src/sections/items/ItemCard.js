@@ -26,14 +26,12 @@ const ProductImgStyle = styled('img')({
 });
 
 // ----------------------------------------------------------------------
-const itemStatus = (item) => {
-  let status = '';
-  if (item.salePrice) {
-    status = 'Sale';
-  } else if (item.createdAt <= Date.now + 24) {
-    status = 'New';
-  }
-};
+// const itemStatus = (item) => {
+//   let status = '';
+//   if (item.salePrice) {
+//     status = 'Sale';
+//   };
+// };
 // ----------------------------------------------------------------------
 
 ItemCard.propTypes = {
@@ -49,18 +47,18 @@ export default function ItemCard({ product }) {
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {itemStatus && (
+          {salePrice && (
             <Label
               variant="filled"
-              color={(itemStatus === 'sale' && 'new') || 'info'}
               sx={{
+                color: '#FF0000',
                 zIndex: 9,
                 top: 16,
                 right: 16,
                 position: 'absolute',
                 textTransform: 'uppercase',
               }}>
-              {itemStatus}
+              Sale
             </Label>
           )}
           <ProductImgStyle alt={title} src={image[0]} />
