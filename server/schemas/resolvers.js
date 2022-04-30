@@ -50,6 +50,9 @@ const resolvers = {
       }
       return items;
     },
+    item: async (parent, { itemId }) => {
+      return await Item.findOne({ _id: itemId });
+    },
   },
 
   Mutation: {
