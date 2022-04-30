@@ -41,7 +41,7 @@ const Info = ({ productData }) => {
   // console.log(productData);
   const [state, dispatch] = useStoreContext();
 
-  const [size, setSize] = useState('');
+  const [size, setSize] = useState('S');
   const [quantity, setQuantity] = useState(0);
 
   const updateQuantity = (e) => {
@@ -56,14 +56,13 @@ const Info = ({ productData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(size, quantity);
     const validateQuantity = [1, 2, 3, 4, 5].includes(quantity);
     const validateSize = ['S', 'M', 'L'].includes(size);
 
-    if (validateQuantity && validateSize) {
+    if (validateQuantity) {
       dispatch({
         type: ADD_SINGLE_TO_CART,
-        payload: { productId: productData._id, productSize: size, productAmount: quantity },
+        payload: { productId: productData._id, productSize: 'S', productAmount: quantity },
       });
     }
   };
@@ -82,14 +81,14 @@ const Info = ({ productData }) => {
 
       <Divider />
 
-      <FormControl sx={{ m: 1, maxWidth: 200, minWidth: 120 }}>
+      {/* <FormControl sx={{ m: 1, maxWidth: 200, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-label">Choose Size</InputLabel>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Size" onChange={updateSize}>
           <MenuItem value="S">S</MenuItem>
           <MenuItem value="M">M</MenuItem>
           <MenuItem value="L">L</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
 
       <FormControl sx={{ m: 1, maxWidth: 200, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-label">Select Quantity</InputLabel>

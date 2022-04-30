@@ -86,7 +86,6 @@ export default function CartItem({ idInCart }) {
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h6">
             {state.cart[idInCart].productId}
-            {state.cart[idInCart].productSize}
           </Typography>
         </CardContent>
 
