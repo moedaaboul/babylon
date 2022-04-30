@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import {
-  UPDATE_PRODUCTS,
-  ADD_TO_CART,
+  // UPDATE_PRODUCTS,
+  ADD_SINGLE_TO_CART,
   UPDATE_CART_QUANTITY,
   REMOVE_FROM_CART,
   ADD_MULTIPLE_TO_CART,
@@ -11,19 +11,23 @@ import {
   TOGGLE_CART,
 } from './actions';
 
+import { mergy } from '../../utils/helpers';
+
 export const reducer = (state, action) => {
   switch (action.type) {
-    case UPDATE_PRODUCTS:
-      return {
-        ...state,
-        products: [...action.products],
-      };
+    // case UPDATE_PRODUCTS:
+    //   return {
+    //     ...state,
+    //     products: [...action.products],
+    //   };
 
-    case ADD_TO_CART:
+    case ADD_SINGLE_TO_CART:
+      const mergyResult = mergy(state.cart, action.payload);
+
       return {
         ...state,
         cartOpen: true,
-        cart: [...state.cart, action.product],
+        cart: mergyResult,
       };
 
     case ADD_MULTIPLE_TO_CART:
@@ -33,12 +37,14 @@ export const reducer = (state, action) => {
       };
 
     case UPDATE_CART_QUANTITY:
+      // debugger;
+
       return {
         ...state,
         cartOpen: true,
         cart: state.cart.map((product) => {
-          if (action._id === product._id) {
-            product.purchaseQuantity = action.purchaseQuantity;
+          if (action.payload.productId === product.productId && action.payload.productSize === product.productSize) {
+            product.productAmount = action.payload.productAmount;
           }
           return product;
         }),

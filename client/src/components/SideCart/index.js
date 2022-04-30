@@ -1,46 +1,25 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-// import Button from "@mui/material/Button";
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-// import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
 import Typography from '@mui/material/Typography';
+import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
 
 import CartItem from '../CartItem';
 
-import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
+import { useStoreContext } from '../../state/store/provider';
 
 const testSeed = require('./testSeed.json');
 
-// const CartArr = (data) => (
-//   <Box
-//     sx={{ width: 300 }}
-//     role="presentation"
-//     onClick={toggleDrawer("right", false)}
-//   >
-//     <List>
-//       <ListItem>
-//         <Typography variant="h6" noWrap component="div">
-//           Shopping Cart
-//         </Typography>
-//       </ListItem>
-//     </List>
-//     <Divider />
-//     <List>
-//       {data.map((item, index) => (
-//         <cartItem item />
-//       ))}
-//     </List>
-//   </Box>
-// );
-
 export default function TemporaryDrawer() {
-  const [state, setState] = React.useState({
+  const [state, dispatch] = useStoreContext();
+
+  const cartOpen = state.cartOpen;
+  const cartContent = state.cart;
+
+  const [drawerState, setDrawerState] = React.useState({
     bottom: false,
     right: false,
   });
@@ -50,38 +29,17 @@ export default function TemporaryDrawer() {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setDrawerState({ ...drawerState, [anchor]: open });
   };
-
-  // const List = (data) => (
-  //   <Box
-  //     sx={{ width: 300 }}
-  //     role="presentation"
-  //     onClick={toggleDrawer("right", false)}
-  //   >
-  //     <List>
-  //       <ListItem>
-  //         <Typography variant="h6" noWrap component="div">
-  //           Shopping Cart
-  //         </Typography>
-  //       </ListItem>
-  //     </List>
-  //     <Divider />
-  //     <List>
-  //       {data.map((item, index) => (
-  //         <cartItem item />
-  //       ))}
-  //     </List>
-  //   </Box>
-  // );
 
   return (
     <div>
       <React.Fragment key="right">
         <ShoppingBagIcon onClick={toggleDrawer('right', true)} />
-        <Drawer anchor="right" open={state['right']} onClose={toggleDrawer('right', false)}>
+        <Drawer anchor="right" open={drawerState['right']} onClose={toggleDrawer('right', false)}>
           {/* {list(testSeed)} */}
-          <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer('right', false)}>
+          {/* <Box sx={{ width: 1000 }} role="presentation" onClick={toggleDrawer('right', false)}> */}
+          <Box sx={{ width: 1000 }} role="presentation">
             <List>
               <ListItem>
                 <Typography variant="h6" noWrap component="div">
@@ -89,10 +47,11 @@ export default function TemporaryDrawer() {
                 </Typography>
               </ListItem>
             </List>
+            {cartOpen ? <div>there's some stuff</div> : <div>there's nothing</div>}
             <Divider />
             {/* <List> */}
-            {testSeed.map((item, index) => (
-              <CartItem key={index} data={item} />
+            {cartContent.map((item, index) => (
+              <CartItem key={index} idInCart={index} />
             ))}
             {/* </List> */}
           </Box>
