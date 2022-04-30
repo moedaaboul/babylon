@@ -39,6 +39,14 @@ const itemSchema = new Schema(
       type: String,
       required: true,
     },
+    colour: {
+      type: String,
+      required: true,
+    },
+    featured: {
+      type: Boolean,
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now(),

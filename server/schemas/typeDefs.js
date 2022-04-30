@@ -15,6 +15,7 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Float
+    featured: Boolean
     discountedPrice: Float
     stock: Int
     brand: String
@@ -56,6 +57,8 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Float
+    featured: Boolean
+    colour: String
     discountedPrice: Float
     stock: Int
     category: String
