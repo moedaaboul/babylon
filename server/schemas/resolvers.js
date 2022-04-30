@@ -36,6 +36,10 @@ const resolvers = {
       if (shouldApplyMinPriceFilter) {
         items = items.filter((a) => a.price >= filter.minPrice);
       }
+      const shouldApplyCategoriesFilter = filter.categories !== null;
+      if (shouldApplyCategoriesFilter) {
+        items = items.filter((a) => filter.categories.includes(a.category));
+      }
       const shouldApplyPriceAscSort = sort.priceAsc;
       if (shouldApplyPriceAscSort) {
         items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));

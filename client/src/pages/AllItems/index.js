@@ -19,6 +19,7 @@ const AllItems = () => {
         filter: {
           minPrice: minPrice,
           maxPrice: maxPrice,
+          categories: null,
         },
         sort: {
           priceAsc: priceAsc,
