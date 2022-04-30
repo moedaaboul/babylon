@@ -23,8 +23,6 @@ import { UPDATE_CART_QUANTITY, REMOVE_FROM_CART } from '../../state/store/action
 export default function CartItem({ idInCart }) {
   const [state, dispatch] = useStoreContext();
 
-  console.log(state.cart[idInCart]);
-
   const handleAdd = (e) => {
     e.preventDefault();
     const thisItemQuantity = state.cart[idInCart].productAmount;
@@ -54,7 +52,10 @@ export default function CartItem({ idInCart }) {
     } else {
       dispatch({
         type: REMOVE_FROM_CART,
-        payload: { productId: state.cart[idInCart].productId },
+        payload: {
+          productId: state.cart[idInCart].productId,
+          productSize: state.cart[idInCart].productSize,
+        },
       });
     }
   };
@@ -62,7 +63,10 @@ export default function CartItem({ idInCart }) {
     e.preventDefault();
     dispatch({
       type: REMOVE_FROM_CART,
-      payload: { productId: state.cart[idInCart].productId },
+      payload: {
+        productId: state.cart[idInCart].productId,
+        productSize: state.cart[idInCart].productSize,
+      },
     });
   };
 
@@ -81,7 +85,8 @@ export default function CartItem({ idInCart }) {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h6">
-            Test
+            {state.cart[idInCart].productId}
+            {state.cart[idInCart].productSize}
           </Typography>
         </CardContent>
 

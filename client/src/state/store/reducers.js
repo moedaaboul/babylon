@@ -51,8 +51,12 @@ export const reducer = (state, action) => {
       };
 
     case REMOVE_FROM_CART:
+      debugger;
       let newState = state.cart.filter((product) => {
-        return product._id !== action._id;
+        const condition_id_match = product.productId === action.payload.productId;
+        const condition_size_match = product.productSize === action.payload.productSize;
+        const condition_combination = !(condition_id_match && condition_size_match);
+        return condition_combination;
       });
 
       return {
