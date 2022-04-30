@@ -6,8 +6,9 @@
     "price": 60,
     "stock": 30,
     "size": ["S", "M", "L"],
-    "salePrice": 30,
-    "brand": "Adidas"
+    "discountPrice": 30,
+    "brand": "Adidas",
+    "category": "Womens"
   },
   {
     "title": "Pinstripe Trousers",
@@ -16,7 +17,8 @@
     "price": 40,
     "stock": 20,
     "size": ["8", "10", "12", "14", "16"],
-    "brand": "Dolce & Gabana"
+    "brand": "Dolce & Gabana",
+    "category": "Womens"
   },
   {
     "title": "Cross-Stitch Leather Biker Trousers",
@@ -25,7 +27,8 @@
     "price": 50,
     "stock": 25,
     "size": ["8", "10", "12", "14", "16"],
-    "brand": "Missguided"
+    "brand": "Missguided",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -34,8 +37,9 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "salePrice": 15,
-    "brand": "Levis"
+    "discountPrice": 15,
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -44,7 +48,8 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "brand": "Levis"
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -53,7 +58,8 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "brand": "Levis"
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -62,8 +68,9 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "salePrice": 15,
-    "brand": "Levis"
+    "discountPrice": 15,
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -72,7 +79,8 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "brand": "Levis"
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -81,6 +89,7 @@
     "price": 30,
     "stock": 15,
     "size": ["S", "M", "L"],
-    "brand": "Levis"
+    "brand": "Levis",
+    "category": "Womens"
   }
 ]

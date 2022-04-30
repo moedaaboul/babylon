@@ -8,16 +8,10 @@ export const QUERY_ITEMS = gql`
       description
       image
       price
-<<<<<<< HEAD
-      salePrice
-      stock
-      size
       colour
-=======
       discountedPrice
       stock
       brand
->>>>>>> a8e2ac2426fd6dadb41ef855dc0914f909d8093b
     }
   }
 `;

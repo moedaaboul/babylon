@@ -13,25 +13,6 @@ const itemSchema = new Schema(
       type: String,
       required: true,
     },
-<<<<<<< HEAD
-  ],
-  price: {
-    type: Number,
-    required: true,
-  },
-  salePrice: {
-    type: Number,
-    required: false,
-  },
-  stock: {
-    type: Number,
-    required: true,
-  },
-  size: [
-    {
-      type: String,
-      trim: true,
-=======
     image: [
       {
         type: String,
@@ -44,7 +25,7 @@ const itemSchema = new Schema(
     },
     discountedPrice: {
       type: Number,
-      required: true,
+      required: false,
     },
     stock: {
       type: Number,
@@ -61,23 +42,14 @@ const itemSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
->>>>>>> a8e2ac2426fd6dadb41ef855dc0914f909d8093b
     },
   },
-<<<<<<< HEAD
-  colour: {
-    type: String,
-    required: false,
-  },
-});
-=======
   {
     toJSON: {
       getters: true,
     },
   }
 );
->>>>>>> a8e2ac2426fd6dadb41ef855dc0914f909d8093b
 
 const Item = model('Item', itemSchema);
 

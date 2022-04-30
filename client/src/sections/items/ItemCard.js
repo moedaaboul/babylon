@@ -35,13 +35,13 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, salePrice } = product;
+  const { title, image, price, discountPrice } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {salePrice && (
+          {discountPrice && (
             <Label
               variant="filled"
               sx={{
@@ -69,7 +69,7 @@ export default function ItemCard({ product }) {
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Typography variant="subtitle1">
             &nbsp;
-            {(salePrice && fCurrency(salePrice)) || fCurrency(price)}
+            {(discountPrice && fCurrency(discountPrice)) || fCurrency(price)}
             <Typography
               component="span"
               variant="body1"
@@ -78,7 +78,7 @@ export default function ItemCard({ product }) {
                 textDecoration: 'line-through',
                 m: 1,
               }}>
-              {salePrice && fCurrency(price)}
+              {discountPrice && fCurrency(price)}
             </Typography>
           </Typography>
 
