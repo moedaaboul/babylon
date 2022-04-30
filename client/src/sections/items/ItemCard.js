@@ -20,19 +20,13 @@ const ProductImgStyle = styled('img')({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
+  // '&:hover': {
+  //   src={image[1]},
+  // },
   // :hover {
   //   src={image[1]}
   // }
 });
-
-// ----------------------------------------------------------------------
-// const itemStatus = (item) => {
-//   let status = '';
-//   if (item.salePrice) {
-//     status = 'Sale';
-//   };
-// };
-// ----------------------------------------------------------------------
 
 ItemCard.propTypes = {
   product: PropTypes.object,
@@ -51,7 +45,8 @@ export default function ItemCard({ product }) {
             <Label
               variant="filled"
               sx={{
-                color: '#FF0000',
+                color: '#FFFFFF',
+                bgcolor: '#FF0000',
                 zIndex: 9,
                 top: 16,
                 right: 16,
@@ -72,6 +67,21 @@ export default function ItemCard({ product }) {
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Typography variant="subtitle1">
+            &nbsp;
+            {(salePrice && fCurrency(salePrice)) || fCurrency(price)}
+            <Typography
+              component="span"
+              variant="body1"
+              sx={{
+                color: '#FF0000',
+                textDecoration: 'line-through',
+                m: 1,
+              }}>
+              {salePrice && fCurrency(price)}
+            </Typography>
+          </Typography>
+
           <Tooltip title="Add To Wishlist">
             <IconButton
               aria-label="add to wishlist"
@@ -81,20 +91,6 @@ export default function ItemCard({ product }) {
               <FavoriteBorderIcon />
             </IconButton>
           </Tooltip>
-
-          <Typography variant="subtitle1">
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                color: '#FF0000',
-                textDecoration: 'line-through',
-              }}>
-              {salePrice && fCurrency(price)}
-            </Typography>
-            &nbsp;
-            {(salePrice && fCurrency(salePrice)) || fCurrency(price)}
-          </Typography>
         </Stack>
       </Stack>
     </Card>
