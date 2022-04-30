@@ -2,8 +2,11 @@ import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { FiltersProvider } from './providers/FiltersStateProvider';
 import { SortProvider } from './providers/SortStateProvider';
+import { StoreProvider } from './state/store/provider';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SingleProduct from './pages/SingleProduct';
@@ -11,7 +14,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
-import { StoreProvider } from './state/store/provider';
+import CheckOut from './pages/CheckOut';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
 
@@ -55,6 +58,7 @@ function App() {
                   <Route path="/items" element={<AllItems />} />
                   <Route path="/SingleProduct" element={<SingleProduct />} />
                   <Route path="/register" element={<Register />} />
+                  <Route path="/checkout" element={<CheckOut />} />
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
                   </Route>
