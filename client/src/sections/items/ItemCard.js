@@ -83,18 +83,19 @@ export default function ItemCard({ product }) {
               <FavoriteBorderIcon />
             </IconButton>
           </Tooltip>
+
           <Typography variant="subtitle1">
             <Typography
               component="span"
               variant="body1"
               sx={{
-                color: 'text.disabled',
+                color: '#FF0000',
                 textDecoration: 'line-through',
               }}>
-              {salePrice && fCurrency(salePrice)}
+              {salePrice && fCurrency(price)}
             </Typography>
             &nbsp;
-            {fCurrency(price)}
+            {(salePrice && fCurrency(salePrice)) || fCurrency(price)}
           </Typography>
         </Stack>
       </Stack>
