@@ -83,7 +83,7 @@ export default function RefineSidebar() {
 
   return (
     <Grid item xs={12}>
-      <Accordion expanded={expandedPanel} onChange={handleAccordionChange()} sx={{ border: 0, borderRadius: 0 }}>
+      <Accordion sx={{ border: 0, borderRadius: 0 }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
         </AccordionSummary>
@@ -99,7 +99,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion expanded={expandedPanel}>
+      <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>PRICE</Typography>
         </AccordionSummary>
@@ -118,7 +118,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion expanded={expandedPanel}>
+      <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
         </AccordionSummary>
@@ -134,7 +134,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion expanded="true">
+      <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>
         </AccordionSummary>
