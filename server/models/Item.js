@@ -35,7 +35,8 @@ const itemSchema = new Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'Category',
       required: true,
     },
     createdAt: {
