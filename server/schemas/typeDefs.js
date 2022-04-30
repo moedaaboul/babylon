@@ -22,6 +22,13 @@ const typeDefs = gql`
     category: String
   }
 
+  type Look {
+    _id: ID
+    createdAt: String
+    description: String
+    items: [Item]
+  }
+
   type Auth {
     token: String
     user: User
@@ -46,6 +53,8 @@ const typeDefs = gql`
   type Query {
     me: User
     items(input: ItemsInput): [Item]!
+    looks: [Look]!
+    look(lookID: ID!): Look
     brandItems: [Item]
     item(itemId: ID!): Item
   }

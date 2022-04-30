@@ -7,6 +7,10 @@ const lookSchema = new Schema({
       ref: 'Item',
     },
   ],
+  description: {
+    type: String,
+    required: true,
+  },
 
   createdAt: {
     type: Date,
