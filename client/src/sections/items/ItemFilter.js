@@ -62,10 +62,36 @@ export default function RefineSidebar() {
   //   setExpanded(!expanded);
   // };
 
-  const { minPrice, setMinPrice, maxPrice, setMaxPrice } = useFilterContext();
+  const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories } = useFilterContext();
   const [value, setValue] = React.useState([minPrice, maxPrice]);
+  const [state, setState] = React.useState({
+    Men: false,
+    Women: false,
+    Kids: false,
+  });
 
   const [expandedPanel, setExpandedPanel] = useState(true);
+
+  const handleChange = (event) => {
+    console.log(state, 'line76');
+    const newState = {
+      ...state,
+      [event.target.name]: event.target.checked,
+    };
+    setState(newState);
+    console.log(newState, 'line 84');
+    console.log(state, 'line81');
+    const categoryKeys = Object.keys(newState);
+    var filtered = categoryKeys.filter((key) => newState[key]);
+    console.log(filtered, 'line 82');
+    if (filtered.length === 0) {
+      setCategories(null);
+      return;
+    }
+    setCategories(filtered);
+  };
+
+  const { men, women, kids } = state;
 
   const handleAccordionChange = () => (event, isExpanded) => {
     console.log({ event, isExpanded });
@@ -89,12 +115,42 @@ export default function RefineSidebar() {
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_CATEGORY_OPTIONS.map((item) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
-              />
-            ))}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleChange}
+                  checkedIcon={<CircleSharpIcon />}
+                  checked={men}
+                  name="Men"
+                />
+              }
+              label="Men"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleChange}
+                  checkedIcon={<CircleSharpIcon />}
+                  name="Women"
+                  checked={women}
+                />
+              }
+              label="Women"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleChange}
+                  checkedIcon={<CircleSharpIcon />}
+                  name="Kids"
+                  checked={kids}
+                />
+              }
+              label="Kids"
+            />
           </FormGroup>
         </AccordionDetails>
       </Accordion>

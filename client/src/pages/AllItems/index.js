@@ -11,7 +11,7 @@ import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { useSortContext } from '../../providers/SortStateProvider';
 
 const AllItems = () => {
-  const { maxPrice, minPrice } = useFilterContext();
+  const { maxPrice, minPrice, categories } = useFilterContext();
   const { priceAsc, priceDesc, sortNewest } = useSortContext();
   const { loading, error, data } = useQuery(QUERY_ITEMS, {
     variables: {
@@ -19,7 +19,7 @@ const AllItems = () => {
         filter: {
           minPrice: minPrice,
           maxPrice: maxPrice,
-          categories: null,
+          categories: categories,
         },
         sort: {
           priceAsc: priceAsc,

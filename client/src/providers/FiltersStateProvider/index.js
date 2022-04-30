@@ -5,6 +5,7 @@ const AppContext = React.createContext();
 const FiltersProvider = ({ children }) => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100);
+  const [categories, setCategories] = useState(null);
 
   return (
     <AppContext.Provider
@@ -13,6 +14,8 @@ const FiltersProvider = ({ children }) => {
         setMinPrice,
         maxPrice,
         setMaxPrice,
+        categories,
+        setCategories,
       }}>
       {children}
     </AppContext.Provider>
