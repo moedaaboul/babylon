@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
 
-import CartItem from '../CartItem';
+import CartItem from '../SingleCartItem';
 
 import { useStoreContext } from '../../state/store/provider';
 
