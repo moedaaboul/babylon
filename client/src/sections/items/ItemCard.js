@@ -39,7 +39,7 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, discountedPrice } = product;
+  const { title, image, price, discountedPrice, brand } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
