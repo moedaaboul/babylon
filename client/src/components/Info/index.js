@@ -37,8 +37,8 @@ import { Box, Divider, Grid, Typography, Button } from '@mui/material';
 //   );
 // };
 
-const Info = ({ productData }) => {
-  // console.log(productData);
+const Info = ({ item }) => {
+  // console.log(item);
   const [state, dispatch] = useStoreContext();
 
   const [size, setSize] = useState('S');
@@ -62,21 +62,21 @@ const Info = ({ productData }) => {
     if (validateQuantity) {
       dispatch({
         type: ADD_SINGLE_TO_CART,
-        payload: { productId: productData._id, productSize: 'S', productAmount: quantity },
+        payload: { productId: item._id, productSize: 'S', productAmount: quantity },
       });
     }
   };
 
   return (
     <Grid container direction="column" style={{ height: '50%' }}>
-      <Typography variant="subtitle1">{productData.title}</Typography>
-      <Typography variant="subtitle2">{productData.model}</Typography>
+      <Typography variant="subtitle1">{item.title}</Typography>
+      {/* <Typography variant="subtitle2">{item.model}</Typography> */}
       <Divider />
 
       <Box mt={2}>
-        <Typography variant="div">{productData.description}</Typography>
+        <Typography variant="div">{item.description}</Typography>
         <br></br>
-        <Typography variant="h7">£{productData.price}</Typography>
+        <Typography variant="h7">£{item.price}</Typography>
       </Box>
 
       <Divider />

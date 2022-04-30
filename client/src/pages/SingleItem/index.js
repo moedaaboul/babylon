@@ -1,5 +1,5 @@
 import MainImage from '../../components/MainImage';
-// import Info from '../../components/Info';
+import Info from '../../components/Info';
 import ImageGrid from '../../components/ImageGrid';
 import { Box, Grid } from '@mui/material';
 import { useState } from 'react';
@@ -34,7 +34,7 @@ const SingleItem = () => {
           <MainImage item={item.image} index={index} />
         </Grid>
         <Grid item md={4}>
-          {/* <Info {...item} /> */}
+          <Info item={item} />
         </Grid>
       </Grid>
     </Box>
