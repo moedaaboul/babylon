@@ -18,6 +18,7 @@ const typeDefs = gql`
     discountedPrice: Float
     stock: Int
     brand: String
+    colour: String
     category: String
   }
 

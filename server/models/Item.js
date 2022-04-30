@@ -25,7 +25,7 @@ const itemSchema = new Schema(
     },
     discountedPrice: {
       type: Number,
-      required: true,
+      required: false,
     },
     stock: {
       type: Number,

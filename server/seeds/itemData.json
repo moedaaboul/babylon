@@ -2,26 +2,44 @@
   {
     "title": "Sunshine Tracksuit",
     "description": "Bright yellow traskcuit with halter-top",
-    "image": "/images/yellow-tracksuit.jpg",
+    "image": ["/images/yellow-tracksuit.jpg", "/images/pinstripe-trousers.jpg"],
     "price": 60,
     "stock": 30,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "discountedPrice": 30,
+    "brand": "Adidas",
+    "category": "Womens"
   },
   {
     "title": "Pinstripe Trousers",
     "description": "Black and white pinstriped high-waisted trousers.",
-    "image": "/images/pinstripe-trousers.jpg",
+    "image": ["/images/pinstripe-trousers.jpg", "/images/yellow-tracksuit.jpg"],
     "price": 40,
     "stock": 20,
-    "size": ["8", "10", "12", "14", "16"]
+    "size": ["8", "10", "12", "14", "16"],
+    "brand": "Dolce & Gabana",
+    "category": "Womens"
   },
   {
     "title": "Cross-Stitch Leather Biker Trousers",
     "description": "Black faux-leather trousers with criss-cross leather cord stitching.",
-    "image": "/images/crosstitch-trousers.jpg",
+    "image": ["/images/crosstitch-trousers.jpg", "/images/denim-dress.jpg"],
     "price": 50,
     "stock": 25,
-    "size": ["8", "10", "12", "14", "16"]
+    "size": ["8", "10", "12", "14", "16"],
+    "brand": "Missguided",
+    "category": "Womens"
+  },
+  {
+    "title": "Oversized Denim Dress",
+    "description": "Stonewashed denim oversized jacket with fabric buttons.",
+    "image": ["/images/denim-dress.jpg", "/images/crosstitch-trousers.jpg"],
+    "price": 30,
+    "stock": 15,
+    "size": ["S", "M", "L"],
+    "discountedPrice": 15,
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -29,7 +47,9 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -37,7 +57,9 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -45,7 +67,10 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "discountedPrice": 15,
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -53,7 +78,9 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Levis",
+    "category": "Womens"
   },
   {
     "title": "Oversized Denim Dress",
@@ -61,14 +88,8 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
-  },
-  {
-    "title": "Oversized Denim Dress",
-    "description": "Stonewashed denim oversized jacket with fabric buttons.",
-    "image": "/images/denim-dress.jpg",
-    "price": 30,
-    "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Levis",
+    "category": "Womens"
   }
 ]

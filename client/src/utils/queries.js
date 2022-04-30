@@ -8,6 +8,7 @@ export const QUERY_ITEMS = gql`
       description
       image
       price
+      colour
       discountedPrice
       stock
       brand
