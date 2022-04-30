@@ -19,10 +19,36 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    items: async () => {
-      const itemList = await Item.find({});
-      console.log(itemList);
-      return itemList;
+    items: async (parent, { input }, context) => {
+      const { filter, sort } = input;
+      const shouldApplyFilters = filter !== null;
+      const shouldApplySort = sort !== null;
+      let items = await Item.find({});
+      console.log(items);
+      if (!shouldApplyFilters && !shouldApplySort) {
+        return items;
+      }
+      const shouldApplyMaxPriceFilter = filter.maxPrice !== null;
+      if (shouldApplyMaxPriceFilter) {
+        items = items.filter((a) => a.price <= filter.maxPrice);
+      }
+      const shouldApplyMinPriceFilter = filter.minPrice !== null;
+      if (shouldApplyMinPriceFilter) {
+        items = items.filter((a) => a.price >= filter.minPrice);
+      }
+      const shouldApplyPriceAscSort = sort.priceAsc;
+      if (shouldApplyPriceAscSort) {
+        items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      }
+      const shouldApplyPriceDescSort = sort.priceDesc;
+      if (shouldApplyPriceDescSort) {
+        items = items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      }
+      const shouldApplyNewestSort = sort.newest;
+      if (shouldApplyNewestSort) {
+        items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      }
+      return items;
     },
     item: async (parent, { itemId }) => {
       return await Item.findOne({ _id: itemId });

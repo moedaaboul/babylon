@@ -49,11 +49,7 @@ export default function Login() {
   useEffect(() => {
     if (redirectOnLoginSuccess) {
       const timeout = setTimeout(() => {
-        if (Auth.isBrand()) {
-          navigate('/dashboard');
-        } else {
-          navigate('/');
-        }
+        navigate('/dashboard');
         setRedirectOnLoginSuccess(false);
       }, 3000);
 

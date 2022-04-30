@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSortContext } from '../../providers/SortStateProvider';
 // material
 import { Menu, Button, MenuItem, Typography } from '@mui/material';
 // component
@@ -14,14 +15,35 @@ const SORT_BY_OPTIONS = [
 ];
 
 export default function ShopProductSort() {
+  const { setPriceAsc, setPriceDesc, setSortNewest } = useSortContext();
+  const [selected, setSelected] = useState('featured');
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (value) => {
     setOpen(null);
+    if (!value) {
+      return;
+    }
+    setSelected(value);
+    if (value === 'priceDesc') {
+      setSortNewest(false);
+      setPriceAsc(false);
+      setPriceDesc(true);
+    }
+    if (value === 'priceAsc') {
+      setSortNewest(false);
+      setPriceDesc(false);
+      setPriceAsc(true);
+    }
+    if (value === 'newest') {
+      setPriceDesc(false);
+      setPriceAsc(false);
+      setSortNewest(true);
+    }
   };
 
   return (
@@ -33,21 +55,21 @@ export default function ShopProductSort() {
         endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}>
         Sort By:&nbsp;
         <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
-          Newest
+          {selected}
         </Typography>
       </Button>
       <Menu
         keepMounted
         anchorEl={open}
-        open={Boolean(open)}
-        onClose={handleClose}
+        open={open}
+        onClose={() => handleClose()}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}>
         {SORT_BY_OPTIONS.map((option) => (
           <MenuItem
             key={option.value}
-            selected={option.value === 'newest'}
-            onClick={handleClose}
+            selected={option.value}
+            onClick={() => handleClose(option.value)}
             sx={{ typography: 'body2' }}>
             {option.label}
           </MenuItem>
