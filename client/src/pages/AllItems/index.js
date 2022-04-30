@@ -7,9 +7,27 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
+import { useFilterContext } from '../../providers/FiltersStateProvider';
+import { useSortContext } from '../../providers/SortStateProvider';
 
 const AllItems = () => {
-  const { loading, error, data } = useQuery(QUERY_ITEMS);
+  const { maxPrice, minPrice } = useFilterContext();
+  const { priceAsc, priceDesc, sortNewest } = useSortContext();
+  const { loading, error, data } = useQuery(QUERY_ITEMS, {
+    variables: {
+      input: {
+        filter: {
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+        },
+        sort: {
+          priceAsc: priceAsc,
+          priceDesc: priceDesc,
+          newest: sortNewest,
+        },
+      },
+    },
+  });
   const [openFilter, setOpenFilter] = useState(false);
   const items = data?.items || [];
 
@@ -21,7 +39,6 @@ const AllItems = () => {
     setOpenFilter(false);
   };
 
-  if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -49,7 +66,7 @@ const AllItems = () => {
           </Stack>
         </Grid>
         <Grid item xs={10}>
-          <ItemList products={items} />
+          {loading ? <h6>is loading...</h6> : <ItemList products={items} />}
         </Grid>
       </Grid>
     </Container>
