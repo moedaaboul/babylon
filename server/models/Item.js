@@ -45,7 +45,8 @@ const itemSchema = new Schema(
     },
     featured: {
       type: Boolean,
-      required: true,
+      required: false,
+      default: false,
     },
     createdAt: {
       type: Date,
