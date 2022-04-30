@@ -44,6 +44,10 @@ const resolvers = {
       if (shouldApplyPriceDescSort) {
         items = items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       }
+      const shouldApplyNewestSort = sort.newest;
+      if (shouldApplyNewestSort) {
+        items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      }
       return items;
     },
   },

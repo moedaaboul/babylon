@@ -34,6 +34,7 @@ const typeDefs = gql`
   input ItemsSort {
     priceAsc: Boolean
     priceDesc: Boolean
+    newest: Boolean
   }
 
   input ItemsInput {

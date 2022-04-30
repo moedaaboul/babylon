@@ -5,6 +5,7 @@ const AppContext = React.createContext();
 const SortProvider = ({ children }) => {
   const [priceAsc, setPriceAsc] = useState(false);
   const [priceDesc, setPriceDesc] = useState(false);
+  const [sortNewest, setSortNewest] = useState(false);
 
   return (
     <AppContext.Provider
@@ -13,6 +14,8 @@ const SortProvider = ({ children }) => {
         setPriceAsc,
         priceDesc,
         setPriceDesc,
+        sortNewest,
+        setSortNewest,
       }}>
       {children}
     </AppContext.Provider>
