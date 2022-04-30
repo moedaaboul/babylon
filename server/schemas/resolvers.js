@@ -24,6 +24,9 @@ const resolvers = {
       console.log(itemList);
       return itemList;
     },
+    item: async (parent, { itemId }) => {
+      return await Item.findOne({ _id: itemId });
+    },
   },
 
   Mutation: {

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const MainImage = ({ src }) => {
+const MainImage = ({ selectedImage }) => {
   return (
     <div>
-      <img src={src} width="100%" alt="main product"></img>
+      <img src={selectedImage} width="100%" alt="main product"></img>
     </div>
   );
 };

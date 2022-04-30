@@ -1,17 +1,17 @@
 import { Grid } from '@mui/material';
+import { findIndex } from 'lodash';
 import React from 'react';
 
-const ImageGrid = ({ images, onSelect, selectedImage }) => {
+const ImageGrid = ({ item, setSelectedImage, selectedImage }) => {
   return (
     <Grid container direction="column">
-      {images.map((image, index) => (
+      {item.map((e, index) => (
         <img
-          src={image}
+          src={e.image[index]}
           height={100}
-          onClick={() => onSelect(index)}
+          onClick={() => setSelectedImage(index)}
           style={{
-            border:
-              index === selectedImage ? 'solid 10px black' : 'solid 5px #eee',
+            border: index === selectedImage ? 'solid 10px black' : 'solid 5px #eee',
             cursor: 'pointer',
           }}
           alt="product images"

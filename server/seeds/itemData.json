@@ -5,7 +5,8 @@
     "image": "/images/yellow-tracksuit.jpg",
     "price": 60,
     "stock": 30,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   },
   {
     "title": "Pinstripe Trousers",
@@ -13,7 +14,8 @@
     "image": "/images/pinstripe-trousers.jpg",
     "price": 40,
     "stock": 20,
-    "size": ["8", "10", "12", "14", "16"]
+    "size": ["8", "10", "12", "14", "16"],
+    "brand": "Missguided"
   },
   {
     "title": "Cross-Stitch Leather Biker Trousers",
@@ -21,7 +23,8 @@
     "image": "/images/crosstitch-trousers.jpg",
     "price": 50,
     "stock": 25,
-    "size": ["8", "10", "12", "14", "16"]
+    "size": ["8", "10", "12", "14", "16"],
+    "brand": "Missguided"
   },
   {
     "title": "Oversized Denim Dress",
@@ -29,7 +32,8 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   },
   {
     "title": "Oversized Denim Dress",
@@ -37,7 +41,8 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   },
   {
     "title": "Oversized Denim Dress",
@@ -45,7 +50,8 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   },
   {
     "title": "Oversized Denim Dress",
@@ -53,7 +59,8 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   },
   {
     "title": "Oversized Denim Dress",
@@ -61,7 +68,8 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   },
   {
     "title": "Oversized Denim Dress",
@@ -69,6 +77,7 @@
     "image": "/images/denim-dress.jpg",
     "price": 30,
     "stock": 15,
-    "size": ["S", "M", "L"]
+    "size": ["S", "M", "L"],
+    "brand": "Missguided"
   }
 ]
