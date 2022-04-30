@@ -11,35 +11,59 @@ const typeDefs = gql`
   type Item {
     _id: ID
     title: String
+    createdAt: String
     description: String
     image: [String]
-    price: Int
+    price: Float
+    discountedPrice: Float
     stock: Int
-    size: [String]
+    brand: String
+    category: String
   }
 
   type Auth {
     token: String
     user: User
   }
+
+  input ItemsFilters {
+    maxPrice: Int
+    minPrice: Int
+  }
+
+  input ItemsSort {
+    priceAsc: Boolean
+    priceDesc: Boolean
+    newest: Boolean
+  }
+
+  input ItemsInput {
+    filter: ItemsFilters
+    sort: ItemsSort
+  }
+
   type Query {
     me: User
-    items: [Item]!
+    items(input: ItemsInput): [Item]!
+    brandItems: [Item]
   }
 
   input ItemInput {
     title: String
     description: String
     image: [String]
-    price: Int
+    price: Float
+    discountedPrice: Float
     stock: Int
-    size: [String]
+    category: String
   }
 
   type Mutation {
     loginUser(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, usertype: String!): Auth
     addItem(input: ItemInput!): Item
+    deleteItem(itemId: ID!): Item
+    updateItem(input: ItemInput!, itemId: ID!): Item
   }
 `;
 

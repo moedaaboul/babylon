@@ -13,10 +13,42 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    items: async () => {
-      const itemList = await Item.find({});
-      console.log(itemList);
-      return itemList;
+    brandItems: async (parent, args, context) => {
+      if (context.user.usertype === 'brand') {
+        return await Item.find({ brand: context.user.username });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    items: async (parent, { input }, context) => {
+      const { filter, sort } = input;
+      const shouldApplyFilters = filter !== null;
+      const shouldApplySort = sort !== null;
+      let items = await Item.find({});
+      console.log(items);
+      if (!shouldApplyFilters && !shouldApplySort) {
+        return items;
+      }
+      const shouldApplyMaxPriceFilter = filter.maxPrice !== null;
+      if (shouldApplyMaxPriceFilter) {
+        items = items.filter((a) => a.price <= filter.maxPrice);
+      }
+      const shouldApplyMinPriceFilter = filter.minPrice !== null;
+      if (shouldApplyMinPriceFilter) {
+        items = items.filter((a) => a.price >= filter.minPrice);
+      }
+      const shouldApplyPriceAscSort = sort.priceAsc;
+      if (shouldApplyPriceAscSort) {
+        items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      }
+      const shouldApplyPriceDescSort = sort.priceDesc;
+      if (shouldApplyPriceDescSort) {
+        items = items.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      }
+      const shouldApplyNewestSort = sort.newest;
+      if (shouldApplyNewestSort) {
+        items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      }
+      return items;
     },
   },
 
@@ -46,6 +78,21 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    deleteItem: async (_, { itemId }) => {
+      const deletedItem = await Item.findByIdAndDelete(itemId);
+      return deletedItem;
+    },
+    updateItem: async (_, { input, itemId }) => {
+      const updatedItem = await Item.findByIdAndUpdate(
+        itemId,
+        { $set: { ...input } },
+        {
+          returnDocument: 'after',
+        }
+      );
+
+      return updatedItem;
+    },
     addItem: async (parent, { input }, context) => {
       console.log(input);
       const images = input.image;
@@ -55,7 +102,7 @@ const resolvers = {
       // uploadResponse.forEach((e) => (e.url = urlCompiler(uploadResponse.url, 'w_1169,h_780,c_fill')));
       const imageUrls = uploadResponse.map((e) => urlCompiler(e.url, 'w_1169,h_780,c_fill'));
       console.log(imageUrls);
-      const item = await Item.create({ ...input, image: imageUrls });
+      const item = await Item.create({ ...input, image: imageUrls, brand: context.user.username });
       console.log(item);
       if (!item) {
         throw new AuthenticationError('Something is wrong!');

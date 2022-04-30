@@ -17,15 +17,21 @@ import {
   Tooltip,
   Typography,
   IconButton,
+  Snackbar,
+  Alert as MuiAlert,
 } from '@mui/material';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
 import SideCart from '../SideCart';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -53,7 +59,8 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const Navbar = () => {
-  // const [open, setOpen] = useState(false);
+  const [navigateLogout, setNavigateLogout] = useState(false);
+  let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -62,6 +69,18 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    if (navigateLogout) {
+      const timeout = setTimeout(() => {
+        navigate('/login');
+        setNavigateLogout(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [navigateLogout, navigate]);
+
   return (
     <>
       <AppBar position="sticky">
@@ -134,12 +153,34 @@ const Navbar = () => {
             </MenuItem>
           )}
           {/* <MenuItem>Profile</MenuItem> */}
-          <MenuItem>My account</MenuItem>
+          {Auth.loggedIn() ? (
+            <MenuItem component={RouterLink} to="/login">
+              My account
+            </MenuItem>
+          ) : (
+            <MenuItem component={RouterLink} to="/register">
+              Register
+            </MenuItem>
+          )}
+
           <MenuItem>Orders</MenuItem>
-          {Auth.loggedIn() && <MenuItem onClick={Auth.logout}>Logout</MenuItem>}
+          {Auth.loggedIn() && (
+            <MenuItem
+              onClick={() => {
+                Auth.logout();
+                setNavigateLogout(true);
+              }}>
+              Logout
+            </MenuItem>
+          )}
           {/* <MenuItem>Logout</MenuItem> */}
         </Menu>
       </AppBar>
+      <Snackbar open={navigateLogout}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+          Logout Success!
+        </Alert>
+      </Snackbar>
       {/* <Notification /> */}
     </>
   );

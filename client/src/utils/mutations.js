@@ -32,8 +32,38 @@ export const ADD_ITEM = gql`
       description
       image
       price
+      discountedPrice
       stock
-      size
+    }
+  }
+`;
+
+export const DELETE_ITEM = gql`
+  mutation DeleteItem($itemId: ID!) {
+    deleteItem(itemId: $itemId) {
+      _id
+      title
+      description
+      image
+      price
+      discountedPrice
+      stock
+      brand
+    }
+  }
+`;
+
+export const UPDATE_ITEM = gql`
+  mutation Mutation($input: ItemInput!, $itemId: ID!) {
+    updateItem(input: $input, itemId: $itemId) {
+      _id
+      title
+      description
+      image
+      price
+      discountedPrice
+      stock
+      brand
     }
   }
 `;

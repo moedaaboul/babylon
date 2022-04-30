@@ -2,6 +2,8 @@ import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { FiltersProvider } from './providers/FiltersStateProvider';
+import { SortProvider } from './providers/SortStateProvider';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SingleProduct from './pages/SingleProduct';
@@ -10,11 +12,11 @@ import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
 import { StoreProvider } from './state/store/provider';
+import Navbar from './components/Navbar';
+import Lock from './components/Lock';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
-
-const isBrand = Auth.loggedIn() ? Auth.isBrand() : false;
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -38,25 +40,32 @@ const client = new ApolloClient({
 });
 
 function App() {
+  console.log(Auth.isBrand(), 'App.js');
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <ErrorBoundary>
-          <StoreProvider>
-            <Home />
-            <Routes>
-              <Route path="/" element={<h2>home page</h2>} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/items" element={<AllItems />} />
-              <Route path="/SingleProduct" element={<SingleProduct />} />
-              <Route path="/register" element={<Register />} />
-              {isBrand && <Route path="/dashboard" element={<Brand />} />}
-              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-              <Route path="*" element={<Page404 />} />
-            </Routes>
-          </StoreProvider>
-        </ErrorBoundary>
-      </Router>
+      <FiltersProvider>
+        <StoreProvider>
+          <SortProvider>
+            <Router>
+              <ErrorBoundary>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/items" element={<AllItems />} />
+                  <Route path="/SingleProduct" element={<SingleProduct />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/dashboard" element={<Lock />}>
+                    <Route index element={<Brand />} />
+                  </Route>
+                  {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                  <Route path="*" element={<Page404 />} />
+                </Routes>
+              </ErrorBoundary>
+            </Router>
+          </SortProvider>
+        </StoreProvider>
+      </FiltersProvider>
     </ApolloProvider>
   );
 }

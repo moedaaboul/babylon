@@ -5,6 +5,7 @@ test1.js
 test2.js
 test3.js
 test4.js
+variables.js
 .env
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
@@ -28,4 +29,7 @@ test4.js
 
 npm-debug.log*
 yarn-debug.log*
+yarn-error.log*
+
+gitignore
 yarn-error.log*
