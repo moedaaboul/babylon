@@ -34,11 +34,20 @@ const itemSchema = new Schema(
       type: String,
       required: true,
     },
-    category: {
-      type: Schema.Types.ObjectId,
-      ref: 'Category',
-      required: true,
+
+    colour: {
+      type: String,
+      required: false,
     },
+    category: [
+      {
+        type: String,
+        required: true,
+        // type: Schema.Types.ObjectId,
+        // ref: 'Category',
+        // required: true,
+      },
+    ],
     createdAt: {
       type: Date,
       default: Date.now(),
