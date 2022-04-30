@@ -1,50 +1,56 @@
 [
   {
-    "id": 0,
-    "brandName": "Quiksilver",
-    "itemName": "HOODY TOWEL - Other accessories",
-    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "image": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "name": "Quiksilver",
+    "_id": 0,
     "price": 9.99,
-    "quantity": 99
+    "quantity": 99,
+    "model": "HOODY TOWEL - Other accessories",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
-    "id": 1,
-    "brandName": "Quiksilver",
-    "itemName": "HOODY TOWEL - Other accessories",
-    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "image": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "name": "Quiksilver",
+    "_id": 1,
     "price": 8.99,
-    "quantity": 20
+    "quantity": 20,
+    "model": "HOODY TOWEL - Other accessories",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
-    "id": 2,
-    "brandName": "Quiksilver",
-    "itemName": "HOODY TOWEL - Other accessories",
-    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "image": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "name": "Quiksilver",
+    "_id": 2,
     "price": 7.99,
-    "quantity": 1
+    "quantity": 1,
+    "model": "HOODY TOWEL - Other accessories",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
-    "id": 3,
-    "brandName": "Quiksilver",
-    "itemName": "HOODY TOWEL - Other accessories",
-    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "image": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "name": "Quiksilver",
+    "_id": 3,
     "price": 6.99,
-    "quantity": 100
+    "quantity": 100,
+    "model": "HOODY TOWEL - Other accessories",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
-    "id": 4,
-    "brandName": "Quiksilver",
-    "itemName": "HOODY TOWEL - Other accessories",
-    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "image": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "name": "Quiksilver",
+    "_id": 4,
     "price": 5.99,
-    "quantity": 2
+    "quantity": 2,
+    "model": "HOODY TOWEL - Other accessories",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
-    "id": 5,
-    "brandName": "Quiksilver",
-    "itemName": "HOODY TOWEL - Other accessories",
-    "img": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "image": "https://img01.ztat.net/article/spp-media-p1/873a0dc0d4cc40d6aa49fb3e696f12fb/f9075da660584b3c9ee5bc97cd70ffbe.jpg?imwidth=1800&filter=packshot",
+    "name": "Quiksilver",
+    "_id": 5,
     "price": 4.99,
-    "quantity": 3
+    "quantity": 3,
+    "model": "HOODY TOWEL - Other accessories",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   }
 ]

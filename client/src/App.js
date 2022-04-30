@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
+import { StoreProvider } from './state/store/provider';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
 
@@ -43,25 +44,27 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <FiltersProvider>
-        <SortProvider>
-          <Router>
-            <ErrorBoundary>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/items" element={<AllItems />} />
-                <Route path="/SingleProduct" element={<SingleProduct />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/dashboard" element={<Lock />}>
-                  <Route index element={<Brand />} />
-                </Route>
-                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                <Route path="*" element={<Page404 />} />
-              </Routes>
-            </ErrorBoundary>
-          </Router>
-        </SortProvider>
+        <StoreProvider>
+          <SortProvider>
+            <Router>
+              <ErrorBoundary>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/items" element={<AllItems />} />
+                  <Route path="/SingleProduct" element={<SingleProduct />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/dashboard" element={<Lock />}>
+                    <Route index element={<Brand />} />
+                  </Route>
+                  {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                  <Route path="*" element={<Page404 />} />
+                </Routes>
+              </ErrorBoundary>
+            </Router>
+          </SortProvider>
+        </StoreProvider>
       </FiltersProvider>
     </ApolloProvider>
   );
