@@ -90,6 +90,8 @@ const resolvers = {
       return deletedItem;
     },
     updateItem: async (_, { input, itemId }) => {
+      console.log(input);
+      console.log({ ...input });
       const updatedItem = await Item.findByIdAndUpdate(
         itemId,
         { $set: { ...input } },

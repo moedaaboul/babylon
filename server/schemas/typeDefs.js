@@ -61,6 +61,7 @@ const typeDefs = gql`
     discountedPrice: Float
     stock: Int
     category: String
+    featured: String
   }
 
   type Mutation {

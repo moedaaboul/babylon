@@ -12,6 +12,7 @@ export const QUERY_ITEMS = gql`
       discountedPrice
       stock
       brand
+      featured
     }
   }
 `;
@@ -25,6 +26,7 @@ export const GET_BRAND_ITEMS = gql`
       price
       discountedPrice
       stock
+      featured
     }
   }
 `;
