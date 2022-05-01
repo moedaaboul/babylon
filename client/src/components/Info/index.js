@@ -38,7 +38,21 @@ import { Box, Divider, Grid, Typography, Button } from '@mui/material';
 // };
 
 const Info = ({ item }) => {
-  // console.log(item);
+  //   {
+  //     "__typename": "Item",
+  //     "_id": "626e6ae99b1ba45c44960315",
+  //     "title": "Oversized Denim Dress",
+  //     "image": [
+  //         "/images/denim-dress.jpg"
+  //     ],
+  //     "description": "Stonewashed denim oversized jacket with fabric buttons.",
+  //     "price": 30,
+  //     "discountedPrice": 20,
+  //     "stock": 15,
+  //     "brand": "Missguided",
+  //     "category": "Women"
+  // }
+
   const [state, dispatch] = useStoreContext();
 
   const [size, setSize] = useState('S');
@@ -62,7 +76,13 @@ const Info = ({ item }) => {
     if (validateQuantity) {
       dispatch({
         type: ADD_SINGLE_TO_CART,
-        payload: { productId: item._id, productSize: 'S', productAmount: quantity },
+        payload: {
+          productId: item._id,
+          productSize: 'S',
+          productAmount: quantity,
+          productOriginalPrice: item.price,
+          productDiscountedPrice: item.discountedPrice,
+        },
       });
     }
   };

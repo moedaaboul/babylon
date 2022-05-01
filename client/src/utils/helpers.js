@@ -54,6 +54,8 @@ export function idbPromise(storeName, method, object) {
 }
 
 export function mergy(oldCart, newItem) {
+  console.log(newItem);
+
   const thisId = newItem.productId;
   const thisSize = newItem.productSize;
   const thisAmount = newItem.productAmount;
@@ -93,10 +95,15 @@ export function getSingleItemById(checkId) {
   return product;
 }
 
-export function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
+export function updateSummary(state) {
+  console.log('in getSummary', state);
+
+  let newSummary = 0;
+  let newSaving = 0;
+
+  state.cart.forEach((item) => {
+    newSummary += item.productDiscountedPrice * item.productAmount;
+    newSaving += (item.productOriginalPrice - item.productDiscountedPrice) * item.productAmount;
+  });
+  return { ...state, summary: newSummary, saving: newSaving };
 }

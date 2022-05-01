@@ -11,24 +11,14 @@ import {
   TOGGLE_CART,
 } from './actions';
 
-import { mergy } from '../../utils/helpers';
+import { updateSummary, mergy } from '../../utils/helpers';
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    // case UPDATE_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     products: [...action.products],
-    //   };
-
     case ADD_SINGLE_TO_CART:
       const mergyResult = mergy(state.cart, action.payload);
-
-      return {
-        ...state,
-        cartOpen: true,
-        cart: mergyResult,
-      };
+      let updateState = { ...state, cartOpen: true, cart: mergyResult };
+      return updateSummary(updateState);
 
     case ADD_MULTIPLE_TO_CART:
       return {
@@ -37,9 +27,7 @@ export const reducer = (state, action) => {
       };
 
     case UPDATE_CART_QUANTITY:
-      // debugger;
-
-      return {
+      const updateAmount = {
         ...state,
         cartOpen: true,
         cart: state.cart.map((product) => {
@@ -50,26 +38,31 @@ export const reducer = (state, action) => {
         }),
       };
 
+      return updateSummary(updateAmount);
+
     case REMOVE_FROM_CART:
-      debugger;
-      let newState = state.cart.filter((product) => {
+      const newCart = state.cart.filter((product) => {
         const condition_id_match = product.productId === action.payload.productId;
         const condition_size_match = product.productSize === action.payload.productSize;
         const condition_combination = !(condition_id_match && condition_size_match);
         return condition_combination;
       });
 
-      return {
+      const newState = {
         ...state,
-        cartOpen: newState.length > 0,
-        cart: newState,
+        cartOpen: newCart.length > 0,
+        cart: newCart,
       };
+
+      return updateSummary(newState);
 
     case CLEAR_CART:
       return {
         ...state,
         cartOpen: false,
         cart: [],
+        summary: 0,
+        saving: 0,
       };
 
     case TOGGLE_CART:

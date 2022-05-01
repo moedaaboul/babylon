@@ -10,6 +10,7 @@ import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
 import CartItem from '../SingleCartItem';
 
 import { useStoreContext } from '../../state/store/provider';
+import { getSummary } from '../../utils/helpers';
 
 const testSeed = require('./testSeed.json');
 
@@ -54,6 +55,8 @@ export default function TemporaryDrawer() {
               <CartItem key={index} idInCart={index} />
             ))}
             {/* </List> */}
+            <Typography>total: {state.summary} </Typography>
+            <Typography>saving: {state.saving} </Typography>
           </Box>
           {/* {testSeed.map((item, id) => {})} */}
         </Drawer>

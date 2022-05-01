@@ -107,11 +107,11 @@ export default function Payment() {
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           <ListItem alignItems="flex-start">
             <TextField
-              label="Card Number"
+              label="Card Number (16-digit)"
               id="outlined-start-adornment"
               sx={{ m: 1, width: 1 }}
               InputProps={{
-                startAdornment: <InputAdornment position="start">0000 0000 0000 0000</InputAdornment>,
+                startAdornment: <InputAdornment position="start"></InputAdornment>,
               }}
             />
           </ListItem>
@@ -122,54 +122,40 @@ export default function Payment() {
               id="outlined-start-adornment"
               sx={{ m: 1, width: 1 }}
               InputProps={{
-                startAdornment: <InputAdornment position="start">John Doe</InputAdornment>,
+                startAdornment: <InputAdornment position="start"></InputAdornment>,
               }}
             />
           </ListItem>
 
           <ListItem alignItems="flex-start">
-            <FormControl sx={{ m: 1 }} variant="standard">
-              <Typography>CVV</Typography>
-              {/* <InputLabel htmlFor="demo-customized-textbox">CVV</InputLabel> */}
-              <BootstrapInput id="demo-customized-textbox" />
-            </FormControl>
-
-            <FormControl sx={{ m: 1 }} variant="standard">
-              <Typography>MM</Typography>
-              {/* <InputLabel id="demo-customized-select-label">MM</InputLabel> */}
-              <Select
-                labelId="demo-customized-select-label"
-                id="demo-customized-select"
-                value={age}
-                onChange={handleChange}
-                input={<BootstrapInput />}>
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>Ten</MenuItem>
-                <MenuItem value={2}>Twenty</MenuItem>
-                <MenuItem value={3}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl sx={{ m: 1 }} variant="standard">
-              {/* <InputLabel htmlFor="demo-customized-select-native">YYYY</InputLabel> */}
-              <Typography>YYYY</Typography>
-              <NativeSelect
-                id="demo-customized-select-native"
-                value={age}
-                onChange={handleChange}
-                input={<BootstrapInput />}>
-                <option aria-label="None" value="" />
-                <option value={10}>Ten</option>
-                <option value={20}>Twenty</option>
-                <option value={30}>Thirty</option>
-              </NativeSelect>
-            </FormControl>
+            <TextField
+              label="CVV"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: 200 }}
+              InputProps={{
+                startAdornment: <InputAdornment position="start"></InputAdornment>,
+              }}
+            />
+            <TextField
+              label="Month (MM)"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: 200 }}
+              InputProps={{
+                startAdornment: <InputAdornment position="start"></InputAdornment>,
+              }}
+            />
+            <TextField
+              label="Year (YYYY)"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: 200 }}
+              InputProps={{
+                startAdornment: <InputAdornment position="start"></InputAdornment>,
+              }}
+            />
           </ListItem>
         </List>
 
-        <CardActions align="left" sx={{ position: 'relative', left: 0, bottom: 0, margin: 2 }}>
+        <CardActions align="left" sx={{ position: 'relative', right: 0, bottom: 0, margin: 2 }}>
           <Button variant="contained">Confirm and Pay</Button>
         </CardActions>
       </Card>
