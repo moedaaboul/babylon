@@ -62,12 +62,24 @@ export default function RefineSidebar() {
   //   setExpanded(!expanded);
   // };
 
-  const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories } = useFilterContext();
+  const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories, setColours } = useFilterContext();
   const [value, setValue] = React.useState([minPrice, maxPrice]);
   const [state, setState] = React.useState({
     Men: false,
     Women: false,
     Kids: false,
+  });
+  const [colourState, setColourState] = React.useState({
+    red: false,
+    yellow: false,
+    orange: false,
+    green: false,
+    blue: false,
+    purple: false,
+    pink: false,
+    black: false,
+    white: false,
+    grey: false,
   });
 
   const [expandedPanel, setExpandedPanel] = useState(true);
@@ -92,6 +104,23 @@ export default function RefineSidebar() {
   };
 
   const { men, women, kids } = state;
+
+  const handleColourChange = (event) => {
+    const newState = {
+      ...colourState,
+      [event.target.name]: event.target.checked,
+    };
+    setColourState(newState);
+    const categoryKeys = Object.keys(newState);
+    var filtered = categoryKeys.filter((key) => newState[key]);
+    if (filtered.length === 0) {
+      setColours(null);
+      return;
+    }
+    setColours(filtered);
+  };
+
+  const { red, yellow, orange, green, blue, purple, pink, black, white, grey } = colourState;
 
   const handleAccordionChange = () => (event, isExpanded) => {
     console.log({ event, isExpanded });
@@ -131,8 +160,8 @@ export default function RefineSidebar() {
               control={
                 <Checkbox
                   icon={<CircleOutlinedIcon />}
-                  onChange={handleChange}
                   checkedIcon={<CircleSharpIcon />}
+                  onChange={handleChange}
                   name="Women"
                   checked={women}
                 />
@@ -196,12 +225,126 @@ export default function RefineSidebar() {
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_COLOUR_OPTIONS.map((item) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
-              />
-            ))}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="red"
+                  checked={red}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Red'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="yellow"
+                  checked={yellow}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Yellow'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="orange"
+                  checked={orange}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Orange'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="green"
+                  checked={green}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Green'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="blue"
+                  checked={blue}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Blue'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="purple"
+                  checked={purple}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Purple'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="pink"
+                  checked={pink}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Pink'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="black"
+                  checked={black}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Black'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="white"
+                  checked={white}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'White'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="grey"
+                  checked={grey}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Grey'}
+            />
           </FormGroup>
         </AccordionDetails>
       </Accordion>

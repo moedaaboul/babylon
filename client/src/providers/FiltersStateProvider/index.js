@@ -6,6 +6,7 @@ const FiltersProvider = ({ children }) => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100);
   const [categories, setCategories] = useState(null);
+  const [colours, setColours] = useState(null);
 
   return (
     <AppContext.Provider
@@ -16,6 +17,8 @@ const FiltersProvider = ({ children }) => {
         setMaxPrice,
         categories,
         setCategories,
+        colours,
+        setColours,
       }}>
       {children}
     </AppContext.Provider>
