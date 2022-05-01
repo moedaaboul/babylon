@@ -6,36 +6,10 @@ import { useStoreContext } from '../../state/store/provider';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-// import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 import { Box, Divider, Grid, Typography, Button } from '@mui/material';
-
-// const Info = ({ title, description, price, color }) => {
-//   const [state, dispatch] = useStoreContext();
-
-//   const handleAddToCart = () => {
-//     dispatch({ type: ADD_TO_CART, product: 'aProduct' });
-//   };
-
-//   return (
-//     <Grid container direction="column" style={{ height: '50%' }}>
-//       <Typography variant="subtitle1">{title}</Typography>
-
-//       <Divider />
-
-//       <Box mt={2}>
-//         <Typography variant="h4">{description}</Typography>
-//         <Typography variant="h5">£{price}</Typography>
-//         <Typography variant="h6">{color}</Typography>
-//       </Box>
-
-//       <Button onClick={() => handleAddToCart()} variant="contained" color="primary" style={{ marginTop: 'auto' }}>
-//         Purchase
-//       </Button>
-//     </Grid>
-//   );
-// };
+import { idbPromise } from '../../utils/helpers';
 
 const Info = ({ item }) => {
   //   {
@@ -71,18 +45,25 @@ const Info = ({ item }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const validateQuantity = [1, 2, 3, 4, 5].includes(quantity);
-    const validateSize = ['S', 'M', 'L'].includes(size);
+    // const validateSize = ['S', 'M', 'L'].includes(size);
+
+    const payload = {
+      productId: item._id,
+      productSize: 'S',
+      productAmount: quantity,
+      productOriginalPrice: item.price,
+      productDiscountedPrice: item.discountedPrice,
+    };
 
     if (validateQuantity) {
       dispatch({
         type: ADD_SINGLE_TO_CART,
-        payload: {
-          productId: item._id,
-          productSize: 'S',
-          productAmount: quantity,
-          productOriginalPrice: item.price,
-          productDiscountedPrice: item.discountedPrice,
-        },
+        payload,
+      });
+
+      idbPromise('cart', 'put', {
+        // ...itemInCart,
+        // purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
     }
   };
@@ -95,20 +76,10 @@ const Info = ({ item }) => {
 
       <Box mt={2}>
         <Typography variant="div">{item.description}</Typography>
-        <br></br>
         <Typography variant="h7">£{item.price}</Typography>
       </Box>
 
       <Divider />
-
-      {/* <FormControl sx={{ m: 1, maxWidth: 200, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-label">Choose Size</InputLabel>
-        <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Size" onChange={updateSize}>
-          <MenuItem value="S">S</MenuItem>
-          <MenuItem value="M">M</MenuItem>
-          <MenuItem value="L">L</MenuItem>
-        </Select>
-      </FormControl> */}
 
       <FormControl sx={{ m: 1, maxWidth: 200, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-label">Select Quantity</InputLabel>
