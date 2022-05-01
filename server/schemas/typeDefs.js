@@ -38,6 +38,7 @@ const typeDefs = gql`
     priceAsc: Boolean
     priceDesc: Boolean
     newest: Boolean
+    featured: Boolean
   }
 
   input ItemsInput {

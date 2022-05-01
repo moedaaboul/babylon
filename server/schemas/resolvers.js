@@ -52,6 +52,10 @@ const resolvers = {
       if (shouldApplyNewestSort) {
         items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       }
+      const shouldApplyFeaturedSort = sort.featured;
+      if (shouldApplyFeaturedSort) {
+        items = items.sort((a, b) => Number(b.featured) - Number(a.featured));
+      }
       return items;
     },
     item: async (parent, { itemId }) => {
