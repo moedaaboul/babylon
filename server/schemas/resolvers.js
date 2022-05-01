@@ -9,7 +9,11 @@ const resolvers = {
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        return await User.findOne({ _id: context.user._id });
+        const user = await User.findOne({ _id: context.user._id }).populate({
+          path: 'orders.items',
+        });
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        return user;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -65,15 +69,17 @@ const resolvers = {
     item: async (parent, { itemId }) => {
       return await Item.findOne({ _id: itemId });
     },
-    // order: async (parent, { _id }, context) => {
-    //   if (context.user) {
-    //     const user = await User.findById(context.user._id);
+    order: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.items',
+        });
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        return user.orders.id(_id);
+      }
 
-    //     return user.orders.id(_id);
-    //   }
-
-    //   throw new AuthenticationError('Not logged in');
-    // },
+      throw new AuthenticationError('Not logged in');
+    },
   },
 
   Mutation: {
