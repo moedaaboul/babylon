@@ -64,6 +64,7 @@ export const UPDATE_ITEM = gql`
       discountedPrice
       stock
       brand
+      featured
     }
   }
 `;

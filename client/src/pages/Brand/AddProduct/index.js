@@ -38,6 +38,7 @@ const AddProduct = () => {
     discountedPrice: '',
     stock: '',
     category: '',
+    colour: '',
   });
   const [addItem] = useMutation(ADD_ITEM, {
     update(cache, { data: { addItem } }) {
@@ -197,18 +198,30 @@ const AddProduct = () => {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="given-name"
-                name="colour"
-                type="number"
-                // onChange={handleInputChange}
-                // value={userFormData.stock}
-                required
-                fullWidth
-                id="stockItems"
-                label="Colour"
-                autoFocus
-              />
+              <FormControl sx={{ width: '99%' }}>
+                <InputLabel id="colour-select-helper-label">Colour</InputLabel>
+                <Select
+                  labelId="colour-select-helper-label"
+                  id="colour-select-helper"
+                  value={userFormData.colour}
+                  name="colour"
+                  label="Colour"
+                  onChange={handleInputChange}>
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={'red'}>Red</MenuItem>
+                  <MenuItem value={'yellow'}>Yellow</MenuItem>
+                  <MenuItem value={'orange'}>Orange</MenuItem>
+                  <MenuItem value={'green'}>Green</MenuItem>
+                  <MenuItem value={'blue'}>Blue</MenuItem>
+                  <MenuItem value={'purple'}>Purple</MenuItem>
+                  <MenuItem value={'pink'}>Pink</MenuItem>
+                  <MenuItem value={'black'}>Black</MenuItem>
+                  <MenuItem value={'white'}>White</MenuItem>
+                  <MenuItem value={'grey'}>Grey</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
           <FilePond
