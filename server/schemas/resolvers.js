@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Item } = require('../models');
+const { User, Item, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
@@ -65,6 +65,15 @@ const resolvers = {
     item: async (parent, { itemId }) => {
       return await Item.findOne({ _id: itemId });
     },
+    // order: async (parent, { _id }, context) => {
+    //   if (context.user) {
+    //     const user = await User.findById(context.user._id);
+
+    //     return user.orders.id(_id);
+    //   }
+
+    //   throw new AuthenticationError('Not logged in');
+    // },
   },
 
   Mutation: {
@@ -92,6 +101,17 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    addOrder: async (parent, { items }, context) => {
+      if (context.user) {
+        const order = new Order({ items });
+        console.log(order);
+        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+        return order;
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
     deleteItem: async (_, { itemId }) => {
       const deletedItem = await Item.findByIdAndDelete(itemId);
