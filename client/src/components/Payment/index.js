@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import { styled } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import NativeSelect from '@mui/material/NativeSelect';
+import InputBase from '@mui/material/InputBase';
 
 //Card
 import Divider from '@mui/material/Divider';
@@ -25,8 +34,46 @@ import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}));
+
 export default function Payment() {
   const [alignment, setAlignment] = React.useState('left');
+
+  const [age, setAge] = React.useState('');
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
@@ -57,60 +104,68 @@ export default function Payment() {
           </Typography>
         </CardContent>
 
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="Brunch this weekend?"
-              secondary={
-                <React.Fragment>
-                  <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                    Ali Connors
-                  </Typography>
-                  {" — I'll be in your neighborhood doing errands this…"}
-                </React.Fragment>
-              }
+            <TextField
+              label="Card Number"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: 1 }}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">0000 0000 0000 0000</InputAdornment>,
+              }}
             />
           </ListItem>
 
-          <Divider variant="inset" component="li" />
-
           <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="Summer BBQ"
-              secondary={
-                <React.Fragment>
-                  <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                    to Scott, Alex, Jennifer
-                  </Typography>
-                  {" — Wish I could come, but I'm out of town this…"}
-                </React.Fragment>
-              }
+            <TextField
+              label="Name on Card"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: 1 }}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">John Doe</InputAdornment>,
+              }}
             />
           </ListItem>
 
-          <Divider variant="inset" component="li" />
-
           <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="Oui Oui"
-              secondary={
-                <React.Fragment>
-                  <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                    Sandra Adams
-                  </Typography>
-                  {' — Do you have Paris recommendations? Have you ever…'}
-                </React.Fragment>
-              }
-            />
+            <FormControl sx={{ m: 1 }} variant="standard">
+              <Typography>CVV</Typography>
+              {/* <InputLabel htmlFor="demo-customized-textbox">CVV</InputLabel> */}
+              <BootstrapInput id="demo-customized-textbox" />
+            </FormControl>
+
+            <FormControl sx={{ m: 1 }} variant="standard">
+              <Typography>MM</Typography>
+              {/* <InputLabel id="demo-customized-select-label">MM</InputLabel> */}
+              <Select
+                labelId="demo-customized-select-label"
+                id="demo-customized-select"
+                value={age}
+                onChange={handleChange}
+                input={<BootstrapInput />}>
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={1}>Ten</MenuItem>
+                <MenuItem value={2}>Twenty</MenuItem>
+                <MenuItem value={3}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+
+            <FormControl sx={{ m: 1 }} variant="standard">
+              {/* <InputLabel htmlFor="demo-customized-select-native">YYYY</InputLabel> */}
+              <Typography>YYYY</Typography>
+              <NativeSelect
+                id="demo-customized-select-native"
+                value={age}
+                onChange={handleChange}
+                input={<BootstrapInput />}>
+                <option aria-label="None" value="" />
+                <option value={10}>Ten</option>
+                <option value={20}>Twenty</option>
+                <option value={30}>Thirty</option>
+              </NativeSelect>
+            </FormControl>
           </ListItem>
         </List>
 
