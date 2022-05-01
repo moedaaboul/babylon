@@ -12,7 +12,7 @@ import { useSortContext } from '../../providers/SortStateProvider';
 
 const AllItems = () => {
   const { maxPrice, minPrice, categories } = useFilterContext();
-  const { priceAsc, priceDesc, sortNewest } = useSortContext();
+  const { priceAsc, priceDesc, sortNewest, sortFeatured } = useSortContext();
   const { loading, error, data } = useQuery(QUERY_ITEMS, {
     variables: {
       input: {
@@ -25,6 +25,7 @@ const AllItems = () => {
           priceAsc: priceAsc,
           priceDesc: priceDesc,
           newest: sortNewest,
+          featured: sortFeatured,
         },
       },
     },
