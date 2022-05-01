@@ -47,6 +47,7 @@ const typeDefs = gql`
     me: User
     items(input: ItemsInput): [Item]!
     brandItems: [Item]
+    item(itemId: ID!): Item
   }
 
   input ItemInput {

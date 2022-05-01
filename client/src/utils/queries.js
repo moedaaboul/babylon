@@ -28,3 +28,19 @@ export const GET_BRAND_ITEMS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_ITEM = gql`
+  query getSingleItem($itemId: ID!) {
+    item(itemId: $itemId) {
+      _id
+      title
+      image
+      description
+      price
+      discountedPrice
+      stock
+      brand
+      category
+    }
+  }
+`;
