@@ -15,7 +15,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 import './cart.css';
 
-import { getSingleItemById } from '../../utils/helpers';
 import { useStoreContext } from '../../state/store/provider';
 
 import { UPDATE_CART_QUANTITY, REMOVE_FROM_CART } from '../../state/store/actions';

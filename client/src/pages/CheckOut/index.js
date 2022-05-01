@@ -12,6 +12,9 @@ import CheckoutItemArr from '../../components/Checkout-List';
 import Payment from '../../components/Payment';
 import CheckoutTotal from '../../components/Checkout-Total';
 
+//Seeding Data
+const testCart = require('./testCart.json');
+
 //Other functions
 // import Auth from '../../utils/auth';
 // import { LOGIN_USER } from '../../utils/mutations';
@@ -24,7 +27,7 @@ export default function CheckOut() {
       <Grid container spacing={5}>
         <Grid sx={{ width: '100%', overflow: 'hidden' }} item xs={12} md={8}>
           {/* insert item table here */}
-          <CheckoutItemArr />
+          <CheckoutItemArr cartArr={testCart} />
         </Grid>
 
         <Grid item xs={12} md={4}>
@@ -42,6 +45,7 @@ export default function CheckOut() {
           <CheckoutTotal />
         </Grid>
       </Grid>
+      s
     </Box>
   );
 }
