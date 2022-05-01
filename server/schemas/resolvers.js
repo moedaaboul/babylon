@@ -40,6 +40,10 @@ const resolvers = {
       if (shouldApplyCategoriesFilter) {
         items = items.filter((a) => filter.categories.includes(a.category));
       }
+      const shouldApplyColoursFilter = filter.colours !== null;
+      if (shouldApplyColoursFilter) {
+        items = items.filter((a) => filter.colours.includes(a.colour));
+      }
       const shouldApplyPriceAscSort = sort.priceAsc;
       if (shouldApplyPriceAscSort) {
         items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));

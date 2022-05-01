@@ -32,6 +32,7 @@ const typeDefs = gql`
     maxPrice: Int
     minPrice: Int
     categories: [String]
+    colours: [String]
   }
 
   input ItemsSort {
