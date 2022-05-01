@@ -92,3 +92,11 @@ export function getSingleItemById(checkId) {
 
   return product;
 }
+
+export function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}

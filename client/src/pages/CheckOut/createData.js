@@ -1,5 +1,5 @@
-const createData = (name, code, population, size) => {
-  const density = population / size;
-  return { name, code, population, size, density };
+const createData = (productImg, productName, productQuantity, productTotalPrice) => {
+  // const density = population / size;
+  return { productImg, productName, productQuantity, productTotalPrice };
 };
 module.exports = createData;
