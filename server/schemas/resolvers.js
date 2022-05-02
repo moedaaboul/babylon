@@ -3,6 +3,7 @@ const { User, Item, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -79,6 +80,44 @@ const resolvers = {
       }
 
       throw new AuthenticationError('Not logged in');
+    },
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      console.log(url);
+      console.log(args.items);
+      const order = new Order({ items: args.items });
+      console.log(order);
+      const line_items = [];
+
+      const { items } = await order.populate('items');
+      console.log(items, 'line 92');
+      for (let i = 0; i < items.length; i++) {
+        const product = await stripe.products.create({
+          name: items[i].title,
+          description: items[i].description,
+          images: [`${url}/images/${items[i].image[0]}`],
+        });
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: items[i].discountedPrice * 100,
+          currency: 'gbp',
+        });
+
+        line_items.push({
+          price: price.id,
+          quantity: 1,
+        });
+      }
+      console.log(line_items, 'line 111');
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+
+      return { session: session.id };
     },
   },
 

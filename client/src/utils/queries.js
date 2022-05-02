@@ -46,3 +46,11 @@ export const GET_SINGLE_ITEM = gql`
     }
   }
 `;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($items: [ID]!) {
+    checkout(items: $items) {
+      session
+    }
+  }
+`;

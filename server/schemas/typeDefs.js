@@ -30,6 +30,10 @@ const typeDefs = gql`
     items: [Item]
   }
 
+  type Checkout {
+    session: ID
+  }
+
   type Auth {
     token: String
     user: User
@@ -60,6 +64,7 @@ const typeDefs = gql`
     brandItems: [Item]
     item(itemId: ID!): Item
     order(_id: ID!): Order
+    checkout(items: [ID]!): Checkout
   }
 
   input ItemInput {
