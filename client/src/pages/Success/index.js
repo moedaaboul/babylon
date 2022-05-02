@@ -9,14 +9,25 @@ function Success() {
   useEffect(() => {
     async function saveOrder() {
       // const cart = await idbPromise('cart', 'get');
-      const cart = [{ id: 39 }];
-      const products = cart.map((item) => item._id);
+      const cart = [
+        {
+          productAmount: 2,
+          productId: '626ea60c6191c15e3a62c814',
+        },
+        {
+          productAmount: 3,
+          productId: '626dff3fdf979270542e182d',
+        },
+      ];
+      const items = cart.map((item) => item.productId);
+      console.log(items);
+      if (items.length) {
+        const { data } = await addOrder({ variables: { items: items } });
+        console.log(data);
+        const itemsData = data.addOrder.items;
 
-      if (products.length) {
-        const { data } = await addOrder({ variables: { products } });
-        const productData = data.addOrder.products;
-
-        productData.forEach((item) => {
+        itemsData.forEach((item) => {
+          console.log(item);
           //   idbPromise('cart', 'delete', item);
         });
       }
@@ -27,7 +38,7 @@ function Success() {
     }
 
     saveOrder();
-  }, [addOrder]);
+  }, []);
 
   return (
     <div>

@@ -70,18 +70,23 @@ export const UPDATE_ITEM = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($items: [ID]!) {
+  mutation AddOrder($items: [ID]!) {
     addOrder(items: $items) {
+      _id
       purchaseDate
-      products {
+      items {
         _id
-        name
+        title
+        createdAt
         description
+        image
         price
-        quantity
-        category {
-          name
-        }
+        featured
+        discountedPrice
+        stock
+        brand
+        colour
+        category
       }
     }
   }
