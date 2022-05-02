@@ -3,13 +3,19 @@ import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LOOK } from '../../utils/queries';
 // MUI Components
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import { Grid } from '@mui/material';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import lookTestImg from './look1.jpg';
+import lookproduct1 from './testlook1.jpg';
+import lookproduct2 from './testlook2.jpg';
+import lookproduct3 from './testlook3.jpg';
 
 const LookImgStyle = styled('img')({
   top: 0,
@@ -43,10 +49,54 @@ const SingleLook = () => {
           </Box>
         </Grid>
         <Grid item xs={4}>
-          <Box sx={{ pt: '100%', position: 'relative' }}>
+          <Box>
             <Typography variant="h3" sx={{ my: 5 }}>
               GET THIS LOOK
             </Typography>
+            <Divider />
+            <Stack spacing={2}>
+              <Card sx={{ display: 'flex' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
+                    <Typography component="div" variant="h5">
+                      Blue Coat
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                      £65
+                    </Typography>
+                  </CardContent>
+                </Box>
+                <CardMedia component="img" sx={{ width: 151 }} image={lookproduct1} alt="blue coat" />
+              </Card>
+              <Divider />
+              <Card sx={{ display: 'flex' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
+                    <Typography component="div" variant="h5">
+                      Pink Purse
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                      £40
+                    </Typography>
+                  </CardContent>
+                </Box>
+                <CardMedia component="img" sx={{ width: 151 }} image={lookproduct2} alt="blue coat" />
+              </Card>
+              <Divider />
+              <Card sx={{ display: 'flex' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <CardContent>
+                    <Typography component="div" variant="h5">
+                      White Boots
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                      £45
+                    </Typography>
+                  </CardContent>
+                </Box>
+                <CardMedia component="img" sx={{ width: 151 }} image={lookproduct3} alt="blue coat" />
+              </Card>
+            </Stack>
           </Box>
         </Grid>
       </Grid>
