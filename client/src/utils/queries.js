@@ -44,3 +44,25 @@ export const GET_SINGLE_ITEM = gql`
     }
   }
 `;
+
+export const QUERY_LOOK = gql`
+  query looks {
+    looks {
+      _id
+      description
+      createdAt
+      items
+    }
+  }
+`;
+
+export const GET_SINGLE_LOOK = gql`
+  query getSingleLook($lookId: ID!) {
+    look(lookId: $lookId) {
+      _id
+      description
+      createdAt
+      items
+    }
+  }
+`;

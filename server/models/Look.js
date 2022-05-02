@@ -1,12 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const lookSchema = new Schema({
-  items: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Item',
-    },
-  ],
   description: {
     type: String,
     required: true,
@@ -16,6 +10,12 @@ const lookSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  items: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Item',
+    },
+  ],
 });
 
 const Look = model('Look', lookSchema);
