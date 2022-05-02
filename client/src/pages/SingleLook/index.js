@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { Grid } from '@mui/material';
@@ -55,49 +56,58 @@ const SingleLook = () => {
             </Typography>
             <Divider />
             <Stack spacing={2}>
-              <Card sx={{ display: 'flex' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography component="div" variant="h5">
-                      Blue Coat
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                      £65
-                    </Typography>
-                  </CardContent>
-                </Box>
-                <CardMedia component="img" sx={{ width: 151 }} image={lookproduct1} alt="blue coat" />
+              <Card>
+                <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography component="div" variant="h5">
+                        Blue Coat
+                      </Typography>
+                      <Typography variant="subtitle1" color="text.secondary" component="div">
+                        £65
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                  <CardMedia component="img" sx={{ width: 151 }} image={lookproduct1} alt="blue coat" />
+                </CardActionArea>
               </Card>
               <Divider />
-              <Card sx={{ display: 'flex' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography component="div" variant="h5">
-                      Pink Purse
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                      £40
-                    </Typography>
-                  </CardContent>
-                </Box>
-                <CardMedia component="img" sx={{ width: 151 }} image={lookproduct2} alt="blue coat" />
+              <Card>
+                <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                      <Typography component="div" variant="h5">
+                        Pink Purse
+                      </Typography>
+                      <Typography variant="subtitle1" color="text.secondary" component="div">
+                        £40
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                  <CardMedia component="img" sx={{ width: 151 }} image={lookproduct2} alt="pink purse" />
+                </CardActionArea>
               </Card>
               <Divider />
-              <Card sx={{ display: 'flex' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <CardContent>
-                    <Typography component="div" variant="h5">
-                      White Boots
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                      £45
-                    </Typography>
-                  </CardContent>
-                </Box>
-                <CardMedia component="img" sx={{ width: 151 }} image={lookproduct3} alt="blue coat" />
+              <Card>
+                <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent>
+                      <Typography component="div" variant="h5">
+                        White Boots
+                      </Typography>
+                      <Typography variant="subtitle1" color="text.secondary" component="div">
+                        £45
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                  <CardMedia component="img" sx={{ width: 151 }} image={lookproduct3} alt="white boots" />
+                </CardActionArea>
               </Card>
             </Stack>
           </Box>
+          <Typography variant="h2" sx={{ my: 5 }}>
+            TOTAL: £150
+          </Typography>
         </Grid>
       </Grid>
     </Container>
