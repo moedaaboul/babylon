@@ -89,10 +89,10 @@ export default function RefineSidebar() {
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_CATEGORY_OPTIONS.map((item) => (
+            {FILTER_CATEGORY_OPTIONS.map((category) => (
               <FormControlLabel
                 control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
+                label={category}
               />
             ))}
           </FormGroup>
@@ -124,10 +124,10 @@ export default function RefineSidebar() {
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_BRAND_OPTIONS.map((item) => (
+            {FILTER_BRAND_OPTIONS.map((brand) => (
               <FormControlLabel
                 control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
+                label={brand}
               />
             ))}
           </FormGroup>
@@ -140,10 +140,10 @@ export default function RefineSidebar() {
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_COLOUR_OPTIONS.map((item) => (
+            {FILTER_COLOUR_OPTIONS.map((colour) => (
               <FormControlLabel
                 control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={item}
+                label={colour}
               />
             ))}
           </FormGroup>

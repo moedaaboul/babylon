@@ -6,7 +6,7 @@ import ItemCard from './ItemCard';
 // ----------------------------------------------------------------------
 
 ItemList.propTypes = {
-  products: PropTypes.array.isRequired
+  products: PropTypes.array.isRequired,
 };
 
 export default function ItemList({ products, ...other }) {

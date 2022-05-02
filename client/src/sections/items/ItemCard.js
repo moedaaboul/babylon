@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-// material
+// MUI Materials
 import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';

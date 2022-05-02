@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
+import SingleLook from './pages/SingleLook';
 import { StoreProvider } from './state/store/provider';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
@@ -55,6 +56,7 @@ function App() {
                   <Route path="/items" element={<AllItems />} />
                   <Route path="/item/:itemId" element={<SingleItem />} />
                   <Route path="/register" element={<Register />} />
+                  <Route path="/look" element={<SingleLook />} />
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
                   </Route>
