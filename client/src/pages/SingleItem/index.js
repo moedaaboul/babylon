@@ -1,6 +1,7 @@
 import MainImage from '../../components/MainImage';
 import Info from '../../components/Info';
 import ImageGrid from '../../components/ImageGrid';
+import BasicTabs from '../../components/Tabs';
 import { Box, Grid } from '@mui/material';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -27,14 +28,15 @@ const SingleItem = () => {
   return (
     <Box>
       <Grid container spacing={2} style={{ maxWidth: '1100', margin: '0 auto' }}>
-        <Grid item lg={2}>
-          <ImageGrid item={item.image} setIndex={setIndex} />
-        </Grid>
+        {/* <Grid item lg={2}>
+        </Grid> */}
         <Grid item md={6}>
           <MainImage item={item.image} index={index} />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <Info item={item} />
+          <ImageGrid item={item.image} setIndex={setIndex} />
+          <BasicTabs />
         </Grid>
       </Grid>
     </Box>
