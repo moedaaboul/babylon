@@ -56,7 +56,7 @@ function App() {
                   <Route path="/items" element={<AllItems />} />
                   <Route path="/item/:itemId" element={<SingleItem />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/look" element={<SingleLook />} />
+                  <Route path="/look/:lookID" element={<SingleLook />} />
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
                   </Route>

@@ -25,6 +25,8 @@ const typeDefs = gql`
 
   type Look {
     _id: ID
+    influencer: String!
+    image: String!
     createdAt: String
     description: String
     items: [Item]
@@ -60,7 +62,7 @@ const typeDefs = gql`
     looks: [Look]!
     look(lookID: ID!): Look
     brandItems: [Item]
-    item(itemId: ID!): Item
+    item(itemID: ID!): Item
   }
 
   input ItemInput {

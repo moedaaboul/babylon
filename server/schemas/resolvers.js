@@ -70,8 +70,10 @@ const resolvers = {
     looks: async () => {
       return await Look.find({}).populate('item');
     },
-    look: async (parent, { lookId }) => {
-      return await Look.findOne({ _id: lookId });
+
+    look: async (parent, args, context, info) => {
+      const { id } = args;
+      return await Look.findOne((a) => a.id == id).populate('item');
     },
   },
 

@@ -1,22 +1,16 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LOOK } from '../../utils/queries';
+import { useParams } from 'react-router-dom';
+import { LookCard } from '../../sections/looks';
 // MUI Components
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { Grid } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import lookTestImg from './look1.jpg';
-import lookproduct1 from './testlook1.jpg';
-import lookproduct2 from './testlook2.jpg';
-import lookproduct3 from './testlook3.jpg';
 
 const LookImgStyle = styled('img')({
   top: 0,
@@ -33,81 +27,45 @@ const LookImgStyle = styled('img')({
 });
 
 const SingleLook = () => {
-  //   const { loading, error, data } = useQuery(GET_SINGLE_LOOK, {});
-  //   const look = data?.look || [];
+  const { lookId } = useParams();
+  const { loading, error, data } = useQuery(GET_SINGLE_LOOK, { variables: { lookId: lookId } });
+  const look = data?.look || [];
+  console.log(look);
 
-  //   if (error) return `Error! ${error.message}`;
+  const sumTotal = () => {
+    let sum = 0;
+
+    for (let i = 0; i < look.items.length; i++) {
+      if (look.items.discountedPrice) {
+        sum++;
+      } else {
+        sum = sum + look.items.price;
+      }
+    }
+    return sum;
+  };
+
+  if (error) return `Error! ${error.message}`;
 
   return (
     <Container maxWidth="xl">
       <Typography variant="h2" sx={{ my: 5 }}>
-        INFLUENCER'S LOOK
+        {look.influencer}'s LOOK
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Box sx={{ pt: '100%', position: 'relative' }}>
-            <LookImgStyle alt="Influencer Look - blue coat and pigeons in fromt of a cathedral" src={lookTestImg} />
+            <LookImgStyle alt="Influencer Look - blue coat and pigeons in fromt of a cathedral" src={look.image} />
           </Box>
         </Grid>
         <Grid item xs={4}>
           <Box>
             <Typography variant="h3" sx={{ my: 5 }}>
-              GET THIS LOOK
+              GET THIS LOOK FOR £{sumTotal}
             </Typography>
             <Divider />
-            <Stack spacing={2}>
-              <Card>
-                <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
-                      <Typography component="div" variant="h5">
-                        Blue Coat
-                      </Typography>
-                      <Typography variant="subtitle1" color="text.secondary" component="div">
-                        £65
-                      </Typography>
-                    </CardContent>
-                  </Box>
-                  <CardMedia component="img" sx={{ width: 151 }} image={lookproduct1} alt="blue coat" />
-                </CardActionArea>
-              </Card>
-              <Divider />
-              <Card>
-                <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
-                      <Typography component="div" variant="h5">
-                        Pink Purse
-                      </Typography>
-                      <Typography variant="subtitle1" color="text.secondary" component="div">
-                        £40
-                      </Typography>
-                    </CardContent>
-                  </Box>
-                  <CardMedia component="img" sx={{ width: 151 }} image={lookproduct2} alt="pink purse" />
-                </CardActionArea>
-              </Card>
-              <Divider />
-              <Card>
-                <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <CardContent>
-                      <Typography component="div" variant="h5">
-                        White Boots
-                      </Typography>
-                      <Typography variant="subtitle1" color="text.secondary" component="div">
-                        £45
-                      </Typography>
-                    </CardContent>
-                  </Box>
-                  <CardMedia component="img" sx={{ width: 151 }} image={lookproduct3} alt="white boots" />
-                </CardActionArea>
-              </Card>
-            </Stack>
+            <Stack spacing={2}>{loading ? <h6>is loading...</h6> : <LookCard products={look.items} />}</Stack>
           </Box>
-          <Typography variant="h2" sx={{ my: 5 }}>
-            TOTAL: £150
-          </Typography>
         </Grid>
       </Grid>
     </Container>

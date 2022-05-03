@@ -47,24 +47,42 @@ export const GET_SINGLE_ITEM = gql`
   }
 `;
 
-export const QUERY_LOOK = gql`
+export const QUERY_LOOKS = gql`
   query looks {
     looks {
       _id
+      influencer
+      image
       description
       createdAt
-      items
+      items {
+        _id
+        description
+        image
+        price
+        discountedPrice
+        title
+      }
     }
   }
 `;
 
 export const GET_SINGLE_LOOK = gql`
   query getSingleLook($lookId: ID!) {
-    look(lookId: $lookId) {
+    look(lookID: $lookId) {
       _id
+      influencer
+      image
       description
       createdAt
-      items
+      items {
+        _id
+        description
+        image
+        price
+        discountedPrice
+        title
+      }
     }
   }
 `;

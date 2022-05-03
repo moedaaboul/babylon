@@ -41,11 +41,9 @@ const itemSchema = new Schema(
     },
     category: [
       {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
         required: true,
-        // type: Schema.Types.ObjectId,
-        // ref: 'Category',
-        // required: true,
       },
     ],
     colour: {
