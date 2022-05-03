@@ -4,11 +4,11 @@
     "description": "Comfortable and stylish shoes.",
     "image": ["/images/blacktrainer.jpg", "/images/blacktrainer2.jpg"],
     "price": 60,
-    "discountedPrice": 35,
     "stock": 30,
     "brand": "Nike",
     "colour": "Black",
-    "category": ["Men", "Women"]
+    "category": ["Men", "Women"],
+    "featured": true
   },
   {
     "title": "Sandstorm Belt",
@@ -26,11 +26,11 @@
     "description": "Grayscale monochrome shirt. 100% cotton.",
     "image": ["/images/checkshirt.jpg"],
     "price": 45,
-    "discountedPrice": 23,
     "stock": 25,
     "brand": "Paco Rabanne",
     "colour": "Grey",
-    "category": "Men"
+    "category": "Men",
+    "featured": true
   },
   {
     "title": "Spring Fling Heels",
@@ -73,6 +73,7 @@
     "discountedPrice": 38,
     "stock": 15,
     "brand": "Levis",
+    "colour": "Blue",
     "category": "Men"
   },
   {
@@ -115,7 +116,8 @@
     "stock": 15,
     "brand": "Mango",
     "colour": "Red",
-    "category": ["Women"]
+    "category": ["Women"],
+    "featured": true
   },
   {
     "title": "SeaSkimmer Timepiece",

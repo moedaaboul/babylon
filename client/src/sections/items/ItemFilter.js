@@ -42,26 +42,9 @@ const priceSliderMarks = [
   },
 ];
 
-export const FILTER_CATEGORY_OPTIONS = ['Men', 'Women', 'Kids'];
 export const FILTER_BRAND_OPTIONS = ['Nike', 'Adidas', 'Levis', 'Under Armour', 'Reebok', 'Dolce & Gabana'];
-export const FILTER_COLOUR_OPTIONS = [
-  'Red',
-  'Yellow',
-  'Orange',
-  'Green',
-  'Blue',
-  'Purple',
-  'Pink',
-  'Black',
-  'White',
-  'Grey',
-];
 
 export default function RefineSidebar() {
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
   const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories, setColours } = useFilterContext();
   const [value, setValue] = React.useState([minPrice, maxPrice]);
   const [state, setState] = React.useState({
@@ -81,8 +64,6 @@ export default function RefineSidebar() {
     white: false,
     grey: false,
   });
-
-  const [expandedPanel, setExpandedPanel] = useState(true);
 
   const handleChange = (event) => {
     console.log(state, 'line76');
@@ -122,11 +103,6 @@ export default function RefineSidebar() {
 
   const { red, yellow, orange, green, blue, purple, pink, black, white, grey } = colourState;
 
-  const handleAccordionChange = () => (event, isExpanded) => {
-    console.log({ event, isExpanded });
-    setExpandedPanel(isExpanded === true ? false : true);
-  };
-
   const handleChangeValue = (event, newValue) => {
     setValue(newValue);
   };
@@ -138,18 +114,12 @@ export default function RefineSidebar() {
 
   return (
     <Grid item xs={12}>
-      <Accordion sx={{ border: 0, borderRadius: 0 }}>
+      <Accordion sx={{ border: 0, borderRadius: 0 }} defaultExpanded="true">
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_CATEGORY_OPTIONS.map((category) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={category}
-              />
-            ))}
             <FormControlLabel
               control={
                 <Checkbox
@@ -190,7 +160,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion>
+      <Accordion defaultExpanded="true">
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>PRICE</Typography>
         </AccordionSummary>
@@ -209,7 +179,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion>
+      <Accordion defaultExpanded="true">
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
         </AccordionSummary>
@@ -225,18 +195,12 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion>
+      <Accordion defaultExpanded="true">
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            {FILTER_COLOUR_OPTIONS.map((colour) => (
-              <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
-                label={colour}
-              />
-            ))}
             <FormControlLabel
               control={
                 <Checkbox

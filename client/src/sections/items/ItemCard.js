@@ -39,7 +39,7 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, discountedPrice, brand } = product;
+  const { title, image, price, discountedPrice, brand, featured } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
@@ -58,6 +58,21 @@ export default function ItemCard({ product }) {
                 textTransform: 'uppercase',
               }}>
               Sale
+            </Label>
+          )}
+          {featured && (
+            <Label
+              variant="filled"
+              sx={{
+                color: '#FFFFFF',
+                bgcolor: '#FFAC1C',
+                zIndex: 9,
+                top: 16,
+                right: 16,
+                position: 'absolute',
+                textTransform: 'uppercase',
+              }}>
+              Featured
             </Label>
           )}
           <ProductImgStyle alt={title} src={image[0]} />
