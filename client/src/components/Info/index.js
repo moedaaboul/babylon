@@ -61,10 +61,10 @@ const Info = ({ item }) => {
         payload,
       });
 
-      idbPromise('cart', 'put', {
-        // ...itemInCart,
-        // purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
-      });
+      // idbPromise('cart', 'put', {
+      // ...itemInCart,
+      // purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      // });
     }
   };
 
