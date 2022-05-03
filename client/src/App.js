@@ -60,7 +60,7 @@ function App() {
                   <Route exact path="/success" element={<Success />} />
                   <Route exact path="/checkout" element={<Checkout />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/look/:lookID" element={<SingleLook />} />
+                  <Route path="/look/:lookId" element={<SingleLook />} />
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
                   </Route>

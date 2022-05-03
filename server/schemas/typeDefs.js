@@ -71,7 +71,7 @@ const typeDefs = gql`
     me: User
     items(input: ItemsInput): [Item]!
     looks: [Look]!
-    look(lookID: ID!): Look
+    look(lookId: ID!): Look
     brandItems: [Item]
     item(itemId: ID!): Item
     order(_id: ID!): Order

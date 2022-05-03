@@ -4,6 +4,8 @@ const lookSchema = new Schema({
   influencer: {
     type: String,
     required: true,
+    // type: Schema.Types.ObjectId,
+    // ref: 'User',
   },
 
   image: {

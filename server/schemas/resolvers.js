@@ -73,13 +73,13 @@ const resolvers = {
     },
 
     looks: async () => {
-      return await Look.find({}).populate('item');
+      return await Look.find({}).populate('items');
     },
 
-    look: async (parent, args, context, info) => {
-      const { id } = args;
-      return await Look.findOne((a) => a.id == id).populate('item');
+    look: async (parent, { lookId }) => {
+      return await Look.findOne({ _id: lookId }).populate('items');
     },
+
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({

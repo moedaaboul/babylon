@@ -68,21 +68,31 @@ export const QUERY_LOOKS = gql`
 `;
 
 export const GET_SINGLE_LOOK = gql`
-  query getSingleLook($lookId: ID!) {
-    look(lookID: $lookId) {
+  query Query($lookId: ID!) {
+    look(lookId: $lookId) {
       _id
       influencer
       image
-      description
       createdAt
+      description
       items {
         _id
+        title
+        createdAt
         description
         image
         price
+        featured
         discountedPrice
-        title
+        stock
+        brand
+        colour
+        category
       }
+    }
+  }
+`;
+
 export const QUERY_CHECKOUT = gql`
   query getCheckout($items: [ID]!) {
     checkout(items: $items) {
