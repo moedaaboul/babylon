@@ -39,7 +39,7 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, discountedPrice } = product;
+  const { _id, title, image, price, discountedPrice } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
@@ -64,7 +64,7 @@ export default function ItemCard({ product }) {
         </Box>
       </CardActionArea>
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink}>
+        <Link to={`/item/${_id}`} color="inherit" underline="hover" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
             {title}
           </Typography>
