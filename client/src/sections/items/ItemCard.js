@@ -24,12 +24,6 @@ const ProductImgStyle = styled('img')({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
-  // '&:hover': {
-  //   src={image[1]},
-  // },
-  // :hover {
-  //   src={image[1]}
-  // }
 });
 
 ItemCard.propTypes = {
