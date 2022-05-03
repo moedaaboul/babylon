@@ -47,6 +47,52 @@ export const GET_SINGLE_ITEM = gql`
   }
 `;
 
+export const QUERY_LOOKS = gql`
+  query looks {
+    looks {
+      _id
+      influencer
+      image
+      description
+      createdAt
+      items {
+        _id
+        description
+        image
+        price
+        discountedPrice
+        title
+      }
+    }
+  }
+`;
+
+export const GET_SINGLE_LOOK = gql`
+  query Query($lookId: ID!) {
+    look(lookId: $lookId) {
+      _id
+      influencer
+      image
+      createdAt
+      description
+      items {
+        _id
+        title
+        createdAt
+        description
+        image
+        price
+        featured
+        discountedPrice
+        stock
+        brand
+        colour
+        category
+      }
+    }
+  }
+`;
+
 export const QUERY_CHECKOUT = gql`
   query getCheckout($items: [ID]!) {
     checkout(items: $items) {

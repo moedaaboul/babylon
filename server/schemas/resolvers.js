@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Item, Order } = require('../models');
+const { User, Item, Look, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
@@ -67,9 +67,19 @@ const resolvers = {
       }
       return items;
     },
+
     item: async (parent, { itemId }) => {
       return await Item.findOne({ _id: itemId });
     },
+
+    looks: async () => {
+      return await Look.find({}).populate('items');
+    },
+
+    look: async (parent, { lookId }) => {
+      return await Look.findOne({ _id: lookId }).populate('items');
+    },
+
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({

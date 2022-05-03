@@ -24,6 +24,15 @@ const typeDefs = gql`
     category: String
   }
 
+  type Look {
+    _id: ID
+    influencer: String!
+    image: String!
+    createdAt: String
+    description: String
+    items: [Item]
+  }
+
   type Order {
     _id: ID
     purchaseDate: String
@@ -61,6 +70,8 @@ const typeDefs = gql`
   type Query {
     me: User
     items(input: ItemsInput): [Item]!
+    looks: [Look]!
+    look(lookId: ID!): Look
     brandItems: [Item]
     item(itemId: ID!): Item
     order(_id: ID!): Order
