@@ -62,10 +62,65 @@ export default function RefineSidebar() {
   //   setExpanded(!expanded);
   // };
 
-  const { minPrice, setMinPrice, maxPrice, setMaxPrice } = useFilterContext();
+  const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories, setColours } = useFilterContext();
   const [value, setValue] = React.useState([minPrice, maxPrice]);
+  const [state, setState] = React.useState({
+    Men: false,
+    Women: false,
+    Kids: false,
+  });
+  const [colourState, setColourState] = React.useState({
+    red: false,
+    yellow: false,
+    orange: false,
+    green: false,
+    blue: false,
+    purple: false,
+    pink: false,
+    black: false,
+    white: false,
+    grey: false,
+  });
 
   const [expandedPanel, setExpandedPanel] = useState(true);
+
+  const handleChange = (event) => {
+    console.log(state, 'line76');
+    const newState = {
+      ...state,
+      [event.target.name]: event.target.checked,
+    };
+    setState(newState);
+    console.log(newState, 'line 84');
+    console.log(state, 'line81');
+    const categoryKeys = Object.keys(newState);
+    var filtered = categoryKeys.filter((key) => newState[key]);
+    console.log(filtered, 'line 82');
+    if (filtered.length === 0) {
+      setCategories(null);
+      return;
+    }
+    setCategories(filtered);
+  };
+
+  const { men, women, kids } = state;
+
+  const handleColourChange = (event) => {
+    const newState = {
+      ...colourState,
+      [event.target.name]: event.target.checked,
+    };
+    setColourState(newState);
+    const categoryKeys = Object.keys(newState);
+    var filtered = categoryKeys.filter((key) => newState[key]);
+    if (filtered.length === 0) {
+      setColours(null);
+      return;
+    }
+    setColours(filtered);
+  };
+
+  const { red, yellow, orange, green, blue, purple, pink, black, white, grey } = colourState;
 
   const handleAccordionChange = () => (event, isExpanded) => {
     console.log({ event, isExpanded });
@@ -95,6 +150,42 @@ export default function RefineSidebar() {
                 label={category}
               />
             ))}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleChange}
+                  checkedIcon={<CircleSharpIcon />}
+                  checked={men}
+                  name="Men"
+                />
+              }
+              label="Men"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  checkedIcon={<CircleSharpIcon />}
+                  onChange={handleChange}
+                  name="Women"
+                  checked={women}
+                />
+              }
+              label="Women"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleChange}
+                  checkedIcon={<CircleSharpIcon />}
+                  name="Kids"
+                  checked={kids}
+                />
+              }
+              label="Kids"
+            />
           </FormGroup>
         </AccordionDetails>
       </Accordion>
@@ -146,6 +237,126 @@ export default function RefineSidebar() {
                 label={colour}
               />
             ))}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="red"
+                  checked={red}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Red'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="yellow"
+                  checked={yellow}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Yellow'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="orange"
+                  checked={orange}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Orange'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="green"
+                  checked={green}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Green'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="blue"
+                  checked={blue}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Blue'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="purple"
+                  checked={purple}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Purple'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="pink"
+                  checked={pink}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Pink'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="black"
+                  checked={black}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Black'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="white"
+                  checked={white}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'White'}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CircleOutlinedIcon />}
+                  onChange={handleColourChange}
+                  name="grey"
+                  checked={grey}
+                  checkedIcon={<CircleSharpIcon />}
+                />
+              }
+              label={'Grey'}
+            />
           </FormGroup>
         </AccordionDetails>
       </Accordion>

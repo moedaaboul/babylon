@@ -6,6 +6,7 @@ const SortProvider = ({ children }) => {
   const [priceAsc, setPriceAsc] = useState(false);
   const [priceDesc, setPriceDesc] = useState(false);
   const [sortNewest, setSortNewest] = useState(false);
+  const [sortFeatured, setSortFeatured] = useState(true);
 
   return (
     <AppContext.Provider
@@ -16,6 +17,8 @@ const SortProvider = ({ children }) => {
         setPriceDesc,
         sortNewest,
         setSortNewest,
+        sortFeatured,
+        setSortFeatured,
       }}>
       {children}
     </AppContext.Provider>
