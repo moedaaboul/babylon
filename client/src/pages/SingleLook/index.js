@@ -28,30 +28,40 @@ const LookImgStyle = styled('img')({
 
 const SingleLook = () => {
   const { lookId } = useParams();
-  const { loading, error, data } = useQuery(GET_SINGLE_LOOK, { variables: { lookId: lookId } });
-  const look = data?.look || [];
-  console.log(look);
+
+  const { loading, data } = useQuery(GET_SINGLE_LOOK, { variables: { lookId: lookId } });
+
+  const look = data?.look || {};
 
   const sumTotal = () => {
     let sum = 0;
-
+    console.log(sum, 'LINE 40');
     for (let i = 0; i < look.items.length; i++) {
-      if (look.items.discountedPrice) {
+      if (look.items[i].discountedPrice) {
         sum++;
+        console.log(sum, 'LINE 44');
       } else {
-        sum = sum + look.items.price;
+        sum = sum + look.items[i].price;
+        console.log(sum, 'LINE 47');
       }
     }
+    console.log(sum, 'LINE 50');
     return sum;
   };
+  sumTotal();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  if (error) return `Error! ${error.message}`;
+  // if (error) return `Error! ${error.message}`;
 
   return (
     <Container maxWidth="xl">
-      <Typography variant="h2" sx={{ my: 5 }}>
-        {look.influencer}'s LOOK
-      </Typography>
+      <Box sx={{ justifyContent: 'center' }}>
+        <Typography variant="h2" sx={{ my: 5 }}>
+          {look.influencer}'s LOOK
+        </Typography>
+      </Box>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -60,11 +70,13 @@ const SingleLook = () => {
         </Grid>
         <Grid item xs={4}>
           <Box>
-            <Typography variant="h3" sx={{ my: 5 }}>
-              GET THIS LOOK FOR £{sumTotal}
+            <Typography variant="h4" sx={{ my: 5 }}>
+              GET THIS LOOK FOR £{sumTotal()}
             </Typography>
             <Divider />
-            <Stack spacing={2}>{loading ? <h6>is loading...</h6> : <LookCard products={look.items} />}</Stack>
+            <Stack spacing={2}>
+              {look.items.map((item) => (loading ? <h6>is loading...</h6> : <LookCard items={item} />))}
+            </Stack>
           </Box>
         </Grid>
       </Grid>

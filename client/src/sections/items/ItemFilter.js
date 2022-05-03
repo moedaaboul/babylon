@@ -45,6 +45,8 @@ const priceSliderMarks = [
 export const FILTER_BRAND_OPTIONS = ['Nike', 'Adidas', 'Levis', 'Under Armour', 'Reebok', 'Dolce & Gabana'];
 
 export default function RefineSidebar() {
+ 
+
   const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories, setColours } = useFilterContext();
   const [value, setValue] = React.useState([minPrice, maxPrice]);
   const [state, setState] = React.useState({
@@ -64,6 +66,8 @@ export default function RefineSidebar() {
     white: false,
     grey: false,
   });
+
+
 
   const handleChange = (event) => {
     console.log(state, 'line76');
@@ -102,6 +106,7 @@ export default function RefineSidebar() {
   };
 
   const { red, yellow, orange, green, blue, purple, pink, black, white, grey } = colourState;
+
 
   const handleChangeValue = (event, newValue) => {
     setValue(newValue);

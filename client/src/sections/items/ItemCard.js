@@ -39,11 +39,11 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, discountedPrice, brand, featured } = product;
+  const { _id, title, image, price, discountedPrice, brand, featured } = product;
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
-      <CardActionArea>
+      <CardActionArea component={RouterLink} to={`/item/${_id}`}>
         <Box sx={{ pt: '100%', position: 'relative' }}>
           {discountedPrice && (
             <Label
