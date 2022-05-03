@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const formatDate = require('../utils/helpers');
 
 const itemSchema = new Schema(
   {
@@ -35,10 +34,17 @@ const itemSchema = new Schema(
       type: String,
       required: true,
     },
-    category: {
+
+    colour: {
       type: String,
-      required: true,
+      required: false,
     },
+    category: 
+      {
+      type: String,
+      required: false,
+      },
+    
     colour: {
       type: String,
       required: true,

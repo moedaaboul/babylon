@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-// material
+// MUI Materials
 import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -24,12 +24,6 @@ const ProductImgStyle = styled('img')({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
-  // '&:hover': {
-  //   src={image[1]},
-  // },
-  // :hover {
-  //   src={image[1]}
-  // }
 });
 
 ItemCard.propTypes = {
@@ -39,11 +33,25 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { _id, title, image, price, discountedPrice } = product;
+  const { _id, title, image, price, discountedPrice, brand, featured } = product;
+
+  // const handleImageChange = () => {
+  //   let imageSrc;
+  //   for (let i = 0; i < image.length; i++) {
+  //     if (image.length > 1) {
+  //       imageSrc = image[1];
+  //     } else {
+  //       imageSrc = image[0];
+  //     }
+  //   }
+  //   console.log(imageSrc);
+  //   return imageSrc;
+  // };
+  // handleImageChange();
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
-      <CardActionArea>
+      <CardActionArea component={RouterLink} to={`/item/${_id}`}>
         <Box sx={{ pt: '100%', position: 'relative' }}>
           {discountedPrice && (
             <Label
@@ -60,6 +68,22 @@ export default function ItemCard({ product }) {
               Sale
             </Label>
           )}
+          {featured && (
+            <Label
+              variant="filled"
+              sx={{
+                color: '#FFFFFF',
+                bgcolor: '#FFAC1C',
+                zIndex: 9,
+                top: 16,
+                right: 16,
+                position: 'absolute',
+                textTransform: 'uppercase',
+              }}>
+              Featured
+            </Label>
+          )}
+          {/* onMouseOver={(this.src = handleImageChange())} */}
           <ProductImgStyle alt={title} src={image[0]} />
         </Box>
       </CardActionArea>
