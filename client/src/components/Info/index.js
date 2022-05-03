@@ -2,13 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { ADD_SINGLE_TO_CART } from '../../state/store/actions';
 import { useStoreContext } from '../../state/store/provider';
-
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 // import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Box, Divider, Grid, Typography, Button } from '@mui/material';
 
 // const Info = ({ title, description, price, color }) => {
@@ -67,6 +66,12 @@ const Info = ({ item }) => {
     }
   };
 
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const handleChange = (event, selectedTab) => {
+    setSelectedTab(selectedTab);
+  };
+
   return (
     <Grid container direction="column" style={{ height: '50%' }}>
       <Typography variant="subtitle1">{item.title}</Typography>
@@ -101,8 +106,8 @@ const Info = ({ item }) => {
         </Select>
       </FormControl>
 
-      <Button onClick={handleSubmit} variant="contained" color="primary" style={{ marginTop: 'auto' }}>
-        Purchase
+      <Button onClick={handleSubmit} size="medium" variant="contained" color="primary" style={{ marginTop: 'auto' }}>
+        Add to Cart <ShoppingCartIcon />
       </Button>
     </Grid>
   );

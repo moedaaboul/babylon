@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
@@ -39,8 +39,9 @@ ItemCard.propTypes = {
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product }) {
-  const { title, image, price, discountedPrice } = product;
-
+  const navigate = useNavigate();
+  const { title, image, price, discountedPrice, _id } = product;
+  console.log(product, 'I am product');
   return (
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea>
@@ -64,8 +65,8 @@ export default function ItemCard({ product }) {
         </Box>
       </CardActionArea>
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink}>
-          <Typography variant="subtitle2" noWrap>
+        <Link to="/SingleItem" color="inherit" underline="hover" component={RouterLink}>
+          <Typography variant="subtitle2" noWrap component={RouterLink} to={`${_id}`}>
             {title}
           </Typography>
         </Link>
