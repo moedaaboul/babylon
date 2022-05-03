@@ -83,6 +83,10 @@ export const GET_SINGLE_LOOK = gql`
         discountedPrice
         title
       }
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($items: [ID]!) {
+    checkout(items: $items) {
+      session
     }
   }
 `;

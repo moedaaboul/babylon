@@ -12,6 +12,8 @@ import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
 import SingleLook from './pages/SingleLook';
+import Checkout from './pages/Checkout';
+import Success from './pages/Success';
 import { StoreProvider } from './state/store/provider';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
@@ -55,6 +57,8 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="/items" element={<AllItems />} />
                   <Route path="/item/:itemId" element={<SingleItem />} />
+                  <Route exact path="/success" element={<Success />} />
+                  <Route exact path="/checkout" element={<Checkout />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/look/:lookID" element={<SingleLook />} />
                   <Route path="/dashboard" element={<Lock />}>

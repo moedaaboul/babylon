@@ -68,3 +68,26 @@ export const UPDATE_ITEM = gql`
     }
   }
 `;
+
+export const ADD_ORDER = gql`
+  mutation AddOrder($items: [ID]!) {
+    addOrder(items: $items) {
+      _id
+      purchaseDate
+      items {
+        _id
+        title
+        createdAt
+        description
+        image
+        price
+        featured
+        discountedPrice
+        stock
+        brand
+        colour
+        category
+      }
+    }
+  }
+`;
