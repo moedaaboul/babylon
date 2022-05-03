@@ -53,7 +53,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/items" element={<AllItems />} />
-                  <Route path=":itemId" element={<SingleItem />} />
+                  <Route path="item/:itemId" element={<SingleItem />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
