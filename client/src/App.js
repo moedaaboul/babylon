@@ -14,7 +14,8 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
-import CheckOut from './pages/CheckOut';
+import Checkout from './pages/CheckOut';
+import Success from './pages/Success';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
 
@@ -57,8 +58,10 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="/items" element={<AllItems />} />
                   <Route path="/item/:itemId" element={<SingleItem />} />
+                  <Route exact path="/success" element={<Success />} />
+                  <Route exact path="/checkout" element={<Checkout />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/checkout" element={<CheckOut />} />
+                  {/* <Route path="/checkout" element={<Checkout />} /> */}
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
                   </Route>

@@ -6,6 +6,7 @@ const typeDefs = gql`
     username: String
     usertype: String
     email: String
+    orders: [Order]
   }
 
   type Item {
@@ -15,11 +16,22 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Float
+    featured: Boolean
     discountedPrice: Float
     stock: Int
     brand: String
     colour: String
     category: String
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    items: [Item]
+  }
+
+  type Checkout {
+    session: ID
   }
 
   type Auth {
@@ -30,12 +42,15 @@ const typeDefs = gql`
   input ItemsFilters {
     maxPrice: Int
     minPrice: Int
+    categories: [String]
+    colours: [String]
   }
 
   input ItemsSort {
     priceAsc: Boolean
     priceDesc: Boolean
     newest: Boolean
+    featured: Boolean
   }
 
   input ItemsInput {
@@ -48,6 +63,8 @@ const typeDefs = gql`
     items(input: ItemsInput): [Item]!
     brandItems: [Item]
     item(itemId: ID!): Item
+    order(_id: ID!): Order
+    checkout(items: [ID]!): Checkout
   }
 
   input ItemInput {
@@ -55,15 +72,18 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Float
+    colour: String
     discountedPrice: Float
     stock: Int
     category: String
+    featured: String
   }
 
   type Mutation {
     loginUser(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, usertype: String!): Auth
     addItem(input: ItemInput!): Item
+    addOrder(items: [ID]!): Order
     deleteItem(itemId: ID!): Item
     updateItem(input: ItemInput!, itemId: ID!): Item
   }

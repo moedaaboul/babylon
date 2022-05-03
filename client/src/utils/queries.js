@@ -12,6 +12,7 @@ export const QUERY_ITEMS = gql`
       discountedPrice
       stock
       brand
+      featured
     }
   }
 `;
@@ -25,6 +26,7 @@ export const GET_BRAND_ITEMS = gql`
       price
       discountedPrice
       stock
+      featured
     }
   }
 `;
@@ -41,6 +43,14 @@ export const GET_SINGLE_ITEM = gql`
       stock
       brand
       category
+    }
+  }
+`;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($items: [ID]!) {
+    checkout(items: $items) {
+      session
     }
   }
 `;

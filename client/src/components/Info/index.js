@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 import { Box, Divider, Grid, Typography, Button } from '@mui/material';
 import { idbPromise } from '../../utils/helpers';
@@ -70,16 +71,21 @@ const Info = ({ item }) => {
 
   return (
     <Grid container direction="column" style={{ height: '50%' }}>
-      <Typography variant="subtitle1">{item.title}</Typography>
+      <Typography variant="subtitle2">{item.brand}</Typography>
+      <Typography variant="h4">{item.title}</Typography>
       {/* <Typography variant="subtitle2">{item.model}</Typography> */}
-      <Divider />
 
-      <Box mt={2}>
-        <Typography variant="div">{item.description}</Typography>
-        <Typography variant="h7">£{item.price}</Typography>
-      </Box>
+      <Typography variant="div">{item.description}</Typography>
+      <Typography variant="h7">£{item.price}</Typography>
 
-      <Divider />
+      <Button
+        onClick={handleSubmit}
+        variant="contained"
+        color="primary"
+        startIcon={<ShoppingBagIcon />}
+        style={{ marginTop: 'auto' }}>
+        Add to Bag
+      </Button>
 
       <FormControl sx={{ m: 1, maxWidth: 200, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-label">Select Quantity</InputLabel>
@@ -91,10 +97,6 @@ const Info = ({ item }) => {
           <MenuItem value={5}>5</MenuItem>
         </Select>
       </FormControl>
-
-      <Button onClick={handleSubmit} variant="contained" color="primary" style={{ marginTop: 'auto' }}>
-        Purchase
-      </Button>
     </Grid>
   );
 };
