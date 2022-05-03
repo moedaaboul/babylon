@@ -41,6 +41,20 @@ ItemCard.propTypes = {
 export default function ItemCard({ product }) {
   const { _id, title, image, price, discountedPrice, brand, featured } = product;
 
+  // const handleImageChange = () => {
+  //   let imageSrc;
+  //   for (let i = 0; i < image.length; i++) {
+  //     if (image.length > 1) {
+  //       imageSrc = image[1];
+  //     } else {
+  //       imageSrc = image[0];
+  //     }
+  //   }
+  //   console.log(imageSrc);
+  //   return imageSrc;
+  // };
+  // handleImageChange();
+
   return (
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea component={RouterLink} to={`/item/${_id}`}>
@@ -75,6 +89,7 @@ export default function ItemCard({ product }) {
               Featured
             </Label>
           )}
+          {/* onMouseOver={(this.src = handleImageChange())} */}
           <ProductImgStyle alt={title} src={image[0]} />
         </Box>
       </CardActionArea>

@@ -42,6 +42,8 @@ const AllItems = () => {
     setOpenFilter(false);
   };
 
+
+
   if (error) return `Error! ${error.message}`;
 
   return (

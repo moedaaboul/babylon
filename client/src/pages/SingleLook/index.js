@@ -35,20 +35,18 @@ const SingleLook = () => {
 
   const sumTotal = () => {
     let sum = 0;
-    console.log(sum, 'LINE 40');
+
     for (let i = 0; i < look.items.length; i++) {
       if (look.items[i].discountedPrice) {
         sum++;
-        console.log(sum, 'LINE 44');
       } else {
         sum = sum + look.items[i].price;
-        console.log(sum, 'LINE 47');
       }
     }
-    console.log(sum, 'LINE 50');
+
     return sum;
   };
-  sumTotal();
+
   if (loading) {
     return <div>Loading...</div>;
   }
