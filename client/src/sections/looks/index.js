@@ -1,1 +1,1 @@
-export { default as LookCard } from './LookCard';
+export { default as LookItemCard } from './LookItemCard';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LOOK } from '../../utils/queries';
 import { useParams } from 'react-router-dom';
-import { LookCard } from '../../sections/looks';
+import { LookItemCard } from '../../sections/looks';
 // MUI Components
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -73,7 +73,7 @@ const SingleLook = () => {
             </Typography>
             <Divider />
             <Stack spacing={2}>
-              {look.items.map((item) => (loading ? <h6>is loading...</h6> : <LookCard items={item} />))}
+              {look.items.map((item) => (loading ? <h6>is loading...</h6> : <LookItemCard items={item} />))}
             </Stack>
           </Box>
         </Grid>
