@@ -16,6 +16,7 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import Close from '@mui/icons-material/Close';
 import DailyInteger from './DailyInteger';
+import DailySummary from './DailySummary';
 import { styled } from '@mui/material/styles';
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
@@ -134,6 +135,9 @@ const Checkout = () => {
               </TableBody>
             </Table>
           </TableContainer>
+        </Box>
+        <Box pb={3}>
+          <DailySummary />
         </Box>
         <CheckoutButton />
       </Container>
