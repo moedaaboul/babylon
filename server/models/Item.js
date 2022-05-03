@@ -39,13 +39,12 @@ const itemSchema = new Schema(
       type: String,
       required: false,
     },
-    category: [
+    category: 
       {
-        type: Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true,
+      type: String,
+      required: false,
       },
-    ],
+    
     colour: {
       type: String,
       required: true,

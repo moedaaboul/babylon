@@ -1,16 +1,10 @@
 const db = require('../config/connection');
-const { Item, Category, Look } = require('../models');
+const { Item, Look } = require('../models');
 
 db.once('open', async () => {
   // clean database
   await Item.deleteMany({});
   await Look.deleteMany({});
-  await Category.deleteMany();
-
-  // Create Categories
-  const categories = await Category.insertMany([{ title: 'Men' }, { title: 'Women' }, { title: 'Kids' }]);
-  console.log(categories);
-  console.log('categories seeded');
 
   // Create Items
   const items = await Item.insertMany([
@@ -21,8 +15,8 @@ db.once('open', async () => {
       price: 60,
       stock: 30,
       brand: 'Nike',
-      colour: 'Black',
-      category: [categories[0]._id],
+      colour: 'black',
+      category: 'Men',
       featured: true,
     },
     {
@@ -33,8 +27,8 @@ db.once('open', async () => {
       discountedPrice: 27,
       stock: 20,
       brand: 'Dolce & Gabanna',
-      colour: 'Brown',
-      category: [categories[0]._id, categories[1]._id],
+      colour: 'brown',
+      category: 'Men',
     },
     {
       title: 'Moonlight Monochrome Shirt',
@@ -43,8 +37,8 @@ db.once('open', async () => {
       price: 45,
       stock: 25,
       brand: 'Paco Rabanne',
-      colour: 'Grey',
-      category: [categories[0]._id],
+      colour: 'grey',
+      category: 'Men',
       featured: true,
     },
     {
@@ -55,8 +49,8 @@ db.once('open', async () => {
       discountedPrice: 20,
       stock: 15,
       brand: 'Irregular Choice',
-      colour: 'Blue',
-      category: [categories[1]._id],
+      colour: 'blue',
+      category: 'Women',
     },
     {
       title: 'Heartbreak T-Shirt',
@@ -66,8 +60,8 @@ db.once('open', async () => {
       discountedPrice: 10,
       stock: 15,
       brand: 'Replay',
-      colour: 'White',
-      category: [categories[0]._id, categories[1]._id, categories[2]._id],
+      colour: 'white',
+      category: 'Men',
     },
     {
       title: 'Osaka T-Shirt',
@@ -77,8 +71,8 @@ db.once('open', async () => {
       discountedPrice: 20,
       stock: 15,
       brand: 'Missguided',
-      colour: 'Blue',
-      category: [categories[1]._id],
+      colour: 'blue',
+      category: 'Men',
     },
     {
       title: 'Classics',
@@ -88,8 +82,8 @@ db.once('open', async () => {
       discountedPrice: 38,
       stock: 15,
       brand: 'Levis',
-      colour: 'Blue',
-      category: [categories[0]._id],
+      colour: 'blue',
+      category: 'Men',
     },
     {
       title: 'Cruz Oversized Sweater',
@@ -98,8 +92,8 @@ db.once('open', async () => {
       price: 35,
       stock: 15,
       brand: 'Missguided',
-      colour: 'Orange',
-      category: [categories[1]._id],
+      colour: 'orange',
+      category: 'Women',
     },
     {
       title: 'Dusty Dancer Leggings',
@@ -109,8 +103,8 @@ db.once('open', async () => {
       discountedPrice: 49,
       stock: 15,
       brand: 'Chanel',
-      colour: 'Pink',
-      category: [categories[1]._id],
+      colour: 'pink',
+      category: 'Women',
     },
     {
       title: 'AK-720 Gliders',
@@ -120,8 +114,8 @@ db.once('open', async () => {
       discountedPrice: 65,
       stock: 15,
       brand: 'RayBan',
-      colour: 'Black',
-      category: [categories[0]._id, categories[1]._id],
+      colour: 'black',
+      category: 'Men',
     },
     {
       title: 'Summer Breeze Dress',
@@ -130,8 +124,8 @@ db.once('open', async () => {
       price: 50,
       stock: 15,
       brand: 'Mango',
-      colour: 'Red',
-      category: [categories[1]._id],
+      colour: 'red',
+      category: 'Women',
       featured: true,
     },
     {
@@ -141,8 +135,8 @@ db.once('open', async () => {
       price: 75,
       stock: 70,
       brand: 'Seiko',
-      colour: 'Black',
-      category: [categories[0]._id],
+      colour: 'black',
+      category: 'Men',
     },
     {
       title: 'Winter Wonderland Coat',
@@ -151,8 +145,8 @@ db.once('open', async () => {
       price: 55,
       stock: 40,
       brand: 'Dior',
-      colour: 'Blue',
-      category: [categories[1]._id],
+      colour: 'blue',
+      category: 'Women',
     },
     {
       title: 'Rose-Tinted Purse',
@@ -161,8 +155,8 @@ db.once('open', async () => {
       price: 30,
       stock: 40,
       brand: 'Chanel',
-      colour: 'Pink',
-      category: [categories[1]._id],
+      colour: 'pink',
+      category: 'Women',
     },
     {
       title: 'Chunky Swinging Boots',
@@ -171,8 +165,8 @@ db.once('open', async () => {
       price: 45,
       stock: 60,
       brand: 'Balenciaga',
-      colour: 'White',
-      category: [categories[1]._id],
+      colour: 'white',
+      category: 'Women',
     },
   ]);
 

@@ -4,7 +4,7 @@ import React from 'react';
 const ImageGrid = ({ item, setIndex, index }) => {
   console.log(item, 'item');
   return (
-    <ImageList sx={{ width: 350, height: 450 }} cols={3} rowHeight={164}>
+    <ImageList cols={3} rowHeight={164}>
       {item.map((e, index) => {
         console.log(e, 'see what e is');
         return (

@@ -21,7 +21,7 @@ const typeDefs = gql`
     stock: Int
     brand: String
     colour: String
-    category: [String]
+    category: String
   }
 
   type Look {
