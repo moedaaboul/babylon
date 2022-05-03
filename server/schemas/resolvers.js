@@ -36,6 +36,14 @@ const resolvers = {
       if (shouldApplyMinPriceFilter) {
         items = items.filter((a) => a.price >= filter.minPrice);
       }
+      const shouldApplyCategoriesFilter = filter.categories !== null;
+      if (shouldApplyCategoriesFilter) {
+        items = items.filter((a) => filter.categories.includes(a.category));
+      }
+      const shouldApplyColoursFilter = filter.colours !== null;
+      if (shouldApplyColoursFilter) {
+        items = items.filter((a) => filter.colours.includes(a.colour));
+      }
       const shouldApplyPriceAscSort = sort.priceAsc;
       if (shouldApplyPriceAscSort) {
         items = items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -47,6 +55,10 @@ const resolvers = {
       const shouldApplyNewestSort = sort.newest;
       if (shouldApplyNewestSort) {
         items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      }
+      const shouldApplyFeaturedSort = sort.featured;
+      if (shouldApplyFeaturedSort) {
+        items = items.sort((a, b) => Number(b.featured) - Number(a.featured));
       }
       return items;
     },
@@ -86,6 +98,8 @@ const resolvers = {
       return deletedItem;
     },
     updateItem: async (_, { input, itemId }) => {
+      console.log(input);
+      console.log({ ...input });
       const updatedItem = await Item.findByIdAndUpdate(
         itemId,
         { $set: { ...input } },

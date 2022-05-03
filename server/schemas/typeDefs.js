@@ -15,6 +15,7 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Float
+    featured: Boolean
     discountedPrice: Float
     stock: Int
     brand: String
@@ -30,12 +31,15 @@ const typeDefs = gql`
   input ItemsFilters {
     maxPrice: Int
     minPrice: Int
+    categories: [String]
+    colours: [String]
   }
 
   input ItemsSort {
     priceAsc: Boolean
     priceDesc: Boolean
     newest: Boolean
+    featured: Boolean
   }
 
   input ItemsInput {
@@ -55,9 +59,11 @@ const typeDefs = gql`
     description: String
     image: [String]
     price: Float
+    colour: String
     discountedPrice: Float
     stock: Int
     category: String
+    featured: String
   }
 
   type Mutation {
