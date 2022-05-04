@@ -80,13 +80,11 @@ const resolvers = {
       return await Look.findOne({ _id: lookId }).populate('items');
     },
 
-    wishList: async (parent, { _id }, context) => {
+    wishList: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'wishList.item',
-        });
+        const user = await User.findById(context.user._id).populate('wishList.item');
         user.wishList.sort((a, b) => b.createdDate - a.createdDate);
-        return user.wishList.id(_id);
+        return user.wishList;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -176,6 +174,18 @@ const resolvers = {
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    addWish: async (parent, { item }, context) => {
+      console.log(item);
+      if (context.user) {
+        const wish = new Wish({ item });
+        console.log(wish);
+        await User.findByIdAndUpdate(context.user._id, { $push: { wishList: wish } });
+
+        return wish;
       }
 
       throw new AuthenticationError('Not logged in');
