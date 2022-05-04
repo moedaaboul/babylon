@@ -6,9 +6,12 @@ import {
   ShoppingBag as ShoppingBagIcon,
 } from '@mui/icons-material';
 
+import { useBadgeContext } from '../../providers/BadgesStateProvider';
+
 import {
   AppBar,
   Box,
+  Badge,
   InputBase,
   Menu,
   MenuItem,
@@ -60,6 +63,7 @@ const Icons = styled(Box)(({ theme }) => ({
 
 const Navbar = () => {
   const [navigateLogout, setNavigateLogout] = useState(false);
+  const { wishListCount } = useBadgeContext();
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -108,7 +112,9 @@ const Navbar = () => {
             </Tooltip>
             <Tooltip title="Wish list">
               <StyledIconButton>
-                <FavouriteIcon />
+                <Badge badgeContent={wishListCount} color="secondary">
+                  <FavouriteIcon />
+                </Badge>
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Shopping Bag">

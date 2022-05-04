@@ -4,6 +4,8 @@ import { Grid } from '@mui/material';
 import ItemCard from './ItemCard';
 import { useQuery } from '@apollo/client';
 import { QUERY_WISH_LIST } from '../../utils/queries';
+import { useBadgeContext } from '../../providers/BadgesStateProvider';
+
 // ----------------------------------------------------------------------
 
 ItemList.propTypes = {
@@ -11,12 +13,14 @@ ItemList.propTypes = {
 };
 
 export default function ItemList({ products, ...other }) {
+  const { setWishListCount } = useBadgeContext();
   const { loading, data } = useQuery(QUERY_WISH_LIST);
   const wishList = data?.wishList || {};
   console.log(wishList, 'line 16');
   if (loading) {
     return <h2>loading...</h2>;
   }
+  setWishListCount(wishList?.length || 0);
   return (
     <Grid container spacing={3} {...other}>
       {products.map((product) => (
