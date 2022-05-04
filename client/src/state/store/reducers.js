@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import {
-  // UPDATE_PRODUCTS,
-  ADD_SINGLE_TO_CART,
+  UPDATE_PRODUCTS,
+  ADD_TO_CART,
   UPDATE_CART_QUANTITY,
   REMOVE_FROM_CART,
   ADD_MULTIPLE_TO_CART,
@@ -11,23 +11,21 @@ import {
   TOGGLE_CART,
 } from './actions';
 
-import { mergy } from '../../utils/helpers';
+// import { updateSummary, mergy } from '../../utils/helpers';
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    // case UPDATE_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     products: [...action.products],
-    //   };
+    case UPDATE_PRODUCTS:
+      return {
+        ...state,
+        products: [...action.products],
+      };
 
-    case ADD_SINGLE_TO_CART:
-      const mergyResult = mergy(state.cart, action.payload);
-
+    case ADD_TO_CART:
       return {
         ...state,
         cartOpen: true,
-        cart: mergyResult,
+        cart: [...state.cart, action.product],
       };
 
     case ADD_MULTIPLE_TO_CART:
@@ -37,26 +35,20 @@ export const reducer = (state, action) => {
       };
 
     case UPDATE_CART_QUANTITY:
-      // debugger;
-
       return {
         ...state,
         cartOpen: true,
         cart: state.cart.map((product) => {
-          if (action.payload.productId === product.productId && action.payload.productSize === product.productSize) {
-            product.productAmount = action.payload.productAmount;
+          if (action._id === product._id) {
+            product.purchaseQuantity = action.purchaseQuantity;
           }
           return product;
         }),
       };
 
     case REMOVE_FROM_CART:
-      debugger;
       let newState = state.cart.filter((product) => {
-        const condition_id_match = product.productId === action.payload.productId;
-        const condition_size_match = product.productSize === action.payload.productSize;
-        const condition_combination = !(condition_id_match && condition_size_match);
-        return condition_combination;
+        return product._id !== action._id;
       });
 
       return {

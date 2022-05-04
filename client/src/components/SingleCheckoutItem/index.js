@@ -9,11 +9,8 @@ import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import { styled } from '@mui/material/styles';
 
-import './cart.css';
-
 import { idbPromise } from '../../utils/helpers';
 import { useStoreContext } from '../../state/store/provider';
-import DailySummary from '../../pages/Checkout/DailySummary';
 
 import { UPDATE_CART_QUANTITY, REMOVE_FROM_CART } from '../../state/store/actions';
 
@@ -35,52 +32,52 @@ const ValueElement = styled('span')(({ theme }) => ({
   padding: '0px 8px',
 }));
 
-export default function CartItem({ item }) {
-  console.log('in cart item', item);
+export default function CheckoutItem({ checkoutItem }) {
+  console.log('in checkout item ', checkoutItem);
 
   const [state, dispatch] = useStoreContext();
 
-  const removeFromCart = (item) => {
+  const removeFromCart = (checkoutItem) => {
     dispatch({
       type: REMOVE_FROM_CART,
-      _id: item._id,
+      _id: checkoutItem._id,
     });
-    idbPromise('cart', 'delete', { ...item });
+    idbPromise('cart', 'delete', { ...checkoutItem });
   };
 
   const addOne = (e) => {
-    const value = item.purchaseQuantity + 1;
+    const value = checkoutItem.purchaseQuantity + 1;
 
     dispatch({
       type: UPDATE_CART_QUANTITY,
-      _id: item._id,
+      _id: checkoutItem._id,
       purchaseQuantity: parseInt(value),
     });
-    idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
+    idbPromise('cart', 'put', { ...checkoutItem, purchaseQuantity: parseInt(value) });
   };
 
   const minusOne = (e) => {
-    const value = item.purchaseQuantity - 1;
+    const value = checkoutItem.purchaseQuantity - 1;
     if (value === 0) {
       dispatch({
         type: REMOVE_FROM_CART,
-        _id: item._id,
+        _id: checkoutItem._id,
       });
-      idbPromise('cart', 'delete', { ...item });
+      idbPromise('cart', 'delete', { ...checkoutItem });
     } else {
       dispatch({
         type: UPDATE_CART_QUANTITY,
-        _id: item._id,
+        _id: checkoutItem._id,
         purchaseQuantity: parseInt(value),
       });
-      idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
+      idbPromise('cart', 'put', { ...checkoutItem, purchaseQuantity: parseInt(value) });
     }
   };
 
   return (
-    <TableRow key={item._id}>
+    <TableRow key={checkoutItem._id}>
       <TableCell component="th" scope="row">
-        <Box display={'flex'} alignItems={'center'}>
+        <Box display={'flex'} aligncheckoutItems={'center'}>
           <Box width={80} height={80}>
             <img
               style={{
@@ -88,8 +85,8 @@ export default function CartItem({ item }) {
                 height: '100%',
                 objectFit: 'contain',
               }}
-              alt={item.title}
-              src={item.image[0]}
+              alt={checkoutItem.title}
+              src={checkoutItem.image[0]}
             />
           </Box>
           <Box ml={2}>
@@ -101,28 +98,28 @@ export default function CartItem({ item }) {
                 fontSize: 16,
                 margin: '0 0 8px 0',
               }}>
-              {item.brand}
+              {checkoutItem.brand}
             </p>
-            <p>{item.title}</p>
-            <p>$ {item.discountedPrice} / piece</p>
+            <p>{checkoutItem.title}</p>
           </Box>
         </Box>
       </TableCell>
-      <TableCell>$ {item.discountedPrice * item.purchaseQuantity}</TableCell>
+      <TableCell>$ {checkoutItem.discountedPrice}</TableCell>
       <TableCell>
         <Root>
           <CustIconButton>
             <Remove onClick={() => minusOne()} />
           </CustIconButton>
-          <ValueElement>{item.purchaseQuantity}</ValueElement>
+          <ValueElement>{checkoutItem.purchaseQuantity}</ValueElement>
           <CustIconButton>
             <Add onClick={() => addOne()} />
           </CustIconButton>
         </Root>
       </TableCell>
+      <TableCell>$ {checkoutItem.discountedPrice * checkoutItem.purchaseQuantity}</TableCell>
       <TableCell>
         <IconButton>
-          <Close onClick={() => removeFromCart(item)} />
+          <Close onClick={() => removeFromCart(checkoutItem)} />
         </IconButton>
       </TableCell>
     </TableRow>
