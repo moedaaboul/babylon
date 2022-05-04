@@ -40,6 +40,7 @@ const AddProduct = () => {
     category: '',
     colour: '',
   });
+
   const [addItem] = useMutation(ADD_ITEM, {
     update(cache, { data: { addItem } }) {
       try {

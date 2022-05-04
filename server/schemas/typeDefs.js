@@ -9,6 +9,14 @@ const typeDefs = gql`
     orders: [Order]
   }
 
+  type OrderHistory {
+    _id: ID!
+    username: String
+    usertype: String
+    email: String
+    orders: [Order]
+  }
+
   type Item {
     _id: ID
     title: String
@@ -76,6 +84,7 @@ const typeDefs = gql`
     item(itemId: ID!): Item
     order(_id: ID!): Order
     checkout(items: [ID]!): Checkout
+    orderHistory: User
   }
 
   input ItemInput {
