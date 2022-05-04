@@ -91,3 +91,15 @@ export const ADD_ORDER = gql`
     }
   }
 `;
+
+export const TOGGLE_LIKE = gql`
+  mutation Mutation($item: ID!) {
+    addWish(item: $item) {
+      _id
+      createdDate
+      item {
+        _id
+      }
+    }
+  }
+`;

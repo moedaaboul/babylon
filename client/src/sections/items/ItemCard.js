@@ -13,6 +13,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import { useMutation } from '@apollo/client';
+import { TOGGLE_LIKE } from '../../utils/mutations';
+import { QUERY_WISH_LIST } from '../../utils/queries';
 // utils
 import { fCurrency } from '../../utils/formatNumber';
 // ----------------------------------------------------------------------
@@ -34,6 +37,9 @@ const ProductImgStyle = styled('img')({
 
 export default function ItemCard({ product, wishList }) {
   const { _id, title, image, price, discountedPrice, brand, featured } = product;
+  const [toggleLike] = useMutation(TOGGLE_LIKE, {
+    refetchQueries: [{ query: QUERY_WISH_LIST }],
+  });
   console.log(product, wishList);
   const likedByUser = wishList.map((e) => e.item._id).includes(_id);
   // const handleImageChange = () => {
@@ -49,6 +55,23 @@ export default function ItemCard({ product, wishList }) {
   //   return imageSrc;
   // };
   // handleImageChange();
+
+  const handleToggleLike = async (item) => {
+    console.log(item, 'line 57');
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    // if (!token) {
+    //   return false;
+    // }
+
+    try {
+      await toggleLike({
+        variables: { item: item },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
@@ -112,7 +135,7 @@ export default function ItemCard({ product, wishList }) {
           </Typography>
 
           <Tooltip title="Add To Wishlist">
-            <IconButton aria-label="add to wishlist" onClick={() => {}}>
+            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
               {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
           </Tooltip>
