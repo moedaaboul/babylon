@@ -42,7 +42,7 @@ export default function ActiveCart({ cart, total }) {
 
       <br></br>
       {Auth.loggedIn() ? (
-        <Button className="check-out-button" variant="contained" href="./checkout">
+        <Button className="check-out-button" variant="contained" href="../checkout">
           Checkout
         </Button>
       ) : (

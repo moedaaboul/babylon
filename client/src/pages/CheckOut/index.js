@@ -26,6 +26,8 @@ import { styled } from '@mui/material/styles';
 
 import DailyInteger from './DailyInteger';
 import DailySummary from './DailySummary';
+import CheckoutItem from '../../components/SingleCheckoutItem';
+import SingleCartItem from '../../components/SingleCartItem';
 import { idbPromise } from '../../utils/helpers';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
@@ -71,7 +73,9 @@ export default function Checkout() {
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
-      sum += item.price * item.purchaseQuantity;
+      item.discountedPrice
+        ? (sum += item.discountedPrice * item.purchaseQuantity)
+        : (sum += item.price * item.purchaseQuantity);
     });
     return sum.toFixed(2);
   }
@@ -89,6 +93,8 @@ export default function Checkout() {
       variables: { products: productIds },
     });
   }
+
+  const cartContent = state.cart;
 
   return (
     <Container maxWidth="xl">
@@ -108,54 +114,15 @@ export default function Checkout() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {state.cart.map((cartItem) => (
-                <TableRow key={cartItem.name}>
-                  <TableCell component="th" scope="row">
-                    <Box display={'flex'} alignItems={'center'}>
-                      <Box width={80} height={80}>
-                        <img
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'contain',
-                          }}
-                          alt={cartItem.title}
-                          src={cartItem.image[0]}
-                        />
-                      </Box>
-                      <Box ml={2}>
-                        <p
-                          className={{
-                            fontFamily:
-                              '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
-                            fontWeight: 'bold',
-                            fontSize: 16,
-                            margin: '0 0 8px 0',
-                          }}>
-                          {cartItem.title}
-                        </p>
-                        <span>{cartItem.description}</span>
-                      </Box>
-                    </Box>
-                  </TableCell>
-                  <TableCell>{cartItem.price}</TableCell>
-                  <TableCell>
-                    <DailyInteger>{cartItem.purchaseQuantity}</DailyInteger>
-                  </TableCell>
-                  <TableCell>{cartItem.price}</TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <Close />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
+              {cartContent.map((item, index) => (
+                <CheckoutItem checkoutItem={item} />
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Box>
       <Box pb={3}>
-        <DailySummary />
+        <DailySummary total={calculateTotal()} />
       </Box>
       <CheckoutButton />
     </Container>

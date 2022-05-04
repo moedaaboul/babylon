@@ -55,7 +55,11 @@ export default function TemporaryDrawer() {
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
-      sum += item.price * item.purchaseQuantity;
+      if (item.discountedPrice) {
+        sum += item.discountedPrice * item.purchaseQuantity;
+      } else {
+        sum += item.price * item.purchaseQuantity;
+      }
     });
     return sum.toFixed(2);
   }
@@ -95,8 +99,6 @@ export default function TemporaryDrawer() {
       <React.Fragment key="right">
         <ShoppingBagIcon onClick={toggleDrawer('right', true)} />
         <Drawer anchor="right" open={drawerState['right']} onClose={toggleDrawer('right', false)}>
-          {/* {list(testSeed)} */}
-          {/* <Box sx={{ width: 1000 }} role="presentation" onClick={toggleDrawer('right', false)}> */}
           <Box sx={{ width: 500 }} role="presentation">
             <List>
               <ListItem>
@@ -113,60 +115,3 @@ export default function TemporaryDrawer() {
     </div>
   );
 }
-
-// const testCart = [
-//   {
-//     brand: 'test',
-//     category: 'Men',
-//     description: 'Test Item 1',
-//     discountedPrice: 89,
-//     image: [
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621238/yq6fuklyymm6adxnlkqp.png',
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621238/jncgpacxghen8fpmafwz.jpg',
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621239/jfhyybsynxw0akawuhc1.png',
-//     ],
-//     length: 3,
-//     price: 99,
-//     purchaseQuantity: 5,
-//     stock: 100,
-//     title: 'Test Item 1',
-//     __typename: 'Item',
-//     _id: '6271bd77d74b6fb00dd4622f',
-//   },
-//   {
-//     brand: 'test',
-//     category: 'Men',
-//     description: 'Test Item 1',
-//     discountedPrice: 89,
-//     image: [
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621238/yq6fuklyymm6adxnlkqp.png',
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621238/jncgpacxghen8fpmafwz.jpg',
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621239/jfhyybsynxw0akawuhc1.png',
-//     ],
-//     length: 3,
-//     price: 99,
-//     purchaseQuantity: 5,
-//     stock: 100,
-//     title: 'Test Item 1',
-//     __typename: 'Item',
-//     _id: '6271bd77d74b6fb00dd4622f',
-//   },
-//   {
-//     brand: 'test',
-//     category: 'Men',
-//     description: 'Test Item 1',
-//     discountedPrice: 89,
-//     image: [
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621238/yq6fuklyymm6adxnlkqp.png',
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621238/jncgpacxghen8fpmafwz.jpg',
-//       'http://res.cloudinary.com/dyb07uvmrhy/image/upload/w_1169,h_780,c_fill/v1651621239/jfhyybsynxw0akawuhc1.png',
-//     ],
-//     length: 3,
-//     price: 99,
-//     purchaseQuantity: 5,
-//     stock: 100,
-//     title: 'Test Item 1',
-//     __typename: 'Item',
-//     _id: '6271bd77d74b6fb00dd4622f',
-//   },
-// ];
