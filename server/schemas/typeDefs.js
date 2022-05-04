@@ -7,6 +7,7 @@ const typeDefs = gql`
     usertype: String
     email: String
     orders: [Order]
+    wishList: [Wish]
   }
 
   type Item {
@@ -37,6 +38,12 @@ const typeDefs = gql`
     _id: ID
     purchaseDate: String
     items: [Item]
+  }
+
+  type Wish {
+    _id: ID
+    createdDate: String
+    item: Item
   }
 
   type Checkout {
@@ -72,6 +79,7 @@ const typeDefs = gql`
     items(input: ItemsInput): [Item]!
     looks: [Look]!
     look(lookId: ID!): Look
+    wishList: [Wish]
     brandItems: [Item]
     item(itemId: ID!): Item
     order(_id: ID!): Order
@@ -95,6 +103,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!, usertype: String!): Auth
     addItem(input: ItemInput!): Item
     addOrder(items: [ID]!): Order
+    addWish(item: ID!): Item
     deleteItem(itemId: ID!): Item
     updateItem(input: ItemInput!, itemId: ID!): Item
   }

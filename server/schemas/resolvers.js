@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Item, Look, Order } = require('../models');
+const { User, Item, Look, Order, Wish } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
@@ -80,6 +80,17 @@ const resolvers = {
       return await Look.findOne({ _id: lookId }).populate('items');
     },
 
+    wishList: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'wishList.item',
+        });
+        user.wishList.sort((a, b) => b.createdDate - a.createdDate);
+        return user.wishList.id(_id);
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
