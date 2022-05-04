@@ -4,12 +4,6 @@ import { useState } from 'react';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../state/store/actions';
 import { useStoreContext } from '../../state/store/provider';
 
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-
 import { Box, Divider, Grid, Typography, Button } from '@mui/material';
 import { idbPromise } from '../../utils/helpers';
 
@@ -125,15 +119,23 @@ const Info = ({ item }) => {
     //   </FormControl>
     // </Grid>
     <div className="card px-1 py-1">
-      <Link to={`/products/${_id}`}>
-        <img alt={title} src={`/images/${image}`} />
-        <p>{title}</p>
-      </Link>
+      <Typography variant="h5" gutterBottom component="div">
+        {title}
+      </Typography>
+      <Divider />
       <div>
-        <div>{quantity} in stock</div>
-        <span>${price}</span>
+        <Typography variant="caption" display="block" gutterBottom>
+          Currently {stock} in stock
+        </Typography>
+        <br></br>
+        <Typography variant="caption" display="block" gutterBottom>
+          {discountedPrice ? `$ ${discountedPrice}` : `$ ${price}`}
+        </Typography>
+        <br></br>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
+      <Button variant="contained" onClick={addToCart}>
+        Add to cart
+      </Button>
     </div>
   );
 };
