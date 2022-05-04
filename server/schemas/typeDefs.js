@@ -103,7 +103,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!, usertype: String!): Auth
     addItem(input: ItemInput!): Item
     addOrder(items: [ID]!): Order
-    addWish(item: ID!): Item
+    addWish(item: ID!): Wish
     deleteItem(itemId: ID!): Item
     updateItem(input: ItemInput!, itemId: ID!): Item
   }

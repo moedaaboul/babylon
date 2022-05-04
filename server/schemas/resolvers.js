@@ -4,6 +4,7 @@ const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const ObjectId = require('mongoose').ObjectID;
 
 const resolvers = {
   Query: {
@@ -181,11 +182,23 @@ const resolvers = {
     addWish: async (parent, { item }, context) => {
       console.log(item);
       if (context.user) {
-        const wish = new Wish({ item });
-        console.log(wish);
-        await User.findByIdAndUpdate(context.user._id, { $push: { wishList: wish } });
+        const userData = await User.findById(context.user._id).populate('wishList.item');
+        const shouldCreateNewWishItem = !userData.wishList.map((e) => e.item._id.toString()).includes(item);
+        console.log(shouldCreateNewWishItem);
 
-        return wish;
+        if (!shouldCreateNewWishItem) {
+          console.log('here');
+          const updatedWish = await User.findByIdAndUpdate(context.user._id, { $pull: { wishList: { item } } });
+          console.log(updatedWish);
+          return updatedWish.wishList;
+        }
+        if (shouldCreateNewWishItem) {
+          console.log('no here');
+          const wish = new Wish({ item });
+          console.log(wish);
+          await User.findByIdAndUpdate(context.user._id, { $push: { wishList: wish } });
+          return wish;
+        }
       }
 
       throw new AuthenticationError('Not logged in');
