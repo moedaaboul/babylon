@@ -100,3 +100,13 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
+export const QUERY_WISH_LIST = gql`
+  query Query {
+    wishList {
+      item {
+        _id
+      }
+    }
+  }
+`;

@@ -15,7 +15,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 // utils
 import { fCurrency } from '../../utils/formatNumber';
-
 // ----------------------------------------------------------------------
 
 const ProductImgStyle = styled('img')({
@@ -26,15 +25,17 @@ const ProductImgStyle = styled('img')({
   position: 'absolute',
 });
 
-ItemCard.propTypes = {
-  product: PropTypes.object,
-};
+// ItemCard.propTypes = {
+//   product: PropTypes.object,
+//   wishlist: PropTypes.object,
+// };
 
 // ----------------------------------------------------------------------
 
-export default function ItemCard({ product }) {
+export default function ItemCard({ product, wishList }) {
   const { _id, title, image, price, discountedPrice, brand, featured } = product;
-
+  console.log(product, wishList);
+  const likedByUser = wishList.map((e) => e.item._id).includes(_id);
   // const handleImageChange = () => {
   //   let imageSrc;
   //   for (let i = 0; i < image.length; i++) {
@@ -111,12 +112,8 @@ export default function ItemCard({ product }) {
           </Typography>
 
           <Tooltip title="Add To Wishlist">
-            <IconButton
-              aria-label="add to wishlist"
-              onClick={() => {
-                <FavoriteIcon />;
-              }}>
-              <FavoriteBorderIcon />
+            <IconButton aria-label="add to wishlist" onClick={() => {}}>
+              {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
           </Tooltip>
         </Stack>
