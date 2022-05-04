@@ -38,7 +38,7 @@ export default function ActiveCart({ cart, total }) {
 
       <br></br>
 
-      <Typography className="total-figure">Total: $ {total}</Typography>
+      <Typography className="total-figure">Total: £ {total}</Typography>
 
       <br></br>
       {Auth.loggedIn() ? (

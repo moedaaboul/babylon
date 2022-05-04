@@ -129,7 +129,7 @@ const Info = ({ item }) => {
         </Typography>
         <br></br>
         <Typography variant="caption" display="block" gutterBottom>
-          {discountedPrice ? `$ ${discountedPrice}` : `$ ${price}`}
+          {discountedPrice ? `£ ${discountedPrice}` : `£ ${price}`}
         </Typography>
         <br></br>
       </div>
