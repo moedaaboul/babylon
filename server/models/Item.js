@@ -39,12 +39,11 @@ const itemSchema = new Schema(
       type: String,
       required: false,
     },
-    category: 
-      {
+    category: {
       type: String,
       required: false,
-      },
-    
+    },
+
     colour: {
       type: String,
       required: true,
@@ -58,6 +57,13 @@ const itemSchema = new Schema(
       type: Date,
       default: Date.now(),
     },
+    review: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        rating: Number,
+      },
+    ],
   },
   {
     toJSON: {

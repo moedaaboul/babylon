@@ -22,6 +22,7 @@ const typeDefs = gql`
     brand: String
     colour: String
     category: String
+    review(userId: ID!): [Rating]
   }
 
   type Look {
@@ -76,6 +77,7 @@ const typeDefs = gql`
     item(itemId: ID!): Item
     order(_id: ID!): Order
     checkout(items: [ID]!): Checkout
+    review(userId: ID!): [Rating]
   }
 
   input ItemInput {
