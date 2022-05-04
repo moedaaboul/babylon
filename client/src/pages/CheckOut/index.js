@@ -8,7 +8,6 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
 // import Button from '@mui/material/Button';
 // import SaveIcon from '@mui/icons-material/Save';
-import CheckoutButton from '../../components/CheckoutButton';
 import Container from '@mui/material/Container';
 // import SideCart from "../../components/SideCart";
 // import './index.css';
@@ -20,8 +19,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Close from '@mui/icons-material/Close';
+
 import { styled } from '@mui/material/styles';
 
 import DailyInteger from './DailyInteger';
@@ -47,7 +48,7 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
 export default function Checkout() {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
+  console.log(state, 'line 50');
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -59,7 +60,8 @@ export default function Checkout() {
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
-      dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+      // dispatch({ type: CLEAR_CART });
+      dispatch({ type: ADD_MULTIPLE_TO_CART, products: cart });
     }
     if (!state.cart.length) {
       getCart();
@@ -81,21 +83,21 @@ export default function Checkout() {
   }
 
   function submitCheckout() {
-    const productIds = [];
+    const itemIds = [];
 
     state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
+        itemIds.push(item._id);
       }
     });
-
+    console.log(itemIds, 'line 92 checkout page');
     getCheckout({
-      variables: { products: productIds },
+      variables: { items: itemIds },
     });
   }
 
   const cartContent = state.cart;
-
+  console.log(cartContent);
   return (
     <Container maxWidth="xl">
       <Box pt={{ xs: 2, sm: 4, md: 6 }}>
@@ -124,7 +126,7 @@ export default function Checkout() {
       <Box pb={3}>
         <DailySummary total={calculateTotal()} />
       </Box>
-      <CheckoutButton />
+      <Button onClick={submitCheckout}>Checkout</Button>
     </Container>
   );
 }

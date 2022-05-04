@@ -104,25 +104,25 @@ export default function CartItem({ item }) {
               {item.brand}
             </p>
             <p>{item.title}</p>
-            <p>$ {item.discountedPrice} / piece</p>
+            <p>£ {item.discountedPrice} / piece</p>
           </Box>
         </Box>
       </TableCell>
-      <TableCell>$ {item.discountedPrice * item.purchaseQuantity}</TableCell>
+      <TableCell>£ {item.discountedPrice * item.purchaseQuantity}</TableCell>
       <TableCell>
         <Root>
-          <CustIconButton>
-            <Remove onClick={() => minusOne()} />
+          <CustIconButton onClick={() => minusOne()}>
+            <Remove />
           </CustIconButton>
           <ValueElement>{item.purchaseQuantity}</ValueElement>
-          <CustIconButton>
-            <Add onClick={() => addOne()} />
+          <CustIconButton onClick={() => addOne()}>
+            <Add />
           </CustIconButton>
         </Root>
       </TableCell>
       <TableCell>
-        <IconButton>
-          <Close onClick={() => removeFromCart(item)} />
+        <IconButton onClick={() => removeFromCart(item)}>
+          <Close />
         </IconButton>
       </TableCell>
     </TableRow>

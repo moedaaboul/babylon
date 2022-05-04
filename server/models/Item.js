@@ -32,19 +32,18 @@ const itemSchema = new Schema(
     },
     brand: {
       type: String,
-      required: true,
+      required: false,
     },
 
     colour: {
       type: String,
       required: false,
     },
-    category: 
-      {
+    category: {
       type: String,
       required: false,
-      },
-    
+    },
+
     colour: {
       type: String,
       required: true,

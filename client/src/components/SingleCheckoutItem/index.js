@@ -104,22 +104,22 @@ export default function CheckoutItem({ checkoutItem }) {
           </Box>
         </Box>
       </TableCell>
-      <TableCell>$ {checkoutItem.discountedPrice}</TableCell>
+      <TableCell>£ {checkoutItem.discountedPrice}</TableCell>
       <TableCell>
         <Root>
-          <CustIconButton>
-            <Remove onClick={() => minusOne()} />
+          <CustIconButton onClick={() => minusOne()}>
+            <Remove />
           </CustIconButton>
           <ValueElement>{checkoutItem.purchaseQuantity}</ValueElement>
-          <CustIconButton>
-            <Add onClick={() => addOne()} />
+          <CustIconButton onClick={() => addOne()}>
+            <Add />
           </CustIconButton>
         </Root>
       </TableCell>
-      <TableCell>$ {checkoutItem.discountedPrice * checkoutItem.purchaseQuantity}</TableCell>
+      <TableCell>£ {checkoutItem.discountedPrice * checkoutItem.purchaseQuantity}</TableCell>
       <TableCell>
-        <IconButton>
-          <Close onClick={() => removeFromCart(checkoutItem)} />
+        <IconButton onClick={() => removeFromCart(checkoutItem)}>
+          <Close />
         </IconButton>
       </TableCell>
     </TableRow>

@@ -61,7 +61,7 @@ const DailySummary = ({ total }) => {
           <Grid container spacing={1}>
             <Grid item xs={5}>
               <Box align={'right'}>
-                <b className={{ fontSize: 16 }}>$ {total}</b>
+                <b className={{ fontSize: 16 }}>£ {total}</b>
               </Box>
             </Grid>
             <Grid item xs={7}>
@@ -71,7 +71,7 @@ const DailySummary = ({ total }) => {
             </Grid>
             <Grid item xs={5}>
               <Box align={'right'}>
-                <b style={{ fontSize: 16 }}>$ {shippingCost}</b>
+                <b style={{ fontSize: 16 }}>£ {shippingCost}</b>
               </Box>
             </Grid>
             <Grid item xs={7}>
@@ -86,7 +86,7 @@ const DailySummary = ({ total }) => {
           <Grid container spacing={1}>
             <Grid item xs={5}>
               <Box align={'right'}>
-                <b className={{ fontSize: 16 }}>$ {total}</b>
+                <b className={{ fontSize: 16 }}>£ {total}</b>
               </Box>
             </Grid>
             <Grid item xs={7}>

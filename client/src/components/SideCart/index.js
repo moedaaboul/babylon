@@ -40,7 +40,7 @@ export default function TemporaryDrawer() {
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
-      dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+      dispatch({ type: ADD_MULTIPLE_TO_CART, products: cart });
     }
 
     if (!state.cart.length) {
@@ -108,7 +108,7 @@ export default function TemporaryDrawer() {
               </ListItem>
             </List>
             <Divider />
-            {cartOpen ? <ActiveCart cart={cartContent} total={calculateTotal()} /> : <EmptyCart />}
+            {cartContent.length ? <ActiveCart cart={cartContent} total={calculateTotal()} /> : <EmptyCart />}
           </Box>
         </Drawer>
       </React.Fragment>
