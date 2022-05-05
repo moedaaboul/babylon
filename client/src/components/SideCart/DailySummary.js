@@ -52,8 +52,7 @@ export const Button = styled(MuiButton)(({ theme }) => ({
   },
 }));
 
-const DailySummary = ({ total }) => {
-  const shippingCost = 0;
+const DailySummary = () => {
   return (
     <TableFooter>
       <Grid container justify={'space-between'} spacing={2}>
@@ -61,22 +60,22 @@ const DailySummary = ({ total }) => {
           <Grid container spacing={1}>
             <Grid item xs={5}>
               <Box align={'right'}>
-                <b className={{ fontSize: 16 }}>£ {total}</b>
+                <b className={{ fontSize: 16 }}>Subtotal:</b>
               </Box>
             </Grid>
             <Grid item xs={7}>
               <Box px={2} align={'right'} className={{ fontSize: 16 }}>
-                <span>Subtotal:</span>
+                <span>$149.96</span>
               </Box>
             </Grid>
             <Grid item xs={5}>
               <Box align={'right'}>
-                <b style={{ fontSize: 16 }}>£ {shippingCost}</b>
+                <b style={{ fontSize: 16 }}>Shipping:</b>
               </Box>
             </Grid>
             <Grid item xs={7}>
               <Box px={2} align={'right'} style={{ fontSize: 16 }}>
-                <span>Shipping:</span>
+                <span>$0</span>
               </Box>
             </Grid>
           </Grid>
@@ -86,12 +85,12 @@ const DailySummary = ({ total }) => {
           <Grid container spacing={1}>
             <Grid item xs={5}>
               <Box align={'right'}>
-                <b className={{ fontSize: 16 }}>£ {total}</b>
+                <b className={{ fontSize: 16 }}>Total:</b>
               </Box>
             </Grid>
             <Grid item xs={7}>
               <Box px={2} align={'right'} style={{ fontSize: 24 }}>
-                <span>Total:</span>
+                <span>$149.96</span>
               </Box>
             </Grid>
           </Grid>

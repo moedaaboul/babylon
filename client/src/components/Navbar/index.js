@@ -63,6 +63,11 @@ const Navbar = () => {
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const redirectToHome = (e) => {
+    navigate('/');
+  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -85,7 +90,7 @@ const Navbar = () => {
     <>
       <AppBar position="sticky">
         <StyledToolbar>
-          <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'block' } }} onClick={redirectToHome}>
             BABYLON
           </Typography>
           <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} />
