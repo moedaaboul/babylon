@@ -41,21 +41,7 @@ export default function ItemCard({ product, wishList }) {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });
   console.log(product, wishList);
-  // const likedByUser = wishList.map((e) => e.item._id).includes(_id);
-
-  // const handleImageChange = () => {
-  //   let imageSrc;
-  //   for (let i = 0; i < image.length; i++) {
-  //     if (image.length > 1) {
-  //       imageSrc = image[1];
-  //     } else {
-  //       imageSrc = image[0];
-  //     }
-  //   }
-  //   console.log(imageSrc);
-  //   return imageSrc;
-  // };
-  // handleImageChange();
+  const likedByUser = wishList.map((e) => e.item._id).includes(_id);
 
   const handleToggleLike = async (item) => {
     console.log(item, 'line 57');
@@ -76,24 +62,18 @@ export default function ItemCard({ product, wishList }) {
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
-      <CardActionArea component={RouterLink} to={`/item/${_id}`}>
+      <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          <Tooltip title="Add To Wishlist">
-            <IconButton
-              aria-label="add to wishlist"
-              sx={{
-                bgcolor: '#FFFFFF',
-                zIndex: 9,
-                top: 16,
-                right: 16,
-                position: 'absolute',
-              }}>
-              {/* {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              onClick={() => handleToggleLike(_id) } */}
-              <FavoriteBorderIcon />
+          <Link to={`/item/${_id}`} component={RouterLink}>
+            <ProductImgStyle alt={title} src={image[0]} />
+          </Link>
+          <Tooltip
+            title="Add To Wishlist"
+            style={{ position: 'absolute', top: 3, right: 3, color: 'black', background: 'white' }}>
+            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
+              {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
           </Tooltip>
-          <ProductImgStyle alt={title} src={image[0]} />
         </Box>
       </CardActionArea>
       <Stack spacing={2} sx={{ p: 3 }}>
