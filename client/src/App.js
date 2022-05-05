@@ -68,10 +68,10 @@ function App() {
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/wardrobe/lists/owned" element={<MyOrders />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/wardrobe/lists/liked" element={<WishList />} />
                     <Route path="/lookfeed" element={<LookFeed />} />
                     <Route path="/look/:lookId" element={<SingleLook />} />
                     <Route path="/dashboard" element={<Lock />}>
-                      <Route path="/wardrobe/lists/liked" element={<WishList />} />
                       <Route index element={<Brand />} />
                     </Route>
                     {/* <Route path="/dashboard" element={<Dashboard />} /> */}

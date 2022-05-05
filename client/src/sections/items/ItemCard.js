@@ -130,7 +130,7 @@ export default function ItemCard({ product, wishList }) {
                 textDecoration: 'line-through',
                 m: 1,
               }}>
-              {discountedPrice && fCurrency(price)}
+              {(discountedPrice !== price && fCurrency(price)) || null}
             </Typography>
           </Typography>
 
