@@ -124,6 +124,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleChange}
@@ -138,6 +139,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   checkedIcon={<CircleSharpIcon />}
@@ -152,6 +154,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleChange}
@@ -175,6 +178,7 @@ export default function RefineSidebar() {
             <Slider
               getAriaLabel={() => 'Price Range'}
               value={value}
+              color={'secondary'}
               onChange={handleChangeValue}
               onChangeCommitted={handleChangeCommitted}
               valueLabelDisplay="auto"
@@ -212,6 +216,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -226,6 +231,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -240,6 +246,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -254,6 +261,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -268,6 +276,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -282,6 +291,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -296,6 +306,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -310,6 +321,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -324,6 +336,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
@@ -338,6 +351,7 @@ export default function RefineSidebar() {
               componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
                   size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}

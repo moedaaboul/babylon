@@ -67,7 +67,7 @@ export default function ItemCard({ product, wishList }) {
           <Link to={`/item/${_id}`} component={RouterLink}>
             <ProductImgStyle alt={title} src={image[0]} />
           </Link>
-          <Tooltip title="Add To Wishlist" style={{ position: 'absolute', top: 3, right: 3, color: 'white' }}>
+          <Tooltip title="Add To Wishlist" style={{ position: 'absolute', top: 3, right: 3 }} color={'secondary'}>
             <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
               {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
