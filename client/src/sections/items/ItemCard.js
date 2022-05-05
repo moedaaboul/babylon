@@ -42,19 +42,6 @@ export default function ItemCard({ product, wishList }) {
   });
   console.log(product, wishList);
   const likedByUser = wishList.map((e) => e.item._id).includes(_id);
-  // const handleImageChange = () => {
-  //   let imageSrc;
-  //   for (let i = 0; i < image.length; i++) {
-  //     if (image.length > 1) {
-  //       imageSrc = image[1];
-  //     } else {
-  //       imageSrc = image[0];
-  //     }
-  //   }
-  //   console.log(imageSrc);
-  //   return imageSrc;
-  // };
-  // handleImageChange();
 
   const handleToggleLike = async (item) => {
     console.log(item, 'line 57');
@@ -75,40 +62,16 @@ export default function ItemCard({ product, wishList }) {
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
-      <CardActionArea component={RouterLink} to={`/item/${_id}`}>
+      <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {discountedPrice && (
-            <Label
-              variant="filled"
-              sx={{
-                color: '#FFFFFF',
-                bgcolor: '#FF0000',
-                zIndex: 9,
-                top: 16,
-                right: 16,
-                position: 'absolute',
-                textTransform: 'uppercase',
-              }}>
-              Sale
-            </Label>
-          )}
-          {featured && (
-            <Label
-              variant="filled"
-              sx={{
-                color: '#FFFFFF',
-                bgcolor: '#FFAC1C',
-                zIndex: 9,
-                top: 16,
-                right: 16,
-                position: 'absolute',
-                textTransform: 'uppercase',
-              }}>
-              Featured
-            </Label>
-          )}
-          {/* onMouseOver={(this.src = handleImageChange())} */}
-          <ProductImgStyle alt={title} src={image[0]} />
+          <Link to={`/item/${_id}`} component={RouterLink}>
+            <ProductImgStyle alt={title} src={image[0]} />
+          </Link>
+          <Tooltip title="Add To Wishlist" style={{ position: 'absolute', top: 3, right: 3 }} color={'secondary'}>
+            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
+              {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </IconButton>
+          </Tooltip>
         </Box>
       </CardActionArea>
       <Stack spacing={2} sx={{ p: 3 }}>
@@ -130,15 +93,33 @@ export default function ItemCard({ product, wishList }) {
                 textDecoration: 'line-through',
                 m: 1,
               }}>
-              {discountedPrice && fCurrency(price)}
+              {(discountedPrice !== price && fCurrency(price)) || null}
             </Typography>
           </Typography>
+          {discountedPrice < price && (
+            <Label
+              variant="filled"
+              sx={{
+                color: '#FFFFFF',
+                bgcolor: '#FF0000',
 
-          <Tooltip title="Add To Wishlist">
-            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
-              {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </IconButton>
-          </Tooltip>
+                textTransform: 'uppercase',
+              }}>
+              Sale
+            </Label>
+          )}
+          {featured && (
+            <Label
+              variant="filled"
+              sx={{
+                color: '#FFFFFF',
+                bgcolor: '#FFAC1C',
+
+                textTransform: 'uppercase',
+              }}>
+              Featured
+            </Label>
+          )}
         </Stack>
       </Stack>
     </Card>

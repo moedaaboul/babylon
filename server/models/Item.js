@@ -44,10 +44,6 @@ const itemSchema = new Schema(
       required: false,
     },
 
-    colour: {
-      type: String,
-      required: true,
-    },
     featured: {
       type: Boolean,
       required: false,

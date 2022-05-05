@@ -87,7 +87,6 @@ export default function WishCard({ item }) {
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {/* onMouseOver={(this.src = handleImageChange())} */}
           <Link to={`/item/${_id}`} component={RouterLink}>
             <ProductImgStyle alt={title} src={image[0]} />
           </Link>

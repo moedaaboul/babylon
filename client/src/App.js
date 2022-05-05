@@ -7,6 +7,7 @@ import { FiltersProvider } from './providers/FiltersStateProvider';
 import { SortProvider } from './providers/SortStateProvider';
 import { BadgesProvider } from './providers/BadgesStateProvider';
 import { StoreProvider } from './state/store/provider';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -15,6 +16,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
+import LookFeed from './pages/LookFeed';
 import SingleLook from './pages/SingleLook';
 import Checkout from './pages/Checkout';
 import Success from './pages/Success';
@@ -28,6 +30,19 @@ import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
+});
+
+const theme = createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#000000',
+      light: '#000000',
+    },
+    secondary: {
+      main: '#098c47',
+    },
+  },
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -55,28 +70,31 @@ function App() {
         <StoreProvider>
           <SortProvider>
             <BadgesProvider>
-              <Router>
-                <ErrorBoundary>
-                  <Navbar />
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/items" element={<AllItems />} />
-                    <Route path="/item/:itemId" element={<SingleItem />} />
-                    <Route exact path="/success" element={<Success />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/wardrobe/lists/owned" element={<MyOrders />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/wardrobe/lists/liked" element={<WishList />} />
-                    <Route path="/look/:lookId" element={<SingleLook />} />
-                    <Route path="/dashboard" element={<Lock />}>
-                      <Route index element={<Brand />} />
-                    </Route>
-                    {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                    <Route path="*" element={<Page404 />} />
-                  </Routes>
-                </ErrorBoundary>
-              </Router>
+              <ThemeProvider theme={theme}>
+                <Router>
+                  <ErrorBoundary>
+                    <Navbar />
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/items" element={<AllItems />} />
+                      <Route path="/item/:itemId" element={<SingleItem />} />
+                      <Route exact path="/success" element={<Success />} />
+                      <Route path="/checkout" element={<Checkout />} />
+                      <Route path="/wardrobe/lists/owned" element={<MyOrders />} />
+                      <Route path="/register" element={<Register />} />
+                      <Route path="/wardrobe/lists/liked" element={<WishList />} />
+                      <Route path="/lookfeed" element={<LookFeed />} />
+                      <Route path="/look/:lookId" element={<SingleLook />} />
+                      <Route path="/dashboard" element={<Lock />}>
+                        <Route index element={<Brand />} />
+                      </Route>
+                      {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                      <Route path="*" element={<Page404 />} />
+                    </Routes>
+                  </ErrorBoundary>
+                </Router>
+              </ThemeProvider>
             </BadgesProvider>
           </SortProvider>
         </StoreProvider>
