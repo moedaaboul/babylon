@@ -72,7 +72,7 @@ const Navbar = () => {
   const open = Boolean(anchorEl);
 
   const redirectToOrders = (e) => {
-    navigate('/MyOrders');
+    navigate('/wardrobe/lists/owned');
   };
 
   const redirectToHome = (e) => {

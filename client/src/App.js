@@ -65,7 +65,7 @@ function App() {
                     <Route path="/item/:itemId" element={<SingleItem />} />
                     <Route exact path="/success" element={<Success />} />
                     <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/MyOrders" element={<MyOrders />} />
+                    <Route path="/wardrobe/lists/owned" element={<MyOrders />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/wardrobe/lists/liked" element={<WishList />} />
                     <Route path="/look/:lookId" element={<SingleLook />} />
