@@ -21,6 +21,7 @@ import Success from './pages/Success';
 import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
+import MyOrders from './pages/MyOrders';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
@@ -64,6 +65,7 @@ function App() {
                     <Route path="/item/:itemId" element={<SingleItem />} />
                     <Route exact path="/success" element={<Success />} />
                     <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/MyOrders" element={<MyOrders />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/wardrobe/lists/liked" element={<WishList />} />
                     <Route path="/look/:lookId" element={<SingleLook />} />
