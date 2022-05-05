@@ -18,6 +18,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { useMutation } from '@apollo/client';
 import { TOGGLE_LIKE } from '../../utils/mutations';
 import { QUERY_WISH_LIST } from '../../utils/queries';
+import { useStoreContext } from '../../state/store/provider';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../state/store/actions';
+import { idbPromise } from '../../utils/helpers';
+
 // utils
 import { fCurrency } from '../../utils/formatNumber';
 // ----------------------------------------------------------------------
@@ -33,26 +37,34 @@ const ProductImgStyle = styled('img')({
 // ----------------------------------------------------------------------
 
 export default function WishCard({ item }) {
+  const [state, dispatch] = useStoreContext();
   const { _id, title, image, price, discountedPrice, brand, featured } = item;
   const [toggleLike] = useMutation(TOGGLE_LIKE, {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });
-  //   console.log(product, wishList);
-  //   const likedByUser = wishList.map((e) => e.item._id).includes(_id);
+  const { cart } = state;
 
-  // const handleImageChange = () => {
-  //   let imageSrc;
-  //   for (let i = 0; i < image.length; i++) {
-  //     if (image.length > 1) {
-  //       imageSrc = image[1];
-  //     } else {
-  //       imageSrc = image[0];
-  //     }
-  //   }
-  //   console.log(imageSrc);
-  //   return imageSrc;
-  // };
-  // handleImageChange();
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+    console.log(itemInCart);
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+      idbPromise('cart', 'put', {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...item, purchaseQuantity: 1 },
+      });
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+    }
+  };
 
   const handleToggleLike = async (item) => {
     console.log(item, 'line 57');
@@ -109,7 +121,7 @@ export default function WishCard({ item }) {
             </Typography>
           </Typography>
           <Tooltip title="Add to Bag">
-            <IconButton aria-label="add to bag" onClick={() => handleToggleLike(_id)}>
+            <IconButton aria-label="add to bag" onClick={addToCart}>
               <ShoppingBagIcon />
             </IconButton>
           </Tooltip>
