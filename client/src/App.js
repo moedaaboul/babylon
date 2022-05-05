@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import AllItems from './pages/AllItems';
 import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
+import LookFeed from './pages/LookFeed'
 import SingleLook from './pages/SingleLook';
 import Checkout from './pages/Checkout';
 import Success from './pages/Success';
@@ -62,6 +63,7 @@ function App() {
                   <Route exact path="/success" element={<Success />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/register" element={<Register />} />
+                  <Route path="/lookfeed" element={<LookFeed />} />
                   <Route path="/look/:lookId" element={<SingleLook />} />
                   <Route path="/dashboard" element={<Lock />}>
                     <Route index element={<Brand />} />
