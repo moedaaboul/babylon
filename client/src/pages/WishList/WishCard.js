@@ -7,15 +7,21 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import IconButton from '@mui/material/IconButton';
 import Label from '../../components/Label';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import ClearIcon from '@mui/icons-material/Clear';
 import { useMutation } from '@apollo/client';
 import { TOGGLE_LIKE } from '../../utils/mutations';
 import { QUERY_WISH_LIST } from '../../utils/queries';
+import { useStoreContext } from '../../state/store/provider';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../state/store/actions';
+import { idbPromise } from '../../utils/helpers';
+
 // utils
 import { fCurrency } from '../../utils/formatNumber';
 // ----------------------------------------------------------------------
@@ -28,33 +34,37 @@ const ProductImgStyle = styled('img')({
   position: 'absolute',
 });
 
-// ItemCard.propTypes = {
-//   product: PropTypes.object,
-//   wishlist: PropTypes.object,
-// };
-
 // ----------------------------------------------------------------------
 
-export default function ItemCard({ product, wishList }) {
-  const { _id, title, image, price, discountedPrice, brand, featured } = product;
+export default function WishCard({ item }) {
+  const [state, dispatch] = useStoreContext();
+  const { _id, title, image, price, discountedPrice, brand, featured } = item;
   const [toggleLike] = useMutation(TOGGLE_LIKE, {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });
-  console.log(product, wishList);
-  const likedByUser = wishList.map((e) => e.item._id).includes(_id);
-  // const handleImageChange = () => {
-  //   let imageSrc;
-  //   for (let i = 0; i < image.length; i++) {
-  //     if (image.length > 1) {
-  //       imageSrc = image[1];
-  //     } else {
-  //       imageSrc = image[0];
-  //     }
-  //   }
-  //   console.log(imageSrc);
-  //   return imageSrc;
-  // };
-  // handleImageChange();
+  const { cart } = state;
+
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+    console.log(itemInCart);
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+      idbPromise('cart', 'put', {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...item, purchaseQuantity: 1 },
+      });
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+    }
+  };
 
   const handleToggleLike = async (item) => {
     console.log(item, 'line 57');
@@ -75,40 +85,17 @@ export default function ItemCard({ product, wishList }) {
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
-      <CardActionArea component={RouterLink} to={`/item/${_id}`}>
+      <CardActionArea>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {discountedPrice && (
-            <Label
-              variant="filled"
-              sx={{
-                color: '#FFFFFF',
-                bgcolor: '#FF0000',
-                zIndex: 9,
-                top: 16,
-                right: 16,
-                position: 'absolute',
-                textTransform: 'uppercase',
-              }}>
-              Sale
-            </Label>
-          )}
-          {featured && (
-            <Label
-              variant="filled"
-              sx={{
-                color: '#FFFFFF',
-                bgcolor: '#FFAC1C',
-                zIndex: 9,
-                top: 16,
-                right: 16,
-                position: 'absolute',
-                textTransform: 'uppercase',
-              }}>
-              Featured
-            </Label>
-          )}
           {/* onMouseOver={(this.src = handleImageChange())} */}
-          <ProductImgStyle alt={title} src={image[0]} />
+          <Link to={`/item/${_id}`} component={RouterLink}>
+            <ProductImgStyle alt={title} src={image[0]} />
+          </Link>
+          <Tooltip title="Remove from Wish list" style={{ position: 'absolute', top: 0, right: 3, color: 'white' }}>
+            <IconButton aria-label="remove from wishlist" onClick={() => handleToggleLike(_id)}>
+              <ClearIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       </CardActionArea>
       <Stack spacing={2} sx={{ p: 3 }}>
@@ -133,10 +120,9 @@ export default function ItemCard({ product, wishList }) {
               {discountedPrice && fCurrency(price)}
             </Typography>
           </Typography>
-
-          <Tooltip title="Add To Wishlist">
-            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
-              {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          <Tooltip title="Add to Bag">
+            <IconButton aria-label="add to bag" onClick={addToCart}>
+              <ShoppingBagIcon />
             </IconButton>
           </Tooltip>
         </Stack>

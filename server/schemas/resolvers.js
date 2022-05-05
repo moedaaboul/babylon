@@ -1,9 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Item, Look, Order } = require('../models');
+const { User, Item, Look, Order, Wish } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const ObjectId = require('mongoose').ObjectID;
 
 const resolvers = {
   Query: {
@@ -80,6 +81,15 @@ const resolvers = {
       return await Look.findOne({ _id: lookId }).populate('items');
     },
 
+    wishList: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate('wishList.item');
+        user.wishList.sort((a, b) => b.createdDate - a.createdDate);
+        return user.wishList;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     orderHistory: async (parent, arg, context) => {
       if (context.user) {
         // return await User.findById('627169c96521588c08c5d85e').populate({
@@ -174,6 +184,30 @@ const resolvers = {
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    addWish: async (parent, { item }, context) => {
+      console.log(item);
+      if (context.user) {
+        const userData = await User.findById(context.user._id).populate('wishList.item');
+        const shouldCreateNewWishItem = !userData.wishList.map((e) => e.item._id.toString()).includes(item);
+        console.log(shouldCreateNewWishItem);
+
+        if (!shouldCreateNewWishItem) {
+          console.log('here');
+          const updatedWish = await User.findByIdAndUpdate(context.user._id, { $pull: { wishList: { item } } });
+          console.log(updatedWish);
+          return updatedWish.wishList;
+        }
+        if (shouldCreateNewWishItem) {
+          console.log('no here');
+          const wish = new Wish({ item });
+          console.log(wish);
+          await User.findByIdAndUpdate(context.user._id, { $push: { wishList: wish } });
+          return wish;
+        }
       }
 
       throw new AuthenticationError('Not logged in');

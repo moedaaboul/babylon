@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { FiltersProvider } from './providers/FiltersStateProvider';
 import { SortProvider } from './providers/SortStateProvider';
+import { BadgesProvider } from './providers/BadgesStateProvider';
 import { StoreProvider } from './state/store/provider';
 
 import Home from './pages/Home';
@@ -17,6 +18,7 @@ import Brand from './pages/Brand';
 import SingleLook from './pages/SingleLook';
 import Checkout from './pages/Checkout';
 import Success from './pages/Success';
+import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
 import MyOrders from './pages/MyOrders';
@@ -52,27 +54,30 @@ function App() {
       <FiltersProvider>
         <StoreProvider>
           <SortProvider>
-            <Router>
-              <ErrorBoundary>
-                <Navbar />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/MyOrders" element={<MyOrders />} />
-                  <Route path="/items" element={<AllItems />} />
-                  <Route path="/item/:itemId" element={<SingleItem />} />
-                  <Route exact path="/success" element={<Success />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/look/:lookId" element={<SingleLook />} />
-                  <Route path="/dashboard" element={<Lock />}>
-                    <Route index element={<Brand />} />
-                  </Route>
-                  {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                  <Route path="*" element={<Page404 />} />
-                </Routes>
-              </ErrorBoundary>
-            </Router>
+            <BadgesProvider>
+              <Router>
+                <ErrorBoundary>
+                  <Navbar />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/items" element={<AllItems />} />
+                    <Route path="/item/:itemId" element={<SingleItem />} />
+                    <Route exact path="/success" element={<Success />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/wardrobe/lists/owned" element={<MyOrders />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/wardrobe/lists/liked" element={<WishList />} />
+                    <Route path="/look/:lookId" element={<SingleLook />} />
+                    <Route path="/dashboard" element={<Lock />}>
+                      <Route index element={<Brand />} />
+                    </Route>
+                    {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                    <Route path="*" element={<Page404 />} />
+                  </Routes>
+                </ErrorBoundary>
+              </Router>
+            </BadgesProvider>
           </SortProvider>
         </StoreProvider>
       </FiltersProvider>

@@ -6,9 +6,14 @@ import {
   ShoppingBag as ShoppingBagIcon,
 } from '@mui/icons-material';
 
+import { useBadgeContext } from '../../providers/BadgesStateProvider';
+
+import { useStoreContext } from '../../state/store/provider';
+
 import {
   AppBar,
   Box,
+  Badge,
   InputBase,
   Menu,
   MenuItem,
@@ -60,12 +65,14 @@ const Icons = styled(Box)(({ theme }) => ({
 
 const Navbar = () => {
   const [navigateLogout, setNavigateLogout] = useState(false);
+  const { wishListCount } = useBadgeContext();
+  const [state] = useStoreContext();
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const redirectToOrders = (e) => {
-    navigate('/MyOrders');
+    navigate('/wardrobe/lists/owned');
   };
 
   const redirectToHome = (e) => {
@@ -95,7 +102,7 @@ const Navbar = () => {
       <AppBar position="sticky">
         <StyledToolbar>
           <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'block' } }} onClick={redirectToHome}>
-            BABYLON
+            🅱🅰🅱🆈🅻🅾🅽
           </Typography>
           <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} />
           <Search>
@@ -111,13 +118,17 @@ const Navbar = () => {
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Wish list">
-              <StyledIconButton>
-                <FavouriteIcon />
+              <StyledIconButton onClick={() => navigate('/wardrobe/lists/liked')}>
+                <Badge badgeContent={wishListCount} color="secondary">
+                  <FavouriteIcon />
+                </Badge>
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Shopping Bag">
               <StyledIconButton>
-                <SideCart />
+                <Badge badgeContent={state.cart.length} color="secondary">
+                  <SideCart />
+                </Badge>
               </StyledIconButton>
             </Tooltip>
           </Icons>

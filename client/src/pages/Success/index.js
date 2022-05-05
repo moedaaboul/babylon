@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_ORDER } from '../../utils/mutations';
 import { idbPromise } from '../../utils/helpers';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 function Success() {
   const [addOrder] = useMutation(ADD_ORDER);
-
+  let navigate = useNavigate();
   useEffect(() => {
     async function saveOrder() {
       const cart = await idbPromise('cart', 'get');
@@ -23,7 +24,7 @@ function Success() {
       }
 
       setTimeout(() => {
-        window.location.assign('/');
+        navigate('/');
       }, 3000);
     }
 

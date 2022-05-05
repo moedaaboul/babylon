@@ -6,6 +6,7 @@ import MuiGrid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import MuiTableFooter from '@mui/material/TableFooter';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 export const Grid = styled(MuiGrid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -97,7 +98,7 @@ const DailySummary = ({ total }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sm={5} md={4} container alignItems={'flex-end'}>
-          <Button startIcon={<KeyboardArrowLeft />} href={'./items'}>
+          <Button startIcon={<KeyboardArrowLeft />} component={RouterLink} to="/items">
             Continue Shopping
           </Button>
         </Grid>
