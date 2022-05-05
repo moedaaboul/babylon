@@ -19,6 +19,7 @@ import Checkout from './pages/Checkout';
 import Success from './pages/Success';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
+import MyOrders from './pages/MyOrders';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
@@ -57,6 +58,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/MyOrders" element={<MyOrders />} />
                   <Route path="/items" element={<AllItems />} />
                   <Route path="/item/:itemId" element={<SingleItem />} />
                   <Route exact path="/success" element={<Success />} />

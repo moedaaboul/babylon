@@ -80,6 +80,15 @@ const resolvers = {
       return await Look.findOne({ _id: lookId }).populate('items');
     },
 
+    orderHistory: async (parent, arg, context) => {
+      if (context.user) {
+        // return await User.findById('627169c96521588c08c5d85e').populate({
+        return await User.findById(context.user._id).populate({
+          path: 'orders.items',
+        });
+      }
+    },
+
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
