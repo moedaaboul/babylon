@@ -114,7 +114,7 @@ const Navbar = () => {
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Wish list">
-              <StyledIconButton>
+              <StyledIconButton onClick={() => navigate('/wardrobe/lists/liked')}>
                 <Badge badgeContent={wishListCount} color="secondary">
                   <FavouriteIcon />
                 </Badge>
