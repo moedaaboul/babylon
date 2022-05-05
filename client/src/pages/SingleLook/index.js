@@ -48,19 +48,24 @@ const SingleLook = () => {
 
   return (
     <Container maxWidth="xl">
-      <Box sx={{ justifyContent: 'center' }}>
-        <Typography variant="h2" sx={{ my: 5 }}>
-          {look.influencer}'s LOOK
-        </Typography>
-      </Box>
       <Grid container spacing={2}>
         <Grid item xs={8}>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="h2" sx={{ my: 5 }}>
+              {look.influencer}'s Look
+            </Typography>
+          </Box>
           <Box sx={{ pt: '100%', position: 'relative' }}>
             <LookImgStyle alt="Influencer Look - blue coat and pigeons in fromt of a cathedral" src={look.image} />
           </Box>
         </Grid>
         <Grid item xs={4}>
-          <Box>
+          <Box sx={{ pt: 20 }}>
+            <Box sx={{ textAlign: 'center', fontStyle: 'oblique' }}>
+              <Typography variant="h6">
+                "{look.description}" - {look.influencer}
+              </Typography>
+            </Box>
             <Typography variant="h4" sx={{ my: 5 }}>
               GET THIS LOOK FOR £{sumTotal()}
             </Typography>

@@ -9,8 +9,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import Typography from '@mui/material/Typography';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Typography from '@mui/material/Typography';
 import { FavoriteBorderOutlined } from '@mui/icons-material';
 
 export default function LookImageList() {
@@ -23,40 +23,40 @@ export default function LookImageList() {
     return <div>Loading...</div>;
   }
   return (
-    <Box sx={{ width: '100vw', height: '100vh', overflowY: 'scroll' }}>
-      <ImageList
-        variant="masonry"
-        cols={2}
-        gap={5}
-        // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
-        sx={{ transform: 'translateZ(0)', pt: 10 }}>
-        {looks.map((item) => (
-          <ImageListItem key={item.image}>
-            <CardActionArea component={RouterLink} to={`/look/${item._id}`}>
+    <>
+      <Box>
+        <Typography variant="h2" sx={{ my: 5, textAlign: 'center' }}>
+          Latest Babylon Looks
+        </Typography>
+      </Box>
+      <ImageList sx={{ width: '100vw', height: '100vh' }} cols={3} rowHeight={850} gap={8}>
+        {looks.map((look) => (
+          <CardActionArea component={RouterLink} to={`/look/${look._id}`}>
+            <ImageListItem key={look.image} sx={{ pt: 1 }}>
               <img
-                src={`${item.image}?w=200&fit=crop&auto=format`}
-                srcSet={`${item.image}?w=200&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
+                src={`${look.image}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`${look.image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={look.description}
                 loading="lazy"
               />
-            </CardActionArea>
+            </ImageListItem>
             <ImageListItemBar
               sx={{
                 background:
                   `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ` + `rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)`,
               }}
-              title={item.influencer}
+              title={look.influencer}
               position="top"
               actionIcon={
-                <IconButton sx={{ color: 'white' }} aria-label={`like ${item.description}`}>
+                <IconButton sx={{ color: 'white' }} aria-label={`like ${look.description}`}>
                   <FavoriteBorderIcon />
                 </IconButton>
               }
               actionPosition="left"
             />
-          </ImageListItem>
+          </CardActionArea>
         ))}
       </ImageList>
-    </Box>
+    </>
   );
 }
