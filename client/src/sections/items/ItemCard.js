@@ -41,7 +41,7 @@ export default function ItemCard({ product, wishList }) {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });
   console.log(product, wishList);
-  const likedByUser = wishList.map((e) => e.item._id).includes(_id);
+  // const likedByUser = wishList.map((e) => e.item._id).includes(_id);
   // const handleImageChange = () => {
   //   let imageSrc;
   //   for (let i = 0; i < image.length; i++) {
@@ -77,7 +77,7 @@ export default function ItemCard({ product, wishList }) {
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea component={RouterLink} to={`/item/${_id}`}>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {discountedPrice && (
+          {discountedPrice < price && (
             <Label
               variant="filled"
               sx={{
@@ -136,7 +136,7 @@ export default function ItemCard({ product, wishList }) {
 
           <Tooltip title="Add To Wishlist">
             <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
-              {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {/* {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />} */}
             </IconButton>
           </Tooltip>
         </Stack>
