@@ -3,9 +3,12 @@ import { useMutation } from '@apollo/client';
 import { ADD_ORDER } from '../../utils/mutations';
 import { idbPromise } from '../../utils/helpers';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { CLEAR_CART } from '../../state/store/actions';
+import { useStoreContext } from '../../state/store/provider';
 
 function Success() {
   const [addOrder] = useMutation(ADD_ORDER);
+  const [state, dispatch] = useStoreContext();
   let navigate = useNavigate();
   useEffect(() => {
     async function saveOrder() {
@@ -24,6 +27,7 @@ function Success() {
       }
 
       setTimeout(() => {
+        dispatch({ type: CLEAR_CART });
         navigate('/');
       }, 3000);
     }

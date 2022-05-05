@@ -109,12 +109,6 @@ const Navbar = () => {
             🅱🅰🅱🆈🅻🅾🅽
           </Typography>
           <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} />
-          <Search>
-            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <InputBase placeholder="search..." />
-          </Search>
           <Icons>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>

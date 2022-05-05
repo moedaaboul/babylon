@@ -45,8 +45,6 @@ const priceSliderMarks = [
 export const FILTER_BRAND_OPTIONS = ['Nike', 'Adidas', 'Levis', 'Under Armour', 'Reebok', 'Dolce & Gabana'];
 
 export default function RefineSidebar() {
- 
-
   const { minPrice, setMinPrice, maxPrice, setMaxPrice, setCategories, setColours } = useFilterContext();
   const [value, setValue] = React.useState([minPrice, maxPrice]);
   const [state, setState] = React.useState({
@@ -66,8 +64,6 @@ export default function RefineSidebar() {
     white: false,
     grey: false,
   });
-
-
 
   const handleChange = (event) => {
     console.log(state, 'line76');
@@ -107,7 +103,6 @@ export default function RefineSidebar() {
 
   const { red, yellow, orange, green, blue, purple, pink, black, white, grey } = colourState;
 
-
   const handleChangeValue = (event, newValue) => {
     setValue(newValue);
   };
@@ -119,15 +114,18 @@ export default function RefineSidebar() {
 
   return (
     <Grid item xs={12}>
-      <Accordion sx={{ border: 0, borderRadius: 0 }} defaultExpanded="true">
+      <Accordion sx={{ border: 0, borderRadius: 0 }} elevation={0} defaultExpanded="true">
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>CATEGORIES</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleChange}
                   checkedIcon={<CircleSharpIcon />}
@@ -138,8 +136,11 @@ export default function RefineSidebar() {
               label="Men"
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   checkedIcon={<CircleSharpIcon />}
                   onChange={handleChange}
@@ -150,8 +151,11 @@ export default function RefineSidebar() {
               label="Women"
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleChange}
                   checkedIcon={<CircleSharpIcon />}
@@ -165,7 +169,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion defaultExpanded="true">
+      <Accordion defaultExpanded="true" elevation={0}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>PRICE</Typography>
         </AccordionSummary>
@@ -174,6 +178,7 @@ export default function RefineSidebar() {
             <Slider
               getAriaLabel={() => 'Price Range'}
               value={value}
+              color={'secondary'}
               onChange={handleChangeValue}
               onChangeCommitted={handleChangeCommitted}
               valueLabelDisplay="auto"
@@ -184,7 +189,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion defaultExpanded="true">
+      <Accordion defaultExpanded="true" elevation={0}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
         </AccordionSummary>
@@ -192,7 +197,8 @@ export default function RefineSidebar() {
           <FormGroup>
             {FILTER_BRAND_OPTIONS.map((brand) => (
               <FormControlLabel
-                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} />}
+                componentsProps={{ typography: { sx: { fontSize: 12 } } }}
+                control={<Checkbox icon={<CircleOutlinedIcon />} checkedIcon={<CircleSharpIcon />} size="small" />}
                 label={brand}
               />
             ))}
@@ -200,15 +206,18 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion defaultExpanded="true">
+      <Accordion defaultExpanded="true" elevation={0}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="red"
@@ -219,8 +228,11 @@ export default function RefineSidebar() {
               label={'Red'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="yellow"
@@ -231,8 +243,11 @@ export default function RefineSidebar() {
               label={'Yellow'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="orange"
@@ -243,8 +258,11 @@ export default function RefineSidebar() {
               label={'Orange'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="green"
@@ -255,8 +273,11 @@ export default function RefineSidebar() {
               label={'Green'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="blue"
@@ -267,8 +288,11 @@ export default function RefineSidebar() {
               label={'Blue'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="purple"
@@ -279,8 +303,11 @@ export default function RefineSidebar() {
               label={'Purple'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="pink"
@@ -291,8 +318,11 @@ export default function RefineSidebar() {
               label={'Pink'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="black"
@@ -303,8 +333,11 @@ export default function RefineSidebar() {
               label={'Black'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="white"
@@ -315,8 +348,11 @@ export default function RefineSidebar() {
               label={'White'}
             />
             <FormControlLabel
+              componentsProps={{ typography: { sx: { fontSize: 12 } } }}
               control={
                 <Checkbox
+                  color={'secondary'}
+                  size="small"
                   icon={<CircleOutlinedIcon />}
                   onChange={handleColourChange}
                   name="grey"

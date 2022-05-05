@@ -1,10 +1,10 @@
+require('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Item, Look, Order, Wish } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 const { urlCompiler } = require('../utils/helpers');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-const ObjectId = require('mongoose').ObjectID;
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_SERVER_KEY);
 
 const resolvers = {
   Query: {

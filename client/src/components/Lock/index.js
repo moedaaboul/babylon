@@ -8,7 +8,7 @@ const Lock = () => {
   const location = useLocation();
   const isBrand = Auth.isBrand();
   console.log(isBrand, 'Lock');
-  return Auth.loggedIn() && isBrand ? <Outlet /> : <Navigate to="/" replace state={{ location }} />;
+  return Auth.loggedIn() && isBrand ? <Outlet /> : <Navigate to="/items" replace state={{ location }} />;
 };
 
 export default Lock;
