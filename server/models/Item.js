@@ -57,13 +57,20 @@ const itemSchema = new Schema(
       type: Date,
       default: Date.now(),
     },
-    review: [
+    ratings: {
+      type: Number,
+      default: 0,
+    },
+    reviews: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        rating: Number,
+        username: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        rating: { type: Number, required: true },
       },
     ],
+    numOfReviews: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     toJSON: {

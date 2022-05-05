@@ -9,14 +9,6 @@ const typeDefs = gql`
     orders: [Order]
   }
 
-  type OrderHistory {
-    _id: ID!
-    username: String
-    usertype: String
-    email: String
-    orders: [Order]
-  }
-
   type Item {
     _id: ID
     title: String
@@ -30,7 +22,7 @@ const typeDefs = gql`
     brand: String
     colour: String
     category: String
-    review(userId: ID!): [Rating]
+    reviews: [Review]!
   }
 
   type Look {
@@ -55,6 +47,12 @@ const typeDefs = gql`
   type Auth {
     token: String
     user: User
+  }
+
+  type Review {
+    _id: ID
+    username: String
+    rating: Int
   }
 
   input ItemsFilters {
@@ -85,8 +83,7 @@ const typeDefs = gql`
     item(itemId: ID!): Item
     order(_id: ID!): Order
     checkout(items: [ID]!): Checkout
-    review(userId: ID!): [Rating]
-    orderHistory: User
+    reviews: [Review]!
   }
 
   input ItemInput {
@@ -108,6 +105,8 @@ const typeDefs = gql`
     addOrder(items: [ID]!): Order
     deleteItem(itemId: ID!): Item
     updateItem(input: ItemInput!, itemId: ID!): Item
+    addReview(itemId: ID!, rating: Int!): Item
+    removeReview(itemId: ID!, reviewId: ID!): Item
   }
 `;
 

@@ -72,6 +72,12 @@ export const GET_SINGLE_ITEM = gql`
       stock
       brand
       category
+      reviews {
+        _id
+        username
+        rating
+        comment
+      }
     }
   }
 `;
@@ -129,3 +135,6 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
+export const GET_REVIEWS = gql`
+query `;

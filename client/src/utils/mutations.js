@@ -91,3 +91,17 @@ export const ADD_ORDER = gql`
     }
   }
 `;
+
+export const ADD_REVIEW = gql`
+  mutation addReview($itemId: ID!, $rating: Int!) {
+    addReview(itemId: $itemId, rating: $rating) {
+      _id
+      ratings
+      numOfReviews
+      reviews {
+        _id
+        rating
+      }
+    }
+  }
+`;

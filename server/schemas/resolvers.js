@@ -80,15 +80,6 @@ const resolvers = {
       return await Look.findOne({ _id: lookId }).populate('items');
     },
 
-    orderHistory: async (parent, arg, context) => {
-      if (context.user) {
-        // return await User.findById('627169c96521588c08c5d85e').populate({
-        return await User.findById(context.user._id).populate({
-          path: 'orders.items',
-        });
-      }
-    },
-
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -211,6 +202,38 @@ const resolvers = {
       }
 
       return item;
+    },
+    addReview: async (parent, { itemId, rating }, context) => {
+      if (context.user) {
+        console.log(context.user);
+        return Item.findOneAndUpdate(
+          { _id: itemId },
+          {
+            $addToSet: {
+              reviews: { rating, username: context.user._id },
+            },
+          },
+          { new: true, runValidators: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeReview: async (parent, { itemId, reviewId }, context) => {
+      if (context.user) {
+        return Item.findOneAndUpdate(
+          { _id: itemId },
+          {
+            $pull: {
+              reviews: {
+                _id: reviewId,
+                rating: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
