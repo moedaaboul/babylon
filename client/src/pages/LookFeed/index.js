@@ -37,7 +37,7 @@ export default function LookImageList() {
         rowHeight={200}
         gap={1}
         // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
-        sx={{ transform: 'translateZ(0)' }}>
+        sx={{ transform: 'translateZ(0)', pt: 10 }}>
         {looks.map((item) => {
           const cols = item.featured ? 2 : 1;
           const rows = item.featured ? 2 : 1;
@@ -50,7 +50,7 @@ export default function LookImageList() {
               <ImageListItemBar
                 sx={{
                   background:
-                    'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                    `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ` + `rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)`,
                 }}
                 title={item.influencer}
                 position="top"
