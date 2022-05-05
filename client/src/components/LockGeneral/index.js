@@ -4,11 +4,9 @@ import Auth from '../../utils/auth';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 // import './index.css';
 
-const Lock = () => {
+const LockGeneral = () => {
   const location = useLocation();
-  const isBrand = Auth.isBrand();
-  console.log(isBrand, 'Lock');
-  return Auth.loggedIn() && isBrand ? <Outlet /> : <Navigate to="/items" replace state={{ location }} />;
+  return Auth.loggedIn() ? <Outlet /> : <Navigate to="/login" replace state={{ location }} />;
 };
 
-export default Lock;
+export default LockGeneral;
