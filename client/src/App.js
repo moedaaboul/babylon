@@ -23,6 +23,7 @@ import Success from './pages/Success';
 import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
+import LockGeneral from './components/LockGeneral';
 import MyOrders from './pages/MyOrders';
 
 import ErrorBoundary from './components/ErrorBoundary';
@@ -70,31 +71,44 @@ function App() {
         <StoreProvider>
           <SortProvider>
             <BadgesProvider>
-              <ThemeProvider theme={theme}>
-                <Router>
-                  <ErrorBoundary>
-                    <Navbar />
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/login" element={<Login />} />
-                      <Route path="/items" element={<AllItems />} />
-                      <Route path="/item/:itemId" element={<SingleItem />} />
-                      <Route exact path="/success" element={<Success />} />
-                      <Route path="/checkout" element={<Checkout />} />
-                      <Route path="/wardrobe/lists/owned" element={<MyOrders />} />
-                      <Route path="/register" element={<Register />} />
-                      <Route path="/wardrobe/lists/liked" element={<WishList />} />
-                      <Route path="/lookfeed" element={<LookFeed />} />
-                      <Route path="/look/:lookId" element={<SingleLook />} />
-                      <Route path="/dashboard" element={<Lock />}>
-                        <Route index element={<Brand />} />
-                      </Route>
-                      {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                      <Route path="*" element={<Page404 />} />
-                    </Routes>
-                  </ErrorBoundary>
-                </Router>
-              </ThemeProvider>
+              <Router>
+                <ErrorBoundary>
+                  <Navbar />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/items" element={<LockGeneral />}>
+                      <Route index element={<AllItems />} />
+                    </Route>
+                    <Route path="/item/:itemId" element={<LockGeneral />}>
+                      <Route index element={<SingleItem />} />
+                    </Route>
+                    <Route path="/success" element={<LockGeneral />}>
+                      <Route index element={<Success />} />
+                    </Route>
+                    <Route path="/checkout" element={<LockGeneral />}>
+                      <Route index element={<Checkout />} />
+                    </Route>
+                    <Route path="/wardrobe/lists/owned" element={<LockGeneral />}>
+                      <Route index element={<MyOrders />} />
+                    </Route>
+                    <Route path="/wardrobe/lists/liked" element={<LockGeneral />}>
+                      <Route index element={<WishList />} />
+                    </Route>
+                    <Route path="/look/:lookId" element={<LockGeneral />}>
+                      <Route index element={<SingleLook />} />
+                    </Route>
+                    <Route path="/lookfeed" element={<LockGeneral />}>
+                      <Route index element={<LookFeed />} />
+                    </Route>
+                    <Route path="/dashboard" element={<Lock />}>
+                      <Route index element={<Brand />} />
+                    </Route>
+                    <Route path="*" element={<Page404 />} />
+                  </Routes>
+                </ErrorBoundary>
+              </Router>
             </BadgesProvider>
           </SortProvider>
         </StoreProvider>
