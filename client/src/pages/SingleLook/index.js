@@ -29,10 +29,9 @@ const SingleLook = () => {
 
   const sumTotal = () => {
     let sum = 0;
-
     for (let i = 0; i < look.items.length; i++) {
       if (look.items[i].discountedPrice) {
-        sum++;
+        sum = sum + look.items[i].discountedPrice;
       } else {
         sum = sum + look.items[i].price;
       }

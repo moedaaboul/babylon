@@ -55,7 +55,6 @@ export default function SmallItemCard({ items }) {
               </Typography>
             </Typography>
           </CardContent>
-          p
         </Box>
         <CardMedia component="img" sx={{ width: 151 }} image={image[0]} alt={description} />
       </CardActionArea>

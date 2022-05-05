@@ -26,8 +26,8 @@ export default function LookImageList() {
     <Box sx={{ width: '100vw', height: '100vh', overflowY: 'scroll' }}>
       <ImageList
         variant="masonry"
-        cols={3}
-        gap={8}
+        cols={2}
+        gap={5}
         // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
         sx={{ transform: 'translateZ(0)', pt: 10 }}>
         {looks.map((item) => (
