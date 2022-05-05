@@ -122,26 +122,21 @@ const Navbar = () => {
                 </Badge>
               </StyledIconButton>
             </Tooltip>
-            <Tooltip title="Shopping Bag">
-              {/* <StyledIconButton> */}
-              <ClickAwayListener
-                onClick={() => {
-                  setDrawerState({ bottom: false, right: true });
-                }}
-                onClickAway={() => {
-                  setDrawerState({ bottom: false, right: false });
-                }}>
-                {/* <ClickAwayListener
-                  onClickAway={() => {
-                    setDrawerState({ bottom: false, right: false });
-                  }}> */}
-                <Badge badgeContent={state.cart.length} color="secondary">
-                  <SideCart />
-                </Badge>
-                {/* </ClickAwayListener> */}
-              </ClickAwayListener>
-              {/* </StyledIconButton> */}
-            </Tooltip>
+            <ClickAwayListener
+              onClick={() => {
+                setDrawerState({ bottom: false, right: true });
+              }}
+              onClickAway={() => {
+                setDrawerState({ bottom: false, right: false });
+              }}>
+              <Tooltip title="Shopping Bag">
+                <StyledIconButton>
+                  <Badge badgeContent={state.cart.length} color="secondary">
+                    <SideCart />
+                  </Badge>
+                </StyledIconButton>
+              </Tooltip>
+            </ClickAwayListener>
           </Icons>
         </StyledToolbar>
         <Menu
