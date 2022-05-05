@@ -18,6 +18,14 @@ const typeDefs = gql`
     orders: [Order]
   }
 
+  type OrderHistory {
+    _id: ID!
+    username: String
+    usertype: String
+    email: String
+    orders: [Order]
+  }
+
   type Item {
     _id: ID
     title: String
