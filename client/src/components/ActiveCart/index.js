@@ -50,6 +50,7 @@ export default function ActiveCart({ cart, total }) {
           variant="contained"
           onClick={() => {
             // dispatch({ type: TOGGLE_CART });
+            // toggleDrawer('right', false);
             navigate('/checkout');
           }}>
           Checkout
