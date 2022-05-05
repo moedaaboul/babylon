@@ -28,18 +28,13 @@ const ProductImgStyle = styled('img')({
   position: 'absolute',
 });
 
-// ItemCard.propTypes = {
-//   product: PropTypes.object,
-//   wishlist: PropTypes.object,
-// };
-
 // ----------------------------------------------------------------------
 
 export default function WishCard({ item }) {
   const { _id, title, image, price, discountedPrice, brand, featured } = item;
-  //   const [toggleLike] = useMutation(TOGGLE_LIKE, {
-  //     refetchQueries: [{ query: QUERY_WISH_LIST }],
-  //   });
+  const [toggleLike] = useMutation(TOGGLE_LIKE, {
+    refetchQueries: [{ query: QUERY_WISH_LIST }],
+  });
   //   console.log(product, wishList);
   //   const likedByUser = wishList.map((e) => e.item._id).includes(_id);
 
@@ -57,22 +52,22 @@ export default function WishCard({ item }) {
   // };
   // handleImageChange();
 
-  //   const handleToggleLike = async (item) => {
-  //     console.log(item, 'line 57');
-  //     // const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const handleToggleLike = async (item) => {
+    console.log(item, 'line 57');
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  //     // if (!token) {
-  //     //   return false;
-  //     // }
+    // if (!token) {
+    //   return false;
+    // }
 
-  //     try {
-  //       await toggleLike({
-  //         variables: { item: item },
-  //       });
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
+    try {
+      await toggleLike({
+        variables: { item: item },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
@@ -135,13 +130,8 @@ export default function WishCard({ item }) {
             </Typography>
           </Typography>
 
-          <Tooltip title="Add To Wishlist">
-            <IconButton
-              aria-label="add to wishlist"
-              //  onClick={
-              //     () =>
-              //      handleToggleLike(_id)}
-            >
+          <Tooltip title="Remove from Wish list">
+            <IconButton aria-label="remove from wishlist" onClick={() => handleToggleLike(_id)}>
               {true ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
           </Tooltip>
