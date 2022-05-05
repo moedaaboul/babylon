@@ -104,8 +104,21 @@ export const QUERY_CHECKOUT = gql`
 export const QUERY_WISH_LIST = gql`
   query Query {
     wishList {
+      _id
+      createdDate
       item {
         _id
+        title
+        createdAt
+        description
+        image
+        price
+        featured
+        discountedPrice
+        stock
+        brand
+        colour
+        category
       }
     }
   }

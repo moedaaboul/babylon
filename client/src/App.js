@@ -18,6 +18,7 @@ import Brand from './pages/Brand';
 import SingleLook from './pages/SingleLook';
 import Checkout from './pages/Checkout';
 import Success from './pages/Success';
+import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
 import Lock from './components/Lock';
 
@@ -64,6 +65,7 @@ function App() {
                     <Route exact path="/success" element={<Success />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/wardrobe/lists/liked" element={<WishList />} />
                     <Route path="/look/:lookId" element={<SingleLook />} />
                     <Route path="/dashboard" element={<Lock />}>
                       <Route index element={<Brand />} />
