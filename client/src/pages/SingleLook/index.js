@@ -49,17 +49,17 @@ const SingleLook = () => {
   return (
     <Container maxWidth="xl">
       <Grid container spacing={2}>
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h2" sx={{ my: 5 }}>
               {look.influencer}'s Look
             </Typography>
           </Box>
           <Box sx={{ pt: '100%', position: 'relative' }}>
-            <LookImgStyle alt="Influencer Look - blue coat and pigeons in fromt of a cathedral" src={look.image} />
+            <LookImgStyle alt={look.description} src={look.image} />
           </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Box sx={{ pt: 20 }}>
             <Box sx={{ textAlign: 'center', fontStyle: 'oblique' }}>
               <Typography variant="h6">
@@ -81,16 +81,3 @@ const SingleLook = () => {
 };
 
 export default SingleLook;
-
-{
-  /* <Grid item xs={2}>
-          <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
-            <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-              <ItemFilter isOpenFilter={openFilter} onOpenFilter={handleOpenFilter} onCloseFilter={handleCloseFilter} />
-            </Stack>
-          </Stack>
-        </Grid>
-        <Grid item xs={10}>
-          {loading ? <h6>is loading...</h6> : <ItemList products={items} />}
-        </Grid> */
-}

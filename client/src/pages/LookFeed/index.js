@@ -31,15 +31,16 @@ export default function LookImageList() {
       </Box>
       <ImageList sx={{ width: '100vw', height: '100vh' }} cols={3} rowHeight={850} gap={8}>
         {looks.map((look) => (
-          <CardActionArea component={RouterLink} to={`/look/${look._id}`}>
-            <ImageListItem key={look.image} sx={{ pt: 1 }}>
+          <ImageListItem key={look.image} sx={{ overflow: 'hidden' }}>
+            <CardActionArea component={RouterLink} to={`/look/${look._id}`}>
               <img
+                style={{ minWidth: '100%', minHeight: '850px' }}
                 src={`${look.image}?w=164&h=164&fit=crop&auto=format`}
                 srcSet={`${look.image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                 alt={look.description}
                 loading="lazy"
               />
-            </ImageListItem>
+            </CardActionArea>
             <ImageListItemBar
               sx={{
                 background:
@@ -54,7 +55,7 @@ export default function LookImageList() {
               }
               actionPosition="left"
             />
-          </CardActionArea>
+          </ImageListItem>
         ))}
       </ImageList>
     </>

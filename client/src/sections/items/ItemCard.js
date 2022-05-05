@@ -42,6 +42,7 @@ export default function ItemCard({ product, wishList }) {
   });
   console.log(product, wishList);
   // const likedByUser = wishList.map((e) => e.item._id).includes(_id);
+
   // const handleImageChange = () => {
   //   let imageSrc;
   //   for (let i = 0; i < image.length; i++) {
@@ -77,37 +78,21 @@ export default function ItemCard({ product, wishList }) {
     <Card sx={{ borderRadius: '16px' }}>
       <CardActionArea component={RouterLink} to={`/item/${_id}`}>
         <Box sx={{ pt: '100%', position: 'relative' }}>
-          {discountedPrice < price && (
-            <Label
-              variant="filled"
+          <Tooltip title="Add To Wishlist">
+            <IconButton
+              aria-label="add to wishlist"
               sx={{
-                color: '#FFFFFF',
-                bgcolor: '#FF0000',
+                bgcolor: '#FFFFFF',
                 zIndex: 9,
                 top: 16,
                 right: 16,
                 position: 'absolute',
-                textTransform: 'uppercase',
               }}>
-              Sale
-            </Label>
-          )}
-          {featured && (
-            <Label
-              variant="filled"
-              sx={{
-                color: '#FFFFFF',
-                bgcolor: '#FFAC1C',
-                zIndex: 9,
-                top: 16,
-                right: 16,
-                position: 'absolute',
-                textTransform: 'uppercase',
-              }}>
-              Featured
-            </Label>
-          )}
-          {/* onMouseOver={(this.src = handleImageChange())} */}
+              {/* {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              onClick={() => handleToggleLike(_id) } */}
+              <FavoriteBorderIcon />
+            </IconButton>
+          </Tooltip>
           <ProductImgStyle alt={title} src={image[0]} />
         </Box>
       </CardActionArea>
@@ -133,12 +118,30 @@ export default function ItemCard({ product, wishList }) {
               {(discountedPrice !== price && fCurrency(price)) || null}
             </Typography>
           </Typography>
+          {discountedPrice < price && (
+            <Label
+              variant="filled"
+              sx={{
+                color: '#FFFFFF',
+                bgcolor: '#FF0000',
 
-          <Tooltip title="Add To Wishlist">
-            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
-              {/* {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />} */}
-            </IconButton>
-          </Tooltip>
+                textTransform: 'uppercase',
+              }}>
+              Sale
+            </Label>
+          )}
+          {featured && (
+            <Label
+              variant="filled"
+              sx={{
+                color: '#FFFFFF',
+                bgcolor: '#FFAC1C',
+
+                textTransform: 'uppercase',
+              }}>
+              Featured
+            </Label>
+          )}
         </Stack>
       </Stack>
     </Card>
