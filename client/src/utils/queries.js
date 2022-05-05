@@ -31,6 +31,35 @@ export const GET_BRAND_ITEMS = gql`
   }
 `;
 
+export const GET_HISTORY_ORDERS = gql`
+  query Query {
+    orderHistory {
+      _id
+      username
+      usertype
+      email
+      orders {
+        _id
+        purchaseDate
+        items {
+          _id
+          title
+          createdAt
+          description
+          image
+          price
+          featured
+          discountedPrice
+          stock
+          brand
+          colour
+          category
+        }
+      }
+    }
+  }
+`;
+
 export const GET_SINGLE_ITEM = gql`
   query getSingleItem($itemId: ID!) {
     item(itemId: $itemId) {
@@ -97,6 +126,29 @@ export const QUERY_CHECKOUT = gql`
   query getCheckout($items: [ID]!) {
     checkout(items: $items) {
       session
+    }
+  }
+`;
+
+export const QUERY_WISH_LIST = gql`
+  query Query {
+    wishList {
+      _id
+      createdDate
+      item {
+        _id
+        title
+        createdAt
+        description
+        image
+        price
+        featured
+        discountedPrice
+        stock
+        brand
+        colour
+        category
+      }
     }
   }
 `;

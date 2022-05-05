@@ -7,11 +7,14 @@ import { useStoreContext } from '../../state/store/provider';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import Typography from '@mui/material/Typography';
+import { TOGGLE_CART } from '../../state/store/actions';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import './index.css';
 
 export default function ActiveCart({ cart, total }) {
   const [state, dispatch] = useStoreContext();
+  let navigate = useNavigate();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   function submitCheckout() {
@@ -42,7 +45,13 @@ export default function ActiveCart({ cart, total }) {
 
       <br></br>
       {Auth.loggedIn() ? (
-        <Button className="check-out-button" variant="contained" href="../checkout">
+        <Button
+          className="check-out-button"
+          variant="contained"
+          onClick={() => {
+            // dispatch({ type: TOGGLE_CART });
+            navigate('/checkout');
+          }}>
           Checkout
         </Button>
       ) : (

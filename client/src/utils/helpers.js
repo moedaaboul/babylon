@@ -5,6 +5,19 @@ export function pluralize(name, count) {
   return name + 's';
 }
 
+export function timeConverter(UNIX_timestamp) {
+  var a = new Date(+UNIX_timestamp);
+  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDay();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var output = date + ' ' + month + ' ' + year;
+  return output;
+}
+
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('babylonCart', 1);
