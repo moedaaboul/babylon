@@ -98,7 +98,7 @@ const Navbar = () => {
       <AppBar position="sticky">
         <StyledToolbar>
           <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'block' } }} onClick={redirectToHome}>
-            BABYLON
+            🅱🅰🅱🆈🅻🅾🅽
           </Typography>
           <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} />
           <Search>
