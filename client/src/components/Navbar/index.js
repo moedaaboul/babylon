@@ -8,6 +8,8 @@ import {
 
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
 
+import { useStoreContext } from '../../state/store/provider';
+
 import {
   AppBar,
   Box,
@@ -64,6 +66,7 @@ const Icons = styled(Box)(({ theme }) => ({
 const Navbar = () => {
   const [navigateLogout, setNavigateLogout] = useState(false);
   const { wishListCount } = useBadgeContext();
+  const [state] = useStoreContext();
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -119,7 +122,9 @@ const Navbar = () => {
             </Tooltip>
             <Tooltip title="Shopping Bag">
               <StyledIconButton>
-                <SideCart />
+                <Badge badgeContent={state.cart.length} color="secondary">
+                  <SideCart />
+                </Badge>
               </StyledIconButton>
             </Tooltip>
           </Icons>
