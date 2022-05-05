@@ -10,7 +10,7 @@ import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
 // import SaveIcon from '@mui/icons-material/Save';
 import Container from '@mui/material/Container';
 // import SideCart from "../../components/SideCart";
-// import './index.css';
+import './index.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';

@@ -64,6 +64,10 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const redirectToOrders = (e) => {
+    navigate('/MyOrders');
+  };
+
   const redirectToHome = (e) => {
     navigate('/');
   };
@@ -167,8 +171,14 @@ const Navbar = () => {
               Register
             </MenuItem>
           )}
-
-          <MenuItem>Orders</MenuItem>
+          {Auth.loggedIn() && (
+            <MenuItem
+              onClick={() => {
+                redirectToOrders();
+              }}>
+              Orders
+            </MenuItem>
+          )}
           {Auth.loggedIn() && (
             <MenuItem
               onClick={() => {
