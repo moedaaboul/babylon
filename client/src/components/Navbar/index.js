@@ -12,6 +12,7 @@ import { useStoreContext } from '../../state/store/provider';
 
 import {
   AppBar,
+  ClickAwayListener,
   Box,
   Badge,
   InputBase,
@@ -26,6 +27,7 @@ import {
   Alert as MuiAlert,
 } from '@mui/material';
 
+import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import React, { useEffect, useState } from 'react';
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -64,6 +66,8 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  const { setDrawerState } = useDrawerContext();
+
   const [navigateLogout, setNavigateLogout] = useState(false);
   const { wishListCount } = useBadgeContext();
   const [state] = useStoreContext();
@@ -119,11 +123,24 @@ const Navbar = () => {
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Shopping Bag">
-              <StyledIconButton>
+              {/* <StyledIconButton> */}
+              <ClickAwayListener
+                onClick={() => {
+                  setDrawerState({ bottom: false, right: true });
+                }}
+                onClickAway={() => {
+                  setDrawerState({ bottom: false, right: false });
+                }}>
+                {/* <ClickAwayListener
+                  onClickAway={() => {
+                    setDrawerState({ bottom: false, right: false });
+                  }}> */}
                 <Badge badgeContent={state.cart.length} color="secondary">
                   <SideCart />
                 </Badge>
-              </StyledIconButton>
+                {/* </ClickAwayListener> */}
+              </ClickAwayListener>
+              {/* </StyledIconButton> */}
             </Tooltip>
           </Icons>
         </StyledToolbar>

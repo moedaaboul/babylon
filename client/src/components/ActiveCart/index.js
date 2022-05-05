@@ -9,10 +9,12 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import Typography from '@mui/material/Typography';
 import { TOGGLE_CART } from '../../state/store/actions';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDrawerContext } from '../../providers/DrawerStateProvider';
 
 import './index.css';
 
 export default function ActiveCart({ cart, total }) {
+  const { drawerState, setDrawerState, toggleDrawer } = useDrawerContext();
   const [state, dispatch] = useStoreContext();
   let navigate = useNavigate();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
@@ -50,6 +52,10 @@ export default function ActiveCart({ cart, total }) {
           variant="contained"
           onClick={() => {
             // dispatch({ type: TOGGLE_CART });
+            setDrawerState({
+              bottom: false,
+              right: false,
+            });
             navigate('/checkout');
           }}>
           Checkout

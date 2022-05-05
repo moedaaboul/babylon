@@ -16,6 +16,7 @@ import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
 import CartItem from '../SingleCartItem';
 import EmptyCart from '../EmptyCart';
 import ActiveCart from '../ActiveCart';
+import { useDrawerContext } from '../../providers/DrawerStateProvider';
 
 import { useStoreContext } from '../../state/store/provider';
 import { getSummary, idbPromise } from '../../utils/helpers';
@@ -25,6 +26,7 @@ import { getSummary, idbPromise } from '../../utils/helpers';
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 export default function TemporaryDrawer() {
+  const { drawerState, setDrawerState, toggleDrawer } = useDrawerContext();
   const [state, dispatch] = useStoreContext();
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
@@ -80,19 +82,6 @@ export default function TemporaryDrawer() {
 
   const cartOpen = state.cartOpen;
   const cartContent = state.cart;
-
-  const [drawerState, setDrawerState] = React.useState({
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setDrawerState({ ...drawerState, [anchor]: open });
-  };
 
   return (
     <div>
