@@ -18,7 +18,7 @@ import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
 import LookFeed from './pages/LookFeed';
 import SingleLook from './pages/SingleLook';
-import Checkout from './pages/Checkout';
+import Checkout from './pages/CheckOut';
 import Success from './pages/Success';
 import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
