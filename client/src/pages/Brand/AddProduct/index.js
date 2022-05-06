@@ -232,10 +232,11 @@ const AddProduct = () => {
             maxFiles={3}
             onupdatefiles={setFiles}
             onpreparefile={(item) => {
-              console.log(item.getFileEncodeDataURL());
-              console.log(files.map((e) => e.getFileEncodeDataURL()));
-              const images = files.map((e) => e.getFileEncodeDataURL());
-              setImages(images);
+              const newImage = item.getFileEncodeDataURL();
+              console.log(newImage);
+              // console.log(files.map((e) => e.getFileEncodeDataURL()));
+              // const images = files.map((e) => e.getFileEncodeDataURL());
+              setImages([...images, newImage]);
             }}
             onremovefile={(error, item) => {
               console.log(item.file);
