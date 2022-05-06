@@ -18,8 +18,8 @@ const server = new ApolloServer({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Serve up static assets
-app.use('/images', express.static(path.join(__dirname, '../client/images')));
+// // Serve up static assets
+// app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
