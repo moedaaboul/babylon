@@ -32,7 +32,7 @@ import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   // uri: 'http://localhost:3001/graphql',
-  uri: process.env.GRAPHQL_URL || 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 const theme = createTheme({
