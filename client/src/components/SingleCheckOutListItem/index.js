@@ -1,5 +1,4 @@
 import React from 'react';
-import { useStoreContext } from '../../state/store/provider';
 
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
@@ -16,7 +15,6 @@ import { GET_SINGLE_ITEM } from '../../utils/queries';
 
 export default function SingleCheckOutListItem({ singleRowData, rowId }) {
   console.log(singleRowData);
-  const [state, dispatch] = useStoreContext();
 
   const { loading, data } = useQuery(GET_SINGLE_ITEM, {
     variables: { itemId: singleRowData.productId },
@@ -24,22 +22,9 @@ export default function SingleCheckOutListItem({ singleRowData, rowId }) {
 
   const item = data?.item || {};
 
-  //   {
-  //     "__typename": "Item",
-  //     "_id": "626e6ae99b1ba45c44960314",
-  //     "title": "Cross-Stitch Leather Biker Trousers",
-  //     "image": [
-  //         "/images/crosstitch-trousers.jpg",
-  //         "/images/denim-dress.jpg",
-  //         "/images/yellow-tracksuit.jpg"
-  //     ],
-  //     "description": "Black faux-leather trousers with criss-cross leather cord stitching.",
-  //     "price": 50,
-  //     "discountedPrice": 20,
-  //     "stock": 25,
-  //     "brand": "Missguided",
-  //     "category": "Women"
-  // }
+  if (loading) {
+    return <h6>loading...</h6>;
+  }
 
   return (
     <TableRow hover role="checkbox" tabIndex={-1} key={singleRowData.code}>

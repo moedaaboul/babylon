@@ -5,8 +5,7 @@ import MuiButton from '@mui/material/Button';
 import MuiGrid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import MuiTableFooter from '@mui/material/TableFooter';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Grid = styled(MuiGrid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_ORDER } from '../../utils/mutations';
 import { idbPromise } from '../../utils/helpers';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CLEAR_CART } from '../../state/store/actions';
 import { useStoreContext } from '../../state/store/provider';
 

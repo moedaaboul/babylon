@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Container';
 import Typography from '@mui/material/Typography';

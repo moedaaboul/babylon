@@ -1,39 +1,27 @@
-import {
-  AutoAwesome as AutoAwesomeIcon,
-  Search as SearchIcon,
-  Favorite as FavouriteIcon,
-  Person as PersonIcon,
-  ShoppingBag as ShoppingBagIcon,
-} from '@mui/icons-material';
-
+import React, { useEffect, useState } from 'react';
+import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
-
 import { useStoreContext } from '../../state/store/provider';
 
-import {
-  AppBar,
-  ClickAwayListener,
-  Box,
-  Badge,
-  InputBase,
-  Menu,
-  MenuItem,
-  styled,
-  Toolbar,
-  Tooltip,
-  Typography,
-  IconButton,
-  Snackbar,
-  Alert as MuiAlert,
-} from '@mui/material';
-
-import { useDrawerContext } from '../../providers/DrawerStateProvider';
-import React, { useEffect, useState } from 'react';
-
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import FavouriteIcon from '@mui/icons-material/Favorite';
+import PersonIcon from '@mui/icons-material/Person';
+import AppBar from '@mui/material/AppBar';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Box from '@mui/material/Box';
+import Badge from '@mui/material/Badge';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { styled } from '@mui/material/styles';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
-
 import SideCart from '../SideCart';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -48,13 +36,6 @@ const StyledToolbar = styled(Toolbar)({
 const StyledIconButton = styled(IconButton)({
   color: 'inherit',
 });
-
-const Search = styled('div')(({ theme }) => ({
-  backgroundColor: 'white',
-  padding: '0 10px',
-  borderRadius: theme.shape.borderRadius,
-  width: '40%',
-}));
 
 const Icons = styled(Box)(({ theme }) => ({
   display: 'none',

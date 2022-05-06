@@ -2,10 +2,9 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
-import Auth from '../../utils/auth';
 import { useStoreContext } from '../../state/store/provider';
 import { QUERY_CHECKOUT } from '../../utils/queries';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
+import { ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
 // import Button from '@mui/material/Button';
 // import SaveIcon from '@mui/icons-material/Save';
 import Container from '@mui/material/Container';
@@ -20,15 +19,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Close from '@mui/icons-material/Close';
 
 import { styled } from '@mui/material/styles';
 
-import DailyInteger from './DailyInteger';
 import DailySummary from './DailySummary';
 import CheckoutItem from '../../components/SingleCheckoutItem';
-import SingleCartItem from '../../components/SingleCartItem';
 import { idbPromise } from '../../utils/helpers';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
@@ -45,7 +40,7 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export default function Checkout() {
+export default function Summary() {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
   console.log(state, 'line 50');
@@ -67,10 +62,6 @@ export default function Checkout() {
       getCart();
     }
   }, [state.cart.length, dispatch]);
-
-  function toggleCart() {
-    dispatch({ type: TOGGLE_CART });
-  }
 
   function calculateTotal() {
     let sum = 0;
