@@ -166,9 +166,20 @@ const Navbar = () => {
           )}
           {/* <MenuItem>Profile</MenuItem> */}
           {Auth.loggedIn() ? (
-            <MenuItem component={RouterLink} to="/login">
-              My account
-            </MenuItem>
+            <>
+              <MenuItem component={RouterLink} to="/login">
+                My account
+              </MenuItem>
+              <MenuItem component={RouterLink} to="/items">
+                All Items
+              </MenuItem>
+              <MenuItem component={RouterLink} to="/lookfeed">
+                Looks
+              </MenuItem>
+              <MenuItem component={RouterLink} to="/dashboard">
+                Dashboard
+              </MenuItem>
+            </>
           ) : (
             <MenuItem component={RouterLink} to="/register">
               Register
