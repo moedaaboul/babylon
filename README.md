@@ -7,7 +7,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/moedaaboul/babylon">
-    <img src="__admin__/resources/logo.png" alt="Logo">
+    <img src="https://res.cloudinary.com/dyb07uvmrhy/image/upload/v1651967058/Screenshot_2022-05-08_at_00.43.06_zcog9m.png" alt="Logo">
   </a>
 
   <h3 align="center">Babylon</h3>
