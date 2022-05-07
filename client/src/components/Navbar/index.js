@@ -109,7 +109,7 @@ const Navbar = () => {
             🅱🅰🅱🆈🅻🅾🅽
           </Typography>
           {/* <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} /> */}
-          <Icons>
+          <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>
                 <PersonIcon />
