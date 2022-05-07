@@ -105,10 +105,10 @@ const Navbar = () => {
     <>
       <AppBar position="sticky">
         <StyledToolbar>
-          <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'block' } }} onClick={redirectToHome}>
+          <Typography variant="h6" sx={{ display: { xs: 'block', sm: 'block' } }} onClick={redirectToHome}>
             🅱🅰🅱🆈🅻🅾🅽
           </Typography>
-          <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} />
+          {/* <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} /> */}
           <Icons>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>

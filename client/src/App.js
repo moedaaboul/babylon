@@ -19,7 +19,7 @@ import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
 import LookFeed from './pages/LookFeed';
 import SingleLook from './pages/SingleLook';
-import Checkout from './pages/Checkout';
+import CheckOut from './pages/CheckOut';
 import Success from './pages/Success';
 import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
@@ -89,8 +89,8 @@ function App() {
                       <Route path="/success" element={<LockGeneral />}>
                         <Route index element={<Success />} />
                       </Route>
-                      <Route path="/checkout" element={<LockGeneral />}>
-                        <Route index element={<Checkout />} />
+                      <Route path="/checkOut" element={<LockGeneral />}>
+                        <Route index element={<CheckOut />} />
                       </Route>
                       <Route path="/wardrobe/lists/owned" element={<LockGeneral />}>
                         <Route index element={<MyOrders />} />
