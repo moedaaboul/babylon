@@ -54,7 +54,7 @@
 
 ## About The Project
                                   
-[![Product Name Screen Shot][product-screenshot]]
+![Product Name Screen Shot][product-screenshot]
                                   
 Through a combination of an exceptional concept with great technological
 delivery through industry standard tools, the ebabylon app was created to meet
