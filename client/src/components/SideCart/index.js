@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 
-import { useLazyQuery } from '@apollo/client';
-import { QUERY_CHECKOUT } from '../../utils/queries';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
+import { ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -12,32 +9,19 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
-import { ShoppingBag as ShoppingBagIcon } from '@mui/icons-material';
-import CartItem from '../SingleCartItem';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import EmptyCart from '../EmptyCart';
 import ActiveCart from '../ActiveCart';
 import { useDrawerContext } from '../../providers/DrawerStateProvider';
 
 import { useStoreContext } from '../../state/store/provider';
-import { getSummary, idbPromise } from '../../utils/helpers';
+import { idbPromise } from '../../utils/helpers';
 
 // const testSeed = require('./testSeed.json');
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-
 export default function TemporaryDrawer() {
-  const { drawerState, setDrawerState, toggleDrawer } = useDrawerContext();
+  const { drawerState, toggleDrawer } = useDrawerContext();
   const [state, dispatch] = useStoreContext();
-
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
-  useEffect(() => {
-    if (data) {
-      stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: data.checkout.session });
-      });
-    }
-  }, [data]);
 
   useEffect(() => {
     async function getCart() {
@@ -49,10 +33,6 @@ export default function TemporaryDrawer() {
       getCart();
     }
   }, [state.cart.length, dispatch]);
-
-  function toggleCart() {
-    dispatch({ type: TOGGLE_CART });
-  }
 
   function calculateTotal() {
     let sum = 0;
@@ -66,21 +46,6 @@ export default function TemporaryDrawer() {
     return sum.toFixed(2);
   }
 
-  function submitCheckout() {
-    const productIds = [];
-
-    state.cart.forEach((item) => {
-      for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
-      }
-    });
-
-    getCheckout({
-      variables: { products: productIds },
-    });
-  }
-
-  const cartOpen = state.cartOpen;
   const cartContent = state.cart;
 
   return (

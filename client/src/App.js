@@ -19,7 +19,7 @@ import Page404 from './pages/Page404';
 import Brand from './pages/Brand';
 import LookFeed from './pages/LookFeed';
 import SingleLook from './pages/SingleLook';
-import Checkout from './pages/Checkout';
+import Summary from './pages/Summary';
 import Success from './pages/Success';
 import WishList from './pages/WishList';
 import Navbar from './components/Navbar';
@@ -31,7 +31,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  // uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 const theme = createTheme({
@@ -90,7 +91,7 @@ function App() {
                         <Route index element={<Success />} />
                       </Route>
                       <Route path="/checkout" element={<LockGeneral />}>
-                        <Route index element={<Checkout />} />
+                        <Route index element={<Summary />} />
                       </Route>
                       <Route path="/wardrobe/lists/owned" element={<LockGeneral />}>
                         <Route index element={<MyOrders />} />

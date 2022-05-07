@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // MUI Materials
 import { styled } from '@mui/material/styles';
@@ -36,7 +35,7 @@ const ProductImgStyle = styled('img')({
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product, wishList }) {
-  const { _id, title, image, price, discountedPrice, brand, featured } = product;
+  const { _id, title, image, price, discountedPrice, featured } = product;
   const [toggleLike] = useMutation(TOGGLE_LIKE, {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });

@@ -5,7 +5,6 @@ import MuiButton from '@mui/material/Button';
 import MuiGrid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import MuiTableFooter from '@mui/material/TableFooter';
 
 export const Grid = styled(MuiGrid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {

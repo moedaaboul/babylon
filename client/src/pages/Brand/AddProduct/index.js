@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -232,10 +232,11 @@ const AddProduct = () => {
             maxFiles={3}
             onupdatefiles={setFiles}
             onpreparefile={(item) => {
-              console.log(item.getFileEncodeDataURL());
-              console.log(files.map((e) => e.getFileEncodeDataURL()));
-              const images = files.map((e) => e.getFileEncodeDataURL());
-              setImages(images);
+              const newImage = item.getFileEncodeDataURL();
+              console.log(newImage);
+              // console.log(files.map((e) => e.getFileEncodeDataURL()));
+              // const images = files.map((e) => e.getFileEncodeDataURL());
+              setImages([...images, newImage]);
             }}
             onremovefile={(error, item) => {
               console.log(item.file);

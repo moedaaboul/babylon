@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useSortContext } from '../../providers/SortStateProvider';
 // material
-import { Menu, Button, MenuItem, Typography } from '@mui/material';
+import Menu from '@mui/material/Menu';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+
 // component
 import Iconify from '../../components/Iconify';
 

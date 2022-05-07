@@ -11,9 +11,9 @@ export function timeConverter(UNIX_timestamp) {
   var year = a.getFullYear();
   var month = months[a.getMonth()];
   var date = a.getDay();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var sec = a.getSeconds();
+  // var hour = a.getHours();
+  // var min = a.getMinutes();
+  // var sec = a.getSeconds();
   var output = date + ' ' + month + ' ' + year;
   return output;
 }
@@ -95,19 +95,19 @@ export function mergy(oldCart, newItem) {
   return sortedCartItemArr;
 }
 
-export function getSingleItemById(checkId) {
-  const productDB = require('../components/SideCart/testSeed.json');
+// export function getSingleItemById(checkId) {
+//   const productDB = require('../components/SideCart/testSeed.json');
 
-  let product;
+//   let product;
 
-  productDB.forEach((item, id) => {
-    if (id === checkId) {
-      product = item;
-    }
-  });
+//   productDB.forEach((item, id) => {
+//     if (id === checkId) {
+//       product = item;
+//     }
+//   });
 
-  return product;
-}
+//   return product;
+// }
 
 export function updateSummary(state) {
   console.log('in getSummary', state);

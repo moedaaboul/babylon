@@ -9,7 +9,13 @@ import { timeConverter } from '../../utils/helpers';
 import './index.css';
 // import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Table, TableHead, TableBody, TableContainer, TableRow, TableCell } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+
 import { blue } from '@mui/material/colors';
 const darkBlue = blue[600];
 
