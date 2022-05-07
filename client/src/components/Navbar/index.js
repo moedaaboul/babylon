@@ -131,10 +131,6 @@ const Navbar = () => {
                 onClickAway={() => {
                   setDrawerState({ bottom: false, right: false });
                 }}>
-                {/* <ClickAwayListener
-                  onClickAway={() => {
-                    setDrawerState({ bottom: false, right: false });
-                  }}> */}
                 <Badge badgeContent={state.cart.length} color="secondary">
                   <SideCart />
                 </Badge>

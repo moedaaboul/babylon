@@ -88,7 +88,7 @@ export default function TemporaryDrawer() {
       <React.Fragment key="right">
         <ShoppingBagIcon onClick={toggleDrawer('right', true)} />
         <Drawer anchor="right" open={drawerState['right']} onClose={toggleDrawer('right', false)}>
-          <Box sx={{ width: 500 }} role="presentation">
+          <Box sx={{ width: 300 }} role="presentation">
             <List>
               <ListItem>
                 <Typography variant="h6" noWrap component="div">
