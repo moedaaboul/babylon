@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // MUI component
 
@@ -13,8 +13,6 @@ import TableRow from '@mui/material/TableRow';
 import SingleCheckOutListItem from '../SingleCheckOutListItem';
 
 const columns = require('./columns');
-const rows = require('./rows');
-const { getWindowDimensions } = require('../../utils/helpers');
 
 export default function CheckoutItemArr({ cartArr }) {
   return (

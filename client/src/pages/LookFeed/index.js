@@ -4,14 +4,12 @@ import { useQuery } from '@apollo/client';
 import { QUERY_LOOKS } from '../../utils/queries';
 import Box from '@mui/material/Box';
 import CardActionArea from '@mui/material/CardActionArea';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Typography from '@mui/material/Typography';
-import { FavoriteBorderOutlined } from '@mui/icons-material';
 
 export default function LookImageList() {
   const { loading, error, data } = useQuery(QUERY_LOOKS);

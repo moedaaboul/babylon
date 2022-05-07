@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 // material
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import ItemCard from './ItemCard';
 import { useQuery } from '@apollo/client';
 import { QUERY_WISH_LIST } from '../../utils/queries';

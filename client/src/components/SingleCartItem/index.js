@@ -13,7 +13,6 @@ import './cart.css';
 
 import { idbPromise } from '../../utils/helpers';
 import { useStoreContext } from '../../state/store/provider';
-import DailySummary from '../../pages/CheckOut/DailySummary';
 
 import { UPDATE_CART_QUANTITY, REMOVE_FROM_CART } from '../../state/store/actions';
 

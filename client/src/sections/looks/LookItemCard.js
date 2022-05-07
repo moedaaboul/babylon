@@ -12,22 +12,11 @@ import Typography from '@mui/material/Typography';
 import { fCurrency } from '../../utils/formatNumber';
 
 // ----------------------------------------------------------------------
-const renderPrice = () => {};
 // ----------------------------------------------------------------------
 
 export default function SmallItemCard({ items }) {
   console.log(items);
   const { title, description, price, discountedPrice, image, _id } = items;
-
-  const renderPrice = () => {
-    let correctPrice = 0;
-    if (discountedPrice === price) {
-      correctPrice = price;
-    } else {
-      correctPrice = discountedPrice;
-    }
-    return correctPrice;
-  };
 
   return (
     <Card>

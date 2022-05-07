@@ -1,15 +1,11 @@
-import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // MUI Materials
 import { styled } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import IconButton from '@mui/material/IconButton';
-import Label from '../../components/Label';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
@@ -38,7 +34,7 @@ const ProductImgStyle = styled('img')({
 
 export default function WishCard({ item }) {
   const [state, dispatch] = useStoreContext();
-  const { _id, title, image, price, discountedPrice, brand, featured } = item;
+  const { _id, title, image, price, discountedPrice } = item;
   const [toggleLike] = useMutation(TOGGLE_LIKE, {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });
