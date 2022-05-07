@@ -31,8 +31,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
-  // uri: '/graphql',
+  // uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 const theme = createTheme({
