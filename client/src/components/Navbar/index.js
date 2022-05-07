@@ -46,15 +46,46 @@ const Icons = styled(Box)(({ theme }) => ({
   },
 }));
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
 const Navbar = () => {
-  const { setDrawerState } = useDrawerContext();
+  let navigate = useNavigate();
 
   const [navigateLogout, setNavigateLogout] = useState(false);
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const { setDrawerState } = useDrawerContext();
   const { wishListCount } = useBadgeContext();
   const [state] = useStoreContext();
-  let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  let drawerDefault = { bottom: false, right: false };
+  let drawerDirection = { bottom: false, right: false };
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (navigateLogout) {
+      const timeout = setTimeout(() => {
+        navigate('/login');
+        setNavigateLogout(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [navigateLogout, navigate]);
 
   const redirectToOrders = (e) => {
     navigate('/wardrobe/lists/owned');
@@ -71,16 +102,15 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    if (navigateLogout) {
-      const timeout = setTimeout(() => {
-        navigate('/login');
-        setNavigateLogout(false);
-      }, 1000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [navigateLogout, navigate]);
+  if (windowDimensions.width < 700) {
+    console.log('window width < 700', windowDimensions.width);
+    drawerDirection = { bottom: true, right: false };
+    console.log(drawerDirection);
+  } else {
+    console.log('window width > 700', windowDimensions.width);
+    drawerDirection = { bottom: false, right: true };
+    console.log(drawerDirection);
+  }
 
   return (
     <>
@@ -107,10 +137,10 @@ const Navbar = () => {
               {/* <StyledIconButton> */}
               <ClickAwayListener
                 onClick={() => {
-                  setDrawerState({ bottom: false, right: true });
+                  setDrawerState(drawerDirection);
                 }}
                 onClickAway={() => {
-                  setDrawerState({ bottom: false, right: false });
+                  setDrawerState(drawerDefault);
                 }}>
                 <Badge badgeContent={state.cart.length} color="secondary">
                   <SideCart />

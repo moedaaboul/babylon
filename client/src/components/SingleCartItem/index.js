@@ -77,8 +77,20 @@ export default function CartItem({ item }) {
   };
 
   return (
-    <TableRow key={item._id}>
-      <TableCell component="th" scope="row">
+    <TableRow
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        alignContent: 'center',
+        p: 1,
+        m: 1,
+        bgcolor: 'background.paper',
+        maxWidth: 300,
+        borderRadius: 1,
+      }}
+      key={item._id}>
+      <TableCell component="th" scope="row" style={{ border: '0px solid rgba(0,0,0,0.2)' }}>
         <Box display={'flex'} alignItems={'center'}>
           <Box width={80} height={80}>
             <img
@@ -107,8 +119,10 @@ export default function CartItem({ item }) {
           </Box>
         </Box>
       </TableCell>
-      <TableCell>£ {item.discountedPrice * item.purchaseQuantity}</TableCell>
-      <TableCell>
+      <TableCell style={{ border: '0px solid rgba(0,0,0,0.2)' }}>
+        £ {item.discountedPrice * item.purchaseQuantity}
+      </TableCell>
+      <TableCell style={{ border: '0px solid rgba(0,0,0,0.2)' }}>
         <Root>
           <CustIconButton onClick={() => minusOne()}>
             <Remove />
@@ -119,7 +133,7 @@ export default function CartItem({ item }) {
           </CustIconButton>
         </Root>
       </TableCell>
-      <TableCell>
+      <TableCell style={{ border: '0px solid rgba(0,0,0,0.2)' }}>
         <IconButton onClick={() => removeFromCart(item)}>
           <Close />
         </IconButton>
