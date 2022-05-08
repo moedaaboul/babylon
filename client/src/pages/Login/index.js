@@ -217,6 +217,7 @@ export default function Login() {
                 <Button
                   type="submit"
                   fullWidth
+                  disableRipple
                   variant="outlined"
                   sx={{
                     mt: 3,

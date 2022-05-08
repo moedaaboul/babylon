@@ -152,6 +152,7 @@ export default function Register() {
                 <Button
                   type="submit"
                   fullWidth
+                  disableRipple
                   variant="outlined"
                   sx={{
                     mt: 3,
