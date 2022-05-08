@@ -29,7 +29,13 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1a1a1a',
+    },
+  },
+});
 
 export default function Login() {
   const navigate = useNavigate();
@@ -115,79 +121,117 @@ export default function Login() {
   return (
     <ThemeProvider theme={theme}>
       <Grow in={true} timeout={1000}>
-        <Container component="main" maxWidth="xs">
+        <Box component="main" style={{ overflowY: 'hidden', width: '100vw' }}>
           <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              // alignItems: 'center',
-            }}>
-            <Typography component="h1" variant="h5">
-              <strong>Welcome back</strong>
-            </Typography>
-            <Box component="form" onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                onChange={handleInputChange}
-                value={userFormData.email}
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                onChange={handleInputChange}
-                value={userFormData.password}
-                label="Password"
-                type={passwordVisibility ? 'text' : 'password'}
-                id="password"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end">
-                        {passwordVisibility ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                autoComplete="current-password"
-              />
-              <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                Sign In
-              </Button>
-              {/* <Grid container justifyContent="flex-end">
+          <Container maxWidth="sm">
+            <Box
+              sx={{
+                marginLeft: { xs: 8, sm: 0, md: 0 },
+                marginRight: { xs: 8, sm: 0, md: 0 },
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                // alignItems: 'center',
+              }}>
+              <Typography component="h1" variant="h5">
+                <strong>Welcome back</strong>
+              </Typography>
+              <Box component="form" onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  onChange={handleInputChange}
+                  value={userFormData.email}
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  onChange={handleInputChange}
+                  value={userFormData.password}
+                  label="Password"
+                  type={passwordVisibility ? 'text' : 'password'}
+                  id="password"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end">
+                          {passwordVisibility ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  autoComplete="current-password"
+                />
+                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    '&:hover': {
+                      backgroundColor: '#66676e',
+                      color: '#fff',
+                    },
+                  }}>
+                  Sign In
+                </Button>
+                {/* <Grid container justifyContent="flex-end">
                     <Link component={RouterLink} to="/register" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid> */}
-              {/* <Divider></Divider> */}
+                {/* <Divider></Divider> */}
+              </Box>
+            </Box>
+          </Container>
+          <Container maxWidth="sm">
+            <Box
+              sx={{
+                marginLeft: { xs: 8, sm: 0, md: 0 },
+                marginRight: { xs: 8, sm: 0, md: 0 },
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                // alignItems: 'center',
+              }}>
               <Typography component="h1" variant="h5">
                 <strong>I'm new here</strong>
               </Typography>
-              <Link component={RouterLink} to="/register" variant="body2">
-                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <Link component={RouterLink} to="/register" variant="body2" style={{ textDecoration: 'none' }}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="outlined"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    '&:hover': {
+                      backgroundColor: '#66676e',
+                      color: '#fff',
+                    },
+                  }}>
                   Register
                 </Button>
               </Link>
             </Box>
-          </Box>
 
-          <Copyright sx={{ mt: 8, mb: 4 }} />
-        </Container>
+            <Copyright sx={{ mt: 8, mb: 4 }} />
+          </Container>
+        </Box>
       </Grow>
       <Snackbar open={isLoginSuccess} autoHideDuration={6000}>
         <Alert severity="success" sx={{ width: '100%' }}>

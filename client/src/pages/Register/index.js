@@ -39,18 +39,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const brandImage = 'url(https://source.unsplash.com/random)';
-const influencerImage = 'url(https://source.unsplash.com/random)';
-const userImage = 'url(https://source.unsplash.com/random)';
-
 const theme = createTheme({
   palette: {
     primary: {
       main: '#1a1a1a',
     },
-    // secondary: {
-    //   // main: '#b25977',
-    // },
   },
 });
 
@@ -67,9 +60,7 @@ export default function Register() {
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [redirectOnRegistrationSuccess, setRedirectOnRegistrationSuccess] = useState(false);
-  // const [value, setValue] = React.useState('customer');
 
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   useEffect(() => {
     if (redirectOnRegistrationSuccess) {
       const timeout = setTimeout(() => {
