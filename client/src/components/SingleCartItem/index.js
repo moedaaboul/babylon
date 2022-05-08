@@ -48,7 +48,9 @@ export default function CartItem({ item }) {
   };
 
   const addOne = (e) => {
-    const value = item.purchaseQuantity + 1;
+    let value = item.purchaseQuantity + 1;
+
+    value > item.stock ? (value = item.stock) : (value = value);
 
     dispatch({
       type: UPDATE_CART_QUANTITY,
