@@ -1,0 +1,32 @@
+.placeHolder {
+  height: 50px;
+}
+
+.vertical-divider {
+  width: 50%;
+  height: 100%;
+  border-right: solid 1px lightgray;
+}
+
+.vertical-divider-place-holder {
+  width: 50%;
+  height: 100%;
+  border-right: none;
+}
+
+@media screen and (max-width: 900) {
+  .placeHolder {
+    display: none;
+    height: 0px;
+  }
+
+  .vertical-divider {
+    width: 50%;
+    height: 100%;
+    border-right: none;
+  }
+
+  .item-page-info {
+    width: 80%;
+  }
+}

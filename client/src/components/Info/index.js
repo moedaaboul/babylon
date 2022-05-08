@@ -48,6 +48,7 @@ const Info = ({ item }) => {
           Currently {stock} in stock
         </Typography>
         <br></br>
+
         <Typography variant="caption" display="block" gutterBottom>
           {discountedPrice ? `£ ${discountedPrice}` : `£ ${price}`}
         </Typography>
