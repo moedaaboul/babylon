@@ -138,8 +138,8 @@ export default function Register() {
           <Container maxWidth="sm">
             <Box
               sx={{
-                marginLeft: { xs: 8, sm: 0, md: 0 },
-                marginRight: { xs: 8, sm: 0, md: 0 },
+                marginLeft: { xs: 8, sm: 4, md: 0 },
+                marginRight: { xs: 8, sm: 4, md: 0 },
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
@@ -160,6 +160,7 @@ export default function Register() {
                       backgroundColor: '#66676e',
                       color: '#fff',
                     },
+                    lineHeight: 2.75,
                   }}>
                   Login
                 </Button>
@@ -170,8 +171,8 @@ export default function Register() {
           <Container maxWidth="sm">
             <Box
               sx={{
-                marginLeft: { xs: 8, sm: 0, md: 0 },
-                marginRight: { xs: 8, sm: 0, md: 0 },
+                marginLeft: { xs: 8, sm: 4, md: 0 },
+                marginRight: { xs: 8, sm: 4, md: 0 },
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
@@ -272,6 +273,7 @@ export default function Register() {
                     '&:hover': {
                       backgroundColor: '#66676e',
                     },
+                    lineHeight: 2.75,
                   }}>
                   Register
                 </Button>
