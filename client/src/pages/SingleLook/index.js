@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Navbar from '../../components/Navbar';
 
 const LookImgStyle = styled('img')({
   top: 0,
@@ -47,36 +48,39 @@ const SingleLook = () => {
   // if (error) return `Error! ${error.message}`;
 
   return (
-    <Container maxWidth="xl">
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h2" sx={{ my: 5 }}>
-              {look.influencer}'s Look
-            </Typography>
-          </Box>
-          <Box sx={{ pt: '100%', position: 'relative' }}>
-            <LookImgStyle alt={look.description} src={look.image} />
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Box sx={{ pt: 20 }}>
-            <Box sx={{ textAlign: 'center', fontStyle: 'oblique' }}>
-              <Typography variant="h6">
-                "{look.description}" - {look.influencer}
+    <>
+      <Navbar />
+      <Container maxWidth="xl">
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={8}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h2" sx={{ my: 5 }}>
+                {look.influencer}'s Look
               </Typography>
             </Box>
-            <Typography variant="h4" sx={{ my: 5 }}>
-              GET THIS LOOK FOR £{sumTotal()}
-            </Typography>
-            <Divider />
-            <Stack spacing={2}>
-              {look.items.map((item) => (loading ? <h6>is loading...</h6> : <LookItemCard items={item} />))}
-            </Stack>
-          </Box>
+            <Box sx={{ pt: '100%', position: 'relative' }}>
+              <LookImgStyle alt={look.description} src={look.image} />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ pt: 20 }}>
+              <Box sx={{ textAlign: 'center', fontStyle: 'oblique' }}>
+                <Typography variant="h6">
+                  "{look.description}" - {look.influencer}
+                </Typography>
+              </Box>
+              <Typography variant="h4" sx={{ my: 5 }}>
+                GET THIS LOOK FOR £{sumTotal()}
+              </Typography>
+              <Divider />
+              <Stack spacing={2}>
+                {look.items.map((item) => (loading ? <h6>is loading...</h6> : <LookItemCard items={item} />))}
+              </Stack>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 };
 

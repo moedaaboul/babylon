@@ -10,6 +10,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Typography from '@mui/material/Typography';
+import Navbar from '../../components/Navbar';
 
 export default function LookImageList() {
   const { loading, error, data } = useQuery(QUERY_LOOKS);
@@ -22,6 +23,7 @@ export default function LookImageList() {
   }
   return (
     <>
+      <Navbar />
       <Box>
         <Typography variant="h2" sx={{ my: 5, textAlign: 'center' }}>
           Latest Babylon Looks

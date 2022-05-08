@@ -19,6 +19,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
+import Navbar from '../../components/Navbar';
 
 import { styled } from '@mui/material/styles';
 
@@ -90,34 +91,37 @@ export default function Summary() {
   const cartContent = state.cart;
   console.log(cartContent);
   return (
-    <Container maxWidth="xl">
-      <Box pt={{ xs: 2, sm: 4, md: 6 }}>
-        <StyledTypography variant={'h1'} gutterBottom>
-          Shopping Cart.
-        </StyledTypography>
-        <TableContainer>
-          <Table styles={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Product</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Quantity</TableCell>
-                <TableCell>Total Price</TableCell>
-                <TableCell>&nbsp;</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {cartContent.map((item, index) => (
-                <CheckoutItem checkoutItem={item} />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-      <Box pb={3}>
-        <DailySummary total={calculateTotal()} />
-      </Box>
-      <Button onClick={submitCheckout}>Checkout</Button>
-    </Container>
+    <>
+      <Navbar />
+      <Container maxWidth="xl">
+        <Box pt={{ xs: 2, sm: 4, md: 6 }}>
+          <StyledTypography variant={'h1'} gutterBottom>
+            Shopping Cart.
+          </StyledTypography>
+          <TableContainer>
+            <Table styles={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Product</TableCell>
+                  <TableCell>Price</TableCell>
+                  <TableCell>Quantity</TableCell>
+                  <TableCell>Total Price</TableCell>
+                  <TableCell>&nbsp;</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {cartContent.map((item, index) => (
+                  <CheckoutItem checkoutItem={item} />
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+        <Box pb={3}>
+          <DailySummary total={calculateTotal()} />
+        </Box>
+        <Button onClick={submitCheckout}>Checkout</Button>
+      </Container>
+    </>
   );
 }
