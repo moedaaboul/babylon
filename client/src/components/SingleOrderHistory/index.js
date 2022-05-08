@@ -43,8 +43,9 @@ const AccordionSummary = styled((props) => (
 }));
 
 export default function CustomizedAccordions({ order }) {
-  console.log(order);
-  const date = timeConverter(order.purchaseDate);
+  // console.log(order);
+  const { date, time } = timeConverter(order.purchaseDate);
+  // console.log(date, time);
   const orderAmount = order.items.length;
 
   const [expanded, setExpanded] = React.useState('');
@@ -67,7 +68,7 @@ export default function CustomizedAccordions({ order }) {
         onChange={handleChange('panel1')}>
         <AccordionSummary sx={{ backgroundColor: darkBlue }} aria-controls="panel1d-content" id="panel1d-header">
           <Typography variant="subtitle1" gutterBottom component="div">
-            Your order on {date}
+            Your order on {date} at {time}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
