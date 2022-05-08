@@ -147,6 +147,8 @@ export default function Register() {
           <Container maxWidth="sm">
             <Box
               sx={{
+                marginLeft: { xs: 8, sm: 0, md: 0 },
+                marginRight: { xs: 8, sm: 0, md: 0 },
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
@@ -177,6 +179,8 @@ export default function Register() {
           <Container maxWidth="sm">
             <Box
               sx={{
+                marginLeft: { xs: 8, sm: 0, md: 0 },
+                marginRight: { xs: 8, sm: 0, md: 0 },
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
