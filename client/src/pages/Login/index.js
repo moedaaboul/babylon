@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import InputAdornment from '@mui/material/InputAdornment';
+import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
@@ -119,134 +120,144 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grow in={true} timeout={1000}>
-        <Box component="main" style={{ overflowY: 'hidden', width: '100vw' }}>
-          <CssBaseline />
-          <Container maxWidth="sm">
-            <Box
-              sx={{
-                marginLeft: { xs: 8, sm: 4, md: 0 },
-                marginRight: { xs: 8, sm: 4, md: 0 },
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                // alignItems: 'center',
-              }}>
-              <Typography component="h1" variant="h5">
-                <strong>Welcome back</strong>
-              </Typography>
-              <Box component="form" onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  onChange={handleInputChange}
-                  value={userFormData.email}
-                  autoComplete="email"
-                  autoFocus
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  onChange={handleInputChange}
-                  value={userFormData.password}
-                  label="Password"
-                  type={passwordVisibility ? 'text' : 'password'}
-                  id="password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end">
-                          {passwordVisibility ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  autoComplete="current-password"
-                />
-                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{
-                    mt: 3,
-                    mb: 2,
-                    '&:hover': {
-                      backgroundColor: '#66676e',
-                      color: '#fff',
-                    },
-                    lineHeight: 2.75,
-                  }}>
-                  Sign In
-                </Button>
-                {/* <Grid container justifyContent="flex-end">
+    <>
+      <Stack
+        direction="row"
+        spacing={1}
+        alignItems="center"
+        sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
+        <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+        <Typography>BABYLON</Typography>
+      </Stack>
+      <ThemeProvider theme={theme}>
+        <Grow in={true} timeout={1000}>
+          <Box component="main" style={{ overflowY: 'hidden', width: '100vw' }}>
+            <CssBaseline />
+            <Container maxWidth="sm">
+              <Box
+                sx={{
+                  marginLeft: { xs: 8, sm: 4, md: 0 },
+                  marginRight: { xs: 8, sm: 4, md: 0 },
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  // alignItems: 'center',
+                }}>
+                <Typography component="h1" variant="h5">
+                  <strong>Welcome back</strong>
+                </Typography>
+                <Box component="form" onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    onChange={handleInputChange}
+                    value={userFormData.email}
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    onChange={handleInputChange}
+                    value={userFormData.password}
+                    label="Password"
+                    type={passwordVisibility ? 'text' : 'password'}
+                    id="password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end">
+                            {passwordVisibility ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    autoComplete="current-password"
+                  />
+                  <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{
+                      mt: 3,
+                      mb: 2,
+                      '&:hover': {
+                        backgroundColor: '#66676e',
+                        color: '#fff',
+                      },
+                      lineHeight: 2.75,
+                    }}>
+                    Sign In
+                  </Button>
+                  {/* <Grid container justifyContent="flex-end">
                     <Link component={RouterLink} to="/register" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid> */}
-                {/* <Divider></Divider> */}
+                  {/* <Divider></Divider> */}
+                </Box>
               </Box>
-            </Box>
-          </Container>
-          <Divider />
-          <Container maxWidth="sm">
-            <Box
-              sx={{
-                marginLeft: { xs: 8, sm: 4, md: 0 },
-                marginRight: { xs: 8, sm: 4, md: 0 },
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                // alignItems: 'center',
-              }}>
-              <Typography component="h1" variant="h5">
-                <strong>I'm new here</strong>
-              </Typography>
-              <Link component={RouterLink} to="/register" variant="body2" style={{ textDecoration: 'none' }}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  disableRipple
-                  variant="outlined"
-                  sx={{
-                    mt: 3,
-                    mb: 2,
-                    '&:hover': {
-                      backgroundColor: '#66676e',
-                      color: '#fff',
-                    },
-                    lineHeight: 2.75,
-                  }}>
-                  Register
-                </Button>
-              </Link>
-            </Box>
+            </Container>
+            <Divider />
+            <Container maxWidth="sm">
+              <Box
+                sx={{
+                  marginLeft: { xs: 8, sm: 4, md: 0 },
+                  marginRight: { xs: 8, sm: 4, md: 0 },
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  // alignItems: 'center',
+                }}>
+                <Typography component="h1" variant="h5">
+                  <strong>I'm new here</strong>
+                </Typography>
+                <Link component={RouterLink} to="/register" variant="body2" style={{ textDecoration: 'none' }}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    disableRipple
+                    variant="outlined"
+                    sx={{
+                      mt: 3,
+                      mb: 2,
+                      '&:hover': {
+                        backgroundColor: '#66676e',
+                        color: '#fff',
+                      },
+                      lineHeight: 2.75,
+                    }}>
+                    Register
+                  </Button>
+                </Link>
+              </Box>
 
-            <Copyright sx={{ mt: 8, mb: 4 }} />
-          </Container>
-        </Box>
-      </Grow>
-      <Snackbar open={isLoginSuccess} autoHideDuration={6000}>
-        <Alert severity="success" sx={{ width: '100%' }}>
-          Login Success!
-        </Alert>
-      </Snackbar>
-      <Snackbar open={isLoginError} autoHideDuration={6000}>
-        <Alert severity="error" sx={{ width: '100%' }}>
-          Incorrect credentials have been provided.
-        </Alert>
-      </Snackbar>
-    </ThemeProvider>
+              <Copyright sx={{ mt: 8, mb: 4 }} />
+            </Container>
+          </Box>
+        </Grow>
+        <Snackbar open={isLoginSuccess} autoHideDuration={6000}>
+          <Alert severity="success" sx={{ width: '100%' }}>
+            Login Success!
+          </Alert>
+        </Snackbar>
+        <Snackbar open={isLoginError} autoHideDuration={6000}>
+          <Alert severity="error" sx={{ width: '100%' }}>
+            Incorrect credentials have been provided.
+          </Alert>
+        </Snackbar>
+      </ThemeProvider>
+    </>
   );
 }
