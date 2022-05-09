@@ -137,8 +137,8 @@ const Navbar = () => {
       <AppBar position="sticky">
         <StyledToolbar>
           <Grid container spacing={0}>
-            <Grid item xs={0} sm={0} md={3} sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-              <Grid container spacing={10}>
+            <Grid item xs={0} sm={0} md={4} sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+              <Grid container spacing={1}>
                 <Grid item md={3} className="ild-grid-col">
                   <NavLink exact={'true'} to="/items" className="category-link">
                     Items
@@ -157,29 +157,30 @@ const Navbar = () => {
               </Grid>
             </Grid>
 
-            <Grid item xs={4} sm={6} md={4}>
+            <Grid item xs={4} sm={4} md={4}>
               {/* <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}> */}
-              <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
+              {/* <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
                 <Stack
                   direction="row"
                   spacing={1}
                   alignItems="center"
-                  sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
-                  <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
-                  <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
-                </Stack>
-              </Link>
+                  alignContent="center"
+                  sx={{ ml: { sm: '1rem', md: '9rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}> */}
+              <section className="logo-wrapper">
+                <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+                <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
+              </section>
+              {/* </Stack>
+              </Link> */}
               {/* </Stack> */}
             </Grid>
           </Grid>
 
-          <Grid item xs={8} sm={6} md={4} className="icon-group">
+          <Grid item xs={8} sm={8} md={4} className="icon-group">
             <Tooltip title="Profile">
-              <Box>
-                <StyledIconButton onClick={handleClick}>
-                  <PersonOutlineIcon />
-                </StyledIconButton>
-              </Box>
+              <StyledIconButton onClick={handleClick}>
+                <PersonOutlineIcon />
+              </StyledIconButton>
             </Tooltip>
 
             <Tooltip title="Wish list">
@@ -191,17 +192,19 @@ const Navbar = () => {
             </Tooltip>
 
             <Tooltip title="Shopping Bag">
-              <ClickAwayListener
-                onClick={() => {
-                  setDrawerState(drawerDirection);
-                }}
-                onClickAway={() => {
-                  setDrawerState(drawerDefault);
-                }}>
-                <Badge badgeContent={state.cart.length} color="secondary" className="shopping-bag-icon">
-                  <SideCart />
-                </Badge>
-              </ClickAwayListener>
+              <StyledIconButton>
+                <ClickAwayListener
+                  onClick={() => {
+                    setDrawerState(drawerDirection);
+                  }}
+                  onClickAway={() => {
+                    setDrawerState(drawerDefault);
+                  }}>
+                  <Badge className="badge" badgeContent={state.cart.length} color="secondary">
+                    <SideCart />
+                  </Badge>
+                </ClickAwayListener>
+              </StyledIconButton>
             </Tooltip>
           </Grid>
         </StyledToolbar>

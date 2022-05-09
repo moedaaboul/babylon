@@ -32,3 +32,16 @@ nav {
   justify-content: flex-end;
   align-content: flex-end;
 }
+
+.icon-group > * {
+  height: 100%;
+}
+
+.logo-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
