@@ -137,7 +137,7 @@ const Navbar = () => {
       <AppBar position="sticky">
         <StyledToolbar>
           <Grid container spacing={0}>
-            <Grid item xs={0} sm={0} md={4} sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+            <Grid item xs={0} sm={0} md={0} lg={4} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' } }}>
               <Grid container spacing={1}>
                 <Grid item md={3} className="ild-grid-col">
                   <NavLink exact={'true'} to="/items" className="category-link">
@@ -157,7 +157,7 @@ const Navbar = () => {
               </Grid>
             </Grid>
 
-            <Grid item xs={4} sm={4} md={4}>
+            <Grid item xs={4} sm={4} md={4} lg={4}>
               {/* <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}> */}
               {/* <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
                 <Stack
@@ -176,7 +176,7 @@ const Navbar = () => {
             </Grid>
           </Grid>
 
-          <Grid item xs={8} sm={8} md={4} className="icon-group">
+          <Grid item xs={8} sm={8} md={8} lg={4} className="icon-group">
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>
                 <PersonOutlineIcon />
@@ -253,19 +253,22 @@ const Navbar = () => {
               <MenuItem component={RouterLink} to="/login">
                 My account
               </MenuItem>
-              <MenuItem component={RouterLink} to="/items" sx={{ display: { sx: 'block', sm: 'block', md: 'none' } }}>
+              <MenuItem
+                component={RouterLink}
+                to="/items"
+                sx={{ display: { sx: 'block', sm: 'block', md: 'block', lg: 'none' } }}>
                 All Items
               </MenuItem>
               <MenuItem
                 component={RouterLink}
                 to="/lookfeed"
-                sx={{ display: { sx: 'block', sm: 'block', md: 'none' } }}>
+                sx={{ display: { sx: 'block', sm: 'block', md: 'block', lg: 'none' } }}>
                 Looks
               </MenuItem>
               <MenuItem
                 component={RouterLink}
                 to="/dashboard"
-                sx={{ display: { sx: 'block', sm: 'block', md: 'none' } }}>
+                sx={{ display: { sx: 'block', sm: 'block', md: 'block', lg: 'none' } }}>
                 Dashboard
               </MenuItem>
             </>
