@@ -190,10 +190,15 @@ const Navbar = () => {
                   alignItems="center"
                   alignContent="center"
                   sx={{ ml: { sm: '1rem', md: '9rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}> */}
-                <section className="logo-wrapper">
-                  <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
-                  <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
-                </section>
+                <Link component={RouterLink} to="/">
+                  <section className="logo-wrapper">
+                    <img
+                      src="https://res.cloudinary.com/dyb07uvmrhy/image/upload/v1652064815/logo-orange_zx23pb.png"
+                      alt="logo"
+                      style={{ height: '30px' }}></img>
+                    <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
+                  </section>
+                </Link>
                 {/* </Stack>
               </Link> */}
                 {/* </Stack> */}
