@@ -125,8 +125,18 @@ const Info = ({ item }) => {
       </div>
       <Button
         // className={useStyles.blackButton}
+        fullWidth
         variant="contained"
-        sx={{ backgroundColor: 'black', width: '100%', borderRadius: 0, fontWeight: 'bold', letterSpacing: '2px' }}
+        sx={{
+          borderRadius: 0,
+          fontWeight: 'bold',
+          letterSpacing: '2px',
+          '&:hover': {
+            backgroundColor: '#66676e',
+            color: '#fff',
+          },
+          lineHeight: 2.75,
+        }}
         onClick={addToCart}>
         Add to cart
       </Button>
