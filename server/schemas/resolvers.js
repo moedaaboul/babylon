@@ -143,8 +143,8 @@ const resolvers = {
         mode: 'payment',
         success_url: `${url}/success`,
         cancel_url: `${url}/`,
-        // success_url: 'https://ebabylon.herokuapp.com/success',
-        // cancel_url: 'https://ebabylon.herokuapp.com/',
+        success_url: 'https://ebabylon.herokuapp.com/success',
+        cancel_url: 'https://ebabylon.herokuapp.com/',
       });
 
       return { session: session.id };
