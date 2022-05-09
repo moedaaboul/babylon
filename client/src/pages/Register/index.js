@@ -24,7 +24,7 @@ import Slide from '@mui/material/Slide';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import CloseIcon from '@mui/icons-material/Close';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -133,15 +133,41 @@ export default function Register() {
 
   return (
     <>
-      <Stack
-        direction="row"
-        spacing={1}
-        alignItems="center"
-        sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
-        <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
-        <Typography>BABYLON</Typography>
-      </Stack>
       <ThemeProvider theme={theme}>
+        <Box sx={{ display: { lg: 'none', xl: 'none' } }}>
+          <Box style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Button variant="text" disableRipple>
+              <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
+                <CloseIcon />
+              </Link>
+            </Button>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', width: '90vw' }}>
+              <Button variant="text" disableRipple style={{ fontWeight: 'bolder', color: 'black' }} disabled>
+                Register
+              </Button>
+              <Link component={RouterLink} to="/login" variant="body2" style={{ textDecoration: 'none' }}>
+                <Button
+                  variant="text"
+                  disableRipple
+                  style={{
+                    fontWeight: 'bolder',
+                    color: '#6328e0',
+                  }}>
+                  Login
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+          <Divider />
+        </Box>
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
+          <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+          <Typography>BABYLON</Typography>
+        </Stack>
         <Grow in={true} timeout={1000}>
           <Box component="main" style={{ overflowY: 'hidden', width: '100vw' }}>
             <CssBaseline />

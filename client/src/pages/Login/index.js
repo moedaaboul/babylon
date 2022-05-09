@@ -16,6 +16,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Copyright from '../../components/Copyright';
@@ -121,15 +122,41 @@ export default function Login() {
 
   return (
     <>
-      <Stack
-        direction="row"
-        spacing={1}
-        alignItems="center"
-        sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
-        <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
-        <Typography>BABYLON</Typography>
-      </Stack>
       <ThemeProvider theme={theme}>
+        <Box sx={{ display: { lg: 'none', xl: 'none' } }}>
+          <Box style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Button disableRipple>
+              <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
+                <CloseIcon />
+              </Link>
+            </Button>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', width: '90vw' }}>
+              <Button disableRipple style={{ fontWeight: 'bolder', color: 'black' }} disabled>
+                Login
+              </Button>
+              <Link component={RouterLink} to="/register" variant="body2" style={{ textDecoration: 'none' }}>
+                <Button
+                  disableRipple
+                  disableFocusRipple
+                  style={{
+                    fontWeight: 'bolder',
+                    color: '#6328e0',
+                  }}>
+                  Register
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+          <Divider />
+        </Box>
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
+          <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+          <Typography>BABYLON</Typography>
+        </Stack>
         <Grow in={true} timeout={1000}>
           <Box component="main" style={{ overflowY: 'hidden', width: '100vw' }}>
             <CssBaseline />
