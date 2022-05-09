@@ -1,25 +1,34 @@
+//--------REACT COMPONENTS
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
+//--------PROVIDERS
 import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
 import { useStoreContext } from '../../state/store/provider';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { useFilterContext } from '../../providers/FiltersStateProvider';
+
+//--------MUI ELEMENTS
 import AppBar from '@mui/material/AppBar';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import MuiAlert from '@mui/material/Alert';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
+//------FILE IMPORTS
 import './styles.css';
 import Auth from '../../utils/auth';
 import SideCart from '../SideCart';
@@ -112,27 +121,40 @@ const Navbar = () => {
     console.log(drawerDirection);
   }
 
+  const navLinkStyles = ({ isActive }) => {
+    return {
+      color: isActive ? 'white' : 'black',
+      backgroundColor: isActive ? 'black' : 'white',
+      '&:hover': {
+        backgroundColor: 'grey',
+      },
+    };
+  };
+
   return (
     <>
       <AppBar position="sticky">
         <StyledToolbar>
-          <Stack spacing={2} direction="row">
-            <Button className="category-button" variant="text" color="secondary">
-              Men
-            </Button>
-            <Button className="category-button" variant="text" color="secondary">
-              Women
-            </Button>
-            <Button className="category-button" variant="text" color="secondary">
-              Kids
-            </Button>
+          <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <nav>
+              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+                Men
+              </NavLink>
+
+              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+                Women
+              </NavLink>
+
+              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+                Kids
+              </NavLink>
+            </nav>
           </Stack>
           <a className="logo-link" href="/">
-            <Typography variant="h6" sx={{ display: { xs: 'block', sm: 'block' } }} onClick={redirectToHome}>
+            <Typography variant="h6" sx={{ display: { xs: 'block' } }} onClick={redirectToHome}>
               🅱🅰🅱🆈🅻🅾🅽
             </Typography>
           </a>
-          {/* <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} /> */}
           <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>
@@ -147,7 +169,6 @@ const Navbar = () => {
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Shopping Bag">
-              {/* <StyledIconButton> */}
               <ClickAwayListener
                 onClick={() => {
                   setDrawerState(drawerDirection);
@@ -158,9 +179,7 @@ const Navbar = () => {
                 <Badge badgeContent={state.cart.length} color="secondary">
                   <SideCart />
                 </Badge>
-                {/* </ClickAwayListener> */}
               </ClickAwayListener>
-              {/* </StyledIconButton> */}
             </Tooltip>
           </Icons>
         </StyledToolbar>
@@ -203,7 +222,6 @@ const Navbar = () => {
               Login
             </MenuItem>
           )}
-          {/* <MenuItem>Profile</MenuItem> */}
           {Auth.loggedIn() ? (
             <>
               <MenuItem component={RouterLink} to="/login">
@@ -241,7 +259,6 @@ const Navbar = () => {
               Logout
             </MenuItem>
           )}
-          {/* <MenuItem>Logout</MenuItem> */}
         </Menu>
       </AppBar>
       <Snackbar open={navigateLogout}>
@@ -249,7 +266,6 @@ const Navbar = () => {
           Logout Success!
         </Alert>
       </Snackbar>
-      {/* <Notification /> */}
     </>
   );
 };

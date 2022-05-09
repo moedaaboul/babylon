@@ -1,3 +1,28 @@
 .logo-link {
   text-decoration: none;
 }
+
+nav {
+  background-color: white;
+  color: black;
+}
+
+.category-link {
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 3px;
+}
+
+.category-link:hover {
+  background-color: rgb(112, 112, 112);
+}
+
+/* a:active {
+  padding: 16px 32px;
+  text-decoration: none;
+  color: 'white' !important;
+  font-weight: 700 !important;
+  background-color: black !important;
+} */
