@@ -27,11 +27,6 @@ const ProductImgStyle = styled('img')({
   position: 'absolute',
 });
 
-// ItemCard.propTypes = {
-//   product: PropTypes.object,
-//   wishlist: PropTypes.object,
-// };
-
 // ----------------------------------------------------------------------
 
 export default function ItemCard({ product, wishList }) {
@@ -61,13 +56,13 @@ export default function ItemCard({ product, wishList }) {
 
   return (
     <Card sx={{ borderRadius: '16px' }}>
-      <CardActionArea>
+      <CardActionArea disableTouchRipple="true">
         <Box sx={{ pt: '100%', position: 'relative' }}>
           <Link to={`/item/${_id}`} component={RouterLink}>
             <ProductImgStyle alt={title} src={image[0]} />
           </Link>
-          <Tooltip title="Add To Wishlist" style={{ position: 'absolute', top: 3, right: 3 }} color={'secondary'}>
-            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)}>
+          <Tooltip title="Add To Wishlist" style={{ position: 'absolute', top: 3, right: 3 }}>
+            <IconButton aria-label="add to wishlist" onClick={() => handleToggleLike(_id)} sx={{ color: 'red' }}>
               {likedByUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
           </Tooltip>
@@ -100,7 +95,7 @@ export default function ItemCard({ product, wishList }) {
               variant="filled"
               sx={{
                 color: '#FFFFFF',
-                bgcolor: '#FF0000',
+                bgcolor: '#000000',
 
                 textTransform: 'uppercase',
               }}>

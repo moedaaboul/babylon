@@ -9,7 +9,7 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import EmptyCart from '../EmptyCart';
 import ActiveCart from '../ActiveCart';
 import { useDrawerContext } from '../../providers/DrawerStateProvider';
@@ -51,7 +51,7 @@ export default function TemporaryDrawer() {
   return (
     <div>
       <React.Fragment key="right">
-        <ShoppingBagIcon onClick={toggleDrawer('right', true)} />
+        <ShoppingBagOutlinedIcon onClick={toggleDrawer('right', true)} />
         <Drawer anchor="right" open={drawerState['right']} onClose={toggleDrawer('right', false)}>
           <Box sx={{ width: 400 }} role="presentation">
             <List>

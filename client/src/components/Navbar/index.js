@@ -1,26 +1,35 @@
+//--------REACT COMPONENTS
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
+//--------PROVIDERS
 import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
 import { useStoreContext } from '../../state/store/provider';
+import { useFilterContext } from '../../providers/FiltersStateProvider';
 
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import FavouriteIcon from '@mui/icons-material/Favorite';
-import PersonIcon from '@mui/icons-material/Person';
+//--------MUI ELEMENTS
 import AppBar from '@mui/material/AppBar';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import MuiAlert from '@mui/material/Alert';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import { styled } from '@mui/material/styles';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
+//------FILE IMPORTS
+import './styles.css';
 import Auth from '../../utils/auth';
 import SideCart from '../SideCart';
 
@@ -56,7 +65,9 @@ function getWindowDimensions() {
 
 const Navbar = () => {
   let navigate = useNavigate();
+  //------------------------------------------------------
 
+  //------------------------------------------------------
   const [navigateLogout, setNavigateLogout] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const { setDrawerState } = useDrawerContext();
@@ -112,29 +123,61 @@ const Navbar = () => {
     console.log(drawerDirection);
   }
 
+  const navLinkStyles = ({ isActive }) => {
+    return {
+      color: isActive ? 'white' : 'black',
+      backgroundColor: isActive ? 'black' : 'white',
+    };
+  };
+
   return (
     <>
       <AppBar position="sticky">
         <StyledToolbar>
-          <Typography variant="h6" sx={{ display: { xs: 'block', sm: 'block' } }} onClick={redirectToHome}>
-            🅱🅰🅱🆈🅻🅾🅽
-          </Typography>
-          {/* <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} /> */}
+          <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <nav>
+              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+                Items
+              </NavLink>
+
+              <NavLink exact={'true'} to="/lookfeed" className="category-link" style={navLinkStyles}>
+                Looks
+              </NavLink>
+
+              <NavLink exact={'true'} to="/dashboard" className="category-link" style={navLinkStyles}>
+                Dashboard
+              </NavLink>
+            </nav>
+          </Stack>
+          <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}>
+            <a className="logo-link" href="/">
+              <Typography variant="h6" sx={{ display: { xs: 'block' } }} onClick={redirectToHome}>
+                <img
+                  alignItems="center"
+                  src="./images/logo-orange.png"
+                  alt="Babylon logo - small orange B"
+                  display="flex"
+                  height="50"
+                  width="50"
+                />
+                BABYLON
+              </Typography>
+            </a>
+          </Stack>
           <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>
-                <PersonIcon />
+                <PersonOutlineIcon />
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Wish list">
               <StyledIconButton onClick={() => navigate('/wardrobe/lists/liked')}>
                 <Badge badgeContent={wishListCount} color="secondary">
-                  <FavouriteIcon />
+                  <FavoriteBorderIcon />
                 </Badge>
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Shopping Bag">
-              {/* <StyledIconButton> */}
               <ClickAwayListener
                 onClick={() => {
                   setDrawerState(drawerDirection);
@@ -145,9 +188,7 @@ const Navbar = () => {
                 <Badge badgeContent={state.cart.length} color="secondary">
                   <SideCart />
                 </Badge>
-                {/* </ClickAwayListener> */}
               </ClickAwayListener>
-              {/* </StyledIconButton> */}
             </Tooltip>
           </Icons>
         </StyledToolbar>
@@ -190,7 +231,6 @@ const Navbar = () => {
               Login
             </MenuItem>
           )}
-          {/* <MenuItem>Profile</MenuItem> */}
           {Auth.loggedIn() ? (
             <>
               <MenuItem component={RouterLink} to="/login">
@@ -228,7 +268,6 @@ const Navbar = () => {
               Logout
             </MenuItem>
           )}
-          {/* <MenuItem>Logout</MenuItem> */}
         </Menu>
       </AppBar>
       <Snackbar open={navigateLogout}>
@@ -236,7 +275,6 @@ const Navbar = () => {
           Logout Success!
         </Alert>
       </Snackbar>
-      {/* <Notification /> */}
     </>
   );
 };

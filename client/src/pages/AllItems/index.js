@@ -12,6 +12,8 @@ import { Grid } from '@mui/material';
 import { useFilterDrawerContext } from '../../providers/FilterDrawerStateProvider';
 import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { useSortContext } from '../../providers/SortStateProvider';
+import './styles.css';
+
 import Navbar from '../../components/Navbar';
 import FilterDrawer from '../../components/FilterDrawer';
 
