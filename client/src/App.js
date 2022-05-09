@@ -89,6 +89,15 @@ function App() {
                         <Route path="/items" element={<LockGeneral />}>
                           <Route index element={<AllItems />} />
                         </Route>
+                        <Route path="/men">
+                          <Route index element={<AllItems />} />
+                        </Route>
+                        <Route path="/women">
+                          <Route index element={<AllItems />} />
+                        </Route>
+                        <Route path="/kids">
+                          <Route index element={<AllItems />} />
+                        </Route>
                         <Route path="/item/:itemId" element={<LockGeneral />}>
                           <Route index element={<SingleItem />} />
                         </Route>

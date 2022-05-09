@@ -65,7 +65,31 @@ function getWindowDimensions() {
 
 const Navbar = () => {
   let navigate = useNavigate();
+  //------------------------------------------------------
+  const { setCategories } = useFilterContext();
+  const [categoryState, setCategoryState] = React.useState({
+    Men: false,
+    Women: false,
+    Kids: false,
+  });
 
+  useEffect(() => {
+    setCategoryState('categoryLinkState', categoryState);
+  });
+
+  const setCategoryLinkState = (category) => {
+    setCategories(category);
+  };
+
+  // const handleCategoryChange = (event) => {
+  //   console.log(categoryState, 'line137');
+  //   const newState = {
+  //     ...categoryState,
+  //     [event.target.name]: event.target.name,
+  //   };
+  //   return setCategoryState(newState);
+  // };
+  //------------------------------------------------------
   const [navigateLogout, setNavigateLogout] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const { setDrawerState } = useDrawerContext();
@@ -125,9 +149,6 @@ const Navbar = () => {
     return {
       color: isActive ? 'white' : 'black',
       backgroundColor: isActive ? 'black' : 'white',
-      '&:hover': {
-        backgroundColor: 'grey',
-      },
     };
   };
 
@@ -137,15 +158,30 @@ const Navbar = () => {
         <StyledToolbar>
           <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', sm: 'block' } }}>
             <nav>
-              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+              <NavLink
+                exact={'true'}
+                to="/men"
+                className="category-link"
+                style={navLinkStyles}
+                onClick={setCategoryLinkState('Men')}>
                 Men
               </NavLink>
 
-              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+              <NavLink
+                exact={'true'}
+                to="/women"
+                className="category-link"
+                style={navLinkStyles}
+                onClick={setCategoryLinkState('Women')}>
                 Women
               </NavLink>
 
-              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+              <NavLink
+                exact={'true'}
+                to="/kids"
+                className="category-link"
+                style={navLinkStyles}
+                onClick={setCategoryLinkState('Kids')}>
                 Kids
               </NavLink>
             </nav>
