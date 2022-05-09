@@ -8,6 +8,7 @@ import { SortProvider } from './providers/SortStateProvider';
 import { BadgesProvider } from './providers/BadgesStateProvider';
 import { StoreProvider } from './state/store/provider';
 import { DrawerProvider } from './providers/DrawerStateProvider';
+import { FilterDrawerProvider } from './providers/FilterDrawerStateProvider';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import Home from './pages/Home';
@@ -31,8 +32,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
-  // uri: '/graphql',
+  // uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 const theme = createTheme({
@@ -79,6 +80,7 @@ function App() {
             <BadgesProvider>
               <DrawerProvider>
                 <ThemeProvider theme={theme}>
+                <FilterDrawerProvider>
                   <Router>
                     <ErrorBoundary>
                       <Navbar />
@@ -126,7 +128,8 @@ function App() {
                       </Routes>
                     </ErrorBoundary>
                   </Router>
-                </ThemeProvider>
+                  </FilterDrawerProvider>
+                </ThemeProvider> 
               </DrawerProvider>
             </BadgesProvider>
           </SortProvider>

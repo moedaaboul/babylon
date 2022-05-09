@@ -112,7 +112,7 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       // const url = new URL(context.headers.referer).origin;
-      // console.log(url);
+      console.log(url);
       console.log(args.items);
       const order = new Order({ items: args.items });
       console.log(order);
@@ -141,6 +141,8 @@ const resolvers = {
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
+        // success_url: `${url}/success`,
+        // cancel_url: `${url}/`,
         success_url: 'https://ebabylon.herokuapp.com/success',
         cancel_url: 'https://ebabylon.herokuapp.com/',
       });
