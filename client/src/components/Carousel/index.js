@@ -19,10 +19,18 @@ const ParallaxCarousel = () => {
   // eslint-disable-next-line react/prop-types
   const renderElements = ({ index, onChangeIndex }) => (
     <>
-      <LeftButton classes={arrowStyles} disabled={index === 0} onClick={() => onChangeIndex(index - 1)}>
+      <LeftButton
+        classes={arrowStyles}
+        disabled={index === 0}
+        onClick={() => onChangeIndex(index - 1)}
+        sx={{ display: { sm: 'none' } }}>
         <KeyboardArrowLeft />
       </LeftButton>
-      <RightButton classes={arrowStyles} disabled={index === data.length - 1} onClick={() => onChangeIndex(index + 1)}>
+      <RightButton
+        classes={arrowStyles}
+        disabled={index === data.length - 1}
+        onClick={() => onChangeIndex(index + 1)}
+        sx={{ display: { sm: 'none' } }}>
         <KeyboardArrowRight />
       </RightButton>
       <div style={{ textAlign: 'center' }}>
@@ -35,12 +43,15 @@ const ParallaxCarousel = () => {
   const renderChildren = ({ injectStyle, fineIndex }) =>
     data.map(({ id, title, subtitle, image }, i) => (
       <Slide key={id}>
-        <StyledTitle noWrap style={{ ...injectStyle(i, 60), ...createStyle(i, fineIndex) }}>
+        <StyledTitle
+          noWrap
+          style={{ ...injectStyle(i, 60), ...createStyle(i, fineIndex) }}
+          sx={{ display: { sm: 'none' } }}>
           {title}
         </StyledTitle>
-        <StyledSubtitle noWrap style={{ ...injectStyle(i, 40), ...createStyle(i, fineIndex) }}>
+        {/* <StyledSubtitle noWrap style={{ ...injectStyle(i, 40), ...createStyle(i, fineIndex) }}>
           {subtitle}
-        </StyledSubtitle>
+        </StyledSubtitle> */}
         <div
           style={{
             display: 'block',

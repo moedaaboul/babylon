@@ -23,7 +23,6 @@ import SingleLook from './pages/SingleLook';
 import Summary from './pages/Summary';
 import Success from './pages/Success';
 import WishList from './pages/WishList';
-import Navbar from './components/Navbar';
 import Lock from './components/Lock';
 import LockGeneral from './components/LockGeneral';
 import MyOrders from './pages/MyOrders';
@@ -79,11 +78,10 @@ function App() {
           <SortProvider>
             <BadgesProvider>
               <DrawerProvider>
-                <ThemeProvider theme={theme}>
-                  <FilterDrawerProvider>
+                <FilterDrawerProvider>
+                  <ThemeProvider theme={theme}>
                     <Router>
                       <ErrorBoundary>
-                        <Navbar />
                         <Routes>
                           <Route path="/" element={<Home />} />
                           <Route path="/login" element={<Login />} />
@@ -119,8 +117,8 @@ function App() {
                         </Routes>
                       </ErrorBoundary>
                     </Router>
-                  </FilterDrawerProvider>
-                </ThemeProvider>
+                  </ThemeProvider>
+                </FilterDrawerProvider>
               </DrawerProvider>
             </BadgesProvider>
           </SortProvider>
