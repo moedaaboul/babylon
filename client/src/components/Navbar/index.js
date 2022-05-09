@@ -27,6 +27,7 @@ import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 //------FILE IMPORTS
 import './styles.css';
@@ -150,19 +151,16 @@ const Navbar = () => {
             </nav>
           </Stack>
           <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}>
-            <a className="logo-link" href="/">
-              <Typography variant="h6" sx={{ display: { xs: 'block' } }} onClick={redirectToHome}>
-                <img
-                  alignItems="center"
-                  src="./images/logo-orange.png"
-                  alt="Babylon logo - small orange B"
-                  display="flex"
-                  height="50"
-                  width="50"
-                />
-                BABYLON
-              </Typography>
-            </a>
+            <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
+              <Stack
+                direction="row"
+                spacing={1}
+                alignItems="center"
+                sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
+                <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+                <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
+              </Stack>
+            </Link>
           </Stack>
           <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
             <Tooltip title="Profile">
