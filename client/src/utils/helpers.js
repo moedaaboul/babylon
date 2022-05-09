@@ -122,3 +122,8 @@ export function updateSummary(state) {
   });
   return { ...state, summary: newSummary, saving: newSaving };
 }
+
+export function randomBrand() {
+  const brandArr = ['Nike', 'Louis Vuitton', 'Adidas', 'Zara', 'H&M', 'Moncler', 'Polo Ralph Lauren'];
+  return brandArr[Math.floor(brandArr.length * Math.random())];
+}
