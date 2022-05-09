@@ -36,14 +36,18 @@ const httpLink = createHttpLink({
 });
 
 const theme = createTheme({
+  typography: {
+    fontFamily: 'Josefin Sans, sans-serif',
+  },
   palette: {
     type: 'light',
     primary: {
-      main: '#000000',
-      light: '#000000',
+      main: '#ffffff',
+      light: '#c3bcbc',
+      dark: '#3f3d3d',
     },
     secondary: {
-      main: '#098c47',
+      main: '#fb8c00',
     },
   },
 });
@@ -74,44 +78,46 @@ function App() {
           <SortProvider>
             <BadgesProvider>
               <DrawerProvider>
-                <Router>
-                  <ErrorBoundary>
-                    <Navbar />
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/login" element={<Login />} />
-                      <Route path="/register" element={<Register />} />
-                      <Route path="/items" element={<LockGeneral />}>
-                        <Route index element={<AllItems />} />
-                      </Route>
-                      <Route path="/item/:itemId" element={<LockGeneral />}>
-                        <Route index element={<SingleItem />} />
-                      </Route>
-                      <Route path="/success" element={<LockGeneral />}>
-                        <Route index element={<Success />} />
-                      </Route>
-                      <Route path="/checkout" element={<LockGeneral />}>
-                        <Route index element={<Summary />} />
-                      </Route>
-                      <Route path="/wardrobe/lists/owned" element={<LockGeneral />}>
-                        <Route index element={<MyOrders />} />
-                      </Route>
-                      <Route path="/wardrobe/lists/liked" element={<LockGeneral />}>
-                        <Route index element={<WishList />} />
-                      </Route>
-                      <Route path="/look/:lookId" element={<LockGeneral />}>
-                        <Route index element={<SingleLook />} />
-                      </Route>
-                      <Route path="/lookfeed" element={<LockGeneral />}>
-                        <Route index element={<LookFeed />} />
-                      </Route>
-                      <Route path="/dashboard" element={<Lock />}>
-                        <Route index element={<Brand />} />
-                      </Route>
-                      <Route path="*" element={<Page404 />} />
-                    </Routes>
-                  </ErrorBoundary>
-                </Router>
+                <ThemeProvider theme={theme}>
+                  <Router>
+                    <ErrorBoundary>
+                      <Navbar />
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/items" element={<LockGeneral />}>
+                          <Route index element={<AllItems />} />
+                        </Route>
+                        <Route path="/item/:itemId" element={<LockGeneral />}>
+                          <Route index element={<SingleItem />} />
+                        </Route>
+                        <Route path="/success" element={<LockGeneral />}>
+                          <Route index element={<Success />} />
+                        </Route>
+                        <Route path="/checkout" element={<LockGeneral />}>
+                          <Route index element={<Summary />} />
+                        </Route>
+                        <Route path="/wardrobe/lists/owned" element={<LockGeneral />}>
+                          <Route index element={<MyOrders />} />
+                        </Route>
+                        <Route path="/wardrobe/lists/liked" element={<LockGeneral />}>
+                          <Route index element={<WishList />} />
+                        </Route>
+                        <Route path="/look/:lookId" element={<LockGeneral />}>
+                          <Route index element={<SingleLook />} />
+                        </Route>
+                        <Route path="/lookfeed" element={<LockGeneral />}>
+                          <Route index element={<LookFeed />} />
+                        </Route>
+                        <Route path="/dashboard" element={<Lock />}>
+                          <Route index element={<Brand />} />
+                        </Route>
+                        <Route path="*" element={<Page404 />} />
+                      </Routes>
+                    </ErrorBoundary>
+                  </Router>
+                </ThemeProvider>
               </DrawerProvider>
             </BadgesProvider>
           </SortProvider>

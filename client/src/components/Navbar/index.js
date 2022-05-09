@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
 import { useStoreContext } from '../../state/store/provider';
-
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import FavouriteIcon from '@mui/icons-material/Favorite';
-import PersonIcon from '@mui/icons-material/Person';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import AppBar from '@mui/material/AppBar';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Box from '@mui/material/Box';
@@ -18,9 +16,11 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-
+import './styles.css';
 import Auth from '../../utils/auth';
 import SideCart from '../SideCart';
 
@@ -116,20 +116,33 @@ const Navbar = () => {
     <>
       <AppBar position="sticky">
         <StyledToolbar>
-          <Typography variant="h6" sx={{ display: { xs: 'block', sm: 'block' } }} onClick={redirectToHome}>
-            🅱🅰🅱🆈🅻🅾🅽
-          </Typography>
+          <Stack spacing={2} direction="row">
+            <Button className="category-button" variant="text" color="secondary">
+              Men
+            </Button>
+            <Button className="category-button" variant="text" color="secondary">
+              Women
+            </Button>
+            <Button className="category-button" variant="text" color="secondary">
+              Kids
+            </Button>
+          </Stack>
+          <a className="logo-link" href="/">
+            <Typography variant="h6" sx={{ display: { xs: 'block', sm: 'block' } }} onClick={redirectToHome}>
+              🅱🅰🅱🆈🅻🅾🅽
+            </Typography>
+          </a>
           {/* <AutoAwesomeIcon sx={{ display: { xs: 'block', sm: 'none' } }} /> */}
           <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>
-                <PersonIcon />
+                <PersonOutlineIcon />
               </StyledIconButton>
             </Tooltip>
             <Tooltip title="Wish list">
               <StyledIconButton onClick={() => navigate('/wardrobe/lists/liked')}>
                 <Badge badgeContent={wishListCount} color="secondary">
-                  <FavouriteIcon />
+                  <FavoriteBorderIcon />
                 </Badge>
               </StyledIconButton>
             </Tooltip>

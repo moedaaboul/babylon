@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { useSortContext } from '../../providers/SortStateProvider';
-
+import './styles.css';
 const AllItems = () => {
   const { maxPrice, minPrice, categories, colours } = useFilterContext();
   const { priceAsc, priceDesc, sortNewest, sortFeatured } = useSortContext();
@@ -41,8 +41,6 @@ const AllItems = () => {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
-
-
 
   if (error) return `Error! ${error.message}`;
 
