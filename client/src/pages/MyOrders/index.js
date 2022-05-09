@@ -7,6 +7,7 @@ import NoOrderHistory from '../../components/NoOrderHistory';
 import OrderHistory from '../../components/OrderHistory';
 import { useQuery } from '@apollo/client';
 import { GET_HISTORY_ORDERS } from '../../utils/queries';
+import Navbar from '../../components/Navbar';
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
   fontWeight: 900,
@@ -25,17 +26,20 @@ export default function MyOrders() {
 
   console.log(data);
   return (
-    <div>
-      <Container maxWidth="xl">
-        <Box pt={{ xs: 2, sm: 4, md: 6 }}>
-          <StyledTypography variant={'h1'} gutterBottom>
-            Order History
-          </StyledTypography>
-          <br></br>
+    <>
+      <Navbar />
+      <div>
+        <Container maxWidth="xl">
+          <Box pt={{ xs: 2, sm: 4, md: 6 }}>
+            <StyledTypography variant={'h1'} gutterBottom>
+              Order History
+            </StyledTypography>
+            <br></br>
 
-          {data ? <OrderHistory data={data.orderHistory} /> : <NoOrderHistory />}
-        </Box>
-      </Container>
-    </div>
+            {data ? <OrderHistory data={data.orderHistory} /> : <NoOrderHistory />}
+          </Box>
+        </Container>
+      </div>
+    </>
   );
 }

@@ -80,9 +80,9 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     padding: '0 24px',
   },
-  top: 20,
-  left: '20%',
-  height: '40%',
+  // top: 20,
+  left: '0%',
+  height: '20%',
   fontSize: 40,
   zIndex: 1,
   background: 'linear-gradient(#800080, #ffc0cb)',

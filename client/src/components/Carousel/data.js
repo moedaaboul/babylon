@@ -1,7 +1,7 @@
 const data = [
   {
     id: 1,
-    title: 'Nike',
+    title: 'Airmax-101',
     subtitle: 'Promoted',
     image:
       // eslint-disable-next-line max-len
