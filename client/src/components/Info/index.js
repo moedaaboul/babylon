@@ -125,9 +125,12 @@ const Info = ({ item }) => {
       </div>
       <Button
         // className={useStyles.blackButton}
+        type="submit"
         fullWidth
         variant="contained"
         sx={{
+          backgroundColor: 'black',
+          color: 'white',
           borderRadius: 0,
           fontWeight: 'bold',
           letterSpacing: '2px',
