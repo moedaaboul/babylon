@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import Footer from '../../components/Footer';
 // import SideCart from "../../components/SideCart";
 // import './index.css';
 const Home = () => {
