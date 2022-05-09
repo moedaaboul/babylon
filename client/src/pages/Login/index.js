@@ -149,14 +149,16 @@ export default function Login() {
           </Box>
           <Divider />
         </Box>
-        <Stack
-          direction="row"
-          spacing={1}
-          alignItems="center"
-          sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
-          <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
-          <Typography style={{ fontWeight: 'bolder' }}>BABYLON</Typography>
-        </Stack>
+        <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+            sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
+            <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+            <Typography style={{ fontWeight: 'bolder' }}>BABYLON</Typography>
+          </Stack>
+        </Link>
         <Grow in={true} timeout={1000}>
           <Box component="main" style={{ overflowY: 'hidden', width: '100vw' }}>
             <CssBaseline />
