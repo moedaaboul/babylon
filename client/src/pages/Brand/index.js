@@ -52,21 +52,21 @@ const Brand = () => {
           <Tab label="Orders" />
           <Tab label="Account Settings" />
         </Tabs>
-        <TabPanel value={value} index={0}>
+        {/* <TabPanel value={value} index={0}>
           Item One
-        </TabPanel>
+        </TabPanel> */}
         <TabPanel value={value} index={1}>
           <AddProduct />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Products />
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        {/* <TabPanel value={value} index={3}>
           Item Four
         </TabPanel>
         <TabPanel value={value} index={4}>
           Item Five
-        </TabPanel>
+        </TabPanel> */}
       </Box>
     </>
   );
