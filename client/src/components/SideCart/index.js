@@ -17,6 +17,7 @@ import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import { useStoreContext } from '../../state/store/provider';
 import { idbPromise } from '../../utils/helpers';
 
+import './index.css';
 // const testSeed = require('./testSeed.json');
 
 export default function TemporaryDrawer() {
@@ -51,7 +52,7 @@ export default function TemporaryDrawer() {
   return (
     <div>
       <React.Fragment key="right">
-        <ShoppingBagOutlinedIcon onClick={toggleDrawer('right', true)} />
+        <ShoppingBagOutlinedIcon className="shopping-bag-icon" onClick={toggleDrawer('right', true)} />
         <Drawer anchor="right" open={drawerState['right']} onClose={toggleDrawer('right', false)}>
           <Box sx={{ width: 400 }} role="presentation">
             <List>

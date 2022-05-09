@@ -28,6 +28,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { Grid } from '@mui/material';
 
 //------FILE IMPORTS
 import './styles.css';
@@ -135,39 +136,52 @@ const Navbar = () => {
     <>
       <AppBar position="sticky">
         <StyledToolbar>
-          <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <nav>
-              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
-                Items
-              </NavLink>
+          <Grid container spacing={0}>
+            <Grid item xs={0} sm={0} md={3} sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+              <Grid container spacing={10}>
+                <Grid item md={3} className="ild-grid-col">
+                  <NavLink exact={'true'} to="/items" className="category-link">
+                    Items
+                  </NavLink>
+                </Grid>
+                <Grid item md={3} className="ild-grid-col">
+                  <NavLink item md={3} exact={'true'} to="/lookfeed" className="category-link">
+                    Looks
+                  </NavLink>
+                </Grid>
+                <Grid item md={3} className="ild-grid-col">
+                  <NavLink item md={3} exact={'true'} to="/dashboard" className="category-link">
+                    Dashboard
+                  </NavLink>
+                </Grid>
+              </Grid>
+            </Grid>
 
-              <NavLink exact={'true'} to="/lookfeed" className="category-link" style={navLinkStyles}>
-                Looks
-              </NavLink>
+            <Grid item xs={4} sm={6} md={4}>
+              {/* <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}> */}
+              <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  alignItems="center"
+                  sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
+                  <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
+                  <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
+                </Stack>
+              </Link>
+              {/* </Stack> */}
+            </Grid>
+          </Grid>
 
-              <NavLink exact={'true'} to="/dashboard" className="category-link" style={navLinkStyles}>
-                Dashboard
-              </NavLink>
-            </nav>
-          </Stack>
-          <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}>
-            <Link component={RouterLink} to="/" variant="body2" style={{ textDecoration: 'none' }}>
-              <Stack
-                direction="row"
-                spacing={1}
-                alignItems="center"
-                sx={{ ml: { xs: '1rem', sm: '5rem', md: '10rem', lg: '15rem', xl: '20rem' }, mt: '1rem' }}>
-                <img src="./images/logo-orange.png" alt="logo" style={{ height: '30px' }}></img>
-                <Typography style={{ fontWeight: 'bolder', color: 'black' }}>BABYLON</Typography>
-              </Stack>
-            </Link>
-          </Stack>
-          <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
+          <Grid item xs={8} sm={6} md={4} className="icon-group">
             <Tooltip title="Profile">
-              <StyledIconButton onClick={handleClick}>
-                <PersonOutlineIcon />
-              </StyledIconButton>
+              <Box>
+                <StyledIconButton onClick={handleClick}>
+                  <PersonOutlineIcon />
+                </StyledIconButton>
+              </Box>
             </Tooltip>
+
             <Tooltip title="Wish list">
               <StyledIconButton onClick={() => navigate('/wardrobe/lists/liked')}>
                 <Badge badgeContent={wishListCount} color="secondary">
@@ -175,6 +189,7 @@ const Navbar = () => {
                 </Badge>
               </StyledIconButton>
             </Tooltip>
+
             <Tooltip title="Shopping Bag">
               <ClickAwayListener
                 onClick={() => {
@@ -183,13 +198,14 @@ const Navbar = () => {
                 onClickAway={() => {
                   setDrawerState(drawerDefault);
                 }}>
-                <Badge badgeContent={state.cart.length} color="secondary">
+                <Badge badgeContent={state.cart.length} color="secondary" className="shopping-bag-icon">
                   <SideCart />
                 </Badge>
               </ClickAwayListener>
             </Tooltip>
-          </Icons>
+          </Grid>
         </StyledToolbar>
+
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -234,13 +250,19 @@ const Navbar = () => {
               <MenuItem component={RouterLink} to="/login">
                 My account
               </MenuItem>
-              <MenuItem component={RouterLink} to="/items">
+              <MenuItem component={RouterLink} to="/items" sx={{ display: { sx: 'block', sm: 'block', md: 'none' } }}>
                 All Items
               </MenuItem>
-              <MenuItem component={RouterLink} to="/lookfeed">
+              <MenuItem
+                component={RouterLink}
+                to="/lookfeed"
+                sx={{ display: { sx: 'block', sm: 'block', md: 'none' } }}>
                 Looks
               </MenuItem>
-              <MenuItem component={RouterLink} to="/dashboard">
+              <MenuItem
+                component={RouterLink}
+                to="/dashboard"
+                sx={{ display: { sx: 'block', sm: 'block', md: 'none' } }}>
                 Dashboard
               </MenuItem>
             </>

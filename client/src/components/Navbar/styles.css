@@ -18,3 +18,17 @@ nav {
 .category-link:hover {
   background-color: lightgrey !important;
 }
+
+.ild-grid-col {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-end;
+}
+
+.icon-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
+}

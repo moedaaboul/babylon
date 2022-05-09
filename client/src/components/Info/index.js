@@ -5,7 +5,7 @@ import { useStoreContext } from '../../state/store/provider';
 // import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 import { Stack } from '@mui/material';
 import { Grid } from '@mui/material';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
