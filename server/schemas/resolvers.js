@@ -141,10 +141,10 @@ const resolvers = {
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
-        success_url: `${url}/success`,
-        cancel_url: `${url}/`,
-        // success_url: 'https://ebabylon.herokuapp.com/success',
-        // cancel_url: 'https://ebabylon.herokuapp.com/',
+        // success_url: `${url}/success`,
+        // cancel_url: `${url}/`,
+        success_url: 'https://ebabylon.herokuapp.com/success',
+        cancel_url: 'https://ebabylon.herokuapp.com/',
       });
 
       return { session: session.id };
