@@ -18,22 +18,27 @@ const Info = ({ item }) => {
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
-    console.log(itemInCart);
+    // console.log(itemInCart);
     if (itemInCart) {
+      let newQuantity = itemInCart.purchaseQuantity + 1;
+      newQuantity > itemInCart.stock ? (newQuantity = itemInCart.stock) : (newQuantity = newQuantity);
+
       dispatch({
         type: UPDATE_CART_QUANTITY,
-        _id: _id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        _id: itemInCart._id,
+        purchaseQuantity: parseInt(newQuantity),
       });
+
       idbPromise('cart', 'put', {
         ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        purchaseQuantity: parseInt(newQuantity),
       });
     } else {
       dispatch({
         type: ADD_TO_CART,
         product: { ...item, purchaseQuantity: 1 },
       });
+
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
   };

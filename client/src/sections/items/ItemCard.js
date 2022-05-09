@@ -43,7 +43,7 @@ export default function ItemCard({ product, wishList }) {
   const likedByUser = wishList.map((e) => e.item._id).includes(_id);
 
   const handleToggleLike = async (item) => {
-    console.log(item, 'line 57');
+    console.log(item, 'Item card, line 57');
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     // if (!token) {
