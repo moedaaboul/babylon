@@ -66,29 +66,7 @@ function getWindowDimensions() {
 const Navbar = () => {
   let navigate = useNavigate();
   //------------------------------------------------------
-  const { setCategories } = useFilterContext();
-  const [categoryState, setCategoryState] = React.useState({
-    Men: false,
-    Women: false,
-    Kids: false,
-  });
 
-  useEffect(() => {
-    setCategoryState('categoryLinkState', categoryState);
-  });
-
-  const setCategoryLinkState = (category) => {
-    setCategories(category);
-  };
-
-  // const handleCategoryChange = (event) => {
-  //   console.log(categoryState, 'line137');
-  //   const newState = {
-  //     ...categoryState,
-  //     [event.target.name]: event.target.name,
-  //   };
-  //   return setCategoryState(newState);
-  // };
   //------------------------------------------------------
   const [navigateLogout, setNavigateLogout] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
@@ -158,39 +136,34 @@ const Navbar = () => {
         <StyledToolbar>
           <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', sm: 'block' } }}>
             <nav>
-              <NavLink
-                exact={'true'}
-                to="/men"
-                className="category-link"
-                style={navLinkStyles}
-                onClick={setCategoryLinkState('Men')}>
-                Men
+              <NavLink exact={'true'} to="/items" className="category-link" style={navLinkStyles}>
+                Items
               </NavLink>
 
-              <NavLink
-                exact={'true'}
-                to="/women"
-                className="category-link"
-                style={navLinkStyles}
-                onClick={setCategoryLinkState('Women')}>
-                Women
+              <NavLink exact={'true'} to="/lookfeed" className="category-link" style={navLinkStyles}>
+                Looks
               </NavLink>
 
-              <NavLink
-                exact={'true'}
-                to="/kids"
-                className="category-link"
-                style={navLinkStyles}
-                onClick={setCategoryLinkState('Kids')}>
-                Kids
+              <NavLink exact={'true'} to="/dashboard" className="category-link" style={navLinkStyles}>
+                Dashboard
               </NavLink>
             </nav>
           </Stack>
-          <a className="logo-link" href="/">
-            <Typography variant="h6" sx={{ display: { xs: 'block' } }} onClick={redirectToHome}>
-              🅱🅰🅱🆈🅻🅾🅽
-            </Typography>
-          </a>
+          <Stack spacing={2} direction="row" sx={{ display: { xs: 'block' } }}>
+            <a className="logo-link" href="/">
+              <Typography variant="h6" sx={{ display: { xs: 'block' } }} onClick={redirectToHome}>
+                <img
+                  alignItems="center"
+                  src="./images/logo-orange.png"
+                  alt="Babylon logo - small orange B"
+                  display="flex"
+                  height="50"
+                  width="50"
+                />
+                BABYLON
+              </Typography>
+            </a>
+          </Stack>
           <Icons sx={{ display: { xs: 'block', sm: 'block' } }}>
             <Tooltip title="Profile">
               <StyledIconButton onClick={handleClick}>

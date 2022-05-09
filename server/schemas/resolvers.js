@@ -111,9 +111,9 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     checkout: async (parent, args, context) => {
-      // const url = new URL(context.headers.referer).origin;
-      console.log(url);
-      console.log(args.items);
+      const url = new URL(context.headers.referer).origin;
+      // console.log(url);
+      // console.log(args.items);
       const order = new Order({ items: args.items });
       console.log(order);
       const line_items = [];
