@@ -152,7 +152,7 @@ const Home = () => {
           </Box>
         </Grid>
       </Grid>
-
+      <Footer />
       {/* <Container maxWidth="xl">
         <Carousel />
       </Container> */}
