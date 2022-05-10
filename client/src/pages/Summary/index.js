@@ -20,6 +20,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Navbar from '../../components/Navbar';
+import { Grid } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 
@@ -93,11 +94,14 @@ export default function Summary() {
   return (
     <>
       <Navbar />
-      <Container maxWidth="xl">
-        <Box pt={{ xs: 2, sm: 4, md: 6 }}>
+      <Grid container spacing={0}>
+        <Grid item xs={12} pt={2} pl={2} pr={2} mb={5}>
           <StyledTypography variant={'h1'} gutterBottom>
             Shopping Cart.
           </StyledTypography>
+        </Grid>
+
+        <Grid item xs={12} pl={2} pr={2} mb={5}>
           <TableContainer>
             <Table styles={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -116,11 +120,43 @@ export default function Summary() {
               </TableBody>
             </Table>
           </TableContainer>
-        </Box>
-        <Box pb={3}>
+        </Grid>
+
+        <Grid container xs={12} pl={2} pr={2} mb={5}>
           <DailySummary total={calculateTotal()} />
-        </Box>
-        <Button onClick={submitCheckout}>Checkout</Button>
+        </Grid>
+
+        <Grid container xs={12} pl={2} pr={2} mb={5}>
+          <Grid item xs={0} sm={0} md={0} lg={9}></Grid>
+          <Grid item xs={12} sm={12} md={12} lg={3}>
+            <Button
+              // className={useStyles.blackButton}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: 'black',
+                color: 'white',
+                borderRadius: 0,
+                fontWeight: 'bold',
+                letterSpacing: '2px',
+                '&:hover': {
+                  backgroundColor: '#66676e',
+                  color: '#fff',
+                },
+                lineHeight: 2.75,
+              }}
+              onClick={submitCheckout}>
+              Checkout
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Container maxWidth="xl">
+        <Box pt={{ xs: 2, sm: 4, md: 6 }}></Box>
+        <Box pb={3}></Box>
+
+        {/* <Button onClick={submitCheckout}>Checkout</Button> */}
       </Container>
     </>
   );

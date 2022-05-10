@@ -1,0 +1,7 @@
+.total-table {
+  box-shadow: 0;
+}
+
+.total-table > * {
+  box-shadow: 0;
+}

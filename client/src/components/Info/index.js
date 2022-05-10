@@ -5,7 +5,7 @@ import { useStoreContext } from '../../state/store/provider';
 // import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 import { Stack } from '@mui/material';
 import { Grid } from '@mui/material';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -125,8 +125,21 @@ const Info = ({ item }) => {
       </div>
       <Button
         // className={useStyles.blackButton}
+        type="submit"
+        fullWidth
         variant="contained"
-        sx={{ backgroundColor: 'black', width: '100%', borderRadius: 0, fontWeight: 'bold', letterSpacing: '2px' }}
+        sx={{
+          backgroundColor: 'black',
+          color: 'white',
+          borderRadius: 0,
+          fontWeight: 'bold',
+          letterSpacing: '2px',
+          '&:hover': {
+            backgroundColor: '#66676e',
+            color: '#fff',
+          },
+          lineHeight: 2.75,
+        }}
         onClick={addToCart}>
         Add to cart
       </Button>

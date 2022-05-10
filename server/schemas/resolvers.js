@@ -111,7 +111,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     checkout: async (parent, args, context) => {
-      // const url = new URL(context.headers.referer).origin;
+      const url = new URL(context.headers.referer).origin;
       // console.log(url);
       // console.log(args.items);
       const order = new Order({ items: args.items });
@@ -143,8 +143,8 @@ const resolvers = {
         mode: 'payment',
         success_url: `${url}/success`,
         cancel_url: `${url}/`,
-        success_url: 'https://ebabylon.herokuapp.com/success',
-        cancel_url: 'https://ebabylon.herokuapp.com/',
+        // success_url: 'https://ebabylon.herokuapp.com/success',
+        // cancel_url: 'https://ebabylon.herokuapp.com/',
       });
 
       return { session: session.id };

@@ -1,11 +1,22 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import MuiButton from '@mui/material/Button';
 import MuiGrid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 import { Link as RouterLink } from 'react-router-dom';
+
+import './index.css';
 
 export const Grid = styled(MuiGrid)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -55,54 +66,57 @@ export const Button = styled(MuiButton)(({ theme }) => ({
 const DailySummary = ({ total }) => {
   const shippingCost = 0;
   return (
-    <TableFooter>
-      <Grid container justify={'space-between'} spacing={2}>
-        <Grid item xs={12} sm={5} md={4}>
-          <Grid container spacing={1}>
-            <Grid item xs={5}>
-              <Box align={'right'}>
-                <b className={{ fontSize: 16 }}>£ {total}</b>
-              </Box>
-            </Grid>
-            <Grid item xs={7}>
-              <Box px={2} align={'right'} className={{ fontSize: 16 }}>
-                <span>Subtotal:</span>
-              </Box>
-            </Grid>
-            <Grid item xs={5}>
-              <Box align={'right'}>
-                <b style={{ fontSize: 16 }}>£ {shippingCost}</b>
-              </Box>
-            </Grid>
-            <Grid item xs={7}>
-              <Box px={2} align={'right'} style={{ fontSize: 16 }}>
-                <span>Shipping:</span>
-              </Box>
-            </Grid>
-          </Grid>
-          <br />
-          <Divider />
-          <br />
-          <Grid container spacing={1}>
-            <Grid item xs={5}>
-              <Box align={'right'}>
-                <b className={{ fontSize: 16 }}>£ {total}</b>
-              </Box>
-            </Grid>
-            <Grid item xs={7}>
-              <Box px={2} align={'right'} style={{ fontSize: 24 }}>
-                <span>Total:</span>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={5} md={4} container alignItems={'flex-end'}>
-          <Button startIcon={<KeyboardArrowLeft />} component={RouterLink} to="/items">
-            Continue Shopping
-          </Button>
-        </Grid>
+    <>
+      {/* // <TableFooter> */}
+      {/* // <Grid container> */}
+      <Grid item xs={12} sm={12} md={12} lg={4} mt={5} alignItems="flex-start">
+        <Button
+          // className={useStyles.blackButton}
+          startIcon={<KeyboardArrowLeft />}
+          component={RouterLink}
+          to="/items"
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            backgroundColor: 'black',
+            color: 'white',
+            borderRadius: 0,
+            fontWeight: 'bold',
+            letterSpacing: '2px',
+            '&:hover': {
+              backgroundColor: '#66676e',
+              color: '#fff',
+            },
+            lineHeight: 2.75,
+          }}>
+          Continue Shopping
+        </Button>
       </Grid>
-    </TableFooter>
+
+      <Grid item xs={0} sm={0} md={0} lg={5} display={{ md: 'none', lg: 'flex' }}></Grid>
+
+      <Grid item xs={12} sm={12} md={12} lg={3} mt={5}>
+        <TableContainer className="total-table" component={Paper} sx={{ boxShadow: 0 }}>
+          <Table sx={{ minWidth: 0 }} size="small" aria-label="a dense table">
+            <TableBody>
+              <TableRow>
+                <TableCell>Subtotal: </TableCell>
+                <TableCell align="right">£ {total}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Shipping: </TableCell>
+                <TableCell align="right">£ {shippingCost}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Total: </TableCell>
+                <TableCell align="right">£ {total}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </>
   );
 };
 
