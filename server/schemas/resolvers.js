@@ -59,7 +59,7 @@ const resolvers = {
       }
       const shouldApplyNewestSort = sort.newest;
       if (shouldApplyNewestSort) {
-        items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        items = items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       }
       const shouldApplyFeaturedSort = sort.featured;
       if (shouldApplyFeaturedSort) {

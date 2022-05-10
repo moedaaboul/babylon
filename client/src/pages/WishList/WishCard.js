@@ -101,7 +101,7 @@ export default function WishCard({ item }) {
           <Typography variant="subtitle1">
             &nbsp;
             {(discountedPrice && fCurrency(discountedPrice)) || fCurrency(price)}
-            <Typography
+            {/* <Typography
               component="span"
               variant="body1"
               sx={{
@@ -110,7 +110,7 @@ export default function WishCard({ item }) {
                 m: 1,
               }}>
               {discountedPrice && fCurrency(price)}
-            </Typography>
+            </Typography> */}
           </Typography>
           <Tooltip title="Add to Bag">
             <IconButton aria-label="add to bag" onClick={addToCart}>

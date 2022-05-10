@@ -136,18 +136,18 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' } }}>
                 <Grid container spacing={1}>
                   <Grid item md={3} className="ild-grid-col">
+                    <NavLink item md={3} exact={'true'} to="/dashboard" className="category-link">
+                      Dashboard
+                    </NavLink>
+                  </Grid>
+                  <Grid item md={3} className="ild-grid-col">
                     <NavLink exact={'true'} to="/items" className="category-link">
-                      Items
+                      Products
                     </NavLink>
                   </Grid>
                   <Grid item md={3} className="ild-grid-col">
                     <NavLink item md={3} exact={'true'} to="/lookfeed" className="category-link">
                       Looks
-                    </NavLink>
-                  </Grid>
-                  <Grid item md={3} className="ild-grid-col">
-                    <NavLink item md={3} exact={'true'} to="/dashboard" className="category-link">
-                      Dashboard
                     </NavLink>
                   </Grid>
                 </Grid>
@@ -251,14 +251,19 @@ const Navbar = () => {
             )}
             {Auth.loggedIn() ? (
               <>
-                <MenuItem component={RouterLink} to="/login">
-                  My account
-                </MenuItem>
+                {Auth.loggedIn() && (
+                  <MenuItem
+                    onClick={() => {
+                      redirectToOrders();
+                    }}>
+                    My orders
+                  </MenuItem>
+                )}
                 <MenuItem
                   component={RouterLink}
                   to="/items"
                   sx={{ display: { sx: 'block', sm: 'block', md: 'block', lg: 'none' } }}>
-                  All Items
+                  Products
                 </MenuItem>
                 <MenuItem
                   component={RouterLink}
@@ -276,14 +281,6 @@ const Navbar = () => {
             ) : (
               <MenuItem component={RouterLink} to="/register">
                 Register
-              </MenuItem>
-            )}
-            {Auth.loggedIn() && (
-              <MenuItem
-                onClick={() => {
-                  redirectToOrders();
-                }}>
-                Orders
               </MenuItem>
             )}
             {Auth.loggedIn() && (

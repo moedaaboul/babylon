@@ -16,8 +16,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
-import { blue } from '@mui/material/colors';
-const darkBlue = blue[600];
+import { orange } from '@mui/material/colors';
+const darkBlue = orange[500];
 
 const Accordion = styled((props) => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
