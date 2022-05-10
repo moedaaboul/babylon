@@ -187,9 +187,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- > ![GitHub followers](https://img.shields.io/github/followers/heranYang93?style=social) -->
 
-Project Link:
-[github.com/moedaaboul/legogram](https://github.com/moedaaboul/legogram)
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
