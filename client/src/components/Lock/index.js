@@ -7,7 +7,6 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 const Lock = () => {
   const location = useLocation();
   const isBrand = Auth.isBrand();
-  console.log(isBrand, 'Lock');
   return Auth.loggedIn() && isBrand ? <Outlet /> : <Navigate to="/items" replace state={{ location }} />;
 };
 

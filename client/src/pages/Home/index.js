@@ -1,6 +1,4 @@
 import React from 'react';
-// import Button from '@mui/material/Button';
-// import SaveIcon from '@mui/icons-material/Save';
 import Carousel from '../../components/Carousel';
 import Container from '@mui/material/Container';
 import Navbar from '../../components/Navbar';
@@ -11,12 +9,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import { Link as RouterLink } from 'react-router-dom';
 import Footer from '../../components/Footer';
-// import SideCart from "../../components/SideCart";
-// import './index.css';
+
 const Home = () => {
   return (
     <>
@@ -53,14 +48,7 @@ const Home = () => {
                 xs={12}
                 sm={6}
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                {/* <Container sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}> */}
-                <img
-                  src="./images/influencer5.jpg"
-                  alt="look"
-                  // width="100%"
-                  // height="100%"
-                  style={{ aspectRatio: 16 / 9 }}></img>
-                {/* </Container> */}
+                <img src="./images/influencer5.jpg" alt="look" style={{ aspectRatio: 16 / 9 }}></img>
               </Grid>
             </Grid>
           </Box>

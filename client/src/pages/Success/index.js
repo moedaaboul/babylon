@@ -7,18 +7,11 @@ import { CLEAR_CART } from '../../state/store/actions';
 import { useStoreContext } from '../../state/store/provider';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import './styles.css';
+
 function Success() {
   const [addOrder] = useMutation(ADD_ORDER);
   const [state, dispatch] = useStoreContext();
@@ -27,14 +20,13 @@ function Success() {
     async function saveOrder() {
       const cart = await idbPromise('cart', 'get');
       const items = cart.map((item) => item._id);
-      console.log(items);
+
       if (items.length) {
         const { data } = await addOrder({ variables: { items: items } });
-        console.log(data);
+
         const itemsData = data.addOrder.items;
 
         itemsData.forEach((item) => {
-          console.log(item);
           idbPromise('cart', 'delete', item);
         });
       }

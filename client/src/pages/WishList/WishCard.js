@@ -42,12 +42,9 @@ export default function WishCard({ item }) {
 
   const addToCart = (e) => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
-    // console.log(itemInCart);
-    // console.log('in WishCard', item);
-    // console.log('in WishCard', itemInCart);
 
     if (itemInCart) {
-      console.log('in WishCard', itemInCart.purchaseQuantity);
+      // console.log('in WishCard', itemInCart.purchaseQuantity);
       let newQuantity = itemInCart.purchaseQuantity + 1;
       newQuantity > itemInCart.stock ? (newQuantity = itemInCart.stock) : (newQuantity = newQuantity);
 
@@ -70,13 +67,6 @@ export default function WishCard({ item }) {
   };
 
   const handleToggleLike = async (item) => {
-    console.log(item, 'line 57');
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   return false;
-    // }
-
     try {
       await toggleLike({
         variables: { item: item },
@@ -111,7 +101,7 @@ export default function WishCard({ item }) {
           <Typography variant="subtitle1">
             &nbsp;
             {(discountedPrice && fCurrency(discountedPrice)) || fCurrency(price)}
-            <Typography
+            {/* <Typography
               component="span"
               variant="body1"
               sx={{
@@ -120,7 +110,7 @@ export default function WishCard({ item }) {
                 m: 1,
               }}>
               {discountedPrice && fCurrency(price)}
-            </Typography>
+            </Typography> */}
           </Typography>
           <Tooltip title="Add to Bag">
             <IconButton aria-label="add to bag" onClick={addToCart}>

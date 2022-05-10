@@ -79,35 +79,20 @@ export default function Login() {
     return () => clearTimeout(timeout);
   }, [isLoginError]);
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setErrorMessage({
-  //       email: false,
-  //       password: false,
-  //     });
-  //   }, 1000);
-  //   return () => clearTimeout(timeout);
-  // }, [errorMessage]);
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-    console.log(userFormData);
     try {
-      // const response = await loginUser(userFormData);
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
       setIsLoginSuccess(true);
-      console.log(data);
       Auth.login(data.loginUser.token);
-      console.log(Auth.getToken());
       setRedirectOnLoginSuccess(true);
     } catch (err) {
       setIsLoginError(true);
@@ -229,12 +214,6 @@ export default function Login() {
                     }}>
                     Sign In
                   </Button>
-                  {/* <Grid container justifyContent="flex-end">
-                    <Link component={RouterLink} to="/register" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid> */}
-                  {/* <Divider></Divider> */}
                 </Box>
               </Box>
             </Container>
@@ -247,7 +226,6 @@ export default function Login() {
                   marginTop: 8,
                   display: 'flex',
                   flexDirection: 'column',
-                  // alignItems: 'center',
                 }}>
                 <Typography component="h1" variant="h5">
                   <strong>I'm new here</strong>

@@ -70,13 +70,22 @@ const Footer = () => {
                       <WhiteTypography>Pages</WhiteTypography>
                     </CategoryTitle>
                     <CategoryItem>
+                      <Typography component={RouterLink} to="/dashboard" style={{ textDecoration: 'none' }} index={1}>
+                        Dashboard
+                      </Typography>
+                    </CategoryItem>
+                    <CategoryItem>
                       <Typography component={RouterLink} to="/items" style={{ textDecoration: 'none' }} index={1}>
                         Products
                       </Typography>
                     </CategoryItem>
                     <CategoryItem>
-                      <Typography component={RouterLink} to="/lookfeed" style={{ textDecoration: 'none' }} index={1}>
-                        Influencers
+                      <Typography
+                        component={RouterLink}
+                        to="/wardrobe/lists/liked"
+                        style={{ textDecoration: 'none' }}
+                        index={1}>
+                        Your Wish List
                       </Typography>
                     </CategoryItem>
                     <CategoryItem>
@@ -89,17 +98,8 @@ const Footer = () => {
                       </Typography>
                     </CategoryItem>
                     <CategoryItem>
-                      <Typography
-                        component={RouterLink}
-                        to="/wardrobe/lists/liked"
-                        style={{ textDecoration: 'none' }}
-                        index={1}>
-                        Your Favourites
-                      </Typography>
-                    </CategoryItem>
-                    <CategoryItem>
-                      <Typography component={RouterLink} to="/dashboard" style={{ textDecoration: 'none' }} index={1}>
-                        Dashboard
+                      <Typography component={RouterLink} to="/lookfeed" style={{ textDecoration: 'none' }} index={1}>
+                        Influencers
                       </Typography>
                     </CategoryItem>
                     <CategoryItem>
@@ -164,9 +164,9 @@ const Footer = () => {
               </CategoryProvider>
               <SocialProvider useStyles={usePoofSocialLinkStyles}>
                 <SocialLink brand={'Envelope'} />
-                <SocialLink brand={'GooglePlus'} />
-                <SocialLink brand={'Pinterest'} />
-                <SocialLink brand={'Dribbble'} />
+                <SocialLink brand={'Instagram'} />
+                <SocialLink brand={'LinkedIn'} />
+                <SocialLink brand={'Twitter'} />
               </SocialProvider>
             </Grid>
           </Grid>

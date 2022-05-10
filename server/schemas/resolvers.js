@@ -30,7 +30,6 @@ const resolvers = {
       const shouldApplyFilters = filter !== null;
       const shouldApplySort = sort !== null;
       let items = await Item.find({});
-      console.log(items);
       if (!shouldApplyFilters && !shouldApplySort) {
         return items;
       }
@@ -60,7 +59,7 @@ const resolvers = {
       }
       const shouldApplyNewestSort = sort.newest;
       if (shouldApplyNewestSort) {
-        items = items.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        items = items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       }
       const shouldApplyFeaturedSort = sort.featured;
       if (shouldApplyFeaturedSort) {
@@ -115,11 +114,9 @@ const resolvers = {
       // console.log(url);
       // console.log(args.items);
       const order = new Order({ items: args.items });
-      console.log(order);
       const line_items = [];
 
       const { items } = await order.populate('items');
-      console.log(items, 'line 92');
       for (let i = 0; i < items.length; i++) {
         const product = await stripe.products.create({
           name: items[i].title,
@@ -136,7 +133,6 @@ const resolvers = {
           quantity: 1,
         });
       }
-      console.log(line_items, 'line 111');
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
@@ -153,7 +149,6 @@ const resolvers = {
 
   Mutation: {
     loginUser: async (parent, { email, password }) => {
-      console.log(email, password);
       const user = await User.findOne({ email });
       if (!user) {
         throw new AuthenticationError("Can't find this user");
@@ -178,10 +173,8 @@ const resolvers = {
       return { token, user };
     },
     addOrder: async (parent, { items }, context) => {
-      console.log(items);
       if (context.user) {
         const order = new Order({ items });
-        console.log(order);
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
         return order;
@@ -190,22 +183,16 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     addWish: async (parent, { item }, context) => {
-      console.log(item);
       if (context.user) {
         const userData = await User.findById(context.user._id).populate('wishList.item');
         const shouldCreateNewWishItem = !userData.wishList.map((e) => e.item._id.toString()).includes(item);
-        console.log(shouldCreateNewWishItem);
 
         if (!shouldCreateNewWishItem) {
-          console.log('here');
           const updatedWish = await User.findByIdAndUpdate(context.user._id, { $pull: { wishList: { item } } });
-          console.log(updatedWish);
           return updatedWish.wishList;
         }
         if (shouldCreateNewWishItem) {
-          console.log('no here');
           const wish = new Wish({ item });
-          console.log(wish);
           await User.findByIdAndUpdate(context.user._id, { $push: { wishList: wish } });
           return wish;
         }
@@ -218,8 +205,6 @@ const resolvers = {
       return deletedItem;
     },
     updateItem: async (_, { input, itemId }) => {
-      console.log(input);
-      console.log({ ...input });
       const updatedItem = await Item.findByIdAndUpdate(
         itemId,
         { $set: { ...input } },
@@ -231,16 +216,11 @@ const resolvers = {
       return updatedItem;
     },
     addItem: async (parent, { input }, context) => {
-      console.log(input);
       const images = input.image;
-      console.log(images, 'images');
       const uploadResponse = await Promise.all(images.map(async (image) => await cloudinary.uploader.upload(image)));
-      console.log(uploadResponse, 'uploadResponse');
       // uploadResponse.forEach((e) => (e.url = urlCompiler(uploadResponse.url, 'w_1169,h_780,c_fill')));
       const imageUrls = uploadResponse.map((e) => urlCompiler(e.url, 'w_1169,h_780,c_fill'));
-      console.log(imageUrls);
       const item = await Item.create({ ...input, image: imageUrls, brand: context.user.username });
-      console.log(item);
       if (!item) {
         throw new AuthenticationError('Something is wrong!');
       }

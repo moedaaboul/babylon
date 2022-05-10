@@ -233,13 +233,10 @@ const AddProduct = () => {
             onupdatefiles={setFiles}
             onpreparefile={(item) => {
               const newImage = item.getFileEncodeDataURL();
-              console.log(newImage);
-              // console.log(files.map((e) => e.getFileEncodeDataURL()));
-              // const images = files.map((e) => e.getFileEncodeDataURL());
               setImages([...images, newImage]);
             }}
             onremovefile={(error, item) => {
-              console.log(item.file);
+              // console.log(item.file);
               const reader = new FileReader();
               reader.readAsDataURL(item.file);
               reader.onloadend = () => {

@@ -15,7 +15,6 @@ import { fCurrency } from '../../utils/formatNumber';
 // ----------------------------------------------------------------------
 
 export default function SmallItemCard({ items }) {
-  console.log(items);
   const { title, description, price, discountedPrice, image, _id } = items;
 
   return (

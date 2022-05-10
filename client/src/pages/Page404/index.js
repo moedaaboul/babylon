@@ -15,7 +15,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   flexDirection: 'column',
   padding: theme.spacing(12, 0),
-  //   backgroundColor: 'rgb(249, 250, 251)',
 }));
 
 // ----------------------------------------------------------------------

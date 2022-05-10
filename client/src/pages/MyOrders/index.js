@@ -24,7 +24,6 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
 export default function MyOrders() {
   const { loading, data } = useQuery(GET_HISTORY_ORDERS);
 
-  console.log(data);
   return (
     <>
       <Navbar />

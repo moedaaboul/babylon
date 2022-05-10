@@ -45,8 +45,6 @@ const SingleLook = () => {
     return <div>Loading...</div>;
   }
 
-  // if (error) return `Error! ${error.message}`;
-
   return (
     <>
       <Navbar />

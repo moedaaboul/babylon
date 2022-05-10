@@ -5,10 +5,7 @@ import { useLazyQuery } from '@apollo/client';
 import { useStoreContext } from '../../state/store/provider';
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { ADD_MULTIPLE_TO_CART } from '../../state/store/actions';
-// import Button from '@mui/material/Button';
-// import SaveIcon from '@mui/icons-material/Save';
 import Container from '@mui/material/Container';
-// import SideCart from "../../components/SideCart";
 import './index.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -20,7 +17,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Navbar from '../../components/Navbar';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 import { styled } from '@mui/material/styles';
 
@@ -45,7 +42,6 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
 export default function Summary() {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-  console.log(state, 'line 50');
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -83,14 +79,12 @@ export default function Summary() {
         itemIds.push(item._id);
       }
     });
-    console.log(itemIds, 'line 92 checkout page');
     getCheckout({
       variables: { items: itemIds },
     });
   }
 
   const cartContent = state.cart;
-  console.log(cartContent);
   return (
     <>
       <Navbar />

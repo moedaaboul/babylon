@@ -14,8 +14,6 @@ import { useQuery } from '@apollo/client';
 import { GET_SINGLE_ITEM } from '../../utils/queries';
 
 export default function SingleCheckOutListItem({ singleRowData, rowId }) {
-  console.log(singleRowData);
-
   const { loading, data } = useQuery(GET_SINGLE_ITEM, {
     variables: { itemId: singleRowData.productId },
   });
@@ -59,28 +57,6 @@ export default function SingleCheckOutListItem({ singleRowData, rowId }) {
         <Typography>{item.price}</Typography>
         <Typography>{item.discountedPrice}</Typography>
       </TableCell>
-      {/* {columnData.map((column, columnId) => {
-        const value = singleRowData[column.id];
-        if (columnId === 0) {
-          return (
-            <TableCell key={column.id} align={column.align}>
-              <CardMedia
-                component="img"
-                width="200"
-                height="200"
-                image="https://img.sonofatailor.com/next/img/hineck-cotton-tshirt.62cc710.jpg"
-                alt="T-shirt space-holder"
-              />
-            </TableCell>
-          );
-        } else {
-          return (
-            <TableCell key={column.id} align={column.align}>
-              {column.format && typeof value === 'number' ? column.format(value) : value}
-            </TableCell>
-          );
-        }
-      })} */}
     </TableRow>
   );
 }
