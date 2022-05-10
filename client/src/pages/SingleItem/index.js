@@ -1,7 +1,7 @@
 import MainImage from '../../components/MainImage';
 import Info from '../../components/Info';
-import ImageGrid from '../../components/ImageGrid';
-import BasicTabs from '../../components/Tabs';
+// import ImageGrid from '../../components/ImageGrid';
+// import BasicTabs from '../../components/Tabs';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useState } from 'react';
@@ -46,12 +46,12 @@ const SingleItem = () => {
             <Info item={item} />
           </Grid>
           <Grid item xs={1} sm={1} md={0}></Grid>
-          <Grid item xs={12} sm={12}>
+          {/* <Grid item xs={12} sm={12}>
             <Box sx={{ ml: 3, mr: 3 }}>
               <ImageGrid item={item.image} setIndex={setIndex} />
               <BasicTabs />
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     </>

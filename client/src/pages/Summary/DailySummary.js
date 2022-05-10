@@ -71,9 +71,10 @@ const DailySummary = ({ total }) => {
           to="/items"
           type="submit"
           fullWidth
+          color="secondary"
           variant="contained"
           sx={{
-            backgroundColor: 'black',
+            // backgroundColor: 'black',
             color: 'white',
             borderRadius: 0,
             fontWeight: 'bold',
@@ -82,7 +83,7 @@ const DailySummary = ({ total }) => {
               backgroundColor: '#66676e',
               color: '#fff',
             },
-            lineHeight: 2.75,
+            lineHeight: 1,
           }}>
           Continue Shopping
         </Button>
