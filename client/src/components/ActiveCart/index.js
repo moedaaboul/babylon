@@ -23,13 +23,29 @@ export default function ActiveCart({ cart, total }) {
 
       <br></br>
 
-      <Typography className="total-figure">Total: £ {total}</Typography>
+      <Typography className="total-figure" style={{ marginLeft: '10px' }}>
+        Total: £ {total}
+      </Typography>
 
       <br></br>
       {Auth.loggedIn() ? (
         <Button
           className="check-out-button"
           variant="contained"
+          disableRipple
+          sx={{
+            backgroundColor: 'black',
+            color: 'white',
+            borderRadius: 0,
+            fontWeight: 'bold',
+            letterSpacing: '2px',
+            '&:hover': {
+              backgroundColor: '#66676e',
+              color: '#fff',
+            },
+            lineHeight: 1.75,
+          }}
+          style={{ marginLeft: '10px' }}
           onClick={() => {
             // dispatch({ type: TOGGLE_CART });
             setDrawerState({
@@ -38,7 +54,7 @@ export default function ActiveCart({ cart, total }) {
             });
             navigate('/checkout');
           }}>
-          Checkout
+          Go to Checkout
         </Button>
       ) : (
         <Typography variant="caption" display="block" gutterBottom>
