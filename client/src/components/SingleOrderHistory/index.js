@@ -43,9 +43,7 @@ const AccordionSummary = styled((props) => (
 }));
 
 export default function CustomizedAccordions({ order }) {
-  // console.log(order);
   const { date, time } = timeConverter(order.purchaseDate);
-  // console.log(date, time);
   const orderAmount = order.items.length;
 
   const [expanded, setExpanded] = React.useState('');

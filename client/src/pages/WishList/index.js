@@ -5,7 +5,7 @@ import { QUERY_WISH_LIST } from '../../utils/queries';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
 import Navbar from '../../components/Navbar';
 

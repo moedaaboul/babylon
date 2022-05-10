@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 const AppContext = React.createContext();
 
 const DrawerProvider = ({ children }) => {
-  //   const [wishListCount, setWishListCount] = useState(0);
   const [drawerState, setDrawerState] = React.useState({
     bottom: false,
     right: false,

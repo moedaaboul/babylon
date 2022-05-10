@@ -5,9 +5,9 @@ import { useStoreContext } from '../../state/store/provider';
 // import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
-import { Stack } from '@mui/material';
-import { Grid } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
@@ -15,7 +15,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { idbPromise, randomBrand } from '../../utils/helpers';
 
 import './index.css';
-import { TableCell } from '@mui/material';
+import TableCell from '@mui/material/TableCell';
 
 const displayDiscountPrice = (discountPrice, price) => {
   return (
@@ -38,8 +38,6 @@ const displayNormalPrice = (price) => {
 };
 
 const Info = ({ item }) => {
-  // console.log(item);
-
   const [state, dispatch] = useStoreContext();
 
   const { _id, title, price, discountedPrice, stock } = item;
@@ -48,7 +46,6 @@ const Info = ({ item }) => {
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
-    console.log(itemInCart);
     if (itemInCart) {
       let newQuantity = itemInCart.purchaseQuantity + 1;
       newQuantity > itemInCart.stock ? (newQuantity = itemInCart.stock) : (newQuantity = newQuantity);

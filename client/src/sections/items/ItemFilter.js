@@ -65,17 +65,13 @@ export default function RefineSidebar() {
   });
 
   const handleChange = (event) => {
-    console.log(state, 'line76');
     const newState = {
       ...state,
       [event.target.name]: event.target.checked,
     };
     setState(newState);
-    console.log(newState, 'line 84');
-    console.log(state, 'line81');
     const categoryKeys = Object.keys(newState);
     var filtered = categoryKeys.filter((key) => newState[key]);
-    console.log(filtered, 'line 82');
     if (filtered.length === 0) {
       setCategories(null);
       return;
@@ -178,6 +174,7 @@ export default function RefineSidebar() {
               getAriaLabel={() => 'Price Range'}
               value={value}
               color={'secondary'}
+              sx={{ minWidth: { xs: '120px', sm: '100px', md: '150px', lg: '200px' } }}
               onChange={handleChangeValue}
               onChangeCommitted={handleChangeCommitted}
               valueLabelDisplay="auto"
@@ -188,7 +185,7 @@ export default function RefineSidebar() {
         </AccordionDetails>
       </Accordion>
       <Divider />
-      <Accordion defaultExpanded="true" elevation={0}>
+      {/* <Accordion defaultExpanded="true" elevation={0}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>BRANDS</Typography>
         </AccordionSummary>
@@ -204,7 +201,7 @@ export default function RefineSidebar() {
           </FormGroup>
         </AccordionDetails>
       </Accordion>
-      <Divider />
+      <Divider /> */}
       <Accordion defaultExpanded="true" elevation={0}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography sx={{ fontSize: 12 }}>COLOURS</Typography>

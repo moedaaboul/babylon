@@ -50,7 +50,7 @@ export default function LookImageList() {
               position="top"
               actionIcon={
                 <IconButton sx={{ color: 'white' }} aria-label={`like ${look.description}`}>
-                  <FavoriteBorderIcon />
+                  {/* <FavoriteBorderIcon /> */}
                 </IconButton>
               }
               actionPosition="left"

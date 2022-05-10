@@ -7,14 +7,11 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useDrawerContext } from '../../providers/DrawerStateProvider';
 import { useBadgeContext } from '../../providers/BadgesStateProvider';
 import { useStoreContext } from '../../state/store/provider';
-import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 //--------MUI ELEMENTS
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
@@ -23,12 +20,11 @@ import MenuItem from '@mui/material/MenuItem';
 import MuiAlert from '@mui/material/Alert';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Snackbar from '@mui/material/Snackbar';
-import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 //------FILE IMPORTS
 import './styles.css';
@@ -64,15 +60,6 @@ const StyledToolbar = styled(Toolbar)({
 const StyledIconButton = styled(IconButton)({
   color: 'inherit',
 });
-
-const Icons = styled(Box)(({ theme }) => ({
-  display: 'none',
-  alignItems: 'center',
-  gap: '20px',
-  [theme.breakpoints.up('sm')]: {
-    display: 'flex',
-  },
-}));
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -121,10 +108,6 @@ const Navbar = () => {
     navigate('/wardrobe/lists/owned');
   };
 
-  const redirectToHome = (e) => {
-    navigate('/');
-  };
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -133,21 +116,10 @@ const Navbar = () => {
   };
 
   if (windowDimensions.width < 700) {
-    console.log('window width < 700', windowDimensions.width);
     drawerDirection = { bottom: true, right: false };
-    console.log(drawerDirection);
   } else {
-    console.log('window width > 700', windowDimensions.width);
     drawerDirection = { bottom: false, right: true };
-    console.log(drawerDirection);
   }
-
-  const navLinkStyles = ({ isActive }) => {
-    return {
-      color: isActive ? 'white' : 'black',
-      backgroundColor: isActive ? 'black' : 'white',
-    };
-  };
 
   return (
     <>

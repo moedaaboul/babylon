@@ -96,20 +96,6 @@ export function mergy(oldCart, newItem) {
   return sortedCartItemArr;
 }
 
-// export function getSingleItemById(checkId) {
-//   const productDB = require('../components/SideCart/testSeed.json');
-
-//   let product;
-
-//   productDB.forEach((item, id) => {
-//     if (id === checkId) {
-//       product = item;
-//     }
-//   });
-
-//   return product;
-// }
-
 export function updateSummary(state) {
   console.log('in getSummary', state);
 

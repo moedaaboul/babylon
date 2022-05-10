@@ -9,7 +9,7 @@ import { BadgesProvider } from './providers/BadgesStateProvider';
 import { StoreProvider } from './state/store/provider';
 import { DrawerProvider } from './providers/DrawerStateProvider';
 import { FilterDrawerProvider } from './providers/FilterDrawerStateProvider';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -28,7 +28,6 @@ import LockGeneral from './components/LockGeneral';
 import MyOrders from './pages/MyOrders';
 
 import ErrorBoundary from './components/ErrorBoundary';
-import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -70,7 +69,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-  console.log(Auth.isBrand(), 'App.js');
   return (
     <ApolloProvider client={client}>
       <FiltersProvider>

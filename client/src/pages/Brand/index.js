@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import AddProduct from './AddProduct';
 import Products from './Products';
 import Navbar from '../../components/Navbar';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // import Button from '@mui/material/Button';
 // import SaveIcon from '@mui/icons-material/Save';
@@ -81,12 +81,6 @@ const Brand = () => {
           <TabPanel value={value} index={1}>
             <Products />
           </TabPanel>
-          {/* <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          Item Five
-        </TabPanel> */}
         </Box>
       </ThemeProvider>
     </>

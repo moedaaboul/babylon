@@ -33,10 +33,7 @@ const ValueElement = styled('span')(({ theme }) => ({
 }));
 
 export default function CheckoutItem({ checkoutItem }) {
-  // console.log('in checkout item ', checkoutItem);
-
   const [state, dispatch] = useStoreContext();
-  // console.log(state.cart);
 
   const removeFromCart = (checkoutItem) => {
     dispatch({

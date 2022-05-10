@@ -2,11 +2,9 @@ import ImageList from '@mui/material/ImageList';
 import React from 'react';
 
 const ImageGrid = ({ item, setIndex, index }) => {
-  console.log(item, 'item');
   return (
     <ImageList cols={10} rowHeight={164}>
       {item.map((e, index) => {
-        console.log(e, 'see what e is');
         return (
           <img
             key={index}

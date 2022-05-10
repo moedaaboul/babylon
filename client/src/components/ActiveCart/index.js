@@ -1,7 +1,7 @@
 import React from 'react';
 import TableBody from '@mui/material/TableBody';
 import CartItem from '../SingleCartItem';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import Auth from '../../utils/auth';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,6 @@ export default function ActiveCart({ cart, total }) {
   const { setDrawerState } = useDrawerContext();
   let navigate = useNavigate();
 
-  console.log('From ActiveCart', cart);
   return (
     <>
       <TableBody>

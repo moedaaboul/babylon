@@ -4,11 +4,11 @@ import { ItemList, ItemFilter, ItemSort } from '../../sections/items';
 import { QUERY_ITEMS } from '../../utils/queries';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
-import { ClickAwayListener } from '@mui/material';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useFilterDrawerContext } from '../../providers/FilterDrawerStateProvider';
 import { useFilterContext } from '../../providers/FiltersStateProvider';
 import { useSortContext } from '../../providers/SortStateProvider';
@@ -18,7 +18,7 @@ import Navbar from '../../components/Navbar';
 import FilterDrawer from '../../components/FilterDrawer';
 
 const AllItems = () => {
-  const { filterDrawerState, setFilterDrawerState, toggleFilterDrawer } = useFilterDrawerContext();
+  const { setFilterDrawerState } = useFilterDrawerContext();
   const { maxPrice, minPrice, categories, colours } = useFilterContext();
   const { priceAsc, priceDesc, sortNewest, sortFeatured } = useSortContext();
   const { loading, error, data } = useQuery(QUERY_ITEMS, {
@@ -118,7 +118,6 @@ const AllItems = () => {
             {loading ? <h6>is loading...</h6> : <ItemList products={items} />}
           </Grid>
         </Grid>
-        a
       </Container>
     </>
   );

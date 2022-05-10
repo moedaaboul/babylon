@@ -34,17 +34,10 @@ export default function ItemCard({ product, wishList }) {
   const [toggleLike] = useMutation(TOGGLE_LIKE, {
     refetchQueries: [{ query: QUERY_WISH_LIST }],
   });
-  console.log(product, wishList);
+
   const likedByUser = wishList.map((e) => e.item._id).includes(_id);
 
   const handleToggleLike = async (item) => {
-    console.log(item, 'Item card, line 57');
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   return false;
-    // }
-
     try {
       await toggleLike({
         variables: { item: item },

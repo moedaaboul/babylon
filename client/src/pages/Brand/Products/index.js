@@ -16,11 +16,9 @@ export default function DataGridDemo() {
     update(cache, { data: { deleteItem } }) {
       try {
         const { brandItems } = cache.readQuery({ query: GET_BRAND_ITEMS });
-        console.log(brandItems, 'line 14');
         let newBrandItems = brandItems.filter((item) => {
           return item._id !== deleteItem._id;
         });
-        console.log(newBrandItems, 'line 18');
         cache.writeQuery({
           query: GET_BRAND_ITEMS,
           data: { brandItems: newBrandItems },
@@ -34,7 +32,6 @@ export default function DataGridDemo() {
   const handleCloseSnackbar = () => setSnackbar(null);
 
   const productData = data?.brandItems || {};
-  console.log(productData);
   if (loading) {
     return <h2>loading...</h2>;
   }
@@ -58,7 +55,6 @@ export default function DataGridDemo() {
   };
 
   const handleUpdateItem = async (input, itemId) => {
-    console.log(input, itemId, 'line 55');
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     // if (!token) {

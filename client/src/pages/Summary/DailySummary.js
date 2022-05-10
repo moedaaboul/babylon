@@ -1,16 +1,13 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 
-import Box from '@mui/material/Box';
 import MuiButton from '@mui/material/Button';
 import MuiGrid from '@mui/material/Grid';
-import Divider from '@mui/material/Divider';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
@@ -67,11 +64,8 @@ const DailySummary = ({ total }) => {
   const shippingCost = 0;
   return (
     <>
-      {/* // <TableFooter> */}
-      {/* // <Grid container> */}
       <Grid item xs={12} sm={12} md={12} lg={4} mt={5} alignItems="flex-start">
         <Button
-          // className={useStyles.blackButton}
           startIcon={<KeyboardArrowLeft />}
           component={RouterLink}
           to="/items"

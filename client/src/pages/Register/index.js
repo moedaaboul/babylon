@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -20,12 +19,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Divider from '@mui/material/Divider';
 import MuiAlert from '@mui/material/Alert';
-import Slide from '@mui/material/Slide';
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import CloseIcon from '@mui/icons-material/Close';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -35,7 +30,6 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-import { green, black } from '@mui/material/colors';
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -126,10 +120,6 @@ export default function Register() {
       usertype: 'customer',
     });
   };
-
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  // };
 
   return (
     <>
@@ -318,13 +308,6 @@ export default function Register() {
                     }}>
                     Register
                   </Button>
-                  {/* <Grid container justifyContent="flex-end">
-                    <Grid item>
-                      <Link component={RouterLink} to="/login" variant="body2">
-                        Already have an account? Sign in
-                      </Link>
-                    </Grid>
-                  </Grid> */}
                 </Box>
               </Box>
             </Container>

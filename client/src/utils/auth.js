@@ -14,8 +14,8 @@ class AuthService {
 
   isBrand() {
     const payload = this.getProfile();
-    console.log(payload?.data?.usertype);
-    console.log(payload?.data?.usertype === 'brand');
+    // console.log(payload?.data?.usertype);
+    // console.log(payload?.data?.usertype === 'brand');
     return payload?.data?.usertype === 'brand';
   }
 
