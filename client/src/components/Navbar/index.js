@@ -136,17 +136,30 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' } }}>
                 <Grid container spacing={1}>
                   <Grid item md={3} className="ild-grid-col">
-                    <NavLink item md={3} exact={'true'} to="/dashboard" className="category-link">
+                    <NavLink
+                      item
+                      md={3}
+                      exact={'true'}
+                      to="/dashboard"
+                      className={({ isActive }) => (isActive ? 'is-active' : 'category-link')}>
                       Dashboard
                     </NavLink>
                   </Grid>
                   <Grid item md={3} className="ild-grid-col">
-                    <NavLink exact={'true'} to="/items" className="category-link">
+                    <NavLink
+                      exact={'true'}
+                      to="/items"
+                      className={({ isActive }) => (isActive ? 'is-active' : 'category-link')}>
                       Products
                     </NavLink>
                   </Grid>
                   <Grid item md={3} className="ild-grid-col">
-                    <NavLink item md={3} exact={'true'} to="/lookfeed" className="category-link">
+                    <NavLink
+                      item
+                      md={3}
+                      exact={'true'}
+                      to="/lookfeed"
+                      className={({ isActive }) => (isActive ? 'is-active' : 'category-link')}>
                       Looks
                     </NavLink>
                   </Grid>
