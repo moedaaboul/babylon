@@ -12,7 +12,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
-import { idbPromise, randomBrand } from '../../utils/helpers';
+import { idbPromise } from '../../utils/helpers';
 
 import './index.css';
 import TableCell from '@mui/material/TableCell';
@@ -40,7 +40,7 @@ const displayNormalPrice = (price) => {
 const Info = ({ item }) => {
   const [state, dispatch] = useStoreContext();
 
-  const { _id, title, price, discountedPrice, stock } = item;
+  const { _id, title, price, discountedPrice, stock, brand } = item;
 
   const { cart } = state;
 
@@ -73,7 +73,7 @@ const Info = ({ item }) => {
   return (
     <div className="card px-1 py-1">
       <Typography variant="h4" gutterBottom component="div" sx={{ margin: '0px', fontWeight: 'light' }}>
-        {randomBrand()}
+        {brand}
       </Typography>
       <Typography variant="h5" gutterBottom component="div" sx={{ fontWeight: 'bolder' }}>
         {title}
