@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_LOOKS } from '../../utils/queries';
 import Box from '@mui/material/Box';
 import CardActionArea from '@mui/material/CardActionArea';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -43,8 +42,7 @@ export default function LookImageList() {
             </CardActionArea>
             <ImageListItemBar
               sx={{
-                background:
-                  `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ` + `rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)`,
+                background: `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)`,
               }}
               title={look.influencer}
               position="top"

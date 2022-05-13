@@ -48,7 +48,7 @@ const Info = ({ item }) => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
     if (itemInCart) {
       let newQuantity = itemInCart.purchaseQuantity + 1;
-      newQuantity > itemInCart.stock ? (newQuantity = itemInCart.stock) : (newQuantity = newQuantity);
+      newQuantity > itemInCart.stock && (newQuantity = itemInCart.stock);
 
       dispatch({
         type: UPDATE_CART_QUANTITY,

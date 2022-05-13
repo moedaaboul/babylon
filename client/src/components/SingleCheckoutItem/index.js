@@ -33,7 +33,7 @@ const ValueElement = styled('span')(({ theme }) => ({
 }));
 
 export default function CheckoutItem({ checkoutItem }) {
-  const [state, dispatch] = useStoreContext();
+  const [, dispatch] = useStoreContext();
 
   const removeFromCart = (checkoutItem) => {
     dispatch({
@@ -45,7 +45,7 @@ export default function CheckoutItem({ checkoutItem }) {
 
   const addOne = (e) => {
     let value = checkoutItem.purchaseQuantity + 1;
-    value > checkoutItem.stock ? (value = checkoutItem.stock) : (value = value);
+    value > checkoutItem.stock && (value = checkoutItem.stock);
 
     dispatch({
       type: UPDATE_CART_QUANTITY,

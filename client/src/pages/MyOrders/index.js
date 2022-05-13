@@ -22,7 +22,7 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
 }));
 
 export default function MyOrders() {
-  const { loading, data } = useQuery(GET_HISTORY_ORDERS);
+  const { data } = useQuery(GET_HISTORY_ORDERS);
 
   return (
     <>

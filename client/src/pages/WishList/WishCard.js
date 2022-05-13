@@ -46,7 +46,7 @@ export default function WishCard({ item }) {
     if (itemInCart) {
       // console.log('in WishCard', itemInCart.purchaseQuantity);
       let newQuantity = itemInCart.purchaseQuantity + 1;
-      newQuantity > itemInCart.stock ? (newQuantity = itemInCart.stock) : (newQuantity = newQuantity);
+      newQuantity > itemInCart.stock && (newQuantity = itemInCart.stock);
 
       dispatch({
         type: UPDATE_CART_QUANTITY,

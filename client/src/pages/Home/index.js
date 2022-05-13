@@ -117,23 +117,25 @@ const Home = () => {
               </Grid>
               <Grid item xs={12} sm={5}>
                 <Container>
-                  <img
-                    width="50%"
-                    height="auto"
-                    src={`https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80`}
-                    srcSet={`https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80 2x`}
-                    alt="hats"
-                    loading="lazy"
-                  />
+                  <Box>
+                    <img
+                      width="50%"
+                      height="auto"
+                      src={`https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80`}
+                      srcSet={`https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80 2x`}
+                      alt="hats"
+                      loading="lazy"
+                    />
 
-                  <img
-                    width="50%"
-                    height="auto"
-                    src={`https://images.unsplash.com/flagged/photo-1573496760140-f15e236b5801?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80`}
-                    srcSet={`https://images.unsplash.com/flagged/photo-1573496760140-f15e236b5801?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80 2x`}
-                    alt="hats"
-                    loading="lazy"
-                  />
+                    <img
+                      width="50%"
+                      height="auto"
+                      src={`https://images.unsplash.com/flagged/photo-1573496760140-f15e236b5801?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80`}
+                      srcSet={`https://images.unsplash.com/flagged/photo-1573496760140-f15e236b5801?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80 2x`}
+                      alt="hats"
+                      loading="lazy"
+                    />
+                  </Box>
                 </Container>
               </Grid>
             </Grid>
