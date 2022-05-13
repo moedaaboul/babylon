@@ -15,10 +15,10 @@ import Footer from '../../components/Footer';
 const Home = () => {
   return (
     <>
+      <Grid item xs={12}>
+        <Navbar />
+      </Grid>
       <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <Navbar />
-        </Grid>
         <Grid item xs={12}>
           <Box style={{ background: '#F2CD3C', width: '100vw' }}>
             <Grid
