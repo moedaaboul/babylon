@@ -14,7 +14,7 @@ import './styles.css';
 
 function Success() {
   const [addOrder] = useMutation(ADD_ORDER);
-  const [state, dispatch] = useStoreContext();
+  const [, dispatch] = useStoreContext();
   let navigate = useNavigate();
   useEffect(() => {
     async function saveOrder() {
@@ -38,7 +38,7 @@ function Success() {
     }
 
     saveOrder();
-  }, []);
+  }, [addOrder, dispatch, navigate]);
 
   return (
     <div>

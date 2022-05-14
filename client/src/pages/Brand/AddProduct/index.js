@@ -88,6 +88,35 @@ const AddProduct = () => {
 
   const handleSubmitFile = (e) => {
     e.preventDefault();
+    if (userFormData.price < userFormData.discountedPrice) {
+      setSnackbar({ children: 'Discounted price cannot be greater than Original Price', severity: 'error' });
+      return;
+    }
+    if (!userFormData.title) {
+      setSnackbar({ children: 'Name cannot be empty!', severity: 'error' });
+      return;
+    } else if (!userFormData.category) {
+      setSnackbar({ children: 'Category cannot be empty!', severity: 'error' });
+      return;
+    } else if (!userFormData.description) {
+      setSnackbar({ children: 'Desription cannot be empty!', severity: 'error' });
+      return;
+    } else if (!userFormData.price) {
+      setSnackbar({ children: 'Desription cannot be empty!', severity: 'error' });
+      return;
+    } else if (!userFormData.discountedPrice) {
+      setSnackbar({ children: 'Discounted Price cannot be empty!', severity: 'error' });
+      return;
+    } else if (!userFormData.stock) {
+      setSnackbar({ children: 'Stock cannot be empty!', severity: 'error' });
+      return;
+    } else if (!userFormData.colour) {
+      setSnackbar({ children: 'Colour cannot be empty!', severity: 'error' });
+      return;
+    } else if (!images.length) {
+      setSnackbar({ children: 'At lease 1 image should be uploaded!', severity: 'error' });
+      return;
+    }
     uploadImage(images);
   };
 

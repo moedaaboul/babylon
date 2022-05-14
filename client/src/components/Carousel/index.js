@@ -5,7 +5,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import ParallaxSlide from '@mui-treasury/components/slide/parallax';
 import DotIndicator from '@mui-treasury/components/indicator/dot';
 import { useArrowDarkButtonStyles } from '@mui-treasury/styles/button/arrowDark';
-import { Root, LeftButton, RightButton, Slide, StyledImage, StyledTitle, StyledSubtitle } from './styles.js';
+import { Root, LeftButton, RightButton, Slide, StyledImage, StyledTitle } from './styles.js';
 
 const ParallaxCarousel = () => {
   const arrowStyles = useArrowDarkButtonStyles();

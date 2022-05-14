@@ -15,9 +15,6 @@ nav {
   margin: 3px;
 }
 
-.category-link:hover {
-  background-color: lightgrey !important;
-}
 
 .ild-grid-col {
   display: flex;
@@ -45,3 +42,23 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
+.is-active {
+  text-decoration: 'underline';
+  text-decoration-thickness: 3px;
+  color: black;
+  padding: 16px 32px;
+  font-weight: 700;
+  margin: 3px;
+}
+
+.category-link:hover {
+  text-decoration: 'underline';
+  text-decoration-thickness: 3px;
+  color: black;
+  padding: 16px 32px;
+  font-weight: 700;
+  margin: 3px;
+
+}
+

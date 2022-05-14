@@ -37,7 +37,7 @@ const ValueElement = styled('span')(({ theme }) => ({
 export default function CartItem({ item }) {
   console.log('in cart item', item);
 
-  const [state, dispatch] = useStoreContext();
+  const [, dispatch] = useStoreContext();
 
   const removeFromCart = (item) => {
     dispatch({
@@ -50,7 +50,7 @@ export default function CartItem({ item }) {
   const addOne = (e) => {
     let value = item.purchaseQuantity + 1;
 
-    value > item.stock ? (value = item.stock) : (value = value);
+    value > item.stock && (value = item.stock);
 
     dispatch({
       type: UPDATE_CART_QUANTITY,
