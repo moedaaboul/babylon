@@ -51,7 +51,7 @@
 
 ## About The Project
 
-![Product Name Screen Shot][product-screenshot]
+![My dashboard view of Tech Blog](./client/public/images/readme.gif)
 
 Through a combination of an exceptional concept with great technological delivery through industry standard tools, the
 ebabylon app was created to meet the demand and maintain an ethos that bares close relation to that of popular shopping
@@ -213,4 +213,3 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [login-screenshot]: /__admin__/resources/login.png
 [feed-screenshot]: /__admin__/resources/feed.png
 [post-screenshot]: /__admin__/resources/post.png
-[product-screenshot]: https://res.cloudinary.com/dyb07uvmrhy/image/upload/v1651967212/eBabylon_ptv0vt.gif
