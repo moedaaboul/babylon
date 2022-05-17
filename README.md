@@ -9,8 +9,6 @@
     <img src="./client/public/images/logo.png" alt="Logo">
   </a>
 
-  <h3 align="center">Babylon</h3>
-
   <p align="center">
     The concept for this project was to create an e-commerce platform for brands, influencers and sellers that is open source and offers a valuable resource for the dev community interested in building an full-stack e-commerce app with trending and state-of-the-art technologies. 
     <br />
