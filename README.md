@@ -212,6 +212,3 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [github-follow-shield-hy]: https://img.shields.io/github/followers/moedaaboul?style=social
 [linkedin-url-eh]: https://www.linkedin.com/in/vienna-b-108b04229/
 [linkedin-url-iw]: https://linkedin.com/in/iler-watson-643442158/
-[login-screenshot]: /__admin__/resources/login.png
-[feed-screenshot]: /__admin__/resources/feed.png
-[post-screenshot]: /__admin__/resources/post.png
