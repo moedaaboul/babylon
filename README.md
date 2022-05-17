@@ -1,13 +1,12 @@
 <div id="top"></div>
 
-[![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/moedaaboul/babylon">
-    <img src="https://res.cloudinary.com/dyb07uvmrhy/image/upload/v1651967058/Screenshot_2022-05-08_at_00.43.06_zcog9m.png" alt="Logo">
+    <img src="./client/public/images/logo.png" alt="Logo">
   </a>
 
   <h3 align="center">Babylon</h3>
@@ -53,12 +52,12 @@
 </details>
 
 ## About The Project
-                                  
+
 ![Product Name Screen Shot][product-screenshot]
-                                  
-Through a combination of an exceptional concept with great technological
-delivery through industry standard tools, the ebabylon app was created to meet
-the demand and maintain an ethos that bares close relation to that of popular shopping brands.
+
+Through a combination of an exceptional concept with great technological delivery through industry standard tools, the
+ebabylon app was created to meet the demand and maintain an ethos that bares close relation to that of popular shopping
+brands.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -66,27 +65,29 @@ the demand and maintain an ethos that bares close relation to that of popular sh
 
 - WHEN I land in the page, THEN I’m presented with a Carousel with featured product and a navigation bar.
 - WHEN I press login, THEN I’m presented with a login page, asking me to log in or to sign up.
-- WHEN I press sign up, THEN I’m taken to a sign up page to insert my info. I can choose to sign up as ‘brand’, ‘influencer’ or ‘buyer’.
-- WHEN I enter my information, THEN I’m taken to either the main page or to the Dashboard (if I’m signing up as a seller).
-                                
+- WHEN I press sign up, THEN I’m taken to a sign up page to insert my info. I can choose to sign up as ‘brand’,
+  ‘influencer’ or ‘buyer’.
+- WHEN I enter my information, THEN I’m taken to either the main page or to the Dashboard (if I’m signing up as a
+  seller).
+
 ### User Story - Brand
-                                
+
 - WHEN I land in my Dashboard, I’m presented with options to add new product and to manage the products under my brand.
 - WHEN I land in items page, THEN I can browse the items and view my product as a user.
 
- ### User Story - User
-                                
+### User Story - User
+
 - WHEN I land on the items page, THEN I’m presented with all the products
 - WHEN I view each products, THEN I’m presented with all data related to the products and highlighted info.
 - WHEN I interact with filters and sorters, THEN I’m presented with items that fall in the criteria.
 - WHEN I click the like button , THEN this item is added to my favorite.
 - WHEN I navigate to my favorite button , THEN I’m taken to a page to view all the items that I’ve saved
 - WHEN I click into each item, THEN I’m taken to the page of that item
-- WHEN I click ‘Add to Cart’, THEN the item will be added to my cart and the cart data will persist throughout the session
+- WHEN I click ‘Add to Cart’, THEN the item will be added to my cart and the cart data will persist throughout the
+  session
 - WHEN I click ‘+’ or ‘-’, THEN the I can change the amount of item I wish to purchase
 - WHEN I click ‘Checkout’ button, THEN I’m taken to the checkout page and payment page.
-                                
-                                
+
 ### Built With
 
 - [React](https://reactjs.org/)
@@ -141,9 +142,8 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 ## Contributing
 
-If you have a suggestion that would make this better, please fork the repo and
-create a pull request. You can also simply open an issue with the tag
-"enhancement". Don't forget to give the project a star! Thanks again!
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
+simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -157,8 +157,8 @@ create a pull request. You can also simply open an issue with the tag
 
 ## Hosting
 
-| Project  | Babylon URL                      |
-| -------- | --------------------------------- |
+| Project | Babylon URL                       |
+| ------- | --------------------------------- |
 | Babylon | <https://ebabylon.herokuapp.com/> |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -173,17 +173,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-> Muhammad Daaboul
-> ![GitHub followers](https://img.shields.io/github/followers/moedaaboul?style=social)
+> Muhammad Daaboul ![GitHub followers](https://img.shields.io/github/followers/moedaaboul?style=social)
 
-> Heran Yang
-> ![GitHub followers](https://img.shields.io/github/followers/heranYang93?style=social)
+> Heran Yang ![GitHub followers](https://img.shields.io/github/followers/heranYang93?style=social)
 
-> Vienna Borowska
-> ![GitHub followers](https://img.shields.io/github/followers/ViennaBorowska?style=social)
+> Vienna Borowska ![GitHub followers](https://img.shields.io/github/followers/ViennaBorowska?style=social)
 
-> Iler Watson
-> ![GitHub followers](https://img.shields.io/github/followers/Iler22?style=social)
+> Iler Watson ![GitHub followers](https://img.shields.io/github/followers/Iler22?style=social)
 
 <!-- > ![GitHub followers](https://img.shields.io/github/followers/heranYang93?style=social) -->
 
@@ -203,23 +199,17 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-[forks-shield]:
-  https://img.shields.io/github/forks/moedaaboul/babylon.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/moedaaboul/babylon.svg?style=for-the-badge
 [forks-url]: https://github.com/moedaaboul/babylon/network/members
-[issues-shield]:
-  https://img.shields.io/github/issues/moedaaboul/babylon.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/moedaaboul/babylon.svg?style=for-the-badge
 [issues-url]: https://github.com/moedaaboul/babylon/issues
-[license-shield]:
-  https://img.shields.io/github/license/moedaaboul/babylon.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/moedaaboul/babylon.svg?style=for-the-badge
 [license-url]: https://github.com/moedaaboul/babylon/blob/master/LICENSE.txt
-[linkedin-shield]:
-  https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url-md]: https://www.linkedin.com/in/muhammad-daaboul-38470046/
-[github-follow-shield-md]:
-  https://img.shields.io/github/followers/heranYang93?style=social
+[github-follow-shield-md]: https://img.shields.io/github/followers/heranYang93?style=social
 [linkedin-url-hy]: https://linkedin.com/in/heranyang/
-[github-follow-shield-hy]:
-  https://img.shields.io/github/followers/moedaaboul?style=social
+[github-follow-shield-hy]: https://img.shields.io/github/followers/moedaaboul?style=social
 [linkedin-url-eh]: https://www.linkedin.com/in/vienna-b-108b04229/
 [linkedin-url-iw]: https://linkedin.com/in/iler-watson-643442158/
 [login-screenshot]: /__admin__/resources/login.png
