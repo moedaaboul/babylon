@@ -103,9 +103,12 @@ brands.
 
 ## Getting Started
 
-### Installation
-
 0. Run deployed app at: https://ebabylon.herokuapp.com/
+                                
+OR
+
+### Installation
+                                
 1. Clone the repo
    ```sh
    git clone git@github.com:moedaaboul/babylon.git
@@ -114,7 +117,6 @@ brands.
    ```sh
    npm i
    ```
-3. Download and configure MySQL https://www.mysql.com/
 
 ### Prerequisites
 
