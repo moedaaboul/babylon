@@ -51,7 +51,7 @@
 
 ## About The Project
 
-![My dashboard view of Tech Blog](./client/public/images/readme.gif)
+![Landing Page and Auth](./client/public/images/readme.gif)
 
 Through a combination of an exceptional concept with great technological delivery through industry standard tools, the
 ebabylon app was created to meet the demand and maintain an ethos that bares close relation to that of popular shopping
