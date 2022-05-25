@@ -54,6 +54,7 @@ export default function Register() {
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [validPassword, setValidPassword] = useState(true);
   const [redirectOnRegistrationSuccess, setRedirectOnRegistrationSuccess] = useState(false);
 
   useEffect(() => {
@@ -70,6 +71,16 @@ export default function Register() {
       return () => clearTimeout(timeout);
     }
   }, [redirectOnRegistrationSuccess, navigate]);
+
+  useEffect(() => {
+    if (validPassword === false) {
+      const timeout = setTimeout(() => {
+        setValidPassword(true);
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [validPassword]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -94,11 +105,17 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+    // check if form has everything
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    }
+
+    if (userFormData.password.length < 6) {
+      setValidPassword(false);
+      setIsRegisterError(true);
+      return;
     }
 
     try {
@@ -251,7 +268,11 @@ export default function Register() {
                         label="Password"
                         type={passwordVisibility ? 'text' : 'password'}
                         id="password"
-                        helperText={'Your password needs to be at least 6 characters.'}
+                        helperText={
+                          validPassword
+                            ? 'Your password needs to be at least 6 characters.'
+                            : 'Password entered is less than 6 characters'
+                        }
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
